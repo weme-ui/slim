@@ -1,0 +1,43 @@
+{
+  "$schema": "https://weme-ui.github.io/weme-ui/registry.schema.json",
+  "name": "weme-ui/slim",
+  "description": "The slim registry of Weme UI",
+  "version": "1.0.0",
+  "homepage": "https://github.com/weme-ui/slim",
+  "repository": "https://github.com/weme-ui/slim.git",
+  "issues": "https://github.com/weme-ui/slim/issues",
+  "contributors": [
+    "Luo Yi <luoyi@mouji.com>"
+  ],
+  "access": "public",
+  "dependencies": [
+    "@weme-ui/unocss-preset",
+    "@vueuse/core",
+    "clsx",
+    "defu",
+    "reka-ui",
+    "tailwind-merge",
+    "tailwind-variants",
+    "unocss",
+    "vue"
+  ],
+  "items": [
+    {
+      "name": "utils",
+      "type": "util",
+      "title": "Utils",
+      "description": "Shared Utilities for Weme UI Slim Components.",
+      "when": "on-init",
+      "files": [
+        {
+          "type": "util",
+          "path": "src/utils/props.ts"
+        },
+        {
+          "type": "util",
+          "path": "src/utils/styles.ts"
+        }
+      ]
+    }
+  ]
+}
