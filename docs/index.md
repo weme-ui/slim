@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /markdown-examples
+      link: /get-started/
     - theme: alt
       text: Components
       link: /components/button

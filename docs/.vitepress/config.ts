@@ -4,7 +4,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
-import { getGuidePages } from './lib/guide.ts'
+import { firstGuideLink, getGuideSidebar, GUIDE_BASE } from './lib/guide.ts'
 import { buildComponentPage, firstComponentLink, getComponentSidebar, getRegistryItem } from './lib/registry.ts'
 import { docsShikiPlugin } from './lib/shiki-plugin.ts'
 
@@ -12,25 +12,18 @@ const configDir = dirname(fileURLToPath(import.meta.url))
 const repoRoot = resolve(configDir, '../..')
 const docsDir = resolve(configDir, '..')
 
-const guidePages = getGuidePages(docsDir)
+const guideSidebar = getGuideSidebar(docsDir)
 const componentSidebar = getComponentSidebar()
 const firstComponent = firstComponentLink()
+const firstGuide = firstGuideLink(docsDir)
 
-const sidebar: DefaultTheme.SidebarItem[] = []
+const sidebar: DefaultTheme.Sidebar = {}
 
-if (guidePages.length) {
-  sidebar.push({
-    text: 'Get started',
-    items: guidePages,
-  })
-}
+if (guideSidebar.length)
+  sidebar[GUIDE_BASE] = guideSidebar
 
-if (componentSidebar.length) {
-  sidebar.push({
-    text: 'Components',
-    items: componentSidebar,
-  })
-}
+if (componentSidebar.length)
+  sidebar['/components/'] = componentSidebar
 
 function readReadme(path?: string) {
   if (!path)
@@ -61,7 +54,7 @@ export default defineConfig({
   },
   themeConfig: {
     nav: [
-      { text: 'Get started', link: guidePages[0]?.link || '/' },
+      { text: 'Get started', link: firstGuide, activeMatch: GUIDE_BASE },
       { text: 'Components', link: firstComponent, activeMatch: '/components/' },
     ],
     sidebar,
