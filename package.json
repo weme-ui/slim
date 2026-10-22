@@ -31,7 +31,10 @@
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "preview": "vitepress preview docs",
-    "typecheck": "vue-tsc --noEmit"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
     "@iconify/vue": "^5.0.4",
@@ -51,10 +54,12 @@
     "@unocss/eslint-plugin": "^66.11.0",
     "@vue/server-renderer": "^3.5.44",
     "@vue/test-utils": "^2.5.1",
+    "@weme-ui/unocss-preset": "^0.2.1",
     "eslint": "^10.13.0",
     "eslint-plugin-format": "^2.0.1",
     "happy-dom": "^21.0.4",
     "lint-staged": "^17.6.0",
+    "shiki": "^4.5.0",
     "simple-git-hooks": "^2.14.0",
     "typescript": "6.0.3",
     "unocss": "^66.11.0",

@@ -12,7 +12,7 @@ hero:
       link: /markdown-examples
     - theme: alt
       text: Components
-      link: /api-examples
+      link: /components/button
 
 features:
   - title: Feature A

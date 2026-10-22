@@ -1,17 +1,18 @@
-// https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { h } from 'vue'
+import ApiTable from './components/ApiTable.vue'
+import ComponentDoc from './components/ComponentDoc.vue'
+import ExamplePreview from './components/ExamplePreview.vue'
+import 'virtual:uno.css'
 import './style.css'
 
 export default {
   extends: DefaultTheme,
-  Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
+  Layout: () => h(DefaultTheme.Layout),
+  enhanceApp({ app }) {
+    app.component('ApiTable', ApiTable)
+    app.component('ComponentDoc', ComponentDoc)
+    app.component('ExamplePreview', ExamplePreview)
   },
-  enhanceApp({ app, router, siteData }) {
-    // ...
-  }
 } satisfies Theme

@@ -92,17 +92,9 @@
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #bd34fe 30%,
-    #41d1ff
-  );
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
 
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #bd34fe 50%,
-    #47caff 50%
-  );
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
   --vp-home-hero-image-filter: blur(44px);
 }
 
@@ -129,3 +121,71 @@
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
 
+/**
+ * Docs widgets (ApiTable / ExamplePreview)
+ * Light tokens follow the design; dark maps onto VitePress surfaces.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --docs-radius: 0.65rem;
+  --docs-row-hover: var(--vp-c-bg-soft);
+  --docs-token-type: #1f7a69;
+  --docs-token-keyword: #c2410c;
+  --docs-token-literal: #2563eb;
+  --docs-token-string: #be185d;
+  --docs-token-number: #6d28d9;
+  --docs-token-punct: var(--vp-c-text-2);
+  --docs-token-empty: var(--vp-c-text-3);
+}
+
+.dark {
+  --docs-row-hover: var(--vp-c-bg-soft);
+  --docs-token-type: #7ad9c4;
+  --docs-token-keyword: #fb923c;
+  --docs-token-literal: #93c5fd;
+  --docs-token-string: #f9a8d4;
+  --docs-token-number: #c4b5fd;
+}
+
+.vp-doc .api-table details,
+.vp-doc .api-table summary,
+.vp-doc .example-preview details,
+.vp-doc .example-preview summary {
+  margin: 0;
+}
+
+.vp-doc .api-table .tok-type {
+  color: var(--docs-token-type);
+}
+
+.vp-doc .api-table .tok-keyword {
+  color: var(--docs-token-keyword);
+}
+
+.vp-doc .api-table .tok-literal {
+  color: var(--docs-token-literal);
+}
+
+.vp-doc .api-table .tok-string {
+  color: var(--docs-token-string);
+}
+
+.vp-doc .api-table .tok-number {
+  color: var(--docs-token-number);
+}
+
+.vp-doc .api-table .tok-punct {
+  color: var(--docs-token-punct);
+}
+
+.vp-doc .api-table .tok-empty {
+  color: var(--docs-token-empty);
+}
+
+.vp-doc .api-table a {
+  text-decoration: none;
+}
+
+.vp-doc .api-table .api-detail-desc code {
+  color: var(--docs-token-type);
+}
