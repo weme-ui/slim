@@ -37,6 +37,7 @@ function readReadme(path?: string) {
 }
 
 export default defineConfig({
+  base: '/slim/',
   title: 'Slim',
   description: 'Re-usable UI components with Reka UI and UnoCSS.',
   transformPageData(pageData) {
