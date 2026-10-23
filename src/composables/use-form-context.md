@@ -55,7 +55,7 @@ const field = useFormField({ name: 'email' })
 
 ### `FormValidationMode`
 
-`'onSubmit' \| 'onBlur' \| 'onChange'`
+`'onSubmit' | 'onBlur' | 'onChange'`
 
 ### `FormRegisteredField`
 
