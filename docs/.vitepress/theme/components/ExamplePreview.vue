@@ -65,7 +65,6 @@ async function copySource() {
 <template>
   <section class="example-preview">
     <div class="example-stage">
-      <div class="example-stage-glow" />
       <div class="example-stage-body">
         <component :is="Example" v-if="Example" />
         <p v-else class="example-missing">
@@ -100,36 +99,37 @@ async function copySource() {
 
 <style scoped>
 .example-preview {
-  margin: 0.7rem 0 2rem;
-  overflow: hidden;
-  border: 1px solid var(--vp-c-divider);
+  margin: 0.85rem 0 2.25rem;
+  overflow: visible;
+  border: 1px solid var(--docs-line);
   border-radius: var(--docs-radius);
-  background: var(--vp-c-bg);
+  background: var(--docs-card);
+  box-shadow: var(--docs-ring);
 }
 
 .example-stage {
-  position: relative;
-  background: var(--vp-c-bg);
+  margin: -1px -1px 0;
+  border: 1px solid var(--docs-line);
+  border-radius: var(--docs-radius) var(--docs-radius) 0 0;
+  background: var(--docs-well);
 }
 
-.example-stage-glow {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, var(--vp-c-divider) 1px, transparent 1.2px);
-  background-size: 14px 14px;
-  mask-image: radial-gradient(120% 90% at 50% 40%, #000 40%, transparent 85%);
-  opacity: 0.9;
+.example-preview:not(:has(.example-code)) .example-stage {
+  margin: -1px;
+  border-radius: var(--docs-radius);
 }
 
 .example-stage-body {
-  position: relative;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 8.5rem;
-  padding: 2rem 1.5rem;
+  min-height: 9.5rem;
+  padding: 2.75rem 1.75rem;
+}
+
+.example-stage-body > :deep(*) {
+  max-width: 100%;
+  min-width: 0;
 }
 
 .example-missing {
@@ -139,8 +139,8 @@ async function copySource() {
 }
 
 .example-code {
-  border-top: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
+  border-top: 1px solid var(--docs-line);
+  background: transparent;
 }
 
 .example-code > summary {
@@ -155,7 +155,7 @@ async function copySource() {
   color: var(--vp-c-text-2);
   font-size: 0.75rem;
   font-weight: 500;
-  background: var(--vp-c-bg-soft);
+  background: transparent;
 }
 
 .example-code > summary::-webkit-details-marker {
@@ -171,13 +171,7 @@ async function copySource() {
 }
 
 .example-lang {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.12rem 0.45rem;
-  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 35%, var(--vp-c-divider));
-  border-radius: 999px;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-text-3);
   font-family: var(--vp-font-family-mono);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
@@ -233,13 +227,13 @@ async function copySource() {
 }
 
 .example-code-body {
-  border-top: 1px solid var(--vp-c-divider);
   max-height: min(28rem, 70vh);
   overflow: auto;
 }
 
 .example-code-body :deep(div[class*='language-']) {
   margin: 0;
+  border: 0;
   border-radius: 0;
   background: transparent;
 }

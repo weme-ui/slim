@@ -137,11 +137,9 @@ function highlight(value?: string) {
 
 <style scoped>
 .api-table {
-  margin: 1rem 0 1.75rem;
+  margin: 0.5rem 0 2rem;
   overflow: hidden;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: var(--docs-radius);
-  background: var(--vp-c-bg);
+  background: transparent;
 }
 
 .api-table-head,
@@ -151,7 +149,7 @@ function highlight(value?: string) {
   grid-template-columns: minmax(9rem, 1.15fr) 1.25rem;
   gap: 1rem;
   align-items: center;
-  padding: 0.7rem 0.85rem;
+  padding: 0.7rem 1rem;
 }
 
 .api-table.has-type .api-table-head,
@@ -173,10 +171,9 @@ function highlight(value?: string) {
 }
 
 .api-table-head {
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  font-size: 0.8rem;
-  font-weight: 600;
+  color: var(--vp-c-text-3);
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 .api-table-head-icon {

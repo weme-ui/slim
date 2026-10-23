@@ -1,58 +1,40 @@
 /**
- * Customize default theme styling by overriding CSS variables:
+ * VitePress colors mapped onto @weme-ui/unocss-preset accent / neutral.
  * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
  */
 
-/**
- * Colors
- *
- * Each colors have exact same color scale system with 3 levels of solid
- * colors with different brightness, and 1 soft color.
- *
- * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
- *
- * - `XXX-2`: The color used mainly for hover state of the button.
- *
- * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
- *
- * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
- *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create an accent, such as when having inline code block inside
- *   custom containers.
- *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
- *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
- *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
- *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
- *
- * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
- * -------------------------------------------------------------------------- */
+/*
+ * Surfaces follow the preset neutral scale (iron). Accent (puerto) is the
+ * brand. Both switch with `.dark` because the preset redefines the steps.
+ */
+:root,
+.dark {
+  --vp-c-bg: var(--neutral-1);
+  --vp-c-bg-alt: var(--neutral-3);
+  --vp-c-bg-elv: var(--neutral-4);
+  --vp-c-bg-soft: var(--neutral-4);
 
-:root {
-  --vp-c-default-1: var(--vp-c-gray-1);
-  --vp-c-default-2: var(--vp-c-gray-2);
-  --vp-c-default-3: var(--vp-c-gray-3);
-  --vp-c-default-soft: var(--vp-c-gray-soft);
+  --vp-c-divider: var(--neutral-6);
+  --vp-c-gutter: var(--neutral-6);
+  --vp-c-border: var(--neutral-7);
 
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
-  --vp-c-brand-3: var(--vp-c-indigo-3);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+  --vp-c-text-1: var(--neutral-12);
+  --vp-c-text-2: var(--neutral-11);
+  --vp-c-text-3: var(--neutral-9);
+
+  --vp-c-default-1: var(--neutral-7);
+  --vp-c-default-2: var(--neutral-6);
+  --vp-c-default-3: var(--neutral-4);
+  --vp-c-default-soft: color-mix(in oklch, var(--neutral-12) 8%, transparent);
+
+  --vp-sidebar-bg-color: var(--vp-c-bg);
+  --vp-nav-divider-color: transparent;
+  --vp-local-nav-divider-color: transparent;
+
+  --vp-c-brand-1: var(--accent-11);
+  --vp-c-brand-2: var(--accent-10);
+  --vp-c-brand-3: var(--accent-9);
+  --vp-c-brand-soft: color-mix(in oklch, var(--accent-9) 16%, transparent);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
   --vp-c-tip-2: var(--vp-c-brand-2);
@@ -74,40 +56,59 @@
  * Component: Button
  * -------------------------------------------------------------------------- */
 
-:root {
+:root,
+.dark {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-bg: var(--accent-9);
   --vp-button-brand-hover-border: transparent;
   --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-hover-bg: var(--accent-10);
   --vp-button-brand-active-border: transparent;
   --vp-button-brand-active-text: var(--vp-c-white);
-  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+  --vp-button-brand-active-bg: var(--accent-10);
+
+  --vp-home-hero-name-color: var(--accent-11);
+  --vp-home-hero-name-background: transparent;
+  --vp-home-hero-image-background-image: none;
+  --vp-home-hero-image-filter: none;
 }
 
-/**
- * Component: Home
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
-
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
-  --vp-home-hero-image-filter: blur(44px);
+.VPNavBar.has-sidebar .divider::before,
+.VPNavBar .divider-line {
+  background-color: transparent !important;
 }
 
-@media (min-width: 40rem) {
-  :root {
-    --vp-home-hero-image-filter: blur(56px);
-  }
+.VPLocalNav {
+  border-bottom-color: transparent !important;
 }
 
-@media (min-width: 60rem) {
-  :root {
-    --vp-home-hero-image-filter: blur(68px);
-  }
+.vp-doc.vp-doc h2 {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2.75rem;
+}
+
+.VPSidebar .group + .group {
+  border-top: none !important;
+}
+
+.VPSidebar .VPSidebarItem.level-0 > .item > .text {
+  color: var(--vp-c-text-3) !important;
+  font-weight: 500;
+}
+
+.VPDocAsideOutline .content {
+  border-left: none !important;
+  padding-left: 0;
+}
+
+.VPDocAsideOutline .outline-marker {
+  display: none;
+}
+
+.VPDocAsideOutline .outline-link.active {
+  color: var(--accent-11) !important;
 }
 
 /**
@@ -126,12 +127,18 @@
  * Light tokens follow the design; dark maps onto VitePress surfaces.
  * -------------------------------------------------------------------------- */
 
-:root {
-  --docs-radius: 0.65rem;
+:root,
+.dark {
+  --docs-radius: 1rem;
+  --docs-card: var(--neutral-3);
+  --docs-well: var(--neutral-2);
+  --docs-line: color-mix(in oklch, var(--neutral-12) 6%, transparent);
+  --docs-ring-line: color-mix(in oklch, var(--neutral-12) 14%, transparent);
+  --docs-ring: 0 -1px 0 color-mix(in oklch, var(--neutral-12) 6%, transparent);
   --docs-row-hover: var(--vp-c-bg-soft);
-  --docs-token-type: #1f7a69;
+  --docs-token-type: var(--accent-11);
   --docs-token-keyword: #c2410c;
-  --docs-token-literal: #2563eb;
+  --docs-token-literal: var(--accent-9);
   --docs-token-string: #be185d;
   --docs-token-number: #6d28d9;
   --docs-token-punct: var(--vp-c-text-2);
@@ -139,12 +146,53 @@
 }
 
 .dark {
-  --docs-row-hover: var(--vp-c-bg-soft);
-  --docs-token-type: #7ad9c4;
   --docs-token-keyword: #fb923c;
-  --docs-token-literal: #93c5fd;
   --docs-token-string: #f9a8d4;
   --docs-token-number: #c4b5fd;
+}
+
+.example-preview,
+.vp-doc.vp-doc div[class*='language-'] {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border: 1px solid var(--docs-line);
+  border-radius: var(--docs-radius);
+  background-color: var(--docs-card);
+  box-shadow: var(--docs-ring);
+}
+
+.example-preview::after,
+.vp-doc.vp-doc div[class*='language-']::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -5px;
+  border: 1px solid var(--docs-ring-line);
+  border-radius: calc(var(--docs-radius) + 5px);
+  pointer-events: none;
+}
+
+.vp-doc.vp-doc div[class*='language-'] > pre {
+  margin: 0;
+  overflow: auto;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.example-preview .example-code-body div[class*='language-'] {
+  position: static;
+  margin: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  isolation: auto;
+}
+
+.example-preview .example-code-body div[class*='language-']::after {
+  content: none;
 }
 
 .vp-doc .api-table details,

@@ -46,11 +46,7 @@ export default defineConfig({
   title: 'Slim',
   description: 'Re-usable UI components with Reka UI and UnoCSS.',
   head: [
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: assetUrl('favicon-32x32.png') }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: assetUrl('favicon-16x16.png') }],
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: assetUrl('favicon.svg'), sizes: 'any' }],
-    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: assetUrl('apple-touch-icon.png') }],
-    ['link', { rel: 'manifest', href: assetUrl('site.webmanifest') }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: assetUrl('favicon.svg') }],
   ],
   transformPageData(pageData) {
     const name = pageData.params?.name

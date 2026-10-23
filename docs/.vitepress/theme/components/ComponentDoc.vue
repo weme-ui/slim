@@ -156,12 +156,16 @@ function html(source: string) {
 }
 
 .doc-hero h1 {
-  letter-spacing: -0.03em;
+  margin: 0;
+  letter-spacing: -0.035em;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  font-weight: 700;
 }
 
 .component-lead {
-  margin: 0.7rem 0 0;
-  max-width: 40rem;
+  margin: 0.75rem 0 0;
+  max-width: 36rem;
   color: var(--vp-c-text-2);
   font-size: 1.05rem;
   line-height: 1.6;
@@ -177,15 +181,9 @@ function html(source: string) {
 }
 
 .doc-dependency {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.12rem 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 35%, var(--vp-c-divider));
-  border-radius: 999px;
-  background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
   font-family: var(--vp-font-family-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.4;
   text-decoration: none;
 }
