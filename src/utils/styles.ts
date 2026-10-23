@@ -79,18 +79,44 @@ function isBorderColor(value: string) {
 const twMergeConfig = {
   extend: {
     classGroups: {
-      'fancy': [{ fancy: [isSurfaceToken] }],
-      'plain': [{ plain: [isSurfaceToken] }],
-      'bg-color': [{ bg: [isThemeColor('background')] }],
-      'text-color': [{
-        text: [isThemeColor('foreground')],
-        c: [isThemeColor('foreground')],
-        color: [isThemeColor('foreground')],
-      }],
-      'border-color': [{
-        border: [isThemeColor('border')],
-        b: [isBorderColor],
-      }],
+      'fancy': [
+        {
+          fancy: [isSurfaceToken],
+        },
+      ],
+      'plain': [
+        {
+          plain: [isSurfaceToken],
+        },
+      ],
+      'bg-color': [
+        {
+          bg: [
+            isThemeColor('background'),
+          ],
+        },
+      ],
+      'text-color': [
+        {
+          text: [
+            isThemeColor('foreground'),
+          ],
+          c: [
+            isThemeColor('foreground'),
+          ],
+          color: [
+            isThemeColor('foreground'),
+          ],
+        },
+      ],
+      'border-color': [
+        {
+          border: [
+            isThemeColor('border'),
+          ],
+          b: [isBorderColor],
+        },
+      ],
     },
     conflictingClassGroups: {
       fancy: ['plain'] as const,
