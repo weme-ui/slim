@@ -26,4 +26,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/animated-toggle-icon
 
 ## Accessibility
 
-通过 `motion-v` 的 `Motion`（`as-child`）渲染为 `Icon`，并设置 `data-slot="animated-select-icon"`、`data-active`（由 `active` 映射）。根节点带有 `pointer-events-none`。不含独立键盘交互；若图标表达独立含义，请在相邻元素提供等效文本，或为图标设置可访问名称。
+通过 `motion-v` 的 `Motion`（`as-child`）渲染为 `Icon`，并设置 `data-slot="animated-toggle-icon"`、`data-active`（由 `active` 映射）。根节点带有 `pointer-events-none`。不含独立键盘交互；若图标表达独立含义，请在相邻元素提供等效文本，或为图标设置可访问名称。
