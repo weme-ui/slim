@@ -105,12 +105,20 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
     })
   }
 
+  const ordered = [...groups.values()].sort((a, b) => {
+    if (a.id === 'general' || b.id === 'general')
+      return a.id === 'general' ? -1 : 1
+    if (a.id === 'utilities' || b.id === 'utilities')
+      return a.id === 'utilities' ? 1 : -1
+    return a.label.localeCompare(b.label, 'en')
+  })
+
   return [
     {
       text: 'All components',
       link: '/components/',
     },
-    ...[...groups.values()].map(group => ({
+    ...ordered.map(group => ({
       text: group.label,
       items: group.items,
       collapsed: false,
