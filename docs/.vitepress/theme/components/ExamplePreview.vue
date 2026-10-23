@@ -31,17 +31,23 @@ function resolveKey(modules: Record<string, unknown>) {
 const Example = computed(() => {
   const key = resolveKey(exampleModules)
   const loader = key ? exampleModules[key] : null
-  return loader ? defineAsyncComponent(loader) : null
+  return loader
+    ? defineAsyncComponent(loader)
+    : null
 })
 
 const source = computed(() => {
   const key = resolveKey(exampleSources)
-  return key ? exampleSources[key] || '' : ''
+  return key
+    ? exampleSources[key] || ''
+    : ''
 })
 
 const highlighted = computed(() => {
   const key = resolveKey(highlightedSources)
-  return key ? highlightedSources[key] || '' : ''
+  return key
+    ? highlightedSources[key] || ''
+    : ''
 })
 
 const shortPath = computed(() => props.path.split('/').slice(-2).join('/'))

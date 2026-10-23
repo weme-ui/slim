@@ -25,7 +25,9 @@ function pageTitle(filePath: string, fallback: string) {
 }
 
 function pageLink(name: string) {
-  return name === 'index' ? GUIDE_BASE : `${GUIDE_BASE}${name}`
+  return name === 'index'
+    ? GUIDE_BASE
+    : `${GUIDE_BASE}${name}`
 }
 
 export function getGuideDir(docsDir: string) {
@@ -74,10 +76,12 @@ export function getGuideSidebar(docsDir: string): DefaultTheme.SidebarItem[] {
   if (!items.length)
     return []
 
-  return [{
-    text: 'Get started',
-    items,
-  }]
+  return [
+    {
+      text: 'Get started',
+      items,
+    },
+  ]
 }
 
 export function firstGuideLink(docsDir: string): string {

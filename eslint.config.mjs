@@ -10,9 +10,18 @@ export default antfu(
     rules: {
       'ts/no-redeclare': 'off',
       // style.ts 里 class 在 createVariants({...}) 对象字符串中，默认只扫 clsx/classnames
-      'unocss/order': ['warn', {
-        unoFunctions: ['createVariants', 'cn', 'cx', 'clsx', 'classnames'],
-      }],
+      'unocss/order': [
+        'warn',
+        {
+          unoFunctions: [
+            'createVariants',
+            'cn',
+            'cx',
+            'clsx',
+            'classnames',
+          ],
+        },
+      ],
     },
     ignores: [
     ],

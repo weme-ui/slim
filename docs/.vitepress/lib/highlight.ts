@@ -56,7 +56,10 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
       let end = i + 1
       while (end < source.length && /\s/.test(source[end]!))
         end++
-      tokens.push({ kind: 'text', value: source.slice(i, end) })
+      tokens.push({
+        kind: 'text',
+        value: source.slice(i, end),
+      })
       i = end
       continue
     }
@@ -75,7 +78,10 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
         }
         end++
       }
-      tokens.push({ kind: 'string', value: source.slice(i, end) })
+      tokens.push({
+        kind: 'string',
+        value: source.slice(i, end),
+      })
       i = end
       continue
     }
@@ -84,7 +90,10 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
       let end = i + 1
       while (end < source.length && /[\d._]/.test(source[end]!))
         end++
-      tokens.push({ kind: 'number', value: source.slice(i, end) })
+      tokens.push({
+        kind: 'number',
+        value: source.slice(i, end),
+      })
       i = end
       continue
     }
@@ -116,7 +125,10 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
       continue
     }
     if (source.startsWith('=>', i) || source.startsWith('?:', i)) {
-      tokens.push({ kind: 'punct', value: source.slice(i, i + 2) })
+      tokens.push({
+        kind: 'punct',
+        value: source.slice(i, i + 2),
+      })
       i += 2
       continue
     }

@@ -21,7 +21,9 @@ function resolveReadme(path?: string) {
   const key = Object.keys(readmeModules).find(modulePath =>
     modulePath.endsWith(`/${path}`) || modulePath.endsWith(path) || modulePath.includes(path),
   )
-  return key ? readmeModules[key] || '' : ''
+  return key
+    ? readmeModules[key] || ''
+    : ''
 }
 
 const page = computed(() => {

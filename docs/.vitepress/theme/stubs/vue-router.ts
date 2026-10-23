@@ -12,7 +12,10 @@ export const RouterLink = defineComponent({
   name: 'RouterLink',
   inheritAttrs: false,
   props: {
-    to: { type: [String, Object], required: true },
+    to: {
+      type: [String, Object],
+      required: true,
+    },
     custom: Boolean,
     replace: Boolean,
     activeClass: String,

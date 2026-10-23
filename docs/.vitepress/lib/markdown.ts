@@ -108,7 +108,9 @@ function readInlineDependencyList(value: string): string[] {
       .map(part => unquote(part.trim()))
       .filter(Boolean)
   }
-  return [unquote(value)]
+  return [
+    unquote(value),
+  ]
 }
 
 function unquote(value: string): string {
@@ -122,8 +124,11 @@ function unquote(value: string): string {
 }
 
 function normalizeDependencies(value: unknown): string[] {
-  if (typeof value === 'string')
-    return NPM_PACKAGE_NAME.test(value) ? [value] : []
+  if (typeof value === 'string') {
+    return NPM_PACKAGE_NAME.test(value)
+      ? [value]
+      : []
+  }
   if (!Array.isArray(value))
     return []
   return value.filter((item): item is string => typeof item === 'string' && NPM_PACKAGE_NAME.test(item))
@@ -224,7 +229,9 @@ export function slugifyHeading(text: string, used = new Map<string, number>()): 
     .replace(/\s+/g, '-')
   const count = used.get(base) || 0
   used.set(base, count + 1)
-  return count === 0 ? base : `${base}-${count}`
+  return count === 0
+    ? base
+    : `${base}-${count}`
 }
 
 export function humanizeExampleName(slug: string, itemName?: string): string {
@@ -415,8 +422,12 @@ export function parseMarkdownFences(source: string): MarkdownFencePart[] {
   let last = 0
   let match = fence.exec(source)
   while (match) {
-    if (match.index > last)
-      parts.push({ type: 'text', content: source.slice(last, match.index) })
+    if (match.index > last) {
+      parts.push({
+        type: 'text',
+        content: source.slice(last, match.index),
+      })
+    }
     parts.push({
       type: 'fence',
       lang: match[1] || 'txt',
@@ -425,8 +436,12 @@ export function parseMarkdownFences(source: string): MarkdownFencePart[] {
     last = match.index + match[0].length
     match = fence.exec(source)
   }
-  if (last < source.length)
-    parts.push({ type: 'text', content: source.slice(last) })
+  if (last < source.length) {
+    parts.push({
+      type: 'text',
+      content: source.slice(last),
+    })
+  }
   return parts
 }
 

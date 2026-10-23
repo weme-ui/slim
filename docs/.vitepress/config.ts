@@ -45,7 +45,14 @@ export default defineConfig({
   title: 'Slim',
   description: 'Re-usable UI components with Reka UI and UnoCSS.',
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: assetUrl('favicon.svg') }],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: assetUrl('favicon.svg'),
+      },
+    ],
   ],
   transformPageData(pageData) {
     const name = pageData.params?.name

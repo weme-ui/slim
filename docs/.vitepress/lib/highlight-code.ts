@@ -109,16 +109,18 @@ export async function highlightCode(
     },
     defaultColor: false,
     colorReplacements: COLOR_REPLACEMENTS,
-    transformers: [{
-      name: 'docs:vp-pre',
-      pre(node) {
-        const classes = new Set(classList(node.properties.class))
-        classes.add('vp-code')
-        node.properties.class = [...classes]
-        node.properties.dir = 'ltr'
-        delete node.properties.style
+    transformers: [
+      {
+        name: 'docs:vp-pre',
+        pre(node) {
+          const classes = new Set(classList(node.properties.class))
+          classes.add('vp-code')
+          node.properties.class = [...classes]
+          node.properties.dir = 'ltr'
+          delete node.properties.style
+        },
       },
-    }],
+    ],
   })
 
   return `<div class="language-${resolved}">${html}</div>`

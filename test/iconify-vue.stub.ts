@@ -15,7 +15,9 @@ export const Icon = defineComponent({
       h('svg', {
         ...attrs,
         'xmlns': 'http://www.w3.org/2000/svg',
-        'data-icon': typeof props.icon === 'string' ? props.icon : undefined,
+        'data-icon': typeof props.icon === 'string'
+          ? props.icon
+          : undefined,
       })
   },
 })

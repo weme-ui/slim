@@ -7,7 +7,9 @@ function resolve(dir: string) {
 }
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+  ],
   resolve: {
     alias: {
       '~': resolve('./src'),

@@ -83,7 +83,9 @@ export function componentHref(name: string): string {
 
 export function firstComponentLink(config: RegistryConfig = registry): string {
   const first = getComponentItems(config)[0]
-  return first ? componentHref(first.name) : '/components/'
+  return first
+    ? componentHref(first.name)
+    : '/components/'
 }
 
 export function getComponentSidebar(config: RegistryConfig = registry): DefaultTheme.SidebarItem[] {
@@ -105,11 +107,19 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
     })
   }
 
-  const ordered = [...groups.values()].sort((a, b) => {
-    if (a.id === 'general' || b.id === 'general')
-      return a.id === 'general' ? -1 : 1
-    if (a.id === 'utilities' || b.id === 'utilities')
-      return a.id === 'utilities' ? 1 : -1
+  const ordered = [
+    ...groups.values(),
+  ].sort((a, b) => {
+    if (a.id === 'general' || b.id === 'general') {
+      return a.id === 'general'
+        ? -1
+        : 1
+    }
+    if (a.id === 'utilities' || b.id === 'utilities') {
+      return a.id === 'utilities'
+        ? 1
+        : -1
+    }
     return a.label.localeCompare(b.label, 'en')
   })
 
@@ -128,7 +138,9 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
 
 export function fileBasename(path: string, ext = ''): string {
   const name = path.split('/').pop() || path
-  return ext && name.endsWith(ext) ? name.slice(0, -ext.length) : name
+  return ext && name.endsWith(ext)
+    ? name.slice(0, -ext.length)
+    : name
 }
 
 export function resolveExamples(item: RegistryItem): ExampleRef[] {
@@ -234,8 +246,12 @@ export function buildComponentPage(
   const keyboardRows = firstTableRows(splitBodySegments(keyboardSection?.body || ''))
   const accessibilityMarkdown = markdownWithoutTables(splitBodySegments(accessibilityParts.lead))
 
-  const cssVarRows = hasCssVars(item.cssVars) ? cssVarsToRows(item.cssVars) : []
-  const exampleClass = cssVarRows.length ? cssVarsExampleClass(item.cssVars) : undefined
+  const cssVarRows = hasCssVars(item.cssVars)
+    ? cssVarsToRows(item.cssVars)
+    : []
+  const exampleClass = cssVarRows.length
+    ? cssVarsExampleClass(item.cssVars)
+    : undefined
   const cssVarIntro = exampleClass
     ? `可在 \`*.style.ts\` 或 \`class\` 中使用，例如 \`${exampleClass}\`。`
     : ''
