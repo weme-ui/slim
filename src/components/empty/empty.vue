@@ -19,7 +19,11 @@ const iconProps = computed(() => {
   return props.icon as IconTileProps
 })
 
-const iconSize = computed(() => props.size === 'sm' ? 'xs' : props.size === 'md' ? 'sm' : 'md')
+const iconSize = computed(() => props.size === 'sm'
+  ? 'xs'
+  : props.size === 'md'
+    ? 'sm'
+    : 'md')
 
 const ui = computed(() => useEmptyStyle({
   size: props.size,
