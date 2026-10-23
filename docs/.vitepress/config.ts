@@ -70,6 +70,10 @@ export default defineConfig({
     pageData.headers = page.outline
   },
   themeConfig: {
+    logo: {
+      src: '/favicon.svg',
+      alt: 'Slim',
+    },
     nav: [
       { text: 'Get started', link: firstGuide, activeMatch: GUIDE_BASE },
       { text: 'Components', link: '/components/', activeMatch: '/components/' },

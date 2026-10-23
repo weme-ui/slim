@@ -74,9 +74,20 @@
   --vp-home-hero-image-filter: none;
 }
 
+:root,
+.dark {
+  --vp-nav-logo-height: 1.75rem;
+}
+
 .VPNavBar.has-sidebar .divider::before,
 .VPNavBar .divider-line {
   background-color: transparent !important;
+}
+
+.VPNavBarTitle .logo {
+  width: var(--vp-nav-logo-height);
+  height: var(--vp-nav-logo-height);
+  border-radius: 999px;
 }
 
 .VPLocalNav {
@@ -93,9 +104,19 @@
   border-top: none !important;
 }
 
-.VPSidebar .VPSidebarItem.level-0 > .item > .text {
+.VPSidebar .VPSidebarItem.level-0:not(.is-link) > .item > .text {
   color: var(--vp-c-text-3) !important;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.VPSidebar .VPSidebarItem.is-link > .item .text {
+  color: var(--neutral-12) !important;
+}
+
+.VPSidebar .VPSidebarItem.is-link > .item > .link:hover .text,
+.VPSidebar .VPSidebarItem.is-link.is-active > .item .text {
+  color: var(--accent-11) !important;
 }
 
 .VPDocAsideOutline .content {
