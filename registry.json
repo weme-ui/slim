@@ -40,6 +40,35 @@
       ]
     },
     {
+      "name": "use-form-context",
+      "type": "composable",
+      "title": "useFormContext",
+      "description": "Form context helpers based on Reka UI createContext.",
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      },
+      "dependencies": [
+        "@tanstack/vue-form"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-form-context.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-form-context.md"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-form-context.test.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "component",
       "title": "Button",
