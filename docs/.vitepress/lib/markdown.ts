@@ -39,6 +39,96 @@ const DESCRIPTION_HEADERS = new Set(['说明', 'description', 'desc'])
 const TYPE_HEADERS = new Set(['类型', 'type'])
 const DEFAULT_HEADERS = new Set(['默认值', 'default', 'value'])
 
+const NPM_PACKAGE_NAME = /^(?:@[a-z0-9][\w.~-]*\/)?[a-z0-9][\w.~-]*$/i
+
+export function splitReadmeFrontmatter(source = ''): { dependencies: string[], body: string } {
+  const match = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n)?/.exec(source)
+  if (!match)
+    return { dependencies: [], body: source }
+
+  return {
+    dependencies: readFrontmatterDependencies(match[1] ?? ''),
+    body: source.slice(match[0].length).replace(/^(?:\r?\n)+/, ''),
+  }
+}
+
+function readFrontmatterDependencies(raw: string): string[] {
+  const trimmed = raw.trim()
+  if (!trimmed)
+    return []
+  if (trimmed.startsWith('{'))
+    return readJsonDependencies(trimmed)
+  return readYamlDependencies(trimmed)
+}
+
+function readJsonDependencies(raw: string): string[] {
+  try {
+    const data = JSON.parse(raw) as { dependencies?: unknown }
+    return normalizeDependencies(data.dependencies)
+  }
+  catch {
+    return []
+  }
+}
+
+function readYamlDependencies(raw: string): string[] {
+  const names: string[] = []
+  let inList = false
+
+  for (const line of raw.split(/\r?\n/)) {
+    if (!inList) {
+      const header = /^dependencies\s*:/.exec(line.trim())
+      if (!header)
+        continue
+      const inline = line.trim().slice(header[0].length).trim()
+      if (inline)
+        names.push(...readInlineDependencyList(inline))
+      else
+        inList = true
+      continue
+    }
+
+    if (/^\s*-\s+/.test(line)) {
+      names.push(unquote(line.replace(/^\s*-\s+/, '').trim()))
+      continue
+    }
+    if (line.trim() === '')
+      continue
+    break
+  }
+
+  return normalizeDependencies(names)
+}
+
+function readInlineDependencyList(value: string): string[] {
+  if (value.startsWith('[') && value.endsWith(']')) {
+    return value
+      .slice(1, -1)
+      .split(',')
+      .map(part => unquote(part.trim()))
+      .filter(Boolean)
+  }
+  return [unquote(value)]
+}
+
+function unquote(value: string): string {
+  if (
+    (value.startsWith('\'') && value.endsWith('\''))
+    || (value.startsWith('"') && value.endsWith('"'))
+  ) {
+    return value.slice(1, -1)
+  }
+  return value
+}
+
+function normalizeDependencies(value: unknown): string[] {
+  if (typeof value === 'string')
+    return NPM_PACKAGE_NAME.test(value) ? [value] : []
+  if (!Array.isArray(value))
+    return []
+  return value.filter((item): item is string => typeof item === 'string' && NPM_PACKAGE_NAME.test(item))
+}
+
 export function stripLeadingH1(source = ''): string {
   if (!source.startsWith('# '))
     return source

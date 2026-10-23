@@ -10,6 +10,7 @@ import {
   splitBodySegments,
   splitMarkdownH2,
   splitMarkdownH3,
+  splitReadmeFrontmatter,
   stripLeadingH1,
 } from './markdown.ts'
 
@@ -48,6 +49,7 @@ export interface ComponentPageModel {
   title: string
   description: string
   lead: string
+  dependencies: string[]
   installationMarkdown: string
   usageExample?: ExampleRef
   featureExamples: ExampleRef[]
@@ -188,9 +190,10 @@ export function buildComponentPage(
   readme = '',
   config: RegistryConfig = registry,
 ): ComponentPageModel {
-  const stripped = stripLeadingH1(readme)
+  const { dependencies, body } = splitReadmeFrontmatter(readme)
+  const stripped = stripLeadingH1(body)
   const lead = extractLead(stripped)
-  const sections = sectionMap(readme)
+  const sections = sectionMap(body)
   const examples = resolveExamples(item)
   const usageExample = examples.find(example => example.name === 'usage')
   const featureExamples = examples.filter(example => example.name !== 'usage')
@@ -258,6 +261,7 @@ export function buildComponentPage(
     title: item.title || item.name,
     description: item.description || '',
     lead,
+    dependencies,
     installationMarkdown,
     usageExample,
     featureExamples,

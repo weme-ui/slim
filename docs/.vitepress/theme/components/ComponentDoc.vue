@@ -54,6 +54,16 @@ function html(source: string) {
       <p v-if="page.lead || page.description" class="component-lead">
         {{ page.lead || page.description }}
       </p>
+      <ul v-if="page.dependencies.length" class="doc-dependencies">
+        <li v-for="dependency in page.dependencies" :key="dependency">
+          <a
+            class="doc-dependency"
+            :href="`https://www.npmjs.com/package/${dependency}`"
+            target="_blank"
+            rel="noreferrer"
+          >{{ dependency }}</a>
+        </li>
+      </ul>
     </header>
 
     <h2 :id="headingId('Installation')">
@@ -155,6 +165,33 @@ function html(source: string) {
   color: var(--vp-c-text-2);
   font-size: 1.05rem;
   line-height: 1.6;
+}
+
+.doc-dependencies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doc-dependency {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 35%, var(--vp-c-divider));
+  border-radius: 999px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.doc-dependency:hover {
+  color: var(--vp-c-brand-2);
 }
 
 .doc-files {
