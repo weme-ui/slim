@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { IconTileProps } from '../icon-tile/icon-tile.props'
 import type { EmptyProps } from './empty.props'
 import { Primitive } from 'reka-ui'
 import { computed } from 'vue'
@@ -15,7 +16,7 @@ const iconProps = computed(() => {
   if (typeof props.icon === 'string') {
     return { icon: props.icon }
   }
-  return props.icon
+  return props.icon as IconTileProps
 })
 
 const iconSize = computed(() => props.size === 'sm' ? 'xs' : props.size === 'md' ? 'sm' : 'md')
@@ -30,17 +31,17 @@ const ui = computed(() => useEmptyStyle({
   <Primitive data-slot="empty" :class="cn(ui.root(), props.ui?.root, props.class)">
     <div :class="cn(ui.header(), props.ui?.header)">
       <slot name="header">
-        <div v-if="!!$slots.media || icon" :class="cn(ui.media(), props.ui?.media)">
+        <div v-if="!!$slots.media || !!icon" :class="cn(ui.media(), props.ui?.media)">
           <slot name="media">
-            <IconTile v-if="icon" v-bind="{ ...iconProps }" variant="soft" :size="iconSize" />
+            <IconTile v-if="!!icon" variant="soft" v-bind="{ ...iconProps }" :size="iconSize" />
           </slot>
         </div>
-        <div v-if="!!$slots.title || title" :class="cn(ui.title(), props.ui?.title)">
+        <div v-if="!!$slots.title || !!title" :class="cn(ui.title(), props.ui?.title)">
           <slot name="title">
             {{ title }}
           </slot>
         </div>
-        <div v-if="!!$slots.description || description" :class="cn(ui.description(), props.ui?.description)">
+        <div v-if="!!$slots.description || !!description" :class="cn(ui.description(), props.ui?.description)">
           <slot name="description">
             {{ description }}
           </slot>
