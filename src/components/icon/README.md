@@ -1,3 +1,8 @@
+---
+dependencies:
+  - '@iconify/vue'
+---
+
 # Icon
 
 用于展示图标的组件，基于 `@iconify/vue` 封装；优先使用 `name`，也可用 `icon` 作为别名。
