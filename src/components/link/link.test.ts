@@ -7,7 +7,12 @@ import Link from './link.vue'
 
 const router = createRouter({
   history: createMemoryHistory(),
-  routes: [{ path: '/', component: { template: '<div />' } }],
+  routes: [
+    {
+      path: '/',
+      component: { template: '<div />' },
+    },
+  ],
 })
 
 beforeAll(async () => {
@@ -52,7 +57,9 @@ describe('link', () => {
       const wrapper = mount(Link, {
         attachTo: document.body,
         props: { to: '/', label: 'Documentation' },
-        global: { plugins: [router] },
+        global: {
+          plugins: [router],
+        },
       })
       const anchor = wrapper.get('a')
       expect(anchor.text()).toContain('Documentation')
@@ -67,14 +74,18 @@ describe('link', () => {
       const wrapper = mount(Link, {
         attachTo: document.body,
         props: { to: 'https://example.com', label: 'External' },
-        global: { plugins: [router] },
+        global: {
+          plugins: [router],
+        },
       })
       const anchor = wrapper.get('a')
       expect(anchor.attributes('href')).toBe('https://example.com')
       expect(wrapper.find('[data-slot="icon"]').exists()).toBe(true)
       // Iconify SVG uses role="img" without alt; decorative external icon is not labeled today.
       expect(await axe(wrapper.element, {
-        rules: { 'svg-img-alt': { enabled: false } },
+        rules: {
+          'svg-img-alt': { enabled: false },
+        },
       })).toHaveNoViolations()
       wrapper.unmount()
     })

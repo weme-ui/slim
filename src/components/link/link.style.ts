@@ -9,7 +9,14 @@ export const useLinkStyle = createVariants({
   },
 
   variants: {
-    color: { accent: {}, neutral: {}, info: {}, success: {}, warning: {}, error: {} },
+    color: {
+      accent: {},
+      neutral: {},
+      info: {},
+      success: {},
+      warning: {},
+      error: {},
+    },
     unstyled: { true: {} },
     external: {
       true: { suffixIcon: 'text-muted' },
@@ -17,16 +24,44 @@ export const useLinkStyle = createVariants({
   },
 
   compoundSlots: [
-    { slots: ['root', 'prefixIcon', 'suffixIcon'], unstyled: false, className: 'transition-colors duration-200 decoration-1 underline-offset-4 hover:underline' },
+    {
+      slots: ['root', 'prefixIcon', 'suffixIcon'],
+      unstyled: false,
+      className: 'transition-colors duration-200 decoration-1 underline-offset-4 hover:underline',
+    },
   ],
 
   compoundVariants: [
-    { color: 'accent', unstyled: false, class: { root: 'fancy-accent-plain' } },
-    { color: 'neutral', unstyled: false, class: { root: 'fancy-neutral-plain' } },
-    { color: 'info', unstyled: false, class: { root: 'fancy-info-plain' } },
-    { color: 'success', unstyled: false, class: { root: 'fancy-success-plain' } },
-    { color: 'warning', unstyled: false, class: { root: 'fancy-warning-plain' } },
-    { color: 'error', unstyled: false, class: { root: 'fancy-error-plain' } },
+    {
+      color: 'accent',
+      unstyled: false,
+      class: { root: 'fancy-accent-plain' },
+    },
+    {
+      color: 'neutral',
+      unstyled: false,
+      class: { root: 'fancy-neutral-plain' },
+    },
+    {
+      color: 'info',
+      unstyled: false,
+      class: { root: 'fancy-info-plain' },
+    },
+    {
+      color: 'success',
+      unstyled: false,
+      class: { root: 'fancy-success-plain' },
+    },
+    {
+      color: 'warning',
+      unstyled: false,
+      class: { root: 'fancy-warning-plain' },
+    },
+    {
+      color: 'error',
+      unstyled: false,
+      class: { root: 'fancy-error-plain' },
+    },
   ],
 
   defaultVariants: {
