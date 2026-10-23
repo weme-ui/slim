@@ -5,7 +5,7 @@ dependencies:
 
 # Icon
 
-用于展示图标的组件，基于 `@iconify/vue` 封装；优先使用 `name`，也可用 `icon` 作为别名。
+图标。包了 `@iconify/vue`。优先用 `name`，`icon` 也能当别名。
 
 ## Installation
 
@@ -31,8 +31,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/icon
 | `inline`     | 是否按 inline 对齐（透传）                | `boolean`                            | —      |
 | `ariaHidden` | 是否对辅助技术隐藏（透传 `@iconify/vue`） | `boolean \| string`                  | —      |
 
-其余未列出的属性同样透传自 `@iconify/vue` 的 `IconifyIconProps`（已用 `name` 取代必填的 `icon`）。
+没列出来的属性一样从 `@iconify/vue` 透传过来（`name` 替掉了必填的 `icon`）。
 
 ## Accessibility
 
-基于 `@iconify/vue`。装饰性图标可通过 `ariaHidden` 对辅助技术隐藏；若图标表达独立含义，勿盲目隐藏，并确保有等效文本（如邻近文案或可访问名称）。
+基于 `@iconify/vue`。装饰用的可以 `ariaHidden` 藏起来。图标自己有含义时别藏，旁边得有字。

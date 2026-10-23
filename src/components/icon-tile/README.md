@@ -1,6 +1,6 @@
 # Icon Tile
 
-带背景与圆角的图标容器，适合作为列表、导航或状态的视觉标记。
+带底、带圆角的图标块。列表、导航、状态标记都能放。
 
 ## Installation
 
@@ -33,4 +33,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/icon-tile
 
 ## Accessibility
 
-默认渲染为 `span`（Reka UI `Primitive`），并固定 `aria-hidden="true"`，作为装饰性视觉标记。若图标表达独立含义，请在相邻元素提供等效文本。
+默认是 `span`（Reka UI `Primitive`），而且固定 `aria-hidden="true"`，当装饰用。有含义就在旁边写字。

@@ -5,7 +5,7 @@ dependencies:
 
 # useFormContext
 
-基于 Reka UI `createContext` 的 Form 上下文：消费 `FormContextValue`，并与 `provideFormContext` 成对使用。同文件还再导出 TanStack Vue Form 的 `useForm` / `useFormField` 与相关类型。
+Form 上下文。Reka UI `createContext`，和 `provideFormContext` 成对。同文件还带着 TanStack Vue Form 的 `useForm` / `useFormField`。
 
 ## Installation
 
@@ -33,25 +33,25 @@ const field = useFormField({ name: 'email' })
 
 ## Returns
 
-`useFormContext()` 返回 `FormContextValue`（由 `createContext` 注入；未提供上下文时行为与 Reka UI `createContext` 一致）。
+`useFormContext()` 给出 `FormContextValue`。没提供上下文时，行为和 Reka UI `createContext` 一样。
 
 ## provideFormContext
 
-与 `useFormContext` 成对的 Provider，参数类型为 `FormContextValue`。
+配对的 Provider，参数是 `FormContextValue`。
 
 ## useForm
 
-从 `@tanstack/vue-form` 再导出，用于创建表单实例。
+从 `@tanstack/vue-form` 再导出，用来建表单。
 
 ## useFormField
 
-从 `@tanstack/vue-form` 的 `useField` 再导出（别名为 `useFormField`）。
+也是再导出。源是 `useField`，这边叫 `useFormField`。
 
 ## Types
 
 ### `FormApi`
 
-`CoreFormApi` 与 `VueFormApi`（均来自 `@tanstack/vue-form`）的交叉类型，用于标注表单实例。
+`CoreFormApi` 和 `VueFormApi`（都来自 `@tanstack/vue-form`）的交叉类型，拿来标表单实例。
 
 ### `FormValidationMode`
 

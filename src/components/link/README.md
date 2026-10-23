@@ -5,7 +5,7 @@ dependencies:
 
 # Link
 
-基于 Vue Router `RouterLink` 的链接组件，支持色彩、前后缀图标与外链图标。`custom` 由组件内部固定为 `true`，不可覆盖；原生 `<a>` 的其余 HTML 属性经 `$attrs` 透传。
+Vue Router 的 `RouterLink`。能变色，能加前后图标。`custom` 我写死了，改不了。剩下的 HTML 属性走 `$attrs`。
 
 ## Installation
 
@@ -43,7 +43,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/link
 
 ## Accessibility
 
-渲染为原生 `<a>`（经 Vue Router `RouterLink` 的 `custom` 插槽）。可通过 `ariaCurrentValue` 在精确激活时设置 `aria-current`。
+最后还是原生 `<a>`（`RouterLink` 的 `custom` 插槽）。精确激活时可用 `ariaCurrentValue` 设 `aria-current`。
 
 ### Keyboard Interactions
 

@@ -1,6 +1,6 @@
 # Button
 
-用于触发操作或事件的按钮组件。
+按钮。点一下做一件事。
 
 ## Installation
 
@@ -44,7 +44,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 ## Accessibility
 
-默认渲染为原生 `button`（Reka UI `Primitive`），并暴露 `aria-pressed`（按下）、`aria-busy`（加载中）、`aria-disabled`（禁用或加载中）。
+默认是原生 `button`（Reka UI `Primitive`）。按下时 `aria-pressed`，加载中 `aria-busy`，禁用或加载中 `aria-disabled`。
 
 ### Keyboard Interactions
 

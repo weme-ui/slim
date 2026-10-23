@@ -1,6 +1,6 @@
 # Button Group
 
-用于将多个 Button 组成一组，统一尺寸、圆角与禁用态，并支持键盘 Roving Focus 导航。
+几个 Button 排成一组。尺寸、圆角、禁用一起管，方向键能在组里走。
 
 ## Installation
 
@@ -44,7 +44,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button-group
 
 ## Accessibility
 
-根节点 `role="group"`，并设置 `aria-orientation`、`aria-disabled`。基于 Reka UI `RovingFocusGroup` / `RovingFocusItem` 实现组内 Roving Tabindex。
+根节点 `role="group"`，还有 `aria-orientation` 和 `aria-disabled`。组里焦点靠 Reka UI `RovingFocusGroup`。
 
 ### Keyboard Interactions
 

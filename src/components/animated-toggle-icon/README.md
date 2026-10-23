@@ -5,7 +5,7 @@ dependencies:
 
 # Animated Toggle Icon
 
-在未激活 / 激活态之间切换图标，并用 Motion 做缩放进出场过渡。基于 `Icon` 与 `motion-v`。其余未列出的属性经 `$attrs` 透传至 `Motion`（`inheritAttrs: false`）。
+两个图标来回切，进场出场缩一下。底下是 `Icon` 和 `motion-v`。没列出来的属性经 `$attrs` 传给 `Motion`。
 
 ## Installation
 
@@ -26,4 +26,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/animated-toggle-icon
 
 ## Accessibility
 
-通过 `motion-v` 的 `Motion`（`as-child`）渲染为 `Icon`，并设置 `data-slot="animated-toggle-icon"`、`data-active`（由 `active` 映射）。根节点带有 `pointer-events-none`。不含独立键盘交互；若图标表达独立含义，请在相邻元素提供等效文本，或为图标设置可访问名称。
+经 `Motion`（`as-child`）画成 `Icon`，带着 `data-slot="animated-toggle-icon"` 和 `data-active`。根节点 `pointer-events-none`。没有自己的键盘操作。有含义就在旁边写字。

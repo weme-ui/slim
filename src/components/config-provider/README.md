@@ -1,6 +1,6 @@
 # Config Provider
 
-应用级配置上下文。薄封装 Reka UI `ConfigProvider`，向子树注入阅读方向、locale、滚动锁定、Portal 目标与稳定 `useId` 等全局选项。
+往下传一点全局配置。Reka UI `ConfigProvider` 的薄封装：阅读方向、locale、滚动锁定、Portal 挂哪、`useId`。
 
 ## Installation
 
@@ -27,4 +27,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/config-provider
 
 ## Accessibility
 
-基于 Reka UI `ConfigProvider`。通过 Context 向子树提供 `dir` 与 `locale`，供依赖阅读方向与本地化的原语继承；组件自身不渲染额外无障碍角色。
+就是 Reka UI `ConfigProvider`。`dir` 和 `locale` 往下传，自己不加额外角色。

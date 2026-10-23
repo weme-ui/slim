@@ -1,6 +1,6 @@
 # Empty
 
-空状态展示组件。基于 Reka UI `Primitive`，通过 `IconTile` 展示图标，并提供标题、描述与底部内容插槽，适合列表、搜索无结果等场景。
+没内容时放这儿。图标走 `IconTile`，标题、描述、底下还能塞点东西。
 
 ## Installation
 
@@ -34,4 +34,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/empty
 
 ## Accessibility
 
-默认渲染为原生 `div`（Reka UI `Primitive`）。内置 `IconTile` 固定 `aria-hidden="true"`，作为装饰性视觉标记。请通过 `title` / `description`（或对应插槽）提供可读文本。
+默认是 `div`（Reka UI `Primitive`）。里头的 `IconTile` 固定 `aria-hidden="true"`。可读的字放在 `title` / `description`（或对应插槽）里。

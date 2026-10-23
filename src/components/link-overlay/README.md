@@ -1,8 +1,8 @@
 # Link Overlay
 
-通过 `::before` 伪元素将链接点击区域扩展到定位祖先，适合让整张卡片或区块可点击，同时保持语义化的 `<a>`。`href`、`target`、`rel` 等属性经 `$attrs` 透传到根节点。
+用 `::before` 把点击范围铺到定位祖先上。整张卡片都能点，链接还是那个 `<a>`。`href`、`target`、`rel` 走 `$attrs`。
 
-父级容器需设置 `position: relative`（如 `class="relative"`），否则覆盖层无法铺满目标区域。
+顺便一提，父级得 `position: relative`，不然铺不满。
 
 ## Installation
 
@@ -28,7 +28,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/link-overlay
 
 ## Accessibility
 
-默认渲染为原生 `<a>`（Reka UI `Primitive`）。点击区域由 `::before` 伪元素扩展到最近的定位祖先，链接本身仍保留在文档流中，便于读屏与键盘导航。
+默认是原生 `<a>`（Reka UI `Primitive`）。点的是伪元素铺开的区域，链接还在文档流里，读屏和键盘都找得到。
 
 ### Keyboard Interactions
 

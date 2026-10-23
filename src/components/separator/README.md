@@ -1,6 +1,6 @@
 # Separator
 
-用于在内容之间创建视觉与语义分隔的分隔线组件，支持标签与多种外观。
+中间画条线，把两块内容分开。可以带字，样子也能换。
 
 ## Installation
 
@@ -32,8 +32,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/separator
 
 ## Accessibility
 
-遵循 WAI-ARIA Separator 设计模式。基于 Reka UI `Separator`。
+按 WAI-ARIA Separator 来的，底下是 Reka UI `Separator`。
 
-无 `label` 时：默认 `role="separator"`；`decorative` 为 `true` 时设为 `role="none"` 并从无障碍树移除；垂直方向且非装饰时设置 `aria-orientation="vertical"`。
+没 `label` 时默认 `role="separator"`。`decorative` 为 `true` 就变成 `role="none"`，辅助技术看不到。垂直且非装饰时加 `aria-orientation="vertical"`。
 
-有 `label` 时：根节点 `role="separator"`，标签节点设置 `aria-label`；两侧线条强制为 `decorative`（`role="none"`）。
+有 `label` 时根节点仍是 `role="separator"`，标签上有 `aria-label`。两边的线强制 `decorative`。

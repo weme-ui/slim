@@ -1,6 +1,6 @@
 # Icon Stack
 
-带层叠纸片背景的装饰性图标展示，适合空态、引导页或功能入口。
+图标下面垫几层纸片。空态、入口页能用。
 
 ## Installation
 
@@ -32,4 +32,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/icon-stack
 
 ## Accessibility
 
-默认渲染为 `div`（Reka UI `Primitive`）。层叠 SVG 使用 `aria-hidden="true"`，作为装饰性背景。若前景图标表达独立含义，请在相邻元素提供等效文本，或通过 `default` 插槽自行提供可访问内容。
+默认是 `div`（Reka UI `Primitive`）。后面那些 SVG 是装饰，`aria-hidden="true"`。前景图标有含义的话，旁边写字，或用 `default` 插槽自己放。
