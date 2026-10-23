@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import type { Component } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 
 const props = defineProps<{
   path: string
 }>()
 
-const exampleModules = import.meta.glob<{ default: any }>(
+const exampleModules = import.meta.glob<{ default: Component }>(
   '../../../../src/components/**/examples/*.vue',
-  { eager: true },
 )
 
 const exampleSources = import.meta.glob<string>(
@@ -30,7 +30,8 @@ function resolveKey(modules: Record<string, unknown>) {
 
 const Example = computed(() => {
   const key = resolveKey(exampleModules)
-  return key ? exampleModules[key]?.default : null
+  const loader = key ? exampleModules[key] : null
+  return loader ? defineAsyncComponent(loader) : null
 })
 
 const source = computed(() => {

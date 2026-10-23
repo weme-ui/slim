@@ -88,6 +88,17 @@ export default defineConfig({
             return resolve(configDir, 'theme/stubs/icon.vue')
         },
       },
+      {
+        name: 'weme-vue-router-stub',
+        enforce: 'pre',
+        resolveId(id, importer) {
+          if (id !== 'vue-router' || !importer)
+            return
+          const from = importer.replace(/\\/g, '/')
+          if (from.includes('/src/components/link/'))
+            return resolve(configDir, 'theme/stubs/vue-router.ts')
+        },
+      },
     ],
     resolve: {
       alias: {
