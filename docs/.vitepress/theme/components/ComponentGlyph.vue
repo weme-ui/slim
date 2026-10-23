@@ -19,6 +19,155 @@ defineProps<{
       <span><i class="g-bar is-sm" /></span>
     </div>
 
+    <div v-else-if="name === 'form'" class="g-root g-mini">
+      <div class="g-row is-stack">
+        <i class="g-bar is-md" />
+        <span class="g-field-control">
+          <i class="g-bar is-lg" />
+        </span>
+      </div>
+      <div class="g-row is-stack">
+        <i class="g-bar is-sm" />
+        <span class="g-field-control">
+          <i class="g-bar is-60" />
+        </span>
+      </div>
+      <div class="g-row g-form-actions">
+        <span class="g-pill is-fill">
+          <i class="g-bar g-bar-on is-sm" />
+        </span>
+      </div>
+    </div>
+
+    <div v-else-if="name === 'form-field'" class="g-root g-mini">
+      <div class="g-row is-stack">
+        <i class="g-bar is-md" />
+      </div>
+      <div class="g-row">
+        <span class="g-field-control">
+          <i class="g-bar is-lg" />
+        </span>
+      </div>
+    </div>
+
+    <div v-else-if="name === 'input'" class="g-input">
+      <i class="g-bar is-60" />
+    </div>
+
+    <div v-else-if="name === 'textarea'" class="g-textarea">
+      <i class="g-bar is-full" />
+      <i class="g-bar is-lg" />
+      <i class="g-bar is-md" />
+    </div>
+
+    <div v-else-if="name === 'number-input'" class="g-input g-number">
+      <i class="g-bar is-md" />
+      <span class="g-stepper">
+        <span /><span />
+      </span>
+    </div>
+
+    <div v-else-if="name === 'password-input'" class="g-input g-password">
+      <span class="g-dots" />
+    </div>
+
+    <div v-else-if="name === 'password-strength'" class="g-meter">
+      <span class="is-on" />
+      <span class="is-on" />
+      <span />
+      <span />
+    </div>
+
+    <div v-else-if="name === 'pin-input'" class="g-pin">
+      <span /><span class="is-on" /><span /><span />
+    </div>
+
+    <div v-else-if="name === 'range-input'" class="g-range">
+      <span class="g-input is-half">
+        <i class="g-bar is-sm" />
+      </span>
+      <i class="g-range-sep" />
+      <span class="g-input is-half">
+        <i class="g-bar is-sm" />
+      </span>
+    </div>
+
+    <div v-else-if="name === 'tags-input'" class="g-input g-tags">
+      <span class="g-chip" />
+      <span class="g-chip" />
+      <i class="g-bar is-sm" />
+    </div>
+
+    <div v-else-if="name === 'autocomplete'" class="g-combo">
+      <div class="g-input">
+        <i class="g-bar is-60" />
+      </div>
+    </div>
+
+    <div v-else-if="name === 'combobox'" class="g-combo">
+      <div class="g-input">
+        <i class="g-bar is-60" />
+        <i class="g-chevron" />
+      </div>
+      <div class="g-root g-drop">
+        <i class="g-bar is-lg" />
+        <i class="g-bar is-soft is-md" />
+      </div>
+    </div>
+
+    <div v-else-if="name === 'select'" class="g-input">
+      <i class="g-bar is-60" />
+      <i class="g-chevron" />
+    </div>
+
+    <div v-else-if="name === 'listbox'" class="g-root g-mini">
+      <div class="g-row">
+        <i class="g-bar is-lg" />
+      </div>
+      <div class="g-row is-fill-row">
+        <i class="g-bar g-bar-on is-md" />
+      </div>
+      <div class="g-row">
+        <i class="g-bar is-60" />
+      </div>
+    </div>
+
+    <div v-else-if="name === 'checkbox'" class="g-checks">
+      <div class="g-check-row">
+        <span class="g-box" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+      <div class="g-check-row">
+        <span class="g-box is-on" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+    </div>
+
+    <div v-else-if="name === 'checkbox-group'" class="g-checks">
+      <div class="g-check-row">
+        <span class="g-box is-on" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+      <div class="g-check-row">
+        <span class="g-box" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+      <div class="g-check-row">
+        <span class="g-box is-on" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+    </div>
+
+    <div v-else-if="name === 'switch'" class="g-switch">
+      <span class="g-knob" />
+    </div>
+
+    <div v-else-if="name === 'tag-group'" class="g-tag-row">
+      <span class="g-chip is-on" />
+      <span class="g-chip" />
+      <span class="g-chip" />
+    </div>
+
     <div v-else-if="name === 'separator'" class="g-root g-mini g-separator">
       <div class="g-row is-stack">
         <i class="g-bar is-60" />
@@ -210,6 +359,232 @@ defineProps<{
 .g-pill.is-ghost {
   border: 1px solid var(--edge);
   background: var(--shell);
+}
+
+.g-field-control {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 1.75rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--docs-well);
+}
+
+.g-input {
+  display: flex;
+  align-items: center;
+  width: 12.5rem;
+  height: 2.1rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-input.is-half {
+  width: 5.4rem;
+  padding: 0 0.5rem;
+}
+
+.g-form-actions {
+  justify-content: flex-end;
+}
+
+.g-textarea {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  width: 12.5rem;
+  height: 4.6rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-number {
+  justify-content: space-between;
+}
+
+.g-stepper {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--edge);
+  border-radius: 0.35rem;
+}
+
+.g-stepper span {
+  width: 0.85rem;
+  height: 1.15rem;
+  background: var(--ink-soft);
+}
+
+.g-stepper span + span {
+  border-left: 1px solid var(--edge);
+}
+
+.g-dots {
+  width: 4.2rem;
+  height: 0.42rem;
+  background-image: radial-gradient(circle, var(--ink) 0.16rem, transparent 0.17rem);
+  background-repeat: repeat-x;
+  background-size: 0.7rem 0.42rem;
+  background-position: left center;
+}
+
+.g-meter {
+  display: flex;
+  gap: 0.3rem;
+  width: 12.5rem;
+}
+
+.g-meter span {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--ink-soft);
+}
+
+.g-meter .is-on {
+  background: var(--fill);
+}
+
+.g-pin {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.g-pin span {
+  width: 1.85rem;
+  height: 2.2rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-pin .is-on {
+  box-shadow: inset 0 -0.35rem 0 var(--fill);
+}
+
+.g-range {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.g-range-sep {
+  width: 0.7rem;
+  height: 0.12rem;
+  background: var(--ink);
+}
+
+.g-tags {
+  gap: 0.35rem;
+}
+
+.g-chip {
+  width: 2.4rem;
+  height: 1.05rem;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--ink-soft);
+}
+
+.g-chip.is-on {
+  background: var(--fill);
+  border-color: transparent;
+}
+
+.g-combo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+  width: 12.5rem;
+}
+
+.g-combo .g-input {
+  width: 100%;
+}
+
+.g-chevron {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-left: auto;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.g-drop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.45rem;
+}
+
+.g-row.is-fill-row {
+  background: var(--fill);
+}
+
+.g-row.is-fill-row .g-bar {
+  background: var(--docs-well);
+}
+
+.g-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 8.5rem;
+}
+
+.g-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.g-box {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.22rem;
+  background: var(--ink-soft);
+  flex-shrink: 0;
+}
+
+.g-box.is-on {
+  background: var(--fill);
+  border-color: transparent;
+}
+
+.g-switch {
+  display: flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 1.5rem;
+  padding: 0.12rem;
+  border-radius: 999px;
+  background: var(--ink-soft);
+}
+
+.g-knob {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: auto;
+  border-radius: 999px;
+  background: var(--shell);
+  box-shadow: 0 0 0 1px var(--edge);
+}
+
+.g-tag-row {
+  display: flex;
+  gap: 0.4rem;
 }
 
 .g-group {

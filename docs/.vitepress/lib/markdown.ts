@@ -44,6 +44,14 @@ const NAME_HEADERS = new Set([
 const DESCRIPTION_HEADERS = new Set(['说明', 'description', 'desc'])
 const TYPE_HEADERS = new Set(['类型', 'type'])
 const DEFAULT_HEADERS = new Set(['默认值', 'default', 'value'])
+const EVENT_NAME_HEADERS = new Set(['event', 'events', '事件'])
+const PAYLOAD_HEADERS = new Set([
+  '参数',
+  'parameter',
+  'parameters',
+  'payload',
+  '载荷',
+])
 
 const NPM_PACKAGE_NAME = /^(?:@[a-z0-9][\w.~-]*\/)?[a-z0-9][\w.~-]*$/i
 
@@ -300,7 +308,8 @@ function isTableSeparator(line: string): boolean {
 }
 
 function readTable(lines: string[], start: number): { rows: ApiRow[], end: number } {
-  const headers = splitTableRow(lines[start]!).map(normalizeHeader)
+  const rawHeaders = splitTableRow(lines[start]!)
+  const headers = rawHeaders.map(header => normalizeHeader(header, rawHeaders))
   let i = start + 2
   const rows: ApiRow[] = []
 
@@ -309,7 +318,7 @@ function readTable(lines: string[], start: number): { rows: ApiRow[], end: numbe
     const row: ApiRow = { name: '' }
     headers.forEach((key, index) => {
       const value = cells[index]?.trim() ?? ''
-      if (key === 'name')
+      if (key === 'name' && !row.name)
         row.name = unwrapInlineCode(value)
       else if (key === 'description')
         row.description = value
@@ -357,8 +366,16 @@ function splitTableRow(line: string): string[] {
   return cells
 }
 
-function normalizeHeader(header: string): 'name' | 'description' | 'type' | 'default' | 'other' {
-  const key = header.replace(/[`*_]/g, '').trim().toLowerCase()
+function headerKey(header: string): string {
+  return header.replace(/[`*_]/g, '').trim().toLowerCase()
+}
+
+function normalizeHeader(header: string, allHeaders: string[] = []): 'name' | 'description' | 'type' | 'default' | 'other' {
+  const key = headerKey(header)
+  const keys = allHeaders.map(headerKey)
+  const hasEventName = keys.some(item => EVENT_NAME_HEADERS.has(item))
+  if (hasEventName && PAYLOAD_HEADERS.has(key))
+    return 'type'
   if (NAME_HEADERS.has(key))
     return 'name'
   if (DESCRIPTION_HEADERS.has(key))
