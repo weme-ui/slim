@@ -359,8 +359,12 @@ function normalizeHeader(header: string): 'name' | 'description' | 'type' | 'def
 
 export function unwrapInlineCode(value: string): string {
   const trimmed = value.trim()
-  if (trimmed.startsWith('`') && trimmed.endsWith('`') && trimmed.length >= 2)
-    return trimmed.slice(1, -1)
+  const single = trimmed.match(/^`([^`]*)`$/)
+  if (single)
+    return single[1] ?? ''
+  // `ArrowLeft` / `ArrowRight` is several spans, not one span that happens to start and end with backticks.
+  if (trimmed.includes('`'))
+    return trimmed.replace(/`([^`]*)`/g, '$1')
   return trimmed
 }
 

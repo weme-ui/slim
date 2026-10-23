@@ -35,12 +35,6 @@ const showCollapsedDescription = computed(() => {
   return !showType.value && !showDefault.value
 })
 
-function rowId(row: ApiRow) {
-  return `api-${props.kind}-${row.name}`
-    .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, '-')
-}
-
 function displayDefault(row: ApiRow) {
   if (props.kind === 'css-vars')
     return row.default || row.type || ''
@@ -80,12 +74,7 @@ function highlight(value?: string) {
       class="api-table-row"
     >
       <summary>
-        <a
-          :id="rowId(row)"
-          class="api-cell api-name"
-          :href="`#${rowId(row)}`"
-          @click.stop
-        >{{ row.name }}</a>
+        <span class="api-cell api-name">{{ row.name }}</span>
         <span
           v-if="showType"
           class="api-cell api-code"
@@ -215,11 +204,6 @@ function highlight(value?: string) {
   color: var(--vp-c-text-1);
   font-size: 0.9rem;
   line-height: 1.4;
-  text-decoration: none;
-}
-
-.api-name:hover {
-  color: var(--vp-c-brand-1);
 }
 
 .api-code {
