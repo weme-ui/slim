@@ -12,6 +12,7 @@ import {
   splitMarkdownH3,
   splitReadmeFrontmatter,
   stripLeadingH1,
+  unwrapInlineCode,
 } from './markdown.ts'
 
 export interface RegistryFile {
@@ -44,6 +45,17 @@ export interface ExampleRef {
   path: string
 }
 
+export interface DocSection {
+  title: string
+  markdown: string
+}
+
+export interface TypeSection {
+  title: string
+  markdown: string
+  rows: ApiRow[]
+}
+
 export interface ComponentPageModel {
   name: string
   title: string
@@ -51,11 +63,17 @@ export interface ComponentPageModel {
   lead: string
   dependencies: string[]
   installationMarkdown: string
+  usageMarkdown: string
   usageExample?: ExampleRef
   featureExamples: ExampleRef[]
   propsRows: ApiRow[]
   eventsRows: ApiRow[]
   slotsRows: ApiRow[]
+  parametersRows: ApiRow[]
+  returnsMarkdown: string
+  returnsRows: ApiRow[]
+  exportSections: DocSection[]
+  typeSections: TypeSection[]
   cssVarRows: ApiRow[]
   cssVarIntro: string
   cssVarNote: string
@@ -66,6 +84,17 @@ export interface ComponentPageModel {
 }
 
 const TOKENS_URL = 'https://weme-ui.github.io/weme-ui/unocss-preset/docs/theme/tokens/'
+const RESERVED_DOC_H2 = new Set([
+  'installation',
+  'usage',
+  'props',
+  'events',
+  'slots',
+  'accessibility',
+  'parameters',
+  'returns',
+  'types',
+])
 
 export const registry = registryJson as RegistryConfig
 
@@ -73,12 +102,30 @@ export function getComponentItems(config: RegistryConfig = registry): RegistryIt
   return config.items.filter(item => item.type === 'component')
 }
 
+export function getComposableItems(config: RegistryConfig = registry): RegistryItem[] {
+  return config.items.filter(item => item.type === 'composable')
+}
+
+export function getDocItems(config: RegistryConfig = registry): RegistryItem[] {
+  return config.items.filter(item => item.type === 'component' || item.type === 'composable')
+}
+
 export function getRegistryItem(name: string, config: RegistryConfig = registry): RegistryItem | undefined {
-  return getComponentItems(config).find(item => item.name === name)
+  return getDocItems(config).find(item => item.name === name)
 }
 
 export function componentHref(name: string): string {
   return `/components/${name}`
+}
+
+export function composableHref(name: string): string {
+  return `/composables/${name}`
+}
+
+export function itemHref(item: RegistryItem): string {
+  return item.type === 'composable'
+    ? composableHref(item.name)
+    : componentHref(item.name)
 }
 
 export function firstComponentLink(config: RegistryConfig = registry): string {
@@ -86,6 +133,16 @@ export function firstComponentLink(config: RegistryConfig = registry): string {
   return first
     ? componentHref(first.name)
     : '/components/'
+}
+
+function docsGroupRank(id: string) {
+  if (id === 'general')
+    return 0
+  if (id === 'utilities')
+    return 2
+  if (id === 'composables')
+    return 3
+  return 1
 }
 
 export function getComponentSidebar(config: RegistryConfig = registry): DefaultTheme.SidebarItem[] {
@@ -103,23 +160,28 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
     }
     groups.get(id)!.items.push({
       text: item.title || item.name,
-      link: componentHref(item.name),
+      link: itemHref(item),
+    })
+  }
+
+  const composables = getComposableItems(config)
+  if (composables.length) {
+    groups.set('composables', {
+      id: 'composables',
+      label: composables[0]?.meta?.['docs.categoryLabel'] || 'Composables',
+      items: composables.map(item => ({
+        text: item.title || item.name,
+        link: itemHref(item),
+      })),
     })
   }
 
   const ordered = [
     ...groups.values(),
   ].sort((a, b) => {
-    if (a.id === 'general' || b.id === 'general') {
-      return a.id === 'general'
-        ? -1
-        : 1
-    }
-    if (a.id === 'utilities' || b.id === 'utilities') {
-      return a.id === 'utilities'
-        ? 1
-        : -1
-    }
+    const rank = docsGroupRank(a.id) - docsGroupRank(b.id)
+    if (rank !== 0)
+      return rank
     return a.label.localeCompare(b.label, 'en')
   })
 
@@ -234,9 +296,30 @@ export function buildComponentPage(
     ].join('\n')
   }
 
+  const usageMarkdown = (sections.get('usage') || '').trim()
   const propsRows = firstTableRows(splitBodySegments(sections.get('props') || ''))
   const eventsRows = firstTableRows(splitBodySegments(sections.get('events') || ''))
   const slotsRows = firstTableRows(splitBodySegments(sections.get('slots') || ''))
+  const parametersRows = firstTableRows(splitBodySegments(sections.get('parameters') || ''))
+  const returnsSegments = splitBodySegments(sections.get('returns') || '')
+  const returnsMarkdown = markdownWithoutTables(returnsSegments)
+  const returnsRows = firstTableRows(returnsSegments)
+  const exportSections = splitMarkdownH2(stripped)
+    .filter(section => !RESERVED_DOC_H2.has(section.title.trim().toLowerCase()))
+    .map(section => ({
+      title: section.title.trim(),
+      markdown: section.body.trim(),
+    }))
+    .filter(section => section.title && section.markdown)
+  const typeParts = splitMarkdownH3(sections.get('types') || '')
+  const typeSections = typeParts.sections.map((section) => {
+    const segments = splitBodySegments(section.body)
+    return {
+      title: unwrapInlineCode(section.title.trim()),
+      markdown: markdownWithoutTables(segments),
+      rows: firstTableRows(segments),
+    }
+  }).filter(section => section.title && (section.markdown || section.rows.length))
 
   const accessibilityRaw = sections.get('accessibility') || ''
   const accessibilityParts = splitMarkdownH3(accessibilityRaw)
@@ -263,7 +346,7 @@ export function buildComponentPage(
   const used = new Map<string, number>()
 
   pushHeader(outline, used, 'Installation', 2)
-  if (usageExample || (sections.get('usage') || '').trim())
+  if (usageExample || usageMarkdown)
     pushHeader(outline, used, 'Usage', 2)
   if (featureExamples.length) {
     const examplesHeader = pushHeader(outline, used, 'Examples', 2)
@@ -276,6 +359,17 @@ export function buildComponentPage(
     pushHeader(outline, used, 'Events', 2)
   if (slotsRows.length)
     pushHeader(outline, used, 'Slots', 2)
+  if (parametersRows.length)
+    pushHeader(outline, used, 'Parameters', 2)
+  if (returnsMarkdown || returnsRows.length)
+    pushHeader(outline, used, 'Returns', 2)
+  for (const section of exportSections)
+    pushHeader(outline, used, section.title, 2)
+  if (typeSections.length) {
+    const typesHeader = pushHeader(outline, used, 'Types', 2)
+    for (const section of typeSections)
+      pushHeader(outline, used, section.title, 3, typesHeader)
+  }
   if (cssVarRows.length)
     pushHeader(outline, used, 'CSS Variables', 2)
   if (accessibilityMarkdown || keyboardRows.length) {
@@ -293,11 +387,17 @@ export function buildComponentPage(
     lead,
     dependencies,
     installationMarkdown,
+    usageMarkdown,
     usageExample,
     featureExamples,
     propsRows,
     eventsRows,
     slotsRows,
+    parametersRows,
+    returnsMarkdown,
+    returnsRows,
+    exportSections,
+    typeSections,
     cssVarRows,
     cssVarIntro,
     cssVarNote,

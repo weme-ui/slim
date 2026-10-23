@@ -21,6 +21,7 @@ export default {
   watch: [
     '../../registry.json',
     '../../src/components/**/README.md',
+    '../../src/composables/*.md',
   ],
   paths() {
     return getComponentItems().map(item => ({

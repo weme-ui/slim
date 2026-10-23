@@ -26,8 +26,10 @@ const sidebar: DefaultTheme.Sidebar = {}
 if (guideSidebar.length)
   sidebar[GUIDE_BASE] = guideSidebar
 
-if (componentSidebar.length)
-  sidebar['/components/'] = componentSidebar
+if (componentSidebar.length) {
+  for (const prefix of ['/components/', '/composables/'] as const)
+    sidebar[prefix] = componentSidebar
+}
 
 function readReadme(path?: string) {
   if (!path)

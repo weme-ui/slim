@@ -5,7 +5,7 @@ import { highlightApiValue } from '../../lib/highlight'
 import { renderInlineMarkdown } from '../../lib/markdown'
 
 const props = defineProps<{
-  kind: 'props' | 'events' | 'slots' | 'css-vars' | 'keyboard'
+  kind: 'props' | 'events' | 'slots' | 'css-vars' | 'keyboard' | 'parameters' | 'fields'
   items: ApiRow[]
 }>()
 
@@ -19,6 +19,10 @@ const labels = computed(() => {
       return { name: 'CSS Variable', type: 'Value', default: 'Value' }
     case 'keyboard':
       return { name: 'Key', type: 'Type', default: 'Default' }
+    case 'parameters':
+      return { name: 'Parameter', type: 'Type', default: 'Default' }
+    case 'fields':
+      return { name: 'Field', type: 'Type', default: 'Default' }
     default:
       return { name: 'Prop', type: 'Type', default: 'Default' }
   }

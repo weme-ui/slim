@@ -4,6 +4,7 @@ declare module 'uno.css'
 
 declare module 'virtual:docs-highlighted' {
   export const installationHtml: Record<string, string>
+  export const usageHtml: Record<string, string>
 }
 
 declare module '*?shiki&lang=vue' {

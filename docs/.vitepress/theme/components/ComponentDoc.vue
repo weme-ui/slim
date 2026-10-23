@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { installationHtml } from 'virtual:docs-highlighted'
+import { installationHtml, usageHtml } from 'virtual:docs-highlighted'
 import { computed } from 'vue'
 import { renderMarkdown } from '../../lib/markdown'
 import { buildComponentPage, flattenOutline, getRegistryItem, registry } from '../../lib/registry'
@@ -10,10 +10,16 @@ const props = defineProps<{
   name: string
 }>()
 
-const readmeModules = import.meta.glob<string>(
-  '../../../../src/components/**/README.md',
-  { eager: true, query: '?raw', import: 'default' },
-)
+const readmeModules = {
+  ...import.meta.glob<string>(
+    '../../../../src/components/**/README.md',
+    { eager: true, query: '?raw', import: 'default' },
+  ),
+  ...import.meta.glob<string>(
+    '../../../../src/composables/*.md',
+    { eager: true, query: '?raw', import: 'default' },
+  ),
+}
 
 function resolveReadme(path?: string) {
   if (!path)
@@ -79,6 +85,12 @@ function html(source: string) {
       </h2>
       <ExamplePreview :path="page.usageExample.path" />
     </template>
+    <template v-else-if="page.usageMarkdown">
+      <h2 :id="headingId('Usage')">
+        Usage
+      </h2>
+      <div class="doc-install" v-html="usageHtml[page.name] || html(page.usageMarkdown)" />
+    </template>
 
     <template v-if="page.featureExamples.length">
       <h2 :id="headingId('Examples')">
@@ -111,6 +123,41 @@ function html(source: string) {
         Slots
       </h2>
       <ApiTable kind="slots" :items="page.slotsRows" />
+    </template>
+
+    <template v-if="page.parametersRows.length">
+      <h2 :id="headingId('Parameters')">
+        Parameters
+      </h2>
+      <ApiTable kind="parameters" :items="page.parametersRows" />
+    </template>
+
+    <template v-if="page.returnsMarkdown || page.returnsRows.length">
+      <h2 :id="headingId('Returns')">
+        Returns
+      </h2>
+      <div v-if="page.returnsMarkdown" v-html="html(page.returnsMarkdown)" />
+      <ApiTable v-if="page.returnsRows.length" kind="fields" :items="page.returnsRows" />
+    </template>
+
+    <template v-for="section in page.exportSections" :key="section.title">
+      <h2 :id="headingId(section.title)">
+        {{ section.title }}
+      </h2>
+      <div v-html="html(section.markdown)" />
+    </template>
+
+    <template v-if="page.typeSections.length">
+      <h2 :id="headingId('Types')">
+        Types
+      </h2>
+      <template v-for="section in page.typeSections" :key="section.title">
+        <h3 :id="headingId(section.title)">
+          {{ section.title }}
+        </h3>
+        <div v-if="section.markdown" v-html="html(section.markdown)" />
+        <ApiTable v-if="section.rows.length" kind="fields" :items="section.rows" />
+      </template>
     </template>
 
     <template v-if="page.cssVarRows.length">

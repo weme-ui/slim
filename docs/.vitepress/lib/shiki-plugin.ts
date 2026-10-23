@@ -2,7 +2,7 @@ import type { Plugin } from 'vite'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { highlightCode, renderHighlightedMarkdown } from './highlight-code.ts'
-import { buildComponentPage, getComponentItems } from './registry.ts'
+import { buildComponentPage, getDocItems } from './registry.ts'
 
 const VIRTUAL_ID = 'virtual:docs-highlighted'
 const RESOLVED_VIRTUAL_ID = `\0${VIRTUAL_ID}`
@@ -50,15 +50,21 @@ export function docsShikiPlugin(repoRoot: string): Plugin {
     async load(id) {
       if (id === RESOLVED_VIRTUAL_ID) {
         const installationHtml: Record<string, string> = {}
-        for (const item of getComponentItems()) {
+        const usageHtml: Record<string, string> = {}
+        for (const item of getDocItems()) {
           const docFile = item.files.find(file => file.kind === 'doc')
           if (docFile?.path)
             this.addWatchFile(resolve(repoRoot, docFile.path))
           const page = buildComponentPage(item, readRepoFile(repoRoot, docFile?.path))
           installationHtml[item.name] = await renderHighlightedMarkdown(page.installationMarkdown)
+          if (page.usageMarkdown)
+            usageHtml[item.name] = await renderHighlightedMarkdown(page.usageMarkdown)
         }
         this.addWatchFile(resolve(repoRoot, 'registry.json'))
-        return `export const installationHtml = ${JSON.stringify(installationHtml)}\n`
+        return [
+          `export const installationHtml = ${JSON.stringify(installationHtml)}`,
+          `export const usageHtml = ${JSON.stringify(usageHtml)}`,
+        ].join('\n')
       }
 
       if (!id.startsWith(SHIKI_PREFIX))
