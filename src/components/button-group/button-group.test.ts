@@ -71,7 +71,9 @@ describe('button-group', () => {
       expect(wrapper.attributes('data-slot')).toBe('button-group')
       // role="group" + aria-orientation comes from RovingFocusGroup; axe flags aria-allowed-attr.
       expect(await axe(wrapper.element, {
-        rules: { 'aria-allowed-attr': { enabled: false } },
+        rules: {
+          'aria-allowed-attr': { enabled: false },
+        },
       })).toHaveNoViolations()
       wrapper.unmount()
     })
