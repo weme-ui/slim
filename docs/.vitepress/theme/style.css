@@ -111,6 +111,10 @@
   color: var(--accent-11) !important;
 }
 
+.VPPage {
+  padding: 0;
+}
+
 /**
  * Component: Custom Block
  * -------------------------------------------------------------------------- */

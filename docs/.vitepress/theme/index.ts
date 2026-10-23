@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import ApiTable from './components/ApiTable.vue'
 import ComponentDoc from './components/ComponentDoc.vue'
+import ComponentIndex from './components/ComponentIndex.vue'
 import ExamplePreview from './components/ExamplePreview.vue'
 import 'uno.css'
 import './style.css'
@@ -13,6 +14,7 @@ export default {
   enhanceApp({ app }) {
     app.component('ApiTable', ApiTable)
     app.component('ComponentDoc', ComponentDoc)
+    app.component('ComponentIndex', ComponentIndex)
     app.component('ExamplePreview', ExamplePreview)
   },
 } satisfies Theme

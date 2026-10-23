@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 import { firstGuideLink, getGuideSidebar, GUIDE_BASE } from './lib/guide.ts'
-import { buildComponentPage, firstComponentLink, getComponentSidebar, getRegistryItem } from './lib/registry.ts'
+import { buildComponentPage, getComponentSidebar, getRegistryItem } from './lib/registry.ts'
 import { docsShikiPlugin } from './lib/shiki-plugin.ts'
 
 const configDir = dirname(fileURLToPath(import.meta.url))
@@ -19,7 +19,6 @@ function assetUrl(path: string) {
 
 const guideSidebar = getGuideSidebar(docsDir)
 const componentSidebar = getComponentSidebar()
-const firstComponent = firstComponentLink()
 const firstGuide = firstGuideLink(docsDir)
 
 const sidebar: DefaultTheme.Sidebar = {}
@@ -64,7 +63,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Get started', link: firstGuide, activeMatch: GUIDE_BASE },
-      { text: 'Components', link: firstComponent, activeMatch: '/components/' },
+      { text: 'Components', link: '/components/', activeMatch: '/components/' },
     ],
     sidebar,
     socialLinks: [

@@ -105,11 +105,17 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
     })
   }
 
-  return [...groups.values()].map(group => ({
-    text: group.label,
-    items: group.items,
-    collapsed: false,
-  }))
+  return [
+    {
+      text: 'All components',
+      link: '/components/',
+    },
+    ...[...groups.values()].map(group => ({
+      text: group.label,
+      items: group.items,
+      collapsed: false,
+    })),
+  ]
 }
 
 export function fileBasename(path: string, ext = ''): string {

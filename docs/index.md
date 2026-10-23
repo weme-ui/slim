@@ -12,7 +12,7 @@ hero:
       link: /get-started/
     - theme: alt
       text: Components
-      link: /components/button
+      link: /components/
 
 features:
   - title: Feature A
