@@ -68,7 +68,7 @@ docs/.vitepress/theme/components/ComponentDoc.vue
 2. 写同目录 `README.md`。不要写 Examples、Files、Preview、Source、CSS Variables。
 3. 按场景写 `examples/<feature>.vue`。`usage.vue` 必有。
 4. 把 README 和每个示例同步进该 item 的 `files`。示例登记顺序即页面顺序，`usage.vue` 放第一个。
-5. `title` 与 README 的 H1 保持一致。没有 `meta.docs.category` 时补上，与同组组件一致（当前为 `general` / `General`），除非用户指定了分类。按「外部依赖」把 item.`dependencies` 写进 README frontmatter。不改与本次文档无关的 `description`、`registryDependencies`、`when`、`cssVars`，也不改实现文件和 test 的 path。
+5. `title` 与 README 的 H1 保持一致。没有 `meta.docs.category` 时补上，与同组组件一致（当前为 `general` / `General`），除非用户指定了分类。按「外部依赖」把 item.`dependencies` 写进 README frontmatter。新 item 按「registry.json」的自然排序插入，不要按字母序。不改与本次文档无关的 `description`、`registryDependencies`、`when`、`cssVars`，也不改实现文件和 test 的 path。
 
 ### B：API 同步
 
@@ -244,6 +244,10 @@ import Button from '../button.vue'
 ## registry.json
 
 registry.json 也是文档的重要组成部分，属于第一公民，所有变化都必须与 registry.json 同步。
+
+registry.json 维护时，不要以字母排序，使用自然排序，相近功能排在一起。
+
+`items` 顺序即同一 `docs.category` 内的侧栏顺序。新增 item 插到功能相近的已有 item 旁边（`button` / `button-group`，`icon` / `icon-stack` / `icon-tile` / `animated-toggle-icon`，`link` / `link-overlay`）。`utils` 保持最前。不要按 `name` 字母序插入或重排整个数组。
 
 磁盘上的 `README.md`、`examples/*.vue` 与 item.`files` 里的 `kind: "doc"`、`kind: "example"` 一一对应。新增、删除、改名、调整展示顺序时，同时改文件和 `registry.json`。只改一边视为未完成。
 
