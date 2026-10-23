@@ -65,7 +65,7 @@ docs/.vitepress/lib/markdown.ts
 docs/.vitepress/theme/components/ComponentDoc.vue
 ```
 
-当前站点只按 `type: "component"` 生成 `/components/<name>`。composable 仍按契约写 markdown 并登记 registry，不为此改渲染器。
+VitePress 用 `/components/<name>` 渲染组件，用 `/composables/<name>` 渲染 composable。侧栏共用：General → 其它分类 → Utilities → Composables。不改渲染器结构，除非用户明确要求扩展页面。
 
 ## 模式
 
