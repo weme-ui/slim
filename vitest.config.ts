@@ -11,12 +11,12 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': resolve('./src'),
-      '@iconify/vue': resolve('./vitest/iconify-vue.stub.ts'),
+      '@iconify/vue': resolve('./test/iconify-vue.stub.ts'),
     },
   },
   test: {
     environment: 'happy-dom',
     include: ['src/**/*.test.ts'],
-    setupFiles: ['./vitest.setup.ts'],
+    setupFiles: ['./test/vitest.setup.ts'],
   },
 })

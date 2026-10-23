@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./src/*"],
+      "~~/*": ["./playground/src/*"]
+    },
+    "types": [
+      "node",
+      "vite/client",
+      "vite-plugin-vue-layouts/client"
+    ]
+  },
+  "include": ["playground"],
+  "exclude": [
+    "playground/dist",
+    "node_modules"
+  ],
+  "vueCompilerOptions": {
+    "plugins": [
+      "vue-router/volar/sfc-route-blocks",
+      {
+        "name": "vue-router/volar/sfc-typed-router",
+        "options": {
+          "rootDir": "playground"
+        }
+      }
+    ]
+  }
+}

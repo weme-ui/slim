@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "lib": ["ESNext", "DOM"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -18,11 +19,16 @@
     "ignoreDeprecations": "6.0"
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.vue"
+    "src",
+    "test",
+    "vitest.config.ts",
+    "uno.config.ts"
   ],
   "exclude": [
+    "cache",
+    "dist",
     "node_modules",
-    "dist"
+    "docs",
+    "playground"
   ]
 }

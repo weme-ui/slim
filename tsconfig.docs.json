@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "vite/client",
+      "vitepress/client"
+    ],
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "docs/**/*.ts",
+    "docs/**/*.vue",
+    "docs/**/*.d.ts",
+    "docs/.vitepress/**/*.ts",
+    "docs/.vitepress/**/*.vue",
+    "docs/.vitepress/**/*.d.ts"
+  ],
+  "exclude": [
+    "docs/.vitepress/dist",
+    "docs/.vitepress/cache",
+    "node_modules"
+  ]
+}
