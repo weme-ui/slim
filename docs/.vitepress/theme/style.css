@@ -116,6 +116,63 @@
 }
 
 /**
+ * Scrollbars — hairline iron rail
+ * Same double-ring language as preview cards: a quiet ink pill that
+ * warms to accent on hover. Pointer-fine only so touch keeps native overlay.
+ */
+:root,
+.dark {
+  --docs-scroll-size: 0.625rem;
+  --docs-scroll-inset: 3px;
+  --docs-scroll-track: transparent;
+  --docs-scroll-thumb: color-mix(in oklch, var(--neutral-12) 18%, transparent);
+  --docs-scroll-thumb-hover: color-mix(in oklch, var(--accent-11) 58%, transparent);
+  --docs-scroll-thumb-active: color-mix(in oklch, var(--accent-9) 78%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--docs-scroll-thumb) var(--docs-scroll-track);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--docs-scroll-thumb) var(--docs-scroll-track);
+  }
+
+  ::-webkit-scrollbar {
+    width: var(--docs-scroll-size);
+    height: var(--docs-scroll-size);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--docs-scroll-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: var(--docs-scroll-inset) solid transparent;
+    border-radius: 999px;
+    background-color: var(--docs-scroll-thumb);
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--docs-scroll-thumb-hover);
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-color: var(--docs-scroll-thumb-active);
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+/**
  * Component: Custom Block
  * -------------------------------------------------------------------------- */
 
