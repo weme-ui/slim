@@ -27,6 +27,8 @@ export interface RegistryItem {
   title?: string
   description?: string
   type?: string
+  dependencies?: string[]
+  registryDependencies?: string[]
   files: RegistryFile[]
   cssVars?: Record<string, Record<string, string>>
   meta?: Record<string, string>
@@ -112,6 +114,51 @@ export function getDocItems(config: RegistryConfig = registry): RegistryItem[] {
 
 export function getRegistryItem(name: string, config: RegistryConfig = registry): RegistryItem | undefined {
   return getDocItems(config).find(item => item.name === name)
+}
+
+export function findRegistryItem(name: string, config: RegistryConfig = registry): RegistryItem | undefined {
+  return config.items.find(item => item.name === name)
+}
+
+function pushUnique(list: string[], seen: Set<string>, values: string[] = []) {
+  for (const value of values) {
+    if (!value || seen.has(value))
+      continue
+    seen.add(value)
+    list.push(value)
+  }
+}
+
+/**
+ * Own npm packages plus every item reached through `registryDependencies`.
+ * Registry-root `dependencies` stay out of the page list.
+ */
+export function resolvePageDependencies(
+  item: RegistryItem,
+  config: RegistryConfig = registry,
+  extra: string[] = [],
+): string[] {
+  const packages: string[] = []
+  const seenPackages = new Set<string>()
+  const seenItems = new Set<string>()
+
+  function walk(current: RegistryItem) {
+    if (seenItems.has(current.name))
+      return
+    seenItems.add(current.name)
+
+    pushUnique(packages, seenPackages, current.dependencies)
+
+    for (const depName of current.registryDependencies ?? []) {
+      const dep = findRegistryItem(depName, config)
+      if (dep)
+        walk(dep)
+    }
+  }
+
+  walk(item)
+  pushUnique(packages, seenPackages, extra)
+  return packages
 }
 
 export function componentHref(name: string): string {
@@ -278,7 +325,8 @@ export function buildComponentPage(
   readme = '',
   config: RegistryConfig = registry,
 ): ComponentPageModel {
-  const { dependencies, body } = splitReadmeFrontmatter(readme)
+  const { dependencies: frontmatterDependencies, body } = splitReadmeFrontmatter(readme)
+  const dependencies = resolvePageDependencies(item, config, frontmatterDependencies)
   const stripped = stripLeadingH1(body)
   const lead = extractLead(stripped)
   const sections = sectionMap(body)
