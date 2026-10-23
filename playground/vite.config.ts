@@ -62,12 +62,20 @@ const plugins: PluginOption[] = [
       '../src/components',
     ],
     extensions: ['vue'],
-    include: [/\.vue$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/, /\.vue\?v=/],
+    include: [
+      /\.vue$/,
+      /\.vue\?vue/,
+      /\.vue\.[tj]sx?\?vue/,
+      /\.vue\?v=/,
+    ],
     directoryAsNamespace: true,
     collapseSamePrefixes: true,
     dts: 'src/components.d.ts',
     types: [
-      { from: 'vue-router', names: ['RouterLink', 'RouterView'] },
+      {
+        from: 'vue-router',
+        names: ['RouterLink', 'RouterView'],
+      },
     ],
   }),
 
@@ -125,7 +133,9 @@ export default defineConfig(({ mode }) => {
 
     oxc: {
       target: 'esnext',
-      pure: mode === 'production' ? ['console.log', 'debugger'] : [],
+      pure: mode === 'production'
+        ? ['console.log', 'debugger']
+        : [],
     },
 
     define: {
@@ -144,7 +154,9 @@ export default defineConfig(({ mode }) => {
       ...plugins,
 
       // https://github.com/vuejs/devtools
-      mode === 'development' ? VueDevTools() : undefined,
+      mode === 'development'
+        ? VueDevTools()
+        : undefined,
 
       // Purge comments
       {
