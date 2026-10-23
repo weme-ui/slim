@@ -181,15 +181,27 @@ function html(source: string) {
 }
 
 .doc-dependency {
-  color: var(--vp-c-brand-1);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.45rem;
+  border: 1px solid var(--docs-line);
+  border-radius: 0.375rem;
+  background: var(--neutral-3);
+  color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-mono);
-  font-size: 0.8125rem;
-  line-height: 1.4;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
   text-decoration: none;
 }
 
 .doc-dependency:hover {
-  color: var(--vp-c-brand-2);
+  background: var(--neutral-4);
+}
+
+.doc-dependency:focus-visible {
+  outline: 2px solid var(--accent-9);
+  outline-offset: 2px;
 }
 
 .doc-files {
