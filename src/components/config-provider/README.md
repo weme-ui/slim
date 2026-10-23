@@ -8,8 +8,6 @@
 pnpm dlx @weme-ui/weme-ui add weme-ui/slim/config-provider
 ```
 
-## Usage
-
 ## Props
 
 | 属性         | 说明                                                                                                        | 类型                          | 默认值          |
