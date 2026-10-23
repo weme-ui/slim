@@ -3,7 +3,7 @@ import Button from '../button.vue'
 </script>
 
 <template>
-  <div class="flex gap-3 items-center">
+  <div class="flex flex-wrap gap-3 items-center justify-center">
     <Button label="Primary" variant="primary" />
     <Button label="Secondary" variant="secondary" />
     <Button label="Outline" variant="outline" />
