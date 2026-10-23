@@ -81,31 +81,25 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/use-form-context
 
 ```ts
 import {
-  provideFormContext,
-  useForm,
   useFormContext,
   useFormField,
 } from '~/composables/use-form-context'
 
-provideFormContext({ /* FormContextValue */ })
-
 const { form, loading, disabled, validationMode, serverErrors } = useFormContext()
-
-const formApi = useForm({ /* ... */ })
-const field = useFormField({ name: 'email' })
+const field = useFormField({ name: 'email', form })
 ```
 
 ## Returns
 
-`useFormContext()` 返回 `FormContextValue`（由 `createContext` 注入；未提供上下文时行为与 Reka UI `createContext` 一致）。
+`useFormContext()` 返回 `FormContextValue`（由 `createContext` 注入；未提供上下文时行为与 Reka UI `createContext` 一致）。日常在 `<Form>` 子树里调用。
 
 ## provideFormContext
 
-与 `useFormContext` 成对的 Provider，参数类型为 `FormContextValue`。
+与 `useFormContext` 成对的 Provider，参数类型为 `FormContextValue`。`<Form>` 内部会调用。
 
 ## useForm
 
-从 `@tanstack/vue-form` 再导出，用于创建表单实例。
+从 `@tanstack/vue-form` 再导出。日常交给 `<Form>`；不经过 `<Form>` 时再自己建。
 
 ## useFormField
 
