@@ -6,11 +6,12 @@ description: >-
   markdown, optional examples, *.test.ts, and registry.json. Treats
   registry.json as a first-class part of the docs and syncs every doc, example,
   or test change into its kind:doc, kind:example, and kind:test entries.
-  Mirrors item dependencies into YAML frontmatter. Use when the user names
-  create-docs, asks to add, generate, or sync documentation, examples, tests, or
-  dependencies, or points at src/components/<name>/, src/composables/<name>.ts,
-  README.md, a composable .md, examples/*.vue, *.test.ts, registry.json, or
-  frontmatter.
+  Mirrors item dependencies into YAML frontmatter. Page npm chips are the
+  transitive closure of item.dependencies walked through registryDependencies.
+  Use when the user names create-docs, asks to add, generate, or sync
+  documentation, examples, tests, dependencies, or registryDependencies, or
+  points at src/components/<name>/, src/composables/<name>.ts, README.md, a
+  composable .md, examples/*.vue, *.test.ts, registry.json, or frontmatter.
 ---
 
 # Create Docs
@@ -90,7 +91,7 @@ VitePress 用 `/components/<name>` 渲染组件，用 `/composables/<name>` 渲�
 
 ## 外部依赖
 
-item.`dependencies` 是该 item 独有的外部 npm 包。维护 `registry.json` 时，把同一列表写进文档 YAML frontmatter，字段名 `dependencies`。它必须是文件的第一段，格式遵循 [VitePress frontmatter](https://vitepress.dev/guide/frontmatter)：
+item.`dependencies` 是该 item **自己源码直接用到的**外部 npm 包。维护 `registry.json` 时，把同一列表写进文档 YAML frontmatter，字段名 `dependencies`。它必须是文件的第一段，格式遵循 [VitePress frontmatter](https://vitepress.dev/guide/frontmatter)：
 
 ```yaml
 ---
@@ -99,14 +100,26 @@ dependencies:
 ---
 ```
 
-`docs/` 读取这段 frontmatter，显示在标题下方。不要在正文写 `## Dependencies`。
+不要在正文写 `## Dependencies`。
+
+### 写入（registry / frontmatter）
 
 - 包名、顺序与 item.`dependencies` 一致。只改 registry 或只改 frontmatter 都视为未完成。
 - 没有 item.`dependencies` 时不要写这个字段；没有其它 frontmatter 时整段省略。
-- 不收录 registry 顶层 `dependencies`，也不收录 `registryDependencies`。
-- 顶层已有的包不要再写入 item.`dependencies`。只有该 item 独有的包才两边一起加，例如 Icon 的 `@iconify/vue`、`use-form-context` 的 `@tanstack/vue-form`。不要新增 `when: "on-init"`。
+- 不收录 registry 顶层 `dependencies`（`vue`、`reka-ui` 等整库共享包）。
+- 顶层已有的包不要再写入 item.`dependencies`。只有该 item 独有的包才两边一起加，例如 Icon 的 `@iconify/vue`、`use-form-context` 的 `@tanstack/vue-form`、Animated Toggle Icon 的 `motion-v`、Link 的 `vue-router`。不要新增 `when: "on-init"`。
+- **不要**把 `registryDependencies` 展开写进 item.`dependencies` 或 frontmatter。Button 依赖 Icon，仍然只写 `registryDependencies: ["icon"]`，README 不以 frontmatter 开头。
 
-范本：`src/components/icon/README.md`。Button 没有外部依赖，不以 frontmatter 开头。
+### 页面展示（闭包）
+
+文档页标题下的 npm 芯片由渲染器计算，不是 frontmatter 原文：
+
+1. 先收录本 item.`dependencies`（顺序保留）。
+2. 再按书写顺序遍历 `registryDependencies`，对每个能在 `registry.json` `items` 里找到的 item **递归**执行同一规则。
+3. 包名去重，先出现的保留。环（A → B → A）跳过已访问 item。
+4. 找不到的 `registryDependencies` 名称忽略。frontmatter 里多出来的包名追加在闭包末尾。
+
+因此 Empty（`icon-tile` → `icon`）和 Button（`icon`）页面都会显示 `@iconify/vue`；Animated Toggle Icon 显示 `motion-v`、`@iconify/vue`。核对页面时按这个闭包，不要为了「页面上看得到」去改 Button / Empty 的 frontmatter。
 
 ## registry.json
 
@@ -120,7 +133,7 @@ dependencies:
 
 `files[].type` 与 item.`type` 一致：组件用 `"component"`，composable 用 `"composable"`。
 
-其它 registry item 用 `registryDependencies`。外部 npm 包见「外部依赖」。
+其它 registry item 用 `registryDependencies`（只写直接依赖，不要展开闭包）。外部 npm 包见「外部依赖」。
 
 ## 验证
 

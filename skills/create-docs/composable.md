@@ -43,17 +43,17 @@ markdown 即文档正文（与组件不同：`## Usage` 会渲染代码块，不
 
 `Installation` → `Usage` → `Parameters` → `Returns` → 其它导出（各一节）→ `Types`
 
-| markdown / registry                  | 含义                                                                                |
-| ------------------------------------ | ----------------------------------------------------------------------------------- |
-| H1 与第一个 `##` 之间的段落          | 简介                                                                                |
-| frontmatter `dependencies`           | 标题下的外部依赖                                                                    |
-| `## Installation` 正文               | Installation。缺省时与组件相同：`pnpm dlx @weme-ui/weme-ui add weme-ui/slim/<name>` |
-| `## Usage` 里的 `ts` 代码块          | 最小用法                                                                            |
-| `## Parameters` 的第一张表           | 主函数参数                                                                          |
-| `## Returns`                         | 主函数返回值（句子和/或表）                                                         |
-| 其它 `## <exportName>`               | 同文件的其它公开导出                                                                |
-| `## Types` 下每个 `###`              | 导出类型。对象类型用表                                                              |
-| 无 `kind`，或 `kind: "file"` 的 path | Files。`doc` / `example` / `test` 不进 Files                                        |
+| markdown / registry                                  | 含义                                                                                |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| H1 与第一个 `##` 之间的段落                          | 简介                                                                                |
+| item.`dependencies` + 沿 `registryDependencies` 递归 | 标题下的外部 npm 芯片（闭包，去重）。frontmatter 只镜像本 item 独有的包             |
+| `## Installation` 正文                               | Installation。缺省时与组件相同：`pnpm dlx @weme-ui/weme-ui add weme-ui/slim/<name>` |
+| `## Usage` 里的 `ts` 代码块                          | 最小用法                                                                            |
+| `## Parameters` 的第一张表                           | 主函数参数                                                                          |
+| `## Returns`                                         | 主函数返回值（句子和/或表）                                                         |
+| 其它 `## <exportName>`                               | 同文件的其它公开导出                                                                |
+| `## Types` 下每个 `###`                              | 导出类型。对象类型用表                                                              |
+| 无 `kind`，或 `kind: "file"` 的 path                 | Files。`doc` / `example` / `test` 不进 Files                                        |
 
 固定 H2（解析时大小写不敏感）：`Installation`、`Usage`、`Parameters`、`Returns`、`Types`。其它导出的 H2 必须与源码导出标识符完全一致（如 `provideFormContext`、`useForm`、`useFormField`）。
 
@@ -186,7 +186,7 @@ const field = useFormField({ name: 'email' })
 - item.`type` 为 `"composable"`；H1 与 `title` 都是主函数标识符
 - `.md` 的 H2 符合本文件契约；没有空的 Parameters / Returns / Types；没有组件用的 Props / Events / Slots
 - `src/composables/<name>.md` 有 `kind: "doc"`，`<name>.test.ts` 有 `kind: "test"`，没有指向已删除文件的条目
-- frontmatter `dependencies` 与 item.`dependencies` 一致；没有外部依赖时没有这段 frontmatter
+- frontmatter `dependencies` 与 item.`dependencies` 一致（仅本 item 独有的 npm 包，不展开 `registryDependencies`）；没有独有外部依赖时没有这段 frontmatter
 - Usage 能从 `~/composables/<name>` 导入源码里真实存在的导出
 - 每个 `## <exportName>` 和 `### \`TypeName\``都能在源码里找到对应`export`
 - `bun run test src/composables/<name>.test.ts` 通过（不要 `bun test`）

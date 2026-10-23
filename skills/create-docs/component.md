@@ -45,7 +45,7 @@ VitePress 用动态路由 `/components/<name>` 读取这三份数据。
 | README / registry                                    | 页面                                                                           |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
 | H1 与第一个 `##` 之间的段落                          | 标题下的简介                                                                   |
-| frontmatter `dependencies`                           | 标题下的外部依赖。没有该字段则不显示                                           |
+| item.`dependencies` + 沿 `registryDependencies` 递归 | 标题下的外部 npm 芯片（闭包，去重）。frontmatter 只镜像本 item 独有的包        |
 | `## Installation` 正文                               | Installation。缺省时站点用 `pnpm dlx @weme-ui/weme-ui add weme-ui/slim/<name>` |
 | `examples/usage.vue`                                 | Usage 预览。`## Usage` 正文不渲染，留空                                        |
 | 其余 `kind: "example"`，按 `registry.json` 顺序      | Examples。小节标题由文件名生成                                                 |
@@ -193,6 +193,6 @@ import Button from '../button.vue'
 
 - README 的 H2 都能被页面消费；没有空的 Events / Slots / Accessibility
 - 每个 `examples/*.vue` 都有 `kind: "example"`，`README.md` 有 `kind: "doc"`，`<name>.test.ts` 有 `kind: "test"`，没有指向已删除文件的条目
-- README frontmatter 的 `dependencies` 与 item.`dependencies` 一致；没有外部依赖时没有这段 frontmatter
+- README frontmatter 的 `dependencies` 与 item.`dependencies` 一致（仅本 item 独有的 npm 包，不展开 `registryDependencies`）；没有独有外部依赖时没有这段 frontmatter
 - example 在 `files` 中的顺序就是页面顺序，且每个示例都能从 `../<name>.vue` 导入
 - `bun run test src/components/<name>/<name>.test.ts` 通过（不要 `bun test`）
