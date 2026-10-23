@@ -47,7 +47,9 @@ describe('icon-stack', () => {
       expect(root.exists()).toBe(true)
       // Decorative stack SVG layers are aria-hidden on the svg child; root may still need svg-img-alt skipped if Iconify icon is present.
       expect(await axe(root.element, {
-        rules: { 'svg-img-alt': { enabled: false } },
+        rules: {
+          'svg-img-alt': { enabled: false },
+        },
       })).toHaveNoViolations()
       wrapper.unmount()
     })
