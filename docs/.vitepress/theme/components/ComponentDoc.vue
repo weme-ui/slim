@@ -62,16 +62,16 @@ function html(source: string) {
       <p v-if="page.lead || page.description" class="component-lead">
         {{ page.lead || page.description }}
       </p>
-      <ul v-if="page.dependencies.length" class="doc-dependencies">
-        <li v-for="dependency in page.dependencies" :key="dependency">
-          <a
-            class="doc-dependency"
-            :href="`https://www.npmjs.com/package/${dependency}`"
-            target="_blank"
-            rel="noreferrer"
-          >{{ dependency }}</a>
-        </li>
-      </ul>
+      <div v-if="page.dependencies.length" class="doc-dependencies">
+        <a
+          v-for="dependency in page.dependencies"
+          :key="dependency"
+          class="doc-dependency"
+          :href="`https://www.npmjs.com/package/${dependency}`"
+          target="_blank"
+          rel="noreferrer"
+        >{{ dependency }}</a>
+      </div>
     </header>
 
     <h2 :id="headingId('Installation')">
@@ -223,16 +223,17 @@ function html(source: string) {
 .doc-dependencies {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.375rem;
   margin: 0.9rem 0 0;
-  padding: 0;
-  list-style: none;
 }
 
 .doc-dependency {
   display: inline-flex;
   align-items: center;
-  padding: 0.12rem 0.45rem;
+  box-sizing: border-box;
+  height: 1.5rem;
+  padding: 0 0.5rem;
   border: 1px solid var(--docs-line);
   border-radius: 0.375rem;
   background: var(--neutral-3);
@@ -240,7 +241,7 @@ function html(source: string) {
   font-family: var(--vp-font-family-mono);
   font-size: 0.75rem;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1;
   text-decoration: none;
 }
 
