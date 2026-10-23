@@ -8,7 +8,16 @@ export const useButtonStyle = createVariants({
   },
 
   variants: {
-    variant: { primary: {}, secondary: {}, soft: {}, outline: {}, ghost: {}, plain: {}, inverse: {}, danger: {} },
+    variant: {
+      primary: {},
+      secondary: {},
+      soft: {},
+      outline: {},
+      ghost: {},
+      plain: {},
+      inverse: {},
+      danger: {},
+    },
     size: {
       sm: { root: 'text-xs px-sm gap-xs h-6', icon: 'size-3' },
       md: { root: 'text-sm px-md gap-sm h-8', icon: 'size-3.5' },
@@ -34,16 +43,54 @@ export const useButtonStyle = createVariants({
   },
 
   compoundVariants: [
-    { variant: 'primary', unstyled: false, class: { root: 'fancy-accent' } },
-    { variant: 'secondary', unstyled: false, class: { root: 'fancy-neutral-soft' } },
-    { variant: 'soft', unstyled: false, class: { root: 'fancy-accent-soft' } },
-    { variant: 'outline', unstyled: false, class: { root: 'fancy-neutral-outline' } },
-    { variant: 'ghost', unstyled: false, class: { root: 'fancy-accent-ghost' } },
-    { variant: 'plain', unstyled: false, class: { root: 'fancy-accent-plain' } },
-    { variant: 'inverse', unstyled: false, class: { root: 'fancy-accent-inverse' } },
-    { variant: 'danger', unstyled: false, class: { root: 'fancy-error' } },
+    {
+      variant: 'primary',
+      unstyled: false,
+      class: { root: 'fancy-accent' },
+    },
+    {
+      variant: 'secondary',
+      unstyled: false,
+      class: { root: 'fancy-neutral-soft' },
+    },
+    {
+      variant: 'soft',
+      unstyled: false,
+      class: { root: 'fancy-accent-soft' },
+    },
+    {
+      variant: 'outline',
+      unstyled: false,
+      class: { root: 'fancy-neutral-outline' },
+    },
+    {
+      variant: 'ghost',
+      unstyled: false,
+      class: { root: 'fancy-accent-ghost' },
+    },
+    {
+      variant: 'plain',
+      unstyled: false,
+      class: { root: 'fancy-accent-plain' },
+    },
+    {
+      variant: 'inverse',
+      unstyled: false,
+      class: { root: 'fancy-accent-inverse' },
+    },
+    {
+      variant: 'danger',
+      unstyled: false,
+      class: { root: 'fancy-error' },
+    },
 
-    { disabled: false, loading: false, scalable: true, unstyled: false, class: { root: 'transition-all duration-200 ease-out aria-[pressed=true]:scale-97' } },
+    {
+      disabled: false,
+      loading: false,
+      scalable: true,
+      unstyled: false,
+      class: { root: 'transition-all duration-200 ease-out aria-[pressed=true]:scale-97' },
+    },
   ],
 
   defaultVariants: {
