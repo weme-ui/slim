@@ -55,6 +55,14 @@ export default defineConfig({
         href: assetUrl('favicon.svg'),
       },
     ],
+    [
+      'script',
+      {
+        'defer': '',
+        'src': 'https://cloud.umami.is/script.js',
+        'data-website-id': '882f9828-d18f-4775-bcf3-f5cdb13d5c90',
+      },
+    ],
   ],
   transformPageData(pageData) {
     const name = pageData.params?.name
