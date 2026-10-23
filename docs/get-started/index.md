@@ -1,8 +1,8 @@
-# Introduction
+# 开始使用
 
-Slim 是一套可复用的 Vue 组件 registry，基于 Reka UI 和 UnoCSS。组件以源码写入你的项目，而不是作为运行时包引入。
+Slim 是一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。
 
-目前仍处于早期开发，不建议用于生产环境。
+我尽力了，但现在别用在生产上。
 
 ## 要求
 
@@ -12,13 +12,13 @@ Slim 是一套可复用的 Vue 组件 registry，基于 Reka UI 和 UnoCSS。组
 
 ## 初始化
 
-在目标项目根目录执行：
+在项目根目录跑这条：
 
 ```bash
 pnpm dlx @weme-ui/weme-ui init
 ```
 
-CLI 会写入项目约定（含 UnoCSS preset 等）。若项目里已有 `uno.config.ts`，请确认已启用 `@weme-ui/unocss-preset`：
+CLI 会把约定写进去，UnoCSS preset 也在里头。项目里要是已经有 `uno.config.ts`，确认开了 `@weme-ui/unocss-preset`：
 
 ```ts
 import { presetWemeUI } from '@weme-ui/unocss-preset'
@@ -38,21 +38,21 @@ export default defineConfig({
 })
 ```
 
-`content.pipeline.include` 需要覆盖 `*.style.ts`，否则组件样式 class 不会被扫描到。
+顺便一提，`content.pipeline.include` 得盖到 `*.style.ts`，不然组件样式 class 扫不到。
 
-## 添加组件
+## 加组件
 
 ```bash
 pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ```
 
-这会把 Button 源码、它依赖的 Icon / utils，以及 registry 声明的 npm 依赖写入项目。默认路径与本仓库一致，例如：
+这会把 Button 的源码、它用到的 Icon / utils，还有 registry 里声明的 npm 依赖写进你的项目。默认路径是：
 
 - `src/components/button/button.vue`
 - `src/utils/props.ts`
 - `src/utils/styles.ts`
 
-## 使用
+## 用一下
 
 ```vue
 <script lang="ts" setup>
@@ -64,4 +64,4 @@ import Button from '~/components/button/button.vue'
 </template>
 ```
 
-更多组件见 [Button](/components/button)。
+更多组件从 [Button](/components/button) 看起。

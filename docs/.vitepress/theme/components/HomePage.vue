@@ -25,32 +25,32 @@ const features = [
   {
     place: 'a',
     icon: 'layers',
-    title: '别再跟库拔河',
-    body: '覆盖变量、穿透样式、等下一个版本——这些都太熟了。源码进了仓库，改的就是自己的文件。',
+    title: '源码在项目里',
+    body: '现成的组件库改起来像拔河。Slim 把文件写进项目，你改的就是自己的代码。',
   },
   {
     place: 'b',
     icon: 'dial',
-    title: 'UnoCSS 收得住',
-    body: '没用 Tailwind，是因为它很容易把设计系统带走。约定可以收紧，样式才听这个项目的。',
+    title: 'UnoCSS',
+    body: '没用 Tailwind。我觉得它更可控，定制空间也大一点。',
   },
   {
     place: 'c',
     icon: 'sliders',
-    title: '先写你的约定',
-    body: '颜色、圆角、间距住在项目里。组件去用它们，而不是你先装一套主题，再想办法拆掉。',
+    title: '约定自己定',
+    body: '颜色、圆角、间距是项目里的事。组件跟着走就行，不用先拆主题。',
   },
   {
     place: 'd',
     icon: 'nodes',
-    title: '交互交给 Reka UI',
-    body: '焦点、键盘、无障碍不必每个项目重写。看起来什么样由你定，中间不夹一层主题。',
+    title: 'Reka UI',
+    body: '焦点、键盘这些已经有人做好了。看起来怎样你定，我没再包一层主题。',
   },
   {
     place: 'e',
     icon: 'mark',
-    title: '现在还早',
-    body: '先别用在生产上。适合翻源码、改约定，把别扭的地方告诉我们。',
+    title: '还早',
+    body: '我尽力了，但现在别用在生产上。先翻翻源码，有哪里不对告诉我。',
   },
 ] as const
 </script>
@@ -61,7 +61,7 @@ const features = [
       <header class="hero">
         <h1>Weme UI</h1>
         <p class="lede">
-          可复用的 Vue 组件 registry，基于 Reka UI 与 UnoCSS。
+          一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。
         </p>
         <div class="actions">
           <a class="cta" :href="withBase('/get-started/')">开始使用</a>
@@ -80,10 +80,10 @@ const features = [
       <section class="features" aria-labelledby="features-title">
         <header class="features-head">
           <h2 id="features-title">
-            组件为什么要进仓库
+            组件为什么要进项目
           </h2>
           <p>
-            现成的库好看，一改就累。Slim 把源码写进你的项目，打开文件就能动手。
+            改现成的库太累了。文件在你这儿，事情会简单一点。
           </p>
         </header>
         <div class="feature-grid">
