@@ -455,8 +455,8 @@
       "title": "Empty",
       "description": "Used to display empty state information.",
       "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
       },
       "registryDependencies": [
         "icon-tile"
