@@ -69,7 +69,7 @@ dependencies:
 
 # <Title>
 
-<一句话中文简介，说明组件做什么。>
+<按 SKILL.md「行文」写的中文简介。>
 
 ## Installation
 

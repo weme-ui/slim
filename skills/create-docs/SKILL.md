@@ -8,10 +8,11 @@ description: >-
   or test change into its kind:doc, kind:example, and kind:test entries.
   Mirrors item dependencies into YAML frontmatter. Page npm chips are the
   transitive closure of item.dependencies walked through registryDependencies.
-  Use when the user names create-docs, asks to add, generate, or sync
-  documentation, examples, tests, dependencies, or registryDependencies, or
-  points at src/components/<name>/, src/composables/<name>.ts, README.md, a
-  composable .md, examples/*.vue, *.test.ts, registry.json, or frontmatter.
+  Chinese prose uses Naive UI-style spoken copy. Use when the user names
+  create-docs, asks to add, generate, or sync documentation, examples, tests,
+  dependencies, or registryDependencies, or points at src/components/<name>/,
+  src/composables/<name>.ts, README.md, a composable .md, examples/*.vue,
+  *.test.ts, registry.json, frontmatter, or docs/get-started/.
 ---
 
 # Create Docs
@@ -82,12 +83,35 @@ VitePress 用 `/components/<name>` 渲染组件，用 `/composables/<name>` 渲�
 ## 共用约定
 
 - 有 item.`dependencies` 时才保留文档顶部 YAML frontmatter，包名和顺序与 registry 一致。没有外部依赖时删掉整段 `---`。
-- H1 与 registry `title` 一致。简介用中文。registry `description` 保持英文短句，本 skill 默认不改它。新 item 写一句英文 `description`。
+- H1 与 registry `title` 一致。简介用中文，按「行文」。registry `description` 保持英文短句，本 skill 默认不改它。新 item 写一句英文 `description`。
 - 说明列用中文。Vue、TypeScript、UnoCSS、Reka UI、WAI-ARIA、Iconify、TanStack Form、CSS 变量名保持英文。
 - 类型、默认值、属性名、参数名、字段名、按键名用行内代码。联合类型里的 `|` 写成 `\|`。
 - 字符串默认值加引号：`'button'`、`'md'`。布尔和数字不加引号：`true`、`0`。没有默认值写 em dash：`—`。
 - 透传但未逐项列出的成员，把要点写进简介或某一行说明。不要只写在表格后面。
 - 不要写 Examples、Files、Preview、Source、CSS Variables 这些由 registry / 渲染器生成的章节。
+
+## 行文
+
+中文说明学 [Naive UI 介绍页](https://www.naiveui.com/zh-CN/os-theme/docs/introduction)：短、白、像作者在说话。适用于 README / composable `.md` 的简介、Accessibility 正文、以及 `docs/get-started/` 这类说明页。
+
+- 标题说事实，不写口号。用「UnoCSS」「还早」，不用「UnoCSS 收得住」「别再跟库拔河」。
+- 句子短。第一人称可以有（「我尽力了」），不要第三身产品通稿。
+- 指用户的代码用「项目」，不要用「仓库」代指。
+- 少比喻。价值一句话说完，不要「定制权」「外围覆盖」「控制权交还」。
+- 「顺便一提」一类旁白整页至多一次，用在真正容易踩坑的地方。
+- Props / Slots / Returns 等表的说明列保持短说明，不要写成聊天。
+- 模式 B 默认不动已有简介。用户要求按行文重写，或首次生成，才写简介。
+
+对照：
+
+| 不要写 | 写成 |
+| --- | --- |
+| 可复用的 Vue 组件 registry，基于 Reka UI 与 UnoCSS。 | 一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。 |
+| 目前仍处于早期开发，不建议用于生产环境。 | 我尽力了，但现在别用在生产上。 |
+| 组件以源码写入你的项目，而不是作为运行时包引入。 | 源码会写进你的项目。 |
+| 默认路径与本仓库一致 | 默认路径是 |
+
+范本：`docs/get-started/index.md`、首页 Features 文案（`docs/.vitepress/theme/components/HomePage.vue` 里的 `features` 与导语）。
 
 ## 外部依赖
 

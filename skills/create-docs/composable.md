@@ -69,7 +69,7 @@ dependencies:
 
 # useFormContext
 
-<一句话中文简介，说明这个 composable 做什么。>
+<按 SKILL.md「行文」写的中文简介。>
 
 ## Installation
 
