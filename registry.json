@@ -117,6 +117,172 @@
       ]
     },
     {
+      "name": "button-group",
+      "type": "component",
+      "title": "Button Group",
+      "description": "Used to group multiple buttons.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/button-group/button-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button-group/button-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button-group/button-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/button-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/gap.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/separator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/button-group/button-group.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "component",
+      "title": "Separator",
+      "description": "Used to separate content visually and semantically.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/separator/separator.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/separator/separator.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/separator/separator.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/separator/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/with-label.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/separator/separator.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "config-provider",
+      "type": "component",
+      "title": "Config Provider",
+      "description": "Used to provide global configuration for nested primitives.",
+      "meta": {
+        "docs.category": "utilities",
+        "docs.categoryLabel": "Utilities"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/config-provider/config-provider.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/config-provider/config-provider.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/config-provider/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/config-provider/config-provider.test.ts"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",
@@ -161,6 +327,347 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/icon/icon.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "icon-stack",
+      "type": "component",
+      "title": "Icon Stack",
+      "description": "Used to display a decorative stacked icon.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/icon-stack/icon-stack.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-stack/icon-stack.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-stack/icon-stack.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon-stack/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon-stack/icon-stack.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "icon-tile",
+      "type": "component",
+      "title": "Icon Tile",
+      "description": "Used to display an icon in a rounded tile.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/icon-tile/icon-tile.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-tile/icon-tile.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/icon-tile/icon-tile.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon-tile/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon-tile/icon-tile.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "component",
+      "title": "Empty",
+      "description": "Used to display empty state information.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/empty/empty.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/empty/empty.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/empty/empty.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/empty/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/with-content.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/empty/empty.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "animated-toggle-icon",
+      "type": "component",
+      "title": "Animated Toggle Icon",
+      "description": "Used to toggle between inactive and active icons with a scale animation.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "dependencies": [
+        "motion-v"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/animated-toggle-icon/animated-toggle-icon.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/animated-toggle-icon/animated-toggle-icon.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/animated-toggle-icon/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-toggle-icon/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-toggle-icon/examples/states.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-toggle-icon/examples/fallback-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/animated-toggle-icon/animated-toggle-icon.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "component",
+      "title": "Link",
+      "description": "Used to navigate to a route or URL.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "dependencies": [
+        "vue-router"
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/link/link.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link/link.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link/link.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/link/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/external.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/link/link.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "link-overlay",
+      "type": "component",
+      "title": "Link Overlay",
+      "description": "Used to stretch a link click area over a positioned ancestor.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/link-overlay/link-overlay.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link-overlay/link-overlay.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link-overlay/link-overlay.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/link-overlay/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link-overlay/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link-overlay/examples/as-child.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/link-overlay/link-overlay.test.ts"
         }
       ]
     }
