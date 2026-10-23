@@ -20,7 +20,7 @@ description: >-
 
 registry.json 也是文档的重要组成部分，属于第一公民，所有变化都必须与 registry.json 同步。
 
-VitePress 用动态路由 `/components/<name>` 读取这三份数据。本 skill 只写文档与示例，并维护 registry 里对应的 doc / example 条目。不写组件实现，不生成测试，不改 `docs/.vitepress` 渲染器，不安装包。
+VitePress 用动态路由 `/components/<name>` 读取这三份数据。本 skill 只写文档与示例，并维护 registry 里对应的 doc / example 条目。不写组件实现，不生成测试，不改 `docs/.vitepress` 渲染器，不安装包。索引页 CSS sketch（`ComponentGlyph.vue`）也不在范围；`registry.json` 新增 `type: "component"` 之后，用 `skills/update-component-index` 补 glyph。
 
 范本：`src/components/button/`、`src/components/icon/`。
 
