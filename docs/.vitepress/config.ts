@@ -1,4 +1,4 @@
-import type { DefaultTheme } from 'vitepress'
+import type { DefaultTheme, HeadConfig } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -42,6 +42,17 @@ function readReadme(path?: string) {
   }
 }
 
+const umamiHead: HeadConfig[] = [
+  [
+    'script',
+    {
+      'defer': '',
+      'src': 'https://cloud.umami.is/script.js',
+      'data-website-id': '882f9828-d18f-4775-bcf3-f5cdb13d5c90',
+    },
+  ],
+]
+
 export default defineConfig({
   base: siteBase,
   title: 'Slim',
@@ -55,15 +66,10 @@ export default defineConfig({
         href: assetUrl('favicon.svg'),
       },
     ],
-    [
-      'script',
-      {
-        'defer': '',
-        'src': 'https://cloud.umami.is/script.js',
-        'data-website-id': '882f9828-d18f-4775-bcf3-f5cdb13d5c90',
-      },
-    ],
   ],
+  transformHead() {
+    return umamiHead
+  },
   transformPageData(pageData) {
     const name = pageData.params?.name
     if (!name)
