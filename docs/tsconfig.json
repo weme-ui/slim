@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.docs.json",
+  "include": [
+    "**/*.ts",
+    "**/*.vue",
+    "**/*.d.ts",
+    ".vitepress/**/*.ts",
+    ".vitepress/**/*.vue",
+    ".vitepress/**/*.d.ts"
+  ],
+  "exclude": [
+    ".vitepress/dist",
+    ".vitepress/cache",
+    "node_modules"
+  ]
+}

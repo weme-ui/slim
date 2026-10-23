@@ -64,8 +64,13 @@ export default defineConfig({
     ],
   },
   vite: {
+    optimizeDeps: {
+      exclude: [
+        'vitepress',
+      ],
+    },
     plugins: [
-      UnoCSS(resolve(repoRoot, 'uno.config.ts')),
+      UnoCSS(),
       docsShikiPlugin(repoRoot),
       {
         name: 'weme-icon-stub',

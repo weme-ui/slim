@@ -2,7 +2,7 @@ import type { PageData } from 'vitepress'
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { buildComponentPage, getComponentItems, getRegistryItem } from '../.vitepress/lib/registry.ts'
+import { buildComponentPage, getComponentItems, getRegistryItem } from '../.vitepress/lib/registry'
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 

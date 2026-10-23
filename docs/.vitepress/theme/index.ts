@@ -4,7 +4,7 @@ import { h } from 'vue'
 import ApiTable from './components/ApiTable.vue'
 import ComponentDoc from './components/ComponentDoc.vue'
 import ExamplePreview from './components/ExamplePreview.vue'
-import 'virtual:uno.css'
+import 'uno.css'
 import './style.css'
 
 export default {

@@ -1,6 +1,6 @@
 /// <reference types="vitepress/client" />
 
-declare module 'virtual:uno.css'
+declare module 'uno.css'
 
 declare module 'virtual:docs-highlighted' {
   export const installationHtml: Record<string, string>
