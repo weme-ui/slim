@@ -45,7 +45,7 @@ function readReadme(path?: string) {
 export default defineConfig({
   base: siteBase,
   title: 'Slim',
-  description: 'Re-usable UI components with Reka UI and UnoCSS.',
+  description: '可复用的 Vue 组件 registry，基于 Reka UI 和 UnoCSS。',
   head: [
     [
       'link',
