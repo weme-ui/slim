@@ -10,16 +10,16 @@
     "Luo Yi <luoyi@mouji.com>"
   ],
   "access": "public",
-  "dependencies": [
-    "@weme-ui/unocss-preset",
+  "devDependencies": [
     "@vueuse/core",
+    "@weme-ui/unocss-preset",
     "clsx",
     "defu",
     "reka-ui",
     "tailwind-merge",
     "tailwind-variants",
-    "unocss",
-    "vue"
+    "typescript@6.0.3",
+    "unocss@66.10.5"
   ],
   "items": [
     {
