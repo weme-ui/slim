@@ -1,6 +1,6 @@
 # Switch
 
-开关控件。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。基于 Reka UI `SwitchRoot` / `SwitchThumb`，支持外观变体、尺寸、圆角、加载态与拇指指示图标。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
+开关控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。基于 Reka UI `SwitchRoot` / `SwitchThumb`，支持外观变体、尺寸、圆角、加载态与拇指指示图标。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
 
 ## Installation
 
@@ -56,7 +56,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 
 ## Accessibility
 
-遵循 WAI-ARIA Switch 设计模式。基于 Reka UI `SwitchRoot`（`role="switch"`、`aria-checked`、`data-state`）。按下时额外设置 `aria-pressed`。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="switch"`。
+遵循 WAI-ARIA Switch 设计模式。基于 Reka UI `SwitchRoot`（`role="switch"`、`aria-checked`、`data-state`）。按下时额外设置 `aria-pressed`。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="switch"`。
 
 ### Keyboard Interactions
 

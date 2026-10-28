@@ -3,7 +3,7 @@ import type { SwitchEmits, SwitchProps } from './switch.props'
 import { reactiveOmit } from '@vueuse/core'
 import { SwitchRoot, SwitchThumb, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, nextTick, onMounted, onUnmounted, ref, useSlots } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolAriaValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -24,14 +24,15 @@ const emits = defineEmits<SwitchEmits<T>>()
 const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'inverted', 'indicatorIcon', 'loadingIcon', 'checkedIcon', 'uncheckedIcon', 'unstyled', 'loading', 'invalid', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  loading,
+  disabled,
+  dataAttributes,
+  registerControl,
+} = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const loading = computed(() => props.loading ?? formFieldContext.loading.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
 
@@ -44,7 +45,7 @@ const pressed = ref(false)
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => pressed.value,

@@ -193,4 +193,12 @@ describe('switch', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone switch', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(Switch, { attachTo: document.body })
+      expect(wrapper.find('[data-slot="switch"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+  })
 })
