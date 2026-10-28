@@ -1,66 +1,60 @@
 <script lang="ts" setup>
 import type { AutocompleteItems } from '../autocomplete.props'
+import * as v from 'valibot'
+import Button from '../../button/button.vue'
 import FormField from '../../form-field/form-field.vue'
 import Form from '../../form/form.vue'
 import Autocomplete from '../autocomplete.vue'
+
+const schema = v.object({
+  drink: v.pipe(
+    v.string('请选择饮品'),
+    v.minLength(1, '请选择饮品'),
+  ),
+})
 
 const defaultValues = {
   drink: '',
 }
 
 const items: AutocompleteItems = [
-  {
-    label: 'Beer',
-    value: 'beer',
-    icon: 'ri:beer-line',
-    selectedIcon: 'ri:beer-fill',
-    iconClass: 'text-accent',
-  },
-  {
-    label: 'Coffee',
-    value: 'coffee',
-    icon: 'ri:drinks-line',
-    selectedIcon: 'ri:drinks-fill',
-    iconClass: 'text-neutral',
-  },
-  {
-    label: 'Juice',
-    value: 'juice',
-    icon: 'ri:goblet-line',
-    selectedIcon: 'ri:goblet-fill',
-    iconClass: 'text-info',
-  },
-  {
-    label: 'Milk Tea',
-    value: 'milk tea',
-    icon: 'ri:drinks-2-line',
-    selectedIcon: 'ri:drinks-2-fill',
-    iconClass: 'text-warning',
-  },
-  {
-    label: 'Wine',
-    value: 'wine',
-    icon: 'ri:goblet-2-line',
-    selectedIcon: 'ri:goblet-2-fill',
-    iconClass: 'text-error',
-  },
+  { label: 'Beer', value: 'beer', icon: 'ri:beer-line' },
+  { label: 'Coffee', value: 'coffee', icon: 'ri:drinks-line' },
+  { label: 'Juice', value: 'juice', icon: 'ri:goblet-line' },
+  { label: 'Wine', value: 'wine', icon: 'ri:goblet-2-line' },
 ]
+
+function onFormSubmit(values: { drink: string }) {
+  // eslint-disable-next-line no-alert
+  alert(JSON.stringify(values))
+}
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField v-slot="{ field }" name="drink" label="Pick a drink">
+  <Form
+    class="max-w-sm w-full"
+    :default-values="defaultValues"
+    :schema="schema"
+    @form-submit="onFormSubmit"
+  >
+    <FormField
+      v-slot="{ field }"
+      name="drink"
+      label="Drink"
+      required
+    >
       <Autocomplete
         :model-value="field.state.value"
         :items="items"
         prefix-icon="ri:search-line"
         placeholder="Search drinks…"
         open-on-focus
-        @change="field.api.handleChange"
+        @blur="field.api.handleBlur"
+        @update:model-value="field.api.handleChange"
       />
-      <p class="text-sm">
-        Selected: {{ field.state.value }}
-      </p>
     </FormField>
+    <Button type="submit">
+      Submit
+    </Button>
   </Form>
 </template>

@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import type { AutocompleteItems } from '../autocomplete.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import Autocomplete from '../autocomplete.vue'
-
-const defaultValues = {
-  food: '',
-}
 
 const items: AutocompleteItems = [
   [
@@ -24,15 +18,11 @@ const items: AutocompleteItems = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField v-slot="{ field }" name="food" label="Food">
-      <Autocomplete
-        :model-value="field.state.value"
-        :items="items"
-        placeholder="Search food…"
-        open-on-focus
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-  </Form>
+  <div class="max-w-sm w-full">
+    <Autocomplete
+      :items="items"
+      placeholder="Search food…"
+      open-on-focus
+    />
+  </div>
 </template>

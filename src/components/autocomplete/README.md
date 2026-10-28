@@ -5,7 +5,7 @@ dependencies:
 
 # Autocomplete
 
-可筛选的自动完成输入。基于 Reka UI `Autocomplete`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签与分隔线。
+可筛选的自动完成输入。基于 Reka UI `Autocomplete`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签与分隔线。
 
 ## Installation
 
@@ -86,7 +86,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/autocomplete
 
 ## Accessibility
 
-遵循 WAI-ARIA Combobox 设计模式。基于 Reka UI `Autocomplete`（`AutocompleteRoot` / `AutocompleteInput` / `AutocompleteContent` / `AutocompleteItem` 等）。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="autocomplete"`，弹出层内容设置 `data-slot="autocomplete-content"`。
+遵循 WAI-ARIA Combobox 设计模式。基于 Reka UI `Autocomplete`（`AutocompleteRoot` / `AutocompleteInput` / `AutocompleteContent` / `AutocompleteItem` 等）。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="autocomplete"`，弹出层内容设置 `data-slot="autocomplete-content"`。
 
 ### Keyboard Interactions
 

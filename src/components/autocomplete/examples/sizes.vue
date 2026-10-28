@@ -1,14 +1,6 @@
 <script lang="ts" setup>
 import type { AutocompleteItems } from '../autocomplete.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import Autocomplete from '../autocomplete.vue'
-
-const defaultValues = {
-  sm: '',
-  md: '',
-  lg: '',
-}
 
 const items: AutocompleteItems = [
   { label: 'Apple', value: 'apple' },
@@ -17,15 +9,11 @@ const items: AutocompleteItems = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-3 max-w-sm w-full">
-    <FormField name="sm" label="SM">
-      <Autocomplete size="sm" :items="items" placeholder="Small" open-on-focus />
-    </FormField>
-    <FormField name="md" label="MD">
-      <Autocomplete size="md" :items="items" placeholder="Medium" open-on-focus />
-    </FormField>
-    <FormField name="lg" label="LG">
-      <Autocomplete size="lg" :items="items" placeholder="Large" open-on-focus />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-3 max-w-sm w-full">
+    <Autocomplete size="sm" :items="items" placeholder="Small" open-on-focus />
+
+    <Autocomplete size="md" :items="items" placeholder="Medium" open-on-focus />
+
+    <Autocomplete size="lg" :items="items" placeholder="Large" open-on-focus />
+  </div>
 </template>
