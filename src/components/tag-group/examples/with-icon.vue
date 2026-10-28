@@ -1,13 +1,7 @@
 <script lang="ts" setup>
 import type { TagGroupItem } from '../tag-group.props'
 import { ref } from 'vue'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import TagGroup from '../tag-group.vue'
-
-const defaultValues = {
-  tags: '',
-}
 
 const items = ref<TagGroupItem[]>([
   {
@@ -32,12 +26,10 @@ const items = ref<TagGroupItem[]>([
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField name="tags" label="With icons">
-      <TagGroup
-        selection-mode="multiple"
-        :items="items"
-      />
-    </FormField>
-  </Form>
+  <div class="max-w-sm w-full">
+    <TagGroup
+      selection-mode="multiple"
+      :items="items"
+    />
+  </div>
 </template>

@@ -3,7 +3,7 @@ import type { TagGroupEmits, TagGroupItemValue, TagGroupProps } from './tag-grou
 import { reactiveOmit } from '@vueuse/core'
 import { TagGroupItem, TagGroupItemDelete, TagGroupItemText, TagGroupRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolAriaValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import AnimatedToggleIcon from '../animated-toggle-icon/animated-toggle-icon.vue'
@@ -21,12 +21,13 @@ const emits = defineEmits<TagGroupEmits>()
 const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'radius', 'size', 'deleteIcon', 'closeable', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const formFieldContext = useFormFieldContext()
+const {
+  id,
+  name,
+  disabled,
+  registerControl,
+} = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const name = computed(() => props.name ?? formFieldContext.name.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
 
 const pressedItem = ref<TagGroupItemValue | null>(null)
 
@@ -42,7 +43,7 @@ const ui = computed(() => useTagGroupStyle({
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => pressedItem.value,

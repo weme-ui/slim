@@ -1,15 +1,7 @@
 <script lang="ts" setup>
 import type { TagGroupItem } from '../tag-group.props'
 import { ref } from 'vue'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import TagGroup from '../tag-group.vue'
-
-const defaultValues = {
-  soft: '',
-  outline: '',
-  inverted: '',
-}
 
 function createItems(): TagGroupItem[] {
   return [
@@ -25,15 +17,11 @@ const invertedItems = ref(createItems())
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-4 max-w-sm w-full">
-    <FormField name="soft" label="Soft">
-      <TagGroup variant="soft" :items="softItems" />
-    </FormField>
-    <FormField name="outline" label="Outline">
-      <TagGroup variant="outline" :items="outlineItems" />
-    </FormField>
-    <FormField name="inverted" label="Inverted">
-      <TagGroup variant="inverted" :items="invertedItems" />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-4 max-w-sm w-full">
+    <TagGroup variant="soft" :items="softItems" />
+
+    <TagGroup variant="outline" :items="outlineItems" />
+
+    <TagGroup variant="inverted" :items="invertedItems" />
+  </div>
 </template>

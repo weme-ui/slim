@@ -1,14 +1,7 @@
 <script lang="ts" setup>
 import type { TagGroupItem, TagGroupItemValue } from '../tag-group.props'
 import { ref } from 'vue'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import TagGroup from '../tag-group.vue'
-
-const defaultValues = {
-  single: '',
-  multiple: '',
-}
 
 const singleItems = ref<TagGroupItem[]>([
   { label: 'Low', value: 'low' },
@@ -35,22 +28,19 @@ function onRemoveMultiple(values: TagGroupItemValue[]) {
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-4 max-w-sm w-full">
-    <FormField name="single" label="Single">
-      <TagGroup
-        v-model="singleValue"
-        selection-mode="single"
-        :items="singleItems"
-        @remove="onRemoveSingle"
-      />
-    </FormField>
-    <FormField name="multiple" label="Multiple">
-      <TagGroup
-        v-model="multipleValue"
-        selection-mode="multiple"
-        :items="multipleItems"
-        @remove="onRemoveMultiple"
-      />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-4 max-w-sm w-full">
+    <TagGroup
+      v-model="singleValue"
+      selection-mode="single"
+      :items="singleItems"
+      @remove="onRemoveSingle"
+    />
+
+    <TagGroup
+      v-model="multipleValue"
+      selection-mode="multiple"
+      :items="multipleItems"
+      @remove="onRemoveMultiple"
+    />
+  </div>
 </template>

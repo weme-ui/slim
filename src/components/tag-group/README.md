@@ -1,6 +1,6 @@
 # Tag Group
 
-可选择、可移除的标签组。基于 Reka UI `TagGroup`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `name` / `disabled`。选项由 `items` 驱动；监听 `remove` 后删除控件才会生效。
+可选择、可移除的标签组。基于 Reka UI `TagGroup`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `name` / `disabled`。选项由 `items` 驱动；监听 `remove` 后删除控件才会生效。
 
 ## Installation
 

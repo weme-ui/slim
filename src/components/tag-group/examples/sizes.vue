@@ -1,15 +1,7 @@
 <script lang="ts" setup>
 import type { TagGroupItem } from '../tag-group.props'
 import { ref } from 'vue'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import TagGroup from '../tag-group.vue'
-
-const defaultValues = {
-  sm: '',
-  md: '',
-  lg: '',
-}
 
 function createItems(): TagGroupItem[] {
   return [
@@ -25,15 +17,11 @@ const lgItems = ref(createItems())
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-4 max-w-sm w-full">
-    <FormField name="sm" label="Small">
-      <TagGroup size="sm" :items="smItems" />
-    </FormField>
-    <FormField name="md" label="Medium">
-      <TagGroup size="md" :items="mdItems" />
-    </FormField>
-    <FormField name="lg" label="Large">
-      <TagGroup size="lg" :items="lgItems" />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-4 max-w-sm w-full">
+    <TagGroup size="sm" :items="smItems" />
+
+    <TagGroup size="md" :items="mdItems" />
+
+    <TagGroup size="lg" :items="lgItems" />
+  </div>
 </template>

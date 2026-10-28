@@ -246,4 +246,15 @@ describe('tag-group', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone tag group', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(TagGroup, {
+        attachTo: document.body,
+        props: { items: defaultItems },
+      })
+      expect(wrapper.find('[data-slot="tag-group"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+  })
 })
