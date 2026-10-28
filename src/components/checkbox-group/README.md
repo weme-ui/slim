@@ -1,6 +1,6 @@
 # Checkbox Group
 
-复选框组。须放在 `FormField` 内使用，通过 Context 合并 `id` / `name` / `aria-*` / `data-*`。基于 Reka UI `CheckboxGroupRoot`，按 `items` 渲染多个 `Checkbox`，支持外观变体、方向、最大可选数与 roving focus。
+复选框组。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `name` / `aria-*` / `data-*`。基于 Reka UI `CheckboxGroupRoot`，按 `items` 渲染多个 `Checkbox`，支持外观变体、方向、最大可选数与 roving focus。
 
 ## Installation
 
@@ -73,7 +73,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox-group
 
 ## Accessibility
 
-基于 Reka UI `CheckboxGroupRoot`（默认 `rovingFocus`）。组内各项为 `Checkbox`（`role="checkbox"`、`aria-checked`），并以 `in-group` 渲染：不合并 FormField bindings、不单独注册控件，标签为 `span`（无 `for`）。组根通过 `useFormFieldBindings` 合并 `id` / `name` / `disabled` / `required` / `aria-*` 与字段 `data-*`，并向 FormField 注册为控件。根节点设置 `data-slot="checkbox-group"`。达到 `max` 时未选项会带 `aria-disabled`。
+基于 Reka UI `CheckboxGroupRoot`（默认 `rovingFocus`）。组内各项为 `Checkbox`（`role="checkbox"`、`aria-checked`），并以 `in-group` 渲染：不合并 FormField bindings、不单独注册控件，标签为 `span`（无 `for`）。组根通过 `useFormFieldControl` 合并 `id` / `name` / `disabled` / `required` / `aria-*` 与字段 `data-*`，并向 FormField 注册为控件。根节点设置 `data-slot="checkbox-group"`。达到 `max` 时未选项会带 `aria-disabled`。
 
 ### Keyboard Interactions
 

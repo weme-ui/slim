@@ -3,7 +3,7 @@ import type { CheckboxGroupEmits, CheckboxGroupProps, CheckboxGroupValue } from 
 import { reactivePick } from '@vueuse/core'
 import { CheckboxGroupRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Checkbox from '../checkbox/checkbox.vue'
@@ -23,20 +23,21 @@ const forwarded = useForwardPropsEmits(delegated, emits)
 
 const checkboxProps = reactivePick(props, 'variant', 'size', 'radius', 'align', 'indicator', 'inverted', 'unstyled')
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  name,
+  disabled,
+  dataAttributes,
+  registerControl,
+} = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const name = computed(() => props.name ?? formFieldContext.name.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 const modelValue = computed(() => props.modelValue)
 
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => modelValue.value,
@@ -78,8 +79,8 @@ function handleUpdate(value: CheckboxGroupValue[]) {
     <template v-for="item in items" :key="item.value">
       <Checkbox
         v-bind="checkboxProps"
-        :id="`${id}-${item.value}`"
-        :name="`${name}[]`"
+        :id="id ? `${id}-${item.value}` : undefined"
+        :name="name ? `${name}[]` : undefined"
         :value="item.value"
         :label="item.label"
         :description="item.description"

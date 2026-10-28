@@ -1,13 +1,6 @@
 <script lang="ts" setup>
 import type { CheckboxGroupItem } from '../checkbox-group.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import CheckboxGroup from '../checkbox-group.vue'
-
-const defaultValues = {
-  vertical: ['design'],
-  horizontal: ['design'],
-}
 
 const items: CheckboxGroupItem[] = [
   { label: 'Design', value: 'design' },
@@ -17,22 +10,15 @@ const items: CheckboxGroupItem[] = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-6 max-w-md w-full">
-    <FormField v-slot="{ field }" name="vertical" label="Vertical">
-      <CheckboxGroup
-        orientation="vertical"
-        :model-value="field.state.value"
-        :items="items"
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-    <FormField v-slot="{ field }" name="horizontal" label="Horizontal">
-      <CheckboxGroup
-        orientation="horizontal"
-        :model-value="field.state.value"
-        :items="items"
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-6 max-w-md w-full">
+    <CheckboxGroup
+      orientation="vertical"
+      :items="items"
+    />
+
+    <CheckboxGroup
+      orientation="horizontal"
+      :items="items"
+    />
+  </div>
 </template>

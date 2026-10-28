@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import type { CheckboxGroupItem } from '../checkbox-group.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import CheckboxGroup from '../checkbox-group.vue'
-
-const defaultValues = {
-  notifications: [] as string[],
-}
 
 const items: CheckboxGroupItem[] = [
   {
@@ -28,13 +22,9 @@ const items: CheckboxGroupItem[] = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField v-slot="{ field }" name="notifications" label="Notifications">
-      <CheckboxGroup
-        :model-value="field.state.value"
-        :items="items"
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-  </Form>
+  <div class="max-w-sm w-full">
+    <CheckboxGroup
+      :items="items"
+    />
+  </div>
 </template>

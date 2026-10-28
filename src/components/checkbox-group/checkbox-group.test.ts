@@ -120,4 +120,16 @@ describe('checkbox-group', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone checkbox group', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(CheckboxGroup, {
+        attachTo: document.body,
+        props: { items: defaultItems },
+      })
+      expect(wrapper.find('[data-slot="checkbox-group"]').exists()).toBe(true)
+      expect(wrapper.findAll('[data-slot="checkbox"]')[0].attributes('id')).toBeUndefined()
+      wrapper.unmount()
+    })
+  })
 })
