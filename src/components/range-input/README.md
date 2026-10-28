@@ -1,6 +1,6 @@
 # Range Input
 
-区间数值输入控件，包含起止两个输入框与中间分隔符。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。
+区间数值输入控件，包含起止两个输入框与中间分隔符。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。
 
 ## Installation
 
@@ -57,4 +57,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/range-input
 
 ## Accessibility
 
-根节点为 Reka UI `Primitive`（默认 `div`），设置 `data-slot="range-input"`，并透传 FormField Context 的字段 `data-*`。起始 `<input>` 通过 `useFormFieldBindings` 合并 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid`；结束 `<input>` 复用同一套无障碍绑定，但不设置独立的 `id` / `name`，避免与起始控件冲突。
+根节点为 Reka UI `Primitive`（默认 `div`），设置 `data-slot="range-input"`，并透传 FormField Context 的字段 `data-*`。起始 `<input>` 通过 `useFormFieldControl` 合并 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid`；结束 `<input>` 复用同一套无障碍绑定，但不设置独立的 `id` / `name`，避免与起始控件冲突。

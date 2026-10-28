@@ -3,7 +3,7 @@ import type { RangeInputEmits, RangeInputProps, RangeInputValue } from './range-
 import { useVModel } from '@vueuse/core'
 import { Primitive, useForwardExpose } from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -24,8 +24,16 @@ const emits = defineEmits<RangeInputEmits>()
 
 const modelValue = useVModel<RangeInputProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  disabled,
+  invalid,
+  dataAttributes,
+  registerControl,
+  handleControlFocus,
+  handleControlBlur,
+} = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 
 const fromModelValue = computed(() => modelValue.value?.[0] ?? null)
@@ -33,11 +41,6 @@ const toModelValue = computed(() => modelValue.value?.[1] ?? null)
 
 const fromPlaceholder = computed(() => props.fromPlaceholder)
 const toPlaceholder = computed(() => props.toPlaceholder)
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const disabled = computed(() => formFieldContext.disabled.value || props.disabled)
-const invalid = computed(() => formFieldContext.invalid.value || props.invalid)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
 
@@ -56,7 +59,7 @@ const ui = computed(() => useRangeInputStyle({
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => modelValue.value,
@@ -102,19 +105,16 @@ function handleChange(range: 'from' | 'to', e: Event) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (formFieldContext.focused.value)
+  if (!handleControlFocus())
     return
 
-  formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!formFieldContext.focused.value)
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
     return
 
-  const value = (e.target as HTMLInputElement).value
-  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
