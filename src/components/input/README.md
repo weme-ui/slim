@@ -1,6 +1,6 @@
 # Input
 
-单行输入。要放在 `FormField` 里，`id` / `aria-*` / `data-*` 走字段上下文。前后缀、清除、字数、加载都有。
+单行输入。可以单独用，也可以放进 `FormField`。有 `FormField` 时 `id` / `aria-*` / `data-*` 走字段上下文。前后缀、清除、字数、加载都有。
 
 ## Installation
 
@@ -65,7 +65,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
 
 ## Accessibility
 
-原生 `<input>`，包在 Reka UI `Primitive` 里（默认 `div`）。`id` / `name` / `aria-*` / `data-*` 走 `useFormFieldBindings`。根节点 `data-slot="input"`。
+原生 `<input>`，包在 Reka UI `Primitive` 里（默认 `div`）。`id` / `name` / `aria-*` / `data-*` 走 `useFormFieldControl`。根节点 `data-slot="input"`。
 
 ### Keyboard Interactions
 

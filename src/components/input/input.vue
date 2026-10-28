@@ -3,7 +3,7 @@ import type { InputEmits, InputProps } from './input.props'
 import { useVModel } from '@vueuse/core'
 import { Primitive } from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots, useTemplateRef } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -27,16 +27,19 @@ const props = withDefaults(defineProps<InputProps>(), {
 const emits = defineEmits<InputEmits>()
 const modelValue = useVModel<InputProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  loading,
+  disabled,
+  invalid,
+  dataAttributes,
+  registerControl,
+  handleControlFocus,
+  handleControlBlur,
+} = useFormFieldControl(props)
 
 const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const loading = computed(() => props.loading ?? formFieldContext.loading.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const countLength = computed(() => modelValue.value
   ? modelValue.value.toString().length
@@ -53,7 +56,7 @@ const hasClean = computed(() => !disabled.value && props.clearable && modelValue
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => inputRef.value,
     getValue: () => modelValue.value,
@@ -67,7 +70,7 @@ onUnmounted(() => {
 onMounted(() => {
   if (props.autoFocus) {
     inputRef.value?.focus()
-    formFieldContext.handleControlFocus()
+    handleControlFocus()
   }
 })
 
@@ -144,25 +147,22 @@ function handleClean() {
       !inputRef.value.focus && inputRef.value.focus()
     }
     else {
-      formFieldContext.handleControlFocus()
+      handleControlFocus()
     }
   }
 }
 
 function handleFocus(e: FocusEvent) {
-  if (formFieldContext.focused.value)
+  if (!handleControlFocus())
     return
 
-  formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!formFieldContext.focused.value)
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
     return
 
-  const value = (e.target as HTMLInputElement).value
-  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 

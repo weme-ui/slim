@@ -234,4 +234,36 @@ describe('input', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone input', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(Input, {
+        attachTo: document.body,
+        props: { placeholder: 'Email' },
+      })
+      expect(wrapper.find('[data-slot="input"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+
+    it('applies invalid without FormField', () => {
+      const wrapper = mount(Input, {
+        attachTo: document.body,
+        props: { invalid: true, placeholder: 'Email' },
+      })
+      expect(wrapper.get('[data-slot="input"]').classes().join(' ')).toContain('b-error')
+      wrapper.unmount()
+    })
+
+    it('sets data-focused when the input is focused', async () => {
+      const wrapper = mount(Input, {
+        attachTo: document.body,
+        props: { placeholder: 'Email' },
+      })
+      await wrapper.get('input').trigger('focus')
+      expect(wrapper.get('[data-slot="input"]').attributes('data-focused')).toBe('')
+      await wrapper.get('input').trigger('blur')
+      expect(wrapper.get('[data-slot="input"]').attributes('data-focused')).toBeUndefined()
+      wrapper.unmount()
+    })
+  })
 })
