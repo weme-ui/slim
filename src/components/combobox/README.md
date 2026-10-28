@@ -5,7 +5,7 @@ dependencies:
 
 # Combobox
 
-可筛选的组合框选择器。基于 Reka UI `Combobox`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签、分隔线、描述与多选（`multiple`）。单选时锚点展示选中项标签；多选时展示各项图标、末项标签与数量。弹出层内含筛选输入框。
+可筛选的组合框选择器。基于 Reka UI `Combobox`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签、分隔线、描述与多选（`multiple`）。单选时锚点展示选中项标签；多选时展示各项图标、末项标签与数量。弹出层内含筛选输入框。
 
 ## Installation
 
@@ -89,7 +89,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/combobox
 
 ## Accessibility
 
-遵循 WAI-ARIA Combobox 设计模式。基于 Reka UI `Combobox`（`ComboboxRoot` / `ComboboxInput` / `ComboboxContent` / `ComboboxItem` 等）。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`（绑定在弹出层内筛选输入框）。根节点设置 `data-slot="combobox"`，弹出层内容设置 `data-slot="combobox-content"`。
+遵循 WAI-ARIA Combobox 设计模式。基于 Reka UI `Combobox`（`ComboboxRoot` / `ComboboxInput` / `ComboboxContent` / `ComboboxItem` 等）。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`（绑定在弹出层内筛选输入框）。根节点设置 `data-slot="combobox"`，弹出层内容设置 `data-slot="combobox-content"`。
 
 ### Keyboard Interactions
 

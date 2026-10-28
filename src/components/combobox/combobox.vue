@@ -24,7 +24,7 @@ import {
   useForwardProps,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, toRef, useSlots } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { useGroupItems } from '~/composables/use-group-items'
 import { usePopoverContent } from '~/composables/use-popover-content'
 import { toBoolValue } from '~/utils/props'
@@ -59,14 +59,17 @@ const contentProps = toRef(() => defu(props.contentProps, {
   position: 'popper',
 }) as ComboboxContentProps)
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const loading = computed(() => props.loading ?? formFieldContext.loading.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
+const {
+  bindings,
+  id,
+  loading,
+  disabled,
+  invalid,
+  dataAttributes,
+  registerControl,
+  handleControlFocus,
+  handleControlBlur,
+} = useFormFieldControl(props)
 
 const computedValues = computed(() => props.modelValue)
 const computedValuesCount = computed(() => Array.isArray(computedValues.value)
@@ -100,7 +103,7 @@ const morph = usePopoverContent({
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => computedValues.value,
@@ -140,19 +143,16 @@ function handleUpdate(value: any) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (formFieldContext.focused.value)
+  if (!handleControlFocus())
     return
 
-  formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!formFieldContext.focused.value)
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
     return
 
-  const value = (e.target as HTMLInputElement).value
-  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>

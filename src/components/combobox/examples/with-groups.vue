@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import type { ComboboxItems } from '../combobox.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import Combobox from '../combobox.vue'
-
-const defaultValues = {
-  food: '',
-}
 
 const items: ComboboxItems = [
   [
@@ -24,14 +18,10 @@ const items: ComboboxItems = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField v-slot="{ field }" name="food" label="Food">
-      <Combobox
-        :model-value="field.state.value"
-        :items="items"
-        placeholder="Search food…"
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-  </Form>
+  <div class="max-w-sm w-full">
+    <Combobox
+      :items="items"
+      placeholder="Search food…"
+    />
+  </div>
 </template>
