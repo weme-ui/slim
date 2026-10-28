@@ -1,6 +1,6 @@
 # Pin Input
 
-分段 PIN / OTP 输入控件。基于 Reka UI `PinInput`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。
+分段 PIN / OTP 输入控件。基于 Reka UI `PinInput`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。
 
 ## Installation
 
