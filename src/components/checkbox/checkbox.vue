@@ -3,7 +3,7 @@ import type { CheckboxEmits, CheckboxProps } from './checkbox.props'
 import { reactiveOmit } from '@vueuse/core'
 import { CheckboxIndicator, CheckboxRoot, Label, useForwardExpose, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -27,15 +27,14 @@ const emits = defineEmits<CheckboxEmits<T>>()
 const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'align', 'indicator', 'checkedIcon', 'indeterminateIcon', 'checkedIconClass', 'indeterminateIconClass', 'label', 'description', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const bindings = props.inGroup
-  ? {}
-  : useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  disabled,
+  dataAttributes,
+  registerControl,
+} = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 const modelValue = computed(() => props.modelValue)
 
 const slots = useSlots()
@@ -50,7 +49,7 @@ onMounted(() => {
   if (props.inGroup)
     return
 
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => modelValue.value,
@@ -89,7 +88,7 @@ function handleUpdate(value: boolean | 'indeterminate') {
     v-slot="{ state }"
     v-bind="{
       ...forwarded,
-      ...bindings,
+      ...(inGroup ? {} : bindings),
       ...dataAttributes,
     }"
     :ref="forwardRef"

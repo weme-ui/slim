@@ -245,4 +245,15 @@ describe('checkbox', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone checkbox', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(Checkbox, {
+        attachTo: document.body,
+        props: { label: 'Standalone' },
+      })
+      expect(wrapper.find('[data-slot="checkbox"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+  })
 })

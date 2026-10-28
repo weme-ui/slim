@@ -1,6 +1,6 @@
 # Checkbox
 
-复选框控件。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。基于 Reka UI `CheckboxRoot` / `CheckboxIndicator`，支持外观变体、尺寸、圆角、标签 / 描述、指示器位置与半选态。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
+复选框控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。基于 Reka UI `CheckboxRoot` / `CheckboxIndicator`，支持外观变体、尺寸、圆角、标签 / 描述、指示器位置与半选态。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
 
 ## Installation
 
@@ -60,7 +60,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox
 
 ## Accessibility
 
-遵循 WAI-ARIA Checkbox 设计模式。基于 Reka UI `CheckboxRoot`（`role="checkbox"`、`aria-checked`，半选时为 `mixed`、`data-state`）。`Enter` 被显式 `preventDefault`，不触发切换。`inGroup` 为假时通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`，并向 FormField 注册控件。根节点设置 `data-slot="checkbox"`、`data-indicator`。`inGroup` 为假时内置 `Label` 通过 `for` 关联控件 `id`；为真时标签渲染为 `span`（无 `for`）。
+遵循 WAI-ARIA Checkbox 设计模式。基于 Reka UI `CheckboxRoot`（`role="checkbox"`、`aria-checked`，半选时为 `mixed`、`data-state`）。`Enter` 被显式 `preventDefault`，不触发切换。`inGroup` 为假时通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`，并向 FormField 注册控件。根节点设置 `data-slot="checkbox"`、`data-indicator`。`inGroup` 为假时内置 `Label` 通过 `for` 关联控件 `id`；为真时标签渲染为 `span`（无 `for`）。
 
 ### Keyboard Interactions
 
