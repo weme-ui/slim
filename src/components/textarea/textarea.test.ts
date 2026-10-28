@@ -214,4 +214,15 @@ describe('textarea', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone textarea', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(Textarea, {
+        attachTo: document.body,
+        props: { placeholder: 'Bio' },
+      })
+      expect(wrapper.find('[data-slot="textarea"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+  })
 })

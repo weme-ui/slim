@@ -1,6 +1,6 @@
 # Textarea
 
-多行文本输入控件。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`，支持自动增高（`autoSize`）、字数统计、加载态与 `v-model` modifiers。
+多行文本输入控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。支持自动增高（`autoSize`）、字数统计、加载态与 `v-model` modifiers。
 
 ## Installation
 
@@ -56,4 +56,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/textarea
 
 ## Accessibility
 
-原生 `<textarea>` 控件。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`，并向 FormField 注册控件。根节点为 Reka UI `Primitive`，并设置 `data-slot="textarea"`。
+原生 `<textarea>` 控件。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`，并向 FormField 注册控件。根节点为 Reka UI `Primitive`，并设置 `data-slot="textarea"`。
