@@ -218,6 +218,11 @@
         {
           "type": "component",
           "kind": "example",
+          "path": "src/components/button/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
           "path": "src/components/button/examples/sizes.vue"
         },
         {

@@ -5,11 +5,11 @@ import { useButtonStyle } from './button.style'
 import Button from './button.vue'
 
 describe('button', () => {
-  it('applies default size, radius, primary variant, and scalable press style', () => {
+  it('applies default size, radius, solid variant, and scalable press style', () => {
     const ui = useButtonStyle({})
     expect(ui.root()).toContain('h-8')
     expect(ui.root()).toContain('rounded-sm')
-    expect(ui.root()).toContain('fancy-accent')
+    expect(ui.root()).toContain('bg-foreground-highlighted')
     expect(ui.root()).toContain('transition-all')
     expect(ui.root()).toContain('aria-[pressed=true]:scale-97')
   })
@@ -28,18 +28,27 @@ describe('button', () => {
   })
 
   it('applies appearance variants', () => {
-    expect(useButtonStyle({ variant: 'primary' }).root()).toContain('fancy-accent')
-    expect(useButtonStyle({ variant: 'secondary' }).root()).toContain('fancy-neutral-soft')
-    expect(useButtonStyle({ variant: 'soft' }).root()).toContain('fancy-accent-soft')
-    expect(useButtonStyle({ variant: 'outline' }).root()).toContain('fancy-neutral-outline')
-    expect(useButtonStyle({ variant: 'ghost' }).root()).toContain('fancy-accent-ghost')
-    expect(useButtonStyle({ variant: 'plain' }).root()).toContain('fancy-accent-plain')
-    expect(useButtonStyle({ variant: 'inverse' }).root()).toContain('fancy-accent-inverse')
-    expect(useButtonStyle({ variant: 'danger' }).root()).toContain('fancy-error')
+    expect(useButtonStyle({ variant: 'solid' }).root()).toContain('bg-foreground-highlighted')
+    expect(useButtonStyle({ variant: 'soft' }).root()).toContain('bg-muted')
+    expect(useButtonStyle({ variant: 'outline' }).root()).toContain('hover:(bg-elevated b-elevated)')
+    expect(useButtonStyle({ variant: 'ghost' }).root()).toContain('hover:bg-elevated')
+    expect(useButtonStyle({ variant: 'plain' }).root()).toContain('text-foreground')
+    expect(useButtonStyle({ variant: 'inverse' }).root()).toContain('hover:(text-highlighted bg-elevated)')
+  })
+
+  it('applies color variants', () => {
+    expect(useButtonStyle({ color: 'default' }).root()).toContain('bg-foreground-highlighted')
+    expect(useButtonStyle({ color: 'accent' }).root()).toContain('fancy-accent')
+    expect(useButtonStyle({ color: 'neutral' }).root()).toContain('fancy-neutral')
+    expect(useButtonStyle({ color: 'info' }).root()).toContain('fancy-info')
+    expect(useButtonStyle({ color: 'error' }).root()).toContain('fancy-error')
+    expect(useButtonStyle({ color: 'success' }).root()).toContain('fancy-success')
+    expect(useButtonStyle({ color: 'warning' }).root()).toContain('fancy-warning')
   })
 
   it('skips appearance and pressed scale when unstyled or scalable is false', () => {
     const unstyled = useButtonStyle({ unstyled: true })
+    expect(unstyled.root()).not.toContain('bg-foreground-highlighted')
     expect(unstyled.root()).not.toContain('fancy-')
     expect(unstyled.root()).not.toContain('aria-[pressed=true]:scale-97')
 
@@ -67,6 +76,7 @@ describe('button', () => {
         attachTo: document.body,
         props: { label: 'Save' },
       })
+      expect(wrapper.attributes('data-slot')).toBe('button')
       expect(await axe(wrapper.element)).toHaveNoViolations()
       wrapper.unmount()
     })

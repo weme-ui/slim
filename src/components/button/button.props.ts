@@ -4,6 +4,7 @@ import type { ButtonStyleProps, ButtonStyleSlots } from './button.style'
 
 export interface ButtonProps extends PrimitiveProps {
   variant?: ButtonStyleProps['variant']
+  color?: ButtonStyleProps['color']
   size?: ButtonStyleProps['size']
   radius?: ButtonStyleProps['radius']
   scalable?: ButtonStyleProps['scalable']

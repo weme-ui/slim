@@ -11,6 +11,8 @@ import { useButtonStyle } from './button.style'
 const props = withDefaults(defineProps<ButtonProps>(), {
   as: 'button',
   type: 'button',
+  variant: 'solid',
+  color: 'default',
   loadingIcon: 'ri:loader-line',
   scalable: true,
 })
@@ -24,6 +26,7 @@ const isDisabled = toRef(() => !!props.disabled || isLoading.value)
 
 const ui = computed(() => useButtonStyle({
   variant: props.variant,
+  color: props.color,
   size: props.size,
   radius: props.radius,
   disabled: isDisabled.value,
