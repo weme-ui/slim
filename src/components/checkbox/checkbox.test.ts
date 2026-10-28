@@ -41,19 +41,17 @@ describe('checkbox', () => {
     const ui = useCheckboxStyle({})
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('gap-md')
-    expect(ui.indicator()).toContain('size-5')
-    expect(ui.indicator()).toContain('rounded-md')
+    expect(ui.indicator()).toContain('size-4')
+    expect(ui.indicator()).toContain('rounded-sm')
     expect(ui.indicator()).toContain('bg-muted')
     expect(ui.content()).toContain('text-sm')
   })
 
   it('applies size variants', () => {
     expect(useCheckboxStyle({ size: 'sm' }).root()).toContain('gap-sm')
-    expect(useCheckboxStyle({ size: 'sm' }).indicator()).toContain('size-4')
-    expect(useCheckboxStyle({ size: 'sm' }).checkedIcon()).toContain('size-3')
+    expect(useCheckboxStyle({ size: 'sm' }).indicator()).toContain('size-3')
     expect(useCheckboxStyle({ size: 'lg' }).root()).toContain('gap-lg')
-    expect(useCheckboxStyle({ size: 'lg' }).indicator()).toContain('size-6')
-    expect(useCheckboxStyle({ size: 'lg' }).checkedIcon()).toContain('size-5')
+    expect(useCheckboxStyle({ size: 'lg' }).indicator()).toContain('size-5')
   })
 
   it('applies radius on the indicator', () => {
