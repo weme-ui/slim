@@ -156,8 +156,8 @@ import Button from '../button.vue'
 
 <template>
   <div class="flex flex-wrap gap-3 items-center">
-    <Button label="Primary" variant="primary" />
-    <Button label="Danger" variant="danger" />
+    <Button label="Solid" />
+    <Button label="Soft" variant="soft" />
   </div>
 </template>
 ```
