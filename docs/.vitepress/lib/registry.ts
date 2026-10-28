@@ -50,6 +50,8 @@ export interface ExampleRef {
 export interface DocSection {
   title: string
   markdown: string
+  rows: ApiRow[]
+  tableKind: 'parameters' | 'fields'
 }
 
 export interface TypeSection {
@@ -97,6 +99,16 @@ const RESERVED_DOC_H2 = new Set([
   'returns',
   'types',
 ])
+
+function exportTableKind(body: string): 'parameters' | 'fields' {
+  const line = body.split('\n').find(item => item.trim().startsWith('|'))
+  if (!line)
+    return 'fields'
+  const header = line.trim().slice(1).split('|')[0]?.replace(/[`*_]/g, '').trim().toLowerCase() ?? ''
+  if (header === '参数' || header === 'parameter' || header === 'parameters')
+    return 'parameters'
+  return 'fields'
+}
 
 export const registry = registryJson as RegistryConfig
 
@@ -354,11 +366,16 @@ export function buildComponentPage(
   const returnsRows = firstTableRows(returnsSegments)
   const exportSections = splitMarkdownH2(stripped)
     .filter(section => !RESERVED_DOC_H2.has(section.title.trim().toLowerCase()))
-    .map(section => ({
-      title: section.title.trim(),
-      markdown: section.body.trim(),
-    }))
-    .filter(section => section.title && section.markdown)
+    .map((section) => {
+      const segments = splitBodySegments(section.body)
+      return {
+        title: section.title.trim(),
+        markdown: markdownWithoutTables(segments),
+        rows: firstTableRows(segments),
+        tableKind: exportTableKind(section.body),
+      }
+    })
+    .filter(section => section.title && (section.markdown || section.rows.length))
   const typeParts = splitMarkdownH3(sections.get('types') || '')
   const typeSections = typeParts.sections.map((section) => {
     const segments = splitBodySegments(section.body)

@@ -144,7 +144,12 @@ function html(source: string) {
       <h2 :id="headingId(section.title)">
         {{ section.title }}
       </h2>
-      <div v-html="html(section.markdown)" />
+      <div v-if="section.markdown" v-html="html(section.markdown)" />
+      <ApiTable
+        v-if="section.rows.length"
+        :kind="section.tableKind"
+        :items="section.rows"
+      />
     </template>
 
     <template v-if="page.typeSections.length">
