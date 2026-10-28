@@ -25,9 +25,9 @@ export const useSwitchStyle = createVariants({
       full: { root: 'rounded-full' },
     },
     size: {
-      sm: { root: 'h-5 w-9', thumb: 'size-3.5 data-[state=checked]:translate-x-4.5', indicator: 'size-2.5' },
-      md: { root: 'h-6 w-11', thumb: 'size-4.5 data-[state=checked]:translate-x-5.5', indicator: 'size-3' },
-      lg: { root: 'h-7 w-13', thumb: 'size-5.5 data-[state=checked]:translate-x-6.5', indicator: 'size-4' },
+      sm: { root: 'h-4 w-7', thumb: 'size-3 data-[state=checked]:translate-x-3.5', indicator: 'size-2' },
+      md: { root: 'h-5 w-9', thumb: 'size-4 data-[state=checked]:translate-x-4.5', indicator: 'size-2.5' },
+      lg: { root: 'h-6 w-11', thumb: 'size-5 data-[state=checked]:translate-x-5.5', indicator: 'size-3' },
     },
     disabled: {
       true: { root: 'is-disabled' },

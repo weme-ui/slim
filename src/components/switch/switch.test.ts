@@ -37,21 +37,21 @@ function mountSwitch(
 describe('switch', () => {
   it('applies default soft variant, size, and full radius', () => {
     const ui = useSwitchStyle({})
-    expect(ui.root()).toContain('h-6')
-    expect(ui.root()).toContain('w-11')
+    expect(ui.root()).toContain('h-5')
+    expect(ui.root()).toContain('w-9')
     expect(ui.root()).toContain('rounded-full')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('group/switch')
     expect(ui.thumb()).toContain('bg-base')
-    expect(ui.thumb()).toContain('size-4.5')
+    expect(ui.thumb()).toContain('size-4')
   })
 
   it('applies size variants', () => {
-    expect(useSwitchStyle({ size: 'sm' }).root()).toContain('h-5')
-    expect(useSwitchStyle({ size: 'sm' }).root()).toContain('w-9')
-    expect(useSwitchStyle({ size: 'sm' }).thumb()).toContain('size-3.5')
-    expect(useSwitchStyle({ size: 'lg' }).root()).toContain('h-7')
-    expect(useSwitchStyle({ size: 'lg' }).thumb()).toContain('size-5.5')
+    expect(useSwitchStyle({ size: 'sm' }).root()).toContain('h-4')
+    expect(useSwitchStyle({ size: 'sm' }).root()).toContain('w-7')
+    expect(useSwitchStyle({ size: 'sm' }).thumb()).toContain('size-3')
+    expect(useSwitchStyle({ size: 'lg' }).root()).toContain('h-6')
+    expect(useSwitchStyle({ size: 'lg' }).thumb()).toContain('size-5')
   })
 
   it('applies radius variants', () => {
