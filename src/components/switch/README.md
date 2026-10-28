@@ -14,13 +14,13 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 
 | 属性            | 说明                                                                                | 类型                                                       | 默认值             |
 | --------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ |
-| `as`            | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                     | `AsTag \| Component`                                       | —                  |
+| `as`            | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                     | `AsTag \| Component`                                       | `'button'`         |
 | `asChild`       | 合并到子元素上渲染（Reka UI composition）                                           | `boolean`                                                  | —                  |
 | `modelValue`    | 受控值；可用 `v-model`                                                              | `T \| null`                                                | —                  |
 | `defaultValue`  | 非受控初始值                                                                        | `T`                                                        | —                  |
 | `trueValue`     | 开启时写入 model 的值                                                               | `T`                                                        | `true`             |
 | `falseValue`    | 关闭时写入 model 的值                                                               | `T`                                                        | `false`            |
-| `value`         | 随表单提交的 `name` 对应值                                                          | `string`                                                   | —                  |
+| `value`         | 随表单提交的 `name` 对应值                                                          | `string`                                                   | `'on'`             |
 | `variant`       | 外观变体                                                                            | `'soft' \| 'outline'`                                      | `'soft'`           |
 | `size`          | 尺寸                                                                                | `'sm' \| 'md' \| 'lg'`                                     | `'md'`             |
 | `radius`        | 圆角                                                                                | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'full'`           |
@@ -28,7 +28,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 | `loadingIcon`   | 加载中图标（Iconify）；`loading` 为真时显示                                         | `IconifyIconProps['icon']`                                 | `'ri:loader-line'` |
 | `checkedIcon`   | 选中态拇指图标（Iconify）                                                           | `IconifyIconProps['icon']`                                 | —                  |
 | `uncheckedIcon` | 未选中态拇指图标（Iconify）                                                         | `IconifyIconProps['icon']`                                 | —                  |
-| `inverted`      | 反色拇指（`true` 时拇指为 inverted 色，否则为 base 色）                             | `boolean`                                                  | —                  |
+| `inverted`      | 反色拇指（`true` 时拇指为 inverted 色，否则为 base 色）                             | `boolean`                                                  | `false`            |
 | `unstyled`      | 移除样式变体类，仅保留结构                                                          | `boolean`                                                  | —                  |
 | `id`            | 控件 `id`；未传时回退到 FormField Context                                           | `string`                                                   | —                  |
 | `name`          | 控件 `name`；未传时回退到 FormField Context                                         | `string`                                                   | —                  |
@@ -60,7 +60,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 
 ### Keyboard Interactions
 
-| Key     | Description |
-| ------- | ----------- |
-| `Space` | 切换开 / 关 |
-| `Enter` | 切换开 / 关 |
+| Key     | Description                            |
+| ------- | -------------------------------------- |
+| `Space` | 切换开 / 关（`as` 为原生 `button` 时） |
+| `Enter` | 切换开 / 关                            |

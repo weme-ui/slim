@@ -100,6 +100,7 @@ describe('switch', () => {
     it('exposes role switch, data-slot, and aria-checked', () => {
       const { wrapper } = mountSwitch({ modelValue: true })
       const root = wrapper.get('[data-slot="switch"]')
+      expect(root.element.tagName).toBe('BUTTON')
       expect(root.attributes('role')).toBe('switch')
       expect(root.attributes('aria-checked')).toBe('true')
       expect(root.attributes('data-state')).toBe('checked')
@@ -110,6 +111,14 @@ describe('switch', () => {
       const { wrapper, model } = mountSwitch({ modelValue: false })
       await wrapper.get('[data-slot="switch"]').trigger('click')
       expect(model.value).toBe(true)
+      wrapper.unmount()
+    })
+
+    it('emits change when the value updates', async () => {
+      const { wrapper } = mountSwitch({ modelValue: false })
+      await wrapper.get('[data-slot="switch"]').trigger('click')
+      const emitted = wrapper.findComponent(Switch).emitted('change') as any[][]
+      expect(emitted.at(-1)?.[0]).toBe(true)
       wrapper.unmount()
     })
 
