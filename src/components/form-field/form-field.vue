@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { ComputedRef } from 'vue'
 import type { FormFieldProps } from './form-field.props'
-import type { FormFieldControlDetail, FormFieldControlRegistration, FormFieldDataAttributes } from '~/composables/use-form-field-context'
+import type { FormFieldContextValue } from '~/composables/use-form-field-context'
 import { Label, Presence, Primitive, useForwardExpose, useId } from 'reka-ui'
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, toRefs, useSlots } from 'vue'
 import { useFormContext, useFormField } from '~/composables/use-form-context'
@@ -8,6 +9,10 @@ import { provideFormFieldContext } from '~/composables/use-form-field-context'
 import { toBoolDataAttrValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import { useFormFieldStyle } from './form-field.style'
+
+type FormFieldControlRegistration = Parameters<FormFieldContextValue['registryControl']>[0]
+type FormFieldControlDetail = Parameters<FormFieldContextValue['handleControlBlur']>[0]
+type FormFieldDataAttributes = FormFieldContextValue['dataAttributes'] extends ComputedRef<infer T> ? T : never
 
 const props = withDefaults(defineProps<FormFieldProps>(), {
   orientation: 'vertical',

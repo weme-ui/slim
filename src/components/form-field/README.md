@@ -44,4 +44,4 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/form-field
 
 ## Accessibility
 
-根节点 `data-slot="form-field"`，并带字段状态 `data-*` 与 `data-orientation`。标签是 Reka UI `Label`：`nativeLabel` 为 `true` 时 `for` 指向已注册控件 `id`。子控件用 `useFormFieldBindings` 合并 `aria-labelledby`、`aria-describedby`、`aria-invalid`。
+根节点 `data-slot="form-field"`，并带字段状态 `data-*` 与 `data-orientation`。标签是 Reka UI `Label`：`nativeLabel` 为 `true` 时 `for` 指向已注册控件 `id`。子控件用 `useFormFieldControl` 合并 `aria-labelledby`、`aria-describedby`、`aria-invalid`。
