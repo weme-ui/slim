@@ -19,16 +19,20 @@ export const useCheckboxStyle = createVariants({
       card: {},
     },
     size: {
-      sm: { root: 'gap-sm', indicator: 'size-4', content: 'text-xs gap-0.5' },
+      sm: {
+        root: 'gap-sm',
+        indicator: 'size-3',
+        content: 'text-xs gap-0.5',
+      },
       md: {
         root: 'gap-md',
-        indicator: 'size-5',
+        indicator: 'size-4',
         content: 'text-sm gap-1',
         description: 'text-xs',
       },
       lg: {
         root: 'gap-lg',
-        indicator: 'size-6',
+        indicator: 'size-5',
         content: 'text-base gap-1.5',
         description: 'text-sm',
       },
@@ -80,17 +84,17 @@ export const useCheckboxStyle = createVariants({
     {
       slots: ['checkedIcon', 'indeterminateIcon'],
       size: 'sm',
-      class: 'size-3',
+      class: 'size-2.5',
     },
     {
       slots: ['checkedIcon', 'indeterminateIcon'],
       size: 'md',
-      class: 'size-4',
+      class: 'size-3',
     },
     {
       slots: ['checkedIcon', 'indeterminateIcon'],
       size: 'lg',
-      class: 'size-5',
+      class: 'size-4',
     },
   ],
 
@@ -200,7 +204,7 @@ export const useCheckboxStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
+    radius: 'sm',
     align: 'start',
   },
 })

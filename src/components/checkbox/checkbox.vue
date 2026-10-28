@@ -16,7 +16,7 @@ defineOptions({
 const props = withDefaults(defineProps<CheckboxProps<T>>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
+  radius: 'sm',
   indicator: 'start',
   checkedIcon: 'ri:check-line',
   indeterminateIcon: 'ri:subtract-line',
@@ -129,9 +129,9 @@ function handleUpdate(value: boolean | 'indeterminate') {
       </slot>
 
       <slot v-if="hasDescription" name="description" :state="getState(state)">
-        <p :class="cn(ui.description(), props.ui?.description)">
+        <div :class="cn(ui.description(), props.ui?.description)">
           {{ description }}
-        </p>
+        </div>
       </slot>
     </div>
 
