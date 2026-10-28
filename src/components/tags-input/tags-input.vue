@@ -3,7 +3,7 @@ import type { TagsInputEmits, TagsInputProps } from './tags-input.props'
 import { reactiveOmit } from '@vueuse/core'
 import { TagsInputClear, TagsInputInput, TagsInputItem, TagsInputItemDelete, TagsInputItemText, TagsInputRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -20,15 +20,19 @@ const emits = defineEmits<TagsInputEmits>()
 const delegated = reactiveOmit(props, 'variant', 'radius', 'size', 'prefix', 'prefixIcon', 'clearIcon', 'clearable', 'unstyled', 'class', 'ui', 'required', 'disabled', 'invalid')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  disabled,
+  invalid,
+  dataAttributes,
+  registerControl,
+  handleControlFocus,
+  handleControlBlur,
+} = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
 const inputValue = computed(() => props.modelValue ?? [])
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const slots = useSlots()
 
@@ -48,7 +52,7 @@ const ui = computed(() => useTagsInputStyle({
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => inputValue.value,
@@ -60,19 +64,16 @@ onUnmounted(() => {
 })
 
 function handleFocus(e: FocusEvent) {
-  if (formFieldContext.focused.value)
+  if (!handleControlFocus())
     return
 
-  formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!formFieldContext.focused.value)
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
     return
 
-  const value = (e.target as HTMLInputElement).value
-  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>

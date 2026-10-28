@@ -1,6 +1,6 @@
 # Tags Input
 
-可增删标签的输入控件。基于 Reka UI `TagsInput`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`；支持前缀、清除与分隔符添加。
+可增删标签的输入控件。基于 Reka UI `TagsInput`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。支持前缀、清除与分隔符添加。
 
 ## Installation
 
@@ -67,7 +67,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tags-input
 
 ## Accessibility
 
-基于 Reka UI `TagsInput`（`TagsInputRoot` / `TagsInputInput` / `TagsInputItem` / `TagsInputItemDelete` / `TagsInputClear`）。通过 `useFormFieldBindings` 将 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*` 合并到输入框，并向 FormField 注册控件。根节点设置 `data-slot="tags-input"`，并透传 FormField 的 `data-*`。
+基于 Reka UI `TagsInput`（`TagsInputRoot` / `TagsInputInput` / `TagsInputItem` / `TagsInputItemDelete` / `TagsInputClear`）。通过 `useFormFieldControl` 将 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*` 合并到输入框，并向 FormField 注册控件。根节点设置 `data-slot="tags-input"`，并透传 FormField 的 `data-*`。
 
 ### Keyboard Interactions
 
