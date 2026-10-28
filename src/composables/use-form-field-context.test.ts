@@ -4,8 +4,8 @@ import { describe, expect, it } from 'vitest'
 import { computed, defineComponent, h, ref } from 'vue'
 import {
   provideFormFieldContext,
-  useFormFieldBindings,
   useFormFieldContext,
+  useFormFieldControl,
 } from './use-form-field-context'
 
 function makeContext(overrides: Partial<FormFieldContextValue> = {}): FormFieldContextValue {
@@ -69,7 +69,7 @@ describe('useFormFieldContext', () => {
       const Consumer = defineComponent({
         setup() {
           const context = useFormFieldContext()
-          return () => h('div', { 'data-name': context.name.value })
+          return () => h('div', { 'data-name': context?.name.value })
         },
       })
 
@@ -79,13 +79,32 @@ describe('useFormFieldContext', () => {
     })
   })
 
-  describe('useFormFieldBindings', () => {
+  describe('given no field context', () => {
+    it('returns null instead of throwing', () => {
+      const Consumer = defineComponent({
+        setup() {
+          const context = useFormFieldContext()
+          return () => h('div', {
+            'data-missing': context == null
+              ? 'true'
+              : 'false',
+          })
+        },
+      })
+
+      const wrapper = mount(Consumer)
+      expect(wrapper.get('[data-missing]').attributes('data-missing')).toBe('true')
+      wrapper.unmount()
+    })
+  })
+
+  describe('useFormFieldControl', () => {
     it('merges id, name, required, aria, and data attributes', () => {
       const Consumer = defineComponent({
         inheritAttrs: false,
         setup() {
-          const bindings = useFormFieldBindings()
-          return () => h('input', bindings)
+          const { bindings } = useFormFieldControl({})
+          return () => h('input', bindings.value)
         },
       })
 
@@ -109,8 +128,8 @@ describe('useFormFieldContext', () => {
       const Consumer = defineComponent({
         inheritAttrs: false,
         setup() {
-          const bindings = useFormFieldBindings()
-          return () => h('input', bindings)
+          const { bindings } = useFormFieldControl({})
+          return () => h('input', bindings.value)
         },
       })
 
@@ -122,6 +141,72 @@ describe('useFormFieldContext', () => {
 
       expect(input.attributes('disabled')).toBeDefined()
       expect(input.attributes('aria-invalid')).toBeUndefined()
+      wrapper.unmount()
+    })
+
+    it('keeps host attrs when mounted without FormField', () => {
+      const Consumer = defineComponent({
+        inheritAttrs: false,
+        setup() {
+          const { bindings } = useFormFieldControl({})
+          return () => h('input', bindings.value)
+        },
+      })
+
+      const wrapper = mount(Consumer, {
+        attrs: { id: 'email', name: 'email' },
+      })
+      const input = wrapper.get('input')
+      expect(input.attributes('id')).toBe('email')
+      expect(input.attributes('name')).toBe('email')
+      wrapper.unmount()
+    })
+
+    it('falls back to props when FormField is absent', () => {
+      const Consumer = defineComponent({
+        setup() {
+          const { id, bindings, dataAttributes } = useFormFieldControl({
+            id: 'qty',
+            invalid: true,
+          })
+          return () => h('input', {
+            ...bindings.value,
+            ...dataAttributes.value,
+            id: id.value,
+          })
+        },
+      })
+
+      const wrapper = mount(Consumer)
+      const input = wrapper.get('input')
+      expect(input.attributes('id')).toBe('qty')
+      expect(input.attributes('data-invalid')).toBe('')
+      expect(input.attributes('aria-invalid')).toBe('true')
+      expect(input.attributes('data-focused')).toBeUndefined()
+      wrapper.unmount()
+    })
+
+    it('sets data-focused on standalone focus and clears it on blur', async () => {
+      const Consumer = defineComponent({
+        setup() {
+          const { dataAttributes, handleControlFocus, handleControlBlur } = useFormFieldControl({})
+          return () => h('input', {
+            ...dataAttributes.value,
+            onFocus: () => handleControlFocus(),
+            onBlur: () => handleControlBlur(),
+          })
+        },
+      })
+
+      const wrapper = mount(Consumer)
+      const input = wrapper.get('input')
+      expect(input.attributes('data-focused')).toBeUndefined()
+
+      await input.trigger('focus')
+      expect(wrapper.get('input').attributes('data-focused')).toBe('')
+
+      await input.trigger('blur')
+      expect(wrapper.get('input').attributes('data-focused')).toBeUndefined()
       wrapper.unmount()
     })
   })
