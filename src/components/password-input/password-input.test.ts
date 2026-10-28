@@ -158,4 +158,15 @@ describe('password-input', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone password input', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(PasswordInput, {
+        attachTo: document.body,
+        props: { placeholder: 'Password' },
+      })
+      expect(wrapper.find('[data-slot="password-input"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+  })
 })

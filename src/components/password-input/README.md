@@ -1,6 +1,6 @@
 # Password Input
 
-密码输入控件，基于 `Input`，内置可见性切换。须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。
+密码输入控件，基于 `Input`，内置可见性切换。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。
 
 ## Installation
 

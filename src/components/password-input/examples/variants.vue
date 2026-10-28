@@ -1,21 +1,11 @@
 <script lang="ts" setup>
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import PasswordInput from '../password-input.vue'
-
-const defaultValues = {
-  soft: '',
-  outline: '',
-}
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-3 max-w-sm w-full">
-    <FormField name="soft" label="Soft">
-      <PasswordInput toggle-visibility variant="soft" placeholder="Soft" />
-    </FormField>
-    <FormField name="outline" label="Outline">
-      <PasswordInput toggle-visibility variant="outline" placeholder="Outline" />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-3 max-w-sm w-full">
+    <PasswordInput toggle-visibility variant="soft" placeholder="Soft" />
+
+    <PasswordInput toggle-visibility variant="outline" placeholder="Outline" />
+  </div>
 </template>
