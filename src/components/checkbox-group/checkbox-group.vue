@@ -12,7 +12,7 @@ import { useCheckboxGroupStyle } from './checkbox-group.style'
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
+  radius: 'sm',
   orientation: 'vertical',
   align: 'start',
 })
