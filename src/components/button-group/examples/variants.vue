@@ -5,12 +5,7 @@ import ButtonGroup from '../button-group.vue'
 
 <template>
   <div class="flex flex-wrap gap-6 items-start">
-    <ButtonGroup variant="primary">
-      <Button label="Left" />
-      <Button label="Center" />
-      <Button label="Right" />
-    </ButtonGroup>
-    <ButtonGroup variant="secondary">
+    <ButtonGroup variant="solid">
       <Button label="Left" />
       <Button label="Center" />
       <Button label="Right" />
@@ -30,7 +25,12 @@ import ButtonGroup from '../button-group.vue'
       <Button label="Center" />
       <Button label="Right" />
     </ButtonGroup>
-    <ButtonGroup variant="danger">
+    <ButtonGroup variant="plain">
+      <Button label="Left" />
+      <Button label="Center" />
+      <Button label="Right" />
+    </ButtonGroup>
+    <ButtonGroup variant="inverse">
       <Button label="Left" />
       <Button label="Center" />
       <Button label="Right" />
