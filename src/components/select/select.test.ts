@@ -319,4 +319,15 @@ describe('select', () => {
       wrapper.unmount()
     })
   })
+
+  describe('given a standalone select', () => {
+    it('mounts without FormField', () => {
+      const wrapper = mount(Select, {
+        attachTo: document.body,
+        props: { items: fruitItems, placeholder: 'Pick' },
+      })
+      expect(wrapper.find('[data-slot="select"]').exists()).toBe(true)
+      wrapper.unmount()
+    })
+  })
 })

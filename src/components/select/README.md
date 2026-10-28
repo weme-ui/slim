@@ -5,7 +5,7 @@ dependencies:
 
 # Select
 
-下拉选择器。基于 Reka UI `Select`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签、分隔线、描述与多选（`multiple`）。单选时触发器展示选中项标签；多选时展示各项图标、末项标签与数量。
+下拉选择器。基于 Reka UI `Select`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签、分隔线、描述与多选（`multiple`）。单选时触发器展示选中项标签；多选时展示各项图标、末项标签与数量。
 
 ## Installation
 
@@ -76,7 +76,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/select
 
 ## Accessibility
 
-遵循 WAI-ARIA Select / Listbox 设计模式。基于 Reka UI `Select`（`SelectRoot` / `SelectTrigger` / `SelectContent` / `SelectItem` 等）。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`（绑定在触发器）。触发器设置 `data-slot="select"`，弹出层内容设置 `data-slot="select-content"`。未选中时触发器内值区域带 `data-placeholder`。
+遵循 WAI-ARIA Select / Listbox 设计模式。基于 Reka UI `Select`（`SelectRoot` / `SelectTrigger` / `SelectContent` / `SelectItem` 等）。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`（绑定在触发器）。触发器设置 `data-slot="select"`，弹出层内容设置 `data-slot="select-content"`。未选中时触发器内值区域带 `data-placeholder`。
 
 ### Keyboard Interactions
 
