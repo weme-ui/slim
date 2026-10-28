@@ -1,6 +1,6 @@
 # Number Input
 
-数值输入控件，带增减按钮。基于 Reka UI `NumberField`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。
+数值输入控件，带增减按钮。基于 Reka UI `NumberField`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。
 
 ## Installation
 
@@ -63,7 +63,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/number-input
 
 ## Accessibility
 
-遵循 WAI-ARIA spinbutton 设计模式。基于 Reka UI `NumberField`（`NumberFieldRoot` / `NumberFieldInput` / `NumberFieldIncrement` / `NumberFieldDecrement`）。输入节点设置 `role="spinbutton"`、`aria-roledescription="Number field"`，以及 `aria-valuenow` / `aria-valuemin` / `aria-valuemax`。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="number-input"`。
+遵循 WAI-ARIA spinbutton 设计模式。基于 Reka UI `NumberField`（`NumberFieldRoot` / `NumberFieldInput` / `NumberFieldIncrement` / `NumberFieldDecrement`）。输入节点设置 `role="spinbutton"`、`aria-roledescription="Number field"`，以及 `aria-valuenow` / `aria-valuemin` / `aria-valuemax`。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`。根节点设置 `data-slot="number-input"`。
 
 ### Keyboard Interactions
 

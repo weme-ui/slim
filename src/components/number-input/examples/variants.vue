@@ -1,21 +1,11 @@
 <script lang="ts" setup>
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import NumberInput from '../number-input.vue'
-
-const defaultValues = {
-  soft: 0,
-  outline: 0,
-}
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-3 max-w-sm w-full">
-    <FormField name="soft" label="Soft">
-      <NumberInput variant="soft" placeholder="Soft" />
-    </FormField>
-    <FormField name="outline" label="Outline">
-      <NumberInput variant="outline" placeholder="Outline" />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-3 max-w-sm w-full">
+    <NumberInput variant="soft" placeholder="Soft" />
+
+    <NumberInput variant="outline" placeholder="Outline" />
+  </div>
 </template>

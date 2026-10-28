@@ -3,7 +3,7 @@ import type { NumberInputEmits, NumberInputProps } from './number-input.props'
 import { reactiveOmit } from '@vueuse/core'
 import { NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, useForwardExpose, useForwardProps } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import Icon from '../icon/icon.vue'
@@ -25,17 +25,20 @@ const emits = defineEmits<NumberInputEmits>()
 const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'readonly', 'invalid', 'variant', 'size', 'radius', 'decrementIcon', 'incrementIcon', 'placeholder', 'unstyled', 'class', 'ui')
 const forwarded = useForwardProps(delegated)
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  name,
+  required,
+  disabled,
+  invalid,
+  dataAttributes,
+  registerControl,
+  handleControlFocus,
+  handleControlBlur,
+} = useFormFieldControl(props)
 
 const { forwardRef, currentElement } = useForwardExpose()
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const name = computed(() => props.name ?? formFieldContext.name.value)
-const required = computed(() => props.required ?? formFieldContext.required.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 
 const modelValue = computed(() => props.modelValue)
 
@@ -51,7 +54,7 @@ const ui = computed(() => useNumberInputStyle({
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => modelValue.value,
@@ -72,19 +75,16 @@ function handleUpdate(value: number | undefined) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (formFieldContext.focused.value)
+  if (!handleControlFocus())
     return
 
-  formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!formFieldContext.focused.value)
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
     return
 
-  const value = (e.target as HTMLInputElement).value
-  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
