@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import type { ListboxItems } from '../listbox.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import Listbox from '../listbox.vue'
-
-const defaultValues = {
-  drink: '',
-}
 
 const items: ListboxItems = [
   {
@@ -49,15 +43,11 @@ const items: ListboxItems = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="w-full">
-    <FormField v-slot="{ field }" name="drink" label="Pick a drink">
-      <Listbox
-        orientation="horizontal"
-        :model-value="field.state.value"
-        :items="items"
-        placeholder="Search drinks…"
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-  </Form>
+  <div class="w-full">
+    <Listbox
+      orientation="horizontal"
+      :items="items"
+      placeholder="Search drinks…"
+    />
+  </div>
 </template>

@@ -1,16 +1,6 @@
 <script lang="ts" setup>
 import type { ListboxItems } from '../listbox.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import Listbox from '../listbox.vue'
-
-const defaultValues = {
-  none: '',
-  sm: '',
-  md: '',
-  lg: '',
-  full: '',
-}
 
 const items: ListboxItems = [
   { label: 'Apple', value: 'apple' },
@@ -19,21 +9,15 @@ const items: ListboxItems = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="flex flex-col gap-3 max-w-sm w-full">
-    <FormField name="none" label="None">
-      <Listbox radius="none" :items="items" placeholder="None" />
-    </FormField>
-    <FormField name="sm" label="SM">
-      <Listbox radius="sm" :items="items" placeholder="SM" />
-    </FormField>
-    <FormField name="md" label="MD">
-      <Listbox radius="md" :items="items" placeholder="MD" />
-    </FormField>
-    <FormField name="lg" label="LG">
-      <Listbox radius="lg" :items="items" placeholder="LG" />
-    </FormField>
-    <FormField name="full" label="Full">
-      <Listbox radius="full" :items="items" placeholder="Full" />
-    </FormField>
-  </Form>
+  <div class="flex flex-col gap-3 max-w-sm w-full">
+    <Listbox radius="none" :items="items" placeholder="None" />
+
+    <Listbox radius="sm" :items="items" placeholder="SM" />
+
+    <Listbox radius="md" :items="items" placeholder="MD" />
+
+    <Listbox radius="lg" :items="items" placeholder="LG" />
+
+    <Listbox radius="full" :items="items" placeholder="Full" />
+  </div>
 </template>

@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import type { ListboxItems } from '../listbox.props'
-import FormField from '../../form-field/form-field.vue'
-import Form from '../../form/form.vue'
 import Listbox from '../listbox.vue'
-
-const defaultValues = {
-  fruits: [] as string[],
-}
 
 const items: ListboxItems = [
   { label: 'Apple', value: 'apple' },
@@ -17,15 +11,11 @@ const items: ListboxItems = [
 </script>
 
 <template>
-  <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField v-slot="{ field }" name="fruits" label="Fruits">
-      <Listbox
-        multiple
-        :model-value="field.state.value"
-        :items="items"
-        placeholder="Pick fruits…"
-        @update:model-value="field.api.handleChange"
-      />
-    </FormField>
-  </Form>
+  <div class="max-w-sm w-full">
+    <Listbox
+      multiple
+      :items="items"
+      placeholder="Pick fruits…"
+    />
+  </div>
 </template>

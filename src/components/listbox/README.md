@@ -1,6 +1,6 @@
 # Listbox
 
-可筛选的列表选择器。基于 Reka UI `Listbox`，须放在 `FormField` 内使用，通过 Context 合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签、分隔线、描述与多选（`multiple`）。顶部含筛选输入框；按 `label` / `description`（或 `value`）过滤，并保留分组结构。
+可筛选的列表选择器。基于 Reka UI `Listbox`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。选项由 `items`（`useGroupItems`）驱动，支持分组、标签、分隔线、描述与多选（`multiple`）。顶部含筛选输入框；按 `label` / `description`（或 `value`）过滤，并保留分组结构。
 
 ## Installation
 
@@ -67,7 +67,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/listbox
 
 ## Accessibility
 
-遵循 WAI-ARIA Listbox 设计模式。基于 Reka UI `Listbox`（`ListboxRoot` / `ListboxFilter` / `ListboxContent` / `ListboxItem` 等）。通过 `useFormFieldBindings` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`（绑定在筛选输入框；筛选容器同步字段 `data-*`）。根节点设置 `data-slot="listbox"`。选项使用 `role="option"`，并以 `data-state` / `data-highlighted` 反映选中与高亮。
+遵循 WAI-ARIA Listbox 设计模式。基于 Reka UI `Listbox`（`ListboxRoot` / `ListboxFilter` / `ListboxContent` / `ListboxItem` 等）。通过 `useFormFieldControl` 合并 FormField Context 的 `id`、`name`、`disabled`、`required`、`aria-labelledby`、`aria-describedby`、`aria-invalid` 与字段 `data-*`（绑定在筛选输入框；筛选容器同步字段 `data-*`）。根节点设置 `data-slot="listbox"`。选项使用 `role="option"`，并以 `data-state` / `data-highlighted` 反映选中与高亮。
 
 ### Keyboard Interactions
 

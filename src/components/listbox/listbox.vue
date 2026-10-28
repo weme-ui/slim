@@ -14,7 +14,7 @@ import {
   useForwardPropsEmits,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
-import { useFormFieldBindings, useFormFieldContext } from '~/composables/use-form-field-context'
+import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { useGroupItems } from '~/composables/use-group-items'
 import { toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
@@ -41,15 +41,18 @@ const emits = defineEmits<ListboxEmits<M, V>>()
 const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'radius', 'filter', 'placeholder', 'emptyText', 'emptyIcon', 'itemIndicatorIcon', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const bindings = useFormFieldBindings()
-const formFieldContext = useFormFieldContext()
+const {
+  bindings,
+  id,
+  disabled,
+  invalid,
+  dataAttributes,
+  registerControl,
+  handleControlFocus,
+  handleControlBlur,
+} = useFormFieldControl(props)
 
 const filterTerm = defineModel<string>('filter', { default: '' })
-
-const id = computed(() => props.id ?? formFieldContext.fieldId.value)
-const disabled = computed(() => props.disabled ?? formFieldContext.disabled.value)
-const invalid = computed(() => props.invalid ?? formFieldContext.invalid.value)
-const dataAttributes = computed(() => formFieldContext.dataAttributes.value)
 const computedValues = computed(() => props.modelValue)
 
 const { contains } = useFilter({ sensitivity: 'base' })
@@ -93,7 +96,7 @@ const ui = computed(() => useListboxStyle({
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  unregister = formFieldContext.registryControl({
+  unregister = registerControl({
     id: () => id.value,
     element: () => currentElement.value,
     getValue: () => computedValues.value,
@@ -114,19 +117,16 @@ function handleFilterUpdate(value: string) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (formFieldContext.focused.value)
+  if (!handleControlFocus())
     return
 
-  formFieldContext.handleControlFocus()
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!formFieldContext.focused.value)
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
     return
 
-  const value = (e.target as HTMLInputElement).value
-  formFieldContext.handleControlBlur({ value })
   emits('blur', e)
 }
 </script>
@@ -201,16 +201,16 @@ function handleBlur(e: FocusEvent) {
                 <slot name="item-content" :item="item" :selected="selected">
                   <div v-if="item.label && item.description" :class="cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)">
                     <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                    <p :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                    <div :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                       {{ item.description }}
-                    </p>
+                    </div>
                   </div>
 
                   <template v-else>
                     <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                    <p v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                    <div v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                       {{ item.description }}
-                    </p>
+                    </div>
                   </template>
                 </slot>
               </slot>
