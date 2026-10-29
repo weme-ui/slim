@@ -20,7 +20,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/icon-tile
 | `color`    | 色彩                                      | `'accent' \| 'neutral' \| 'info' \| 'success' \| 'warning' \| 'error'` | `'neutral'` |
 | `variant`  | 外观变体                                  | `'solid' \| 'soft' \| 'elevated' \| 'outline' \| 'frame' \| 'inverse'` | `'solid'`   |
 | `size`     | 尺寸                                      | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                 | `'md'`      |
-| `unstyled` | 移除所有样式类，仅保留布局结构            | `boolean`                                                              | —           |
+| `unstyled` | 移除样式变体类，仅保留结构                | `boolean`                                                              | —           |
 | `class`    | 根节点额外 class                          | `any`                                                                  | —           |
 | `ui`       | 覆盖 slots 样式（`root` / `icon`）        | `Partial<IconTileStyleSlots>`                                          | —           |
 

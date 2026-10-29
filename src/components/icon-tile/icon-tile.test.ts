@@ -33,7 +33,9 @@ describe('icon-tile', () => {
   })
 
   it('skips surface classes when unstyled is true', () => {
-    expect(useIconTileStyle({ unstyled: true }).root()).not.toContain('plain-')
+    const unstyled = useIconTileStyle({ unstyled: true })
+    expect(unstyled.root()).not.toContain('plain-')
+    expect(unstyled.root()).not.toContain('rounded')
   })
 
   describe('given a decorative icon tile', () => {

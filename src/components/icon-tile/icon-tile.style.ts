@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconTileStyle = createVariants({
   slots: {
-    root: 'align-middle rounded flex-(inline center) shrink-0 relative',
+    root: 'align-middle flex-(inline center) shrink-0 relative',
     icon: 'shrink-0 pointer-events-none',
   },
 
@@ -31,7 +31,9 @@ export const useIconTileStyle = createVariants({
       lg: { root: 'size-12', icon: 'size-5.5' },
       xl: { root: 'size-14', icon: 'size-7' },
     },
-    unstyled: { true: {} },
+    unstyled: {
+      false: { root: 'rounded' },
+    },
   },
 
   compoundVariants: [
