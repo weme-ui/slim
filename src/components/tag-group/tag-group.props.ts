@@ -11,7 +11,6 @@ export interface TagGroupProps extends TagGroupRootProps<TagGroupItemValue> {
   name?: string
   items?: TagGroupItem[]
   variant?: TagGroupStyleProps['variant']
-  radius?: TagGroupStyleProps['radius']
   size?: TagGroupStyleProps['size']
   deleteIcon?: IconifyIconProps['icon']
   unstyled?: boolean

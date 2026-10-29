@@ -7,21 +7,12 @@ export const useTagGroupStyle = createVariants({
     item: 'flex select-none flex-center data-[disabled]:is-disabled',
     itemIcon: '',
     itemText: 'leading-none align-middle text-nowrap',
-    itemDelete: 'p-0.25 rounded-inherit flex flex-center',
+    itemDelete: 'p-0.25 flex flex-center',
     itemDeleteIcon: '',
   },
 
   variants: {
     variant: { soft: {}, outline: {}, inverted: {} },
-    radius: {
-      none: {},
-      xs: {},
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
-      full: {},
-    },
     size: { sm: {}, md: {}, lg: {} },
     disabled: {
       true: { root: 'is-disabled' },
@@ -39,56 +30,13 @@ export const useTagGroupStyle = createVariants({
     {
       slots: ['item', 'itemDelete'],
       unstyled: false,
-      class: 'transition-colors duration-200',
+      class: 'rounded transition-colors duration-200',
     },
     {
       slots: ['item', 'itemDelete'],
       selectable: true,
       unstyled: false,
       class: 'transition-[color,background-color,transform] duration-200 ease-out aria-[pressed=true]:scale-97',
-    },
-
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'none',
-      unstyled: false,
-      class: 'rounded-none',
-    },
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'xs',
-      unstyled: false,
-      class: 'rounded-xs',
-    },
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'sm',
-      unstyled: false,
-      class: 'rounded-sm',
-    },
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'md',
-      unstyled: false,
-      class: 'rounded-md',
-    },
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'lg',
-      unstyled: false,
-      class: 'rounded-lg',
-    },
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'xl',
-      unstyled: false,
-      class: 'rounded-xl',
-    },
-    {
-      slots: ['item', 'itemDelete'],
-      radius: 'full',
-      unstyled: false,
-      class: 'rounded-full',
     },
   ],
 
@@ -178,7 +126,6 @@ export const useTagGroupStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

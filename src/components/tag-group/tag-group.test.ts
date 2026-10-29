@@ -48,14 +48,14 @@ function mountTagGroup(tagGroupProps: Record<string, unknown> = {}) {
 }
 
 describe('tag-group', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useTagGroupStyle({})
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('flex-wrap')
     expect(ui.root()).toContain('gap-sm')
     expect(ui.item()).toContain('h-6')
     expect(ui.item()).toContain('text-sm')
-    expect(ui.item()).toContain('rounded-md')
+    expect(ui.item()).toContain('rounded')
     expect(ui.item()).toContain('bg-muted')
     expect(ui.item()).toContain('text-foreground')
     expect(ui.itemDelete()).toContain('-mr-1.5')
@@ -75,13 +75,6 @@ describe('tag-group', () => {
     expect(lg.item()).toContain('h-8')
     expect(lg.item()).toContain('text-base')
     expect(lg.item()).toContain('px-3')
-  })
-
-  it('applies radius variants', () => {
-    expect(useTagGroupStyle({ radius: 'none' }).item()).toContain('rounded-none')
-    expect(useTagGroupStyle({ radius: 'md' }).item()).toContain('rounded-md')
-    expect(useTagGroupStyle({ radius: 'full' }).item()).toContain('rounded-full')
-    expect(useTagGroupStyle({ radius: 'full' }).itemDelete()).toContain('rounded-full')
   })
 
   it('applies appearance variants', () => {
@@ -119,7 +112,7 @@ describe('tag-group', () => {
   it('skips appearance styles when unstyled', () => {
     const unstyled = useTagGroupStyle({ unstyled: true, variant: 'soft', selectable: true })
     expect(unstyled.item()).not.toContain('bg-muted')
-    expect(unstyled.item()).not.toContain('rounded-md')
+    expect(unstyled.item()).not.toContain('rounded')
     expect(unstyled.item()).not.toContain('h-6')
     expect(unstyled.item()).not.toContain('aria-[pressed=true]:scale-97')
     expect(unstyled.itemDelete()).not.toContain('b-base')

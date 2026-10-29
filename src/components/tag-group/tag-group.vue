@@ -12,13 +12,12 @@ import { useTagGroupStyle } from './tag-group.style'
 
 const props = withDefaults(defineProps<TagGroupProps>(), {
   variant: 'soft',
-  radius: 'md',
   size: 'md',
   deleteIcon: 'ri:close-line',
 })
 
 const emits = defineEmits<TagGroupEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'radius', 'size', 'deleteIcon', 'closeable', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'deleteIcon', 'closeable', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -33,7 +32,6 @@ const pressedItem = ref<TagGroupItemValue | null>(null)
 
 const ui = computed(() => useTagGroupStyle({
   variant: props.variant,
-  radius: props.radius,
   size: props.size,
   unstyled: props.unstyled,
   disabled: disabled.value,

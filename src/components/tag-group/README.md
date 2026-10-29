@@ -12,32 +12,29 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
 
 ## Props
 
-| 属性                     | 说明                                                                                           | 类型                                                                  | 默认值             |
-| ------------------------ | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------ |
-| `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                | `any`                                                                 | `'div'`            |
-| `asChild`                | 是否合并到子元素（Reka UI `Primitive`）                                                        | `boolean`                                                             | —                  |
-| `modelValue`             | 受控选中值；`selectionMode` 为 `multiple` 时为数组；可用 `v-model`                             | `TagGroupItemValue \| TagGroupItemValue[]`                            | —                  |
-| `defaultValue`           | 非受控初始选中值                                                                               | `TagGroupItemValue \| TagGroupItemValue[]`                            | —                  |
-| `items`                  | 标签列表                                                                                       | `TagGroupItem[]`                                                      | —                  |
-| `selectionMode`          | 选择模式；`none` 时不可选中                                                                    | `'none' \| 'single' \| 'multiple'`                                    | `'none'`           |
-| `disallowEmptySelection` | 为 `true` 时禁止取消最后一个选中项                                                             | `boolean`                                                             | —                  |
-| `escapeKeyBehavior`      | 按 `Escape` 时是否清空选中                                                                     | `'clearSelection' \| 'none'`                                          | `'clearSelection'` |
-| `by`                     | 比较选中值的字段名或自定义比较函数                                                             | `string \| ((a: TagGroupItemValue, b: TagGroupItemValue) => boolean)` | —                  |
-| `variant`                | 外观变体                                                                                       | `'soft' \| 'outline' \| 'inverted'`                                   | `'soft'`           |
-| `size`                   | 尺寸                                                                                           | `'sm' \| 'md' \| 'lg'`                                                | `'md'`             |
-| `radius`                 | 圆角                                                                                           | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`            | `'md'`             |
-| `closeable`              | 是否显示删除按钮（`TagGroupItemDelete`）                                                       | `boolean`                                                             | `false`            |
-| `deleteIcon`             | 删除图标（Iconify）；`closeable` 为真时生效                                                    | `IconifyIconProps['icon']`                                            | `'ri:close-line'`  |
-| `loop`                   | 键盘导航是否在首尾循环                                                                         | `boolean`                                                             | `true`             |
-| `dir`                    | 阅读方向；未传时继承 `ConfigProvider`                                                          | `'ltr' \| 'rtl'`                                                      | —                  |
-| `unstyled`               | 移除样式变体类，仅保留结构                                                                     | `boolean`                                                             | —                  |
-| `id`                     | 隐藏 input 的 `id`；未传时回退到 FormField Context                                             | `string`                                                              | —                  |
-| `name`                   | 隐藏 input 的 `name`；未传时回退到 FormField Context                                           | `string`                                                              | —                  |
-| `disabled`               | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                        | `boolean`                                                             | —                  |
-| `class`                  | 根节点额外 class                                                                               | `any`                                                                 | —                  |
-| `ui`                     | 覆盖 slots 样式（`root` / `item` / `itemIcon` / `itemText` / `itemDelete` / `itemDeleteIcon`） | `Partial<TagGroupStyleSlots>`                                         | —                  |
-
-`items` 单项常用字段：`label`、`value`、`icon`、`selectedIcon`、`iconClass`、`class`、`disabled`、`description`。类型为 `Omit<GroupItem<string>, 'type' \| 'onSelect'>`，详见 [`useGroupItems`](/weme-ui/slim/composables/use-group-items/)。
+| 属性                     | 说明                                                                                                                                                                 | 类型                                                                  | 默认值             |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------ |
+| `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                                                                      | `any`                                                                 | `'div'`            |
+| `asChild`                | 是否合并到子元素（Reka UI `Primitive`）                                                                                                                              | `boolean`                                                             | —                  |
+| `modelValue`             | 受控选中值；`selectionMode` 为 `multiple` 时为数组；可用 `v-model`                                                                                                   | `TagGroupItemValue \| TagGroupItemValue[]`                            | —                  |
+| `defaultValue`           | 非受控初始选中值                                                                                                                                                     | `TagGroupItemValue \| TagGroupItemValue[]`                            | —                  |
+| `items`                  | 标签列表；单项常用 `label`、`value`、`icon`、`selectedIcon`、`iconClass`、`class`、`disabled`、`description`；类型为 `Omit<GroupItem<string>, 'type' \| 'onSelect'>` | `TagGroupItem[]`                                                      | —                  |
+| `selectionMode`          | 选择模式；`none` 时不可选中                                                                                                                                          | `'none' \| 'single' \| 'multiple'`                                    | `'none'`           |
+| `disallowEmptySelection` | 为 `true` 时禁止取消最后一个选中项                                                                                                                                   | `boolean`                                                             | —                  |
+| `escapeKeyBehavior`      | 按 `Escape` 时是否清空选中                                                                                                                                           | `'clearSelection' \| 'none'`                                          | `'clearSelection'` |
+| `by`                     | 比较选中值的字段名或自定义比较函数                                                                                                                                   | `string \| ((a: TagGroupItemValue, b: TagGroupItemValue) => boolean)` | —                  |
+| `variant`                | 外观变体                                                                                                                                                             | `'soft' \| 'outline' \| 'inverted'`                                   | `'soft'`           |
+| `size`                   | 尺寸                                                                                                                                                                 | `'sm' \| 'md' \| 'lg'`                                                | `'md'`             |
+| `closeable`              | 是否显示删除按钮（`TagGroupItemDelete`）                                                                                                                             | `boolean`                                                             | `false`            |
+| `deleteIcon`             | 删除图标（Iconify）；`closeable` 为真时生效                                                                                                                          | `IconifyIconProps['icon']`                                            | `'ri:close-line'`  |
+| `loop`                   | 键盘导航是否在首尾循环                                                                                                                                               | `boolean`                                                             | `true`             |
+| `dir`                    | 阅读方向；未传时继承 `ConfigProvider`                                                                                                                                | `'ltr' \| 'rtl'`                                                      | —                  |
+| `unstyled`               | 移除样式变体类，仅保留结构                                                                                                                                           | `boolean`                                                             | —                  |
+| `id`                     | 隐藏 input 的 `id`；未传时回退到 FormField Context                                                                                                                   | `string`                                                              | —                  |
+| `name`                   | 隐藏 input 的 `name`；未传时回退到 FormField Context                                                                                                                 | `string`                                                              | —                  |
+| `disabled`               | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                                                                                              | `boolean`                                                             | —                  |
+| `class`                  | 根节点额外 class                                                                                                                                                     | `any`                                                                 | —                  |
+| `ui`                     | 覆盖 slots 样式（`root` / `item` / `itemIcon` / `itemText` / `itemDelete` / `itemDeleteIcon`）                                                                       | `Partial<TagGroupStyleSlots>`                                         | —                  |
 
 ## Events
 
@@ -51,7 +48,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
 
 | 插槽         | 说明                                                                                                            |
 | ------------ | --------------------------------------------------------------------------------------------------------------- |
-| `tag-icon`   | 自定义标签图标；作用域参数 `{ item, selected }`；未传且 `item.icon` 存在时渲染 `AnimatedSelectIcon`             |
+| `tag-icon`   | 自定义标签图标；作用域参数 `{ item, selected }`；未传且 `item.icon` 存在时渲染 `AnimatedToggleIcon`             |
 | `tag-text`   | 自定义标签文案；作用域参数 `{ item, selected }`；未传时回退到 `item.label`                                      |
 | `tag-delete` | 自定义删除控件内容；作用域参数 `{ item, selected }`；仅在 `closeable` 且该项未禁用时渲染；未传时用 `deleteIcon` |
 | `empty`      | `items` 为空或不存在时的占位内容                                                                                |
