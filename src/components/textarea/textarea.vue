@@ -12,7 +12,6 @@ import { useTextareaStyle } from './textarea.style'
 const props = withDefaults(defineProps<TextareaProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   rows: 3,
   loadingIcon: 'ri:loader-line',
 })
@@ -44,7 +43,6 @@ const overcount = computed(() => props.maxLength !== undefined && countLength.va
 const ui = computed(() => useTextareaStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   loading: loading.value,
   overcount: overcount.value,

@@ -12,14 +12,6 @@ export const useTextareaStyle = createVariants({
 
   variants: {
     variant: { soft: {}, outline: {} },
-    radius: {
-      none: { root: 'rounded-none' },
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-    },
     size: {
       sm: { root: 'text-xs', textarea: 'p-xs', innerWrapper: 'bottom-1 right-1' },
       md: { root: 'text-sm', textarea: 'p-sm', innerWrapper: 'bottom-1.5 right-1.5' },
@@ -40,7 +32,7 @@ export const useTextareaStyle = createVariants({
     },
     unstyled: {
       false: {
-        root: 'b',
+        root: 'b rounded',
         textarea: 'placeholder:text-subtle',
         counter: 'text-(xs nowrap) px-sm py-0.5 b b-base rounded-full bg-elevated/80',
       },
@@ -91,7 +83,6 @@ export const useTextareaStyle = createVariants({
 
   defaultVariants: {
     variant: 'soft',
-    radius: 'md',
     size: 'md',
   },
 })

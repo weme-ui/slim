@@ -12,31 +12,30 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/textarea
 
 ## Props
 
-| 属性             | 说明                                                                           | 类型                                             | 默认值             |
-| ---------------- | ------------------------------------------------------------------------------ | ------------------------------------------------ | ------------------ |
-| `as`             | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                | `any`                                            | —                  |
-| `modelValue`     | 受控值；可用 `v-model`                                                         | `string \| null \| undefined`                    | —                  |
-| `defaultValue`   | 非受控初始值                                                                   | `string \| null \| undefined`                    | —                  |
-| `variant`        | 外观变体                                                                       | `'soft' \| 'outline'`                            | `'soft'`           |
-| `size`           | 尺寸                                                                           | `'sm' \| 'md' \| 'lg'`                           | `'md'`             |
-| `radius`         | 圆角                                                                           | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`             |
-| `placeholder`    | 占位文案                                                                       | `string`                                         | —                  |
-| `rows`           | 最小行数（自动增高的起始行数）                                                 | `number`                                         | `3`                |
-| `maxRows`        | 自动增高时的最大行数；未传则不限制                                             | `number`                                         | —                  |
-| `maxLength`      | 最大长度（`countable` 展示用）；超出时计数器使用 error 色                      | `number`                                         | —                  |
-| `autoSize`       | 是否按内容自动调整行数                                                         | `boolean`                                        | —                  |
-| `countable`      | 配合 `maxLength` 显示字数统计                                                  | `boolean`                                        | —                  |
-| `loadingIcon`    | 加载中图标（Iconify）；`loading` 为真时显示                                    | `IconifyIconProps['icon']`                       | `'ri:loader-line'` |
-| `unstyled`       | 移除样式变体类，仅保留结构                                                     | `boolean`                                        | —                  |
-| `id`             | 控件 `id`；未传时回退到 FormField Context                                      | `string`                                         | —                  |
-| `name`           | 控件 `name`；未传时回退到 FormField Context                                    | `string`                                         | —                  |
-| `loading`        | 是否加载中；会与 FormField Context 的 `loading` 合并                           | `boolean`                                        | —                  |
-| `required`       | 是否必填；会与 FormField Context 的 `required` 合并                            | `boolean`                                        | —                  |
-| `disabled`       | 是否禁用；会与 FormField Context 的 `disabled` 合并                            | `boolean`                                        | —                  |
-| `invalid`        | 是否无效；会与 FormField Context 的 `invalid` 合并                             | `boolean`                                        | —                  |
-| `modelModifiers` | `v-model` modifiers（`lazy` / `trim` / `nullable` / `optional`）               | `TextareaModelModifiers`                         | —                  |
-| `class`          | 根节点额外 class                                                               | `any`                                            | —                  |
-| `ui`             | 覆盖 slots 样式（`root` / `textarea` / `innerWrapper` / `counter` / `loader`） | `Partial<TextareaStyleSlots>`                    | —                  |
+| 属性             | 说明                                                                           | 类型                          | 默认值             |
+| ---------------- | ------------------------------------------------------------------------------ | ----------------------------- | ------------------ |
+| `as`             | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                | `any`                         | —                  |
+| `modelValue`     | 受控值；可用 `v-model`                                                         | `string \| null \| undefined` | —                  |
+| `defaultValue`   | 非受控初始值                                                                   | `string \| null \| undefined` | —                  |
+| `variant`        | 外观变体                                                                       | `'soft' \| 'outline'`         | `'soft'`           |
+| `size`           | 尺寸                                                                           | `'sm' \| 'md' \| 'lg'`        | `'md'`             |
+| `placeholder`    | 占位文案                                                                       | `string`                      | —                  |
+| `rows`           | 最小行数（自动增高的起始行数）                                                 | `number`                      | `3`                |
+| `maxRows`        | 自动增高时的最大行数；未传则不限制                                             | `number`                      | —                  |
+| `maxLength`      | 最大长度（`countable` 展示用）；超出时计数器使用 error 色                      | `number`                      | —                  |
+| `autoSize`       | 是否按内容自动调整行数                                                         | `boolean`                     | —                  |
+| `countable`      | 配合 `maxLength` 显示字数统计                                                  | `boolean`                     | —                  |
+| `loadingIcon`    | 加载中图标（Iconify）；`loading` 为真时显示                                    | `IconifyIconProps['icon']`    | `'ri:loader-line'` |
+| `unstyled`       | 移除样式变体类，仅保留结构                                                     | `boolean`                     | —                  |
+| `id`             | 控件 `id`；未传时回退到 FormField Context                                      | `string`                      | —                  |
+| `name`           | 控件 `name`；未传时回退到 FormField Context                                    | `string`                      | —                  |
+| `loading`        | 是否加载中；会与 FormField Context 的 `loading` 合并                           | `boolean`                     | —                  |
+| `required`       | 是否必填；会与 FormField Context 的 `required` 合并                            | `boolean`                     | —                  |
+| `disabled`       | 是否禁用；会与 FormField Context 的 `disabled` 合并                            | `boolean`                     | —                  |
+| `invalid`        | 是否无效；会与 FormField Context 的 `invalid` 合并                             | `boolean`                     | —                  |
+| `modelModifiers` | `v-model` modifiers（`lazy` / `trim` / `nullable` / `optional`）               | `TextareaModelModifiers`      | —                  |
+| `class`          | 根节点额外 class                                                               | `any`                         | —                  |
+| `ui`             | 覆盖 slots 样式（`root` / `textarea` / `innerWrapper` / `counter` / `loader`） | `Partial<TextareaStyleSlots>` | —                  |
 
 ## Events
 

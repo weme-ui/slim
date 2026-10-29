@@ -37,10 +37,10 @@ function mountTextarea(
 }
 
 describe('textarea', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useTextareaStyle({})
     expect(ui.root()).toContain('h-fit')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('transition-colors')
     expect(ui.textarea()).toContain('placeholder:text-subtle')
@@ -57,12 +57,6 @@ describe('textarea', () => {
     expect(useTextareaStyle({ size: 'lg' }).textarea()).toContain('p-md')
   })
 
-  it('applies radius variants', () => {
-    expect(useTextareaStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useTextareaStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useTextareaStyle({ radius: 'xl' }).root()).toContain('rounded-xl')
-  })
-
   it('applies appearance variants', () => {
     const soft = useTextareaStyle({ variant: 'soft' }).root().split(/\s+/)
     expect(soft).toContain('bg-muted')
@@ -74,6 +68,7 @@ describe('textarea', () => {
 
     const unstyledRoot = useTextareaStyle({ unstyled: true }).root()
     expect(unstyledRoot).not.toContain('bg-muted')
+    expect(unstyledRoot).not.toContain('rounded')
     expect(unstyledRoot).not.toContain('b-transparent')
   })
 

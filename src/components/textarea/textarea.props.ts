@@ -18,7 +18,6 @@ export interface TextareaProps extends FormFieldSharedProps {
   loadingIcon?: IconifyIconProps['icon']
   variant?: TextareaStyleProps['variant']
   size?: TextareaStyleProps['size']
-  radius?: TextareaStyleProps['radius']
   placeholder?: string
   rows?: number
   maxRows?: number
