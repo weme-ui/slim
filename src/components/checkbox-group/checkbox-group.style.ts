@@ -20,15 +20,6 @@ export const useCheckboxGroupStyle = createVariants({
       md: { root: 'py-sm gap-md' },
       lg: { root: 'py-md gap-lg' },
     },
-    radius: {
-      none: {},
-      xs: {},
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
-      full: {},
-    },
     orientation: {
       horizontal: {},
       vertical: { root: 'flex-col' },
@@ -44,7 +35,6 @@ export const useCheckboxGroupStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
     orientation: 'vertical',
     align: 'start',
   },

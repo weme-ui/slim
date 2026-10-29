@@ -12,7 +12,6 @@ import { useCheckboxGroupStyle } from './checkbox-group.style'
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'sm',
   orientation: 'vertical',
   align: 'start',
 })
@@ -21,7 +20,7 @@ const emits = defineEmits<CheckboxGroupEmits>()
 const delegated = reactivePick(props, 'as', 'defaultValue', 'disabled', 'dir', 'loop', 'max', 'modelValue', 'name', 'required', 'orientation', 'rovingFocus')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const checkboxProps = reactivePick(props, 'variant', 'size', 'radius', 'align', 'indicator', 'inverted', 'unstyled')
+const checkboxProps = reactivePick(props, 'variant', 'size', 'align', 'indicator', 'inverted', 'unstyled')
 
 const {
   bindings,
@@ -51,7 +50,6 @@ onUnmounted(() => {
 const ui = computed(() => useCheckboxGroupStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   orientation: props.orientation,
   align: props.align,
   disabled: disabled.value,

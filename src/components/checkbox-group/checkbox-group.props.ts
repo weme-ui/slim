@@ -27,7 +27,6 @@ export interface CheckboxGroupProps extends
   items: CheckboxGroupItem[]
   variant?: CheckboxGroupStyleProps['variant']
   size?: CheckboxGroupStyleProps['size']
-  radius?: CheckboxGroupStyleProps['radius']
   orientation?: CheckboxGroupStyleProps['orientation']
   align?: CheckboxGroupStyleProps['align']
   indicator?: 'start' | 'end' | 'none'

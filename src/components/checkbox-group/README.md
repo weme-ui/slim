@@ -12,35 +12,34 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox-group
 
 ## Props
 
-| 属性                     | 说明                                                                                                                         | 类型                                                       | 默认值       |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------ |
-| `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive` / RovingFocus）                                                                | `AsTag \| Component`                                       | —            |
-| `items`                  | 选项列表（见下方 `CheckboxGroupItem`）                                                                                       | `CheckboxGroupItem[]`                                      | —            |
-| `modelValue`             | 受控选中值数组；可用 `v-model`                                                                                               | `CheckboxGroupValue[]`                                     | —            |
-| `defaultValue`           | 非受控初始选中值数组                                                                                                         | `CheckboxGroupValue[]`                                     | —            |
-| `max`                    | 最大可选数量；达到后未选项会 `aria-disabled`                                                                                 | `number \| null`                                           | —            |
-| `rovingFocus`            | 是否启用组内方向键漫游焦点                                                                                                   | `boolean`                                                  | `true`       |
-| `loop`                   | roving focus 是否循环                                                                                                        | `boolean`                                                  | —            |
-| `dir`                    | 阅读方向（影响水平漫游）                                                                                                     | `'ltr' \| 'rtl'`                                           | —            |
-| `variant`                | 外观变体（下传到各项 `Checkbox`）                                                                                            | `'soft' \| 'outline' \| 'card'`                            | `'soft'`     |
-| `size`                   | 尺寸                                                                                                                         | `'sm' \| 'md' \| 'lg'`                                     | `'md'`       |
-| `radius`                 | 圆角                                                                                                                         | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'sm'`       |
-| `orientation`            | 布局与漫游方向                                                                                                               | `'horizontal' \| 'vertical'`                               | `'vertical'` |
-| `align`                  | 指示器与文案交叉轴对齐                                                                                                       | `'start' \| 'center' \| 'end'`                             | `'start'`    |
-| `indicator`              | 指示器位置                                                                                                                   | `'start' \| 'end' \| 'none'`                               | —            |
-| `checkedIcon`            | 选中态图标（Iconify）                                                                                                        | `IconifyIconProps['icon']`                                 | —            |
-| `checkedIconClass`       | 选中态图标额外 class                                                                                                         | `any`                                                      | —            |
-| `indeterminateIcon`      | 半选态图标（Iconify）                                                                                                        | `IconifyIconProps['icon']`                                 | —            |
-| `indeterminateIconClass` | 半选态图标额外 class                                                                                                         | `any`                                                      | —            |
-| `inverted`               | 反色样式变体                                                                                                                 | `boolean`                                                  | —            |
-| `unstyled`               | 移除样式变体类，仅保留结构                                                                                                   | `boolean`                                                  | —            |
-| `id`                     | 控件 `id` 前缀；未传时回退到 FormField Context；各项为 `` `${id}-${value}` ``                                                | `string`                                                   | —            |
-| `name`                   | 控件 `name`；未传时回退到 FormField Context；各项为 `` `${name}[]` ``                                                        | `string`                                                   | —            |
-| `required`               | 是否必填；会与 FormField Context 的 `required` 合并                                                                          | `boolean`                                                  | —            |
-| `disabled`               | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                                                      | `boolean`                                                  | —            |
-| `invalid`                | 是否无效；会与 FormField Context 的 `invalid` 合并                                                                           | `boolean`                                                  | —            |
-| `class`                  | 根节点额外 class                                                                                                             | `any`                                                      | —            |
-| `ui`                     | 覆盖 slots 样式（`root` / `item` / `indicator` / `checkedIcon` / `indeterminateIcon` / `content` / `label` / `description`） | `Partial<CheckboxGroupStyleSlots>`                         | —            |
+| 属性                     | 说明                                                                                                                         | 类型                               | 默认值       |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------ |
+| `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive` / RovingFocus）                                                                | `AsTag \| Component`               | —            |
+| `items`                  | 选项列表（见下方 `CheckboxGroupItem`）                                                                                       | `CheckboxGroupItem[]`              | —            |
+| `modelValue`             | 受控选中值数组；可用 `v-model`                                                                                               | `CheckboxGroupValue[]`             | —            |
+| `defaultValue`           | 非受控初始选中值数组                                                                                                         | `CheckboxGroupValue[]`             | —            |
+| `max`                    | 最大可选数量；达到后未选项会 `aria-disabled`                                                                                 | `number \| null`                   | —            |
+| `rovingFocus`            | 是否启用组内方向键漫游焦点                                                                                                   | `boolean`                          | `true`       |
+| `loop`                   | roving focus 是否循环                                                                                                        | `boolean`                          | —            |
+| `dir`                    | 阅读方向（影响水平漫游）                                                                                                     | `'ltr' \| 'rtl'`                   | —            |
+| `variant`                | 外观变体（下传到各项 `Checkbox`）                                                                                            | `'soft' \| 'outline' \| 'card'`    | `'soft'`     |
+| `size`                   | 尺寸                                                                                                                         | `'sm' \| 'md' \| 'lg'`             | `'md'`       |
+| `orientation`            | 布局与漫游方向                                                                                                               | `'horizontal' \| 'vertical'`       | `'vertical'` |
+| `align`                  | 指示器与文案交叉轴对齐                                                                                                       | `'start' \| 'center' \| 'end'`     | `'start'`    |
+| `indicator`              | 指示器位置                                                                                                                   | `'start' \| 'end' \| 'none'`       | —            |
+| `checkedIcon`            | 选中态图标（Iconify）                                                                                                        | `IconifyIconProps['icon']`         | —            |
+| `checkedIconClass`       | 选中态图标额外 class                                                                                                         | `any`                              | —            |
+| `indeterminateIcon`      | 半选态图标（Iconify）                                                                                                        | `IconifyIconProps['icon']`         | —            |
+| `indeterminateIconClass` | 半选态图标额外 class                                                                                                         | `any`                              | —            |
+| `inverted`               | 反色样式变体                                                                                                                 | `boolean`                          | —            |
+| `unstyled`               | 移除样式变体类，仅保留结构                                                                                                   | `boolean`                          | —            |
+| `id`                     | 控件 `id` 前缀；未传时回退到 FormField Context；各项为 `` `${id}-${value}` ``                                                | `string`                           | —            |
+| `name`                   | 控件 `name`；未传时回退到 FormField Context；各项为 `` `${name}[]` ``                                                        | `string`                           | —            |
+| `required`               | 是否必填；会与 FormField Context 的 `required` 合并                                                                          | `boolean`                          | —            |
+| `disabled`               | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                                                      | `boolean`                          | —            |
+| `invalid`                | 是否无效；会与 FormField Context 的 `invalid` 合并                                                                           | `boolean`                          | —            |
+| `class`                  | 根节点额外 class                                                                                                             | `any`                              | —            |
+| `ui`                     | 覆盖 slots 样式（`root` / `item` / `indicator` / `checkedIcon` / `indeterminateIcon` / `content` / `label` / `description`） | `Partial<CheckboxGroupStyleSlots>` | —            |
 
 ### CheckboxGroupItem
 
