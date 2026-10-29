@@ -1,6 +1,6 @@
 # Button Group
 
-几个 Button 排成一组。尺寸、圆角、禁用一起管，方向键能在组里走。
+几个 Button 排成一组。尺寸、变体、禁用一起管，方向键能在组里走。
 
 ## Installation
 
@@ -12,22 +12,21 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button-group
 
 ## Props
 
-| 属性                      | 说明                                                 | 类型                                                                | 默认值         |
-| ------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------- | -------------- |
-| `as`                      | 渲染为的元素或组件（Reka UI `Primitive`）            | `AsTag \| Component`                                                | `'div'`        |
-| `orientation`             | 排列方向；同时影响箭头键导航方向                     | `'horizontal' \| 'vertical'`                                        | `'horizontal'` |
-| `gap`                     | 子项间距                                             | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                    | `'md'`         |
-| `variant`                 | 统一下发到子 Button 的外观变体                       | `'solid' \| 'soft' \| 'outline' \| 'ghost' \| 'plain' \| 'inverse'` | `'outline'`    |
-| `size`                    | 统一下发到子 Button 的尺寸                           | `'sm' \| 'md' \| 'lg'`                                              | —              |
-| `radius`                  | 统一下发到子 Button 的圆角                           | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`          | —              |
-| `separator`               | 是否在子项之间渲染分隔线                             | `boolean`                                                           | —              |
-| `disabled`                | 是否禁用整组（会合并到各子项）                       | `boolean`                                                           | —              |
-| `dir`                     | 阅读方向，影响键盘导航（Reka UI `RovingFocusGroup`） | `'ltr' \| 'rtl'`                                                    | `'ltr'`        |
-| `loop`                    | 键盘导航是否循环                                     | `boolean`                                                           | `false`        |
-| `currentTabStopId`        | 当前焦点项 id（可 `v-model`）                        | `string \| null`                                                    | —              |
-| `defaultCurrentTabStopId` | 非受控模式下的初始焦点项 id                          | `string`                                                            | —              |
-| `class`                   | 根节点额外 class                                     | `any`                                                               | —              |
-| `ui`                      | 覆盖 slots 样式（`root` / `item` / `separator`）     | `Partial<ButtonGroupStyleSlots>`                                    | —              |
+| 属性                      | 说明                                                | 类型                                                                | 默认值         |
+| ------------------------- | --------------------------------------------------- | ------------------------------------------------------------------- | -------------- |
+| `as`                      | 渲染为的元素或组件（Reka UI `Primitive`）           | `AsTag \| Component`                                                | `'div'`        |
+| `orientation`             | 排列方向；同时影响箭头键导航方向                    | `'horizontal' \| 'vertical'`                                        | `'horizontal'` |
+| `gap`                     | 子项间距                                            | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                    | `'md'`         |
+| `variant`                 | 统一下发到子 Button 的外观变体                      | `'solid' \| 'soft' \| 'outline' \| 'ghost' \| 'plain' \| 'inverse'` | `'outline'`    |
+| `size`                    | 统一下发到子 Button 的尺寸                          | `'sm' \| 'md' \| 'lg'`                                              | —              |
+| `separator`               | 是否在子项之间渲染分隔线                            | `boolean`                                                           | —              |
+| `disabled`                | 是否禁用整组（会合并到各子项）                      | `boolean`                                                           | —              |
+| `dir`                     | 阅读方向，影响键盘导航；未传时继承 `ConfigProvider` | `'ltr' \| 'rtl'`                                                    | —              |
+| `loop`                    | 键盘导航是否循环                                    | `boolean`                                                           | `false`        |
+| `currentTabStopId`        | 当前焦点项 id（可 `v-model`）                       | `string \| null`                                                    | —              |
+| `defaultCurrentTabStopId` | 非受控模式下的初始焦点项 id                         | `string`                                                            | —              |
+| `class`                   | 根节点额外 class                                    | `any`                                                               | —              |
+| `ui`                      | 覆盖 slots 样式（`root` / `item` / `separator`）    | `Partial<ButtonGroupStyleSlots>`                                    | —              |
 
 ## Events
 

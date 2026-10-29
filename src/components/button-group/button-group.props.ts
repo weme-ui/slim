@@ -7,7 +7,6 @@ export interface ButtonGroupProps extends RovingFocusGroupProps {
   gap?: ButtonGroupStyleProps['gap']
   variant?: ButtonProps['variant']
   size?: ButtonProps['size']
-  radius?: ButtonProps['radius']
   separator?: boolean
   disabled?: boolean
   class?: any
