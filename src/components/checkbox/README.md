@@ -1,6 +1,6 @@
 # Checkbox
 
-复选框控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。基于 Reka UI `CheckboxRoot` / `CheckboxIndicator`，支持外观变体、尺寸、圆角、标签 / 描述、指示器位置与半选态。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
+复选框控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。基于 Reka UI `CheckboxRoot` / `CheckboxIndicator`，支持外观变体、尺寸、标签 / 描述、指示器位置与半选态。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
 
 ## Installation
 
@@ -12,36 +12,35 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/checkbox
 
 ## Props
 
-| 属性                     | 说明                                                                                                                | 类型                                                       | 默认值               |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------- |
-| `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                     | `AsTag \| Component`                                       | `'button'`           |
-| `asChild`                | 合并到子元素上渲染（Reka UI composition）                                                                           | `boolean`                                                  | —                    |
-| `modelValue`             | 受控值；可用 `v-model`；可为半选                                                                                    | `T \| 'indeterminate' \| null`                             | —                    |
-| `defaultValue`           | 非受控初始值                                                                                                        | `T \| 'indeterminate'`                                     | —                    |
-| `trueValue`              | 选中时写入 model 的值                                                                                               | `T`                                                        | `true`               |
-| `falseValue`             | 未选中时写入 model 的值                                                                                             | `T`                                                        | `false`              |
-| `value`                  | 随表单提交的 `name` 对应值                                                                                          | `AcceptableValue`                                          | `'on'`               |
-| `variant`                | 外观变体                                                                                                            | `'soft' \| 'outline' \| 'card'`                            | `'soft'`             |
-| `size`                   | 尺寸                                                                                                                | `'sm' \| 'md' \| 'lg'`                                     | `'md'`               |
-| `radius`                 | 圆角                                                                                                                | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'sm'`               |
-| `align`                  | 指示器与文案的交叉轴对齐                                                                                            | `'start' \| 'center' \| 'end'`                             | `'start'`            |
-| `indicator`              | 指示器位置；`none` 时仅保留无障碍指示器（可视隐藏）                                                                 | `'start' \| 'end' \| 'none'`                               | `'start'`            |
-| `checkedIcon`            | 选中态图标（Iconify）                                                                                               | `IconifyIconProps['icon']`                                 | `'ri:check-line'`    |
-| `checkedIconClass`       | 选中态图标额外 class                                                                                                | `any`                                                      | —                    |
-| `indeterminateIcon`      | 半选态图标（Iconify）                                                                                               | `IconifyIconProps['icon']`                                 | `'ri:subtract-line'` |
-| `indeterminateIconClass` | 半选态图标额外 class                                                                                                | `any`                                                      | —                    |
-| `label`                  | 标签文案；未传且无 `label` 插槽时不渲染标签区                                                                       | `string`                                                   | —                    |
-| `description`            | 描述文案；未传且无 `description` 插槽时不渲染描述                                                                   | `string`                                                   | —                    |
-| `inverted`               | 反色样式变体                                                                                                        | `boolean`                                                  | —                    |
-| `unstyled`               | 移除样式变体类，仅保留结构                                                                                          | `boolean`                                                  | —                    |
-| `inGroup`                | 是否作为 Checkbox Group 子项；为真时不合并 FormField bindings、不向 FormField 注册控件，标签渲染为 `span`           | `boolean`                                                  | `false`              |
-| `id`                     | 控件 `id`；未传时回退到 FormField Context                                                                           | `string`                                                   | —                    |
-| `name`                   | 控件 `name`；未传时回退到 FormField Context                                                                         | `string`                                                   | —                    |
-| `required`               | 是否必填；会与 FormField Context 的 `required` 合并                                                                 | `boolean`                                                  | —                    |
-| `disabled`               | 是否禁用；会与 FormField Context 的 `disabled` 合并                                                                 | `boolean`                                                  | —                    |
-| `invalid`                | 是否无效；会与 FormField Context 的 `invalid` 合并                                                                  | `boolean`                                                  | —                    |
-| `class`                  | 根节点额外 class                                                                                                    | `any`                                                      | —                    |
-| `ui`                     | 覆盖 slots 样式（`root` / `indicator` / `checkedIcon` / `indeterminateIcon` / `content` / `label` / `description`） | `Partial<CheckboxStyleSlots>`                              | —                    |
+| 属性                     | 说明                                                                                                                | 类型                            | 默认值               |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------- |
+| `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                     | `AsTag \| Component`            | `'button'`           |
+| `asChild`                | 合并到子元素上渲染（Reka UI composition）                                                                           | `boolean`                       | —                    |
+| `modelValue`             | 受控值；可用 `v-model`；可为半选                                                                                    | `T \| 'indeterminate' \| null`  | —                    |
+| `defaultValue`           | 非受控初始值                                                                                                        | `T \| 'indeterminate'`          | —                    |
+| `trueValue`              | 选中时写入 model 的值                                                                                               | `T`                             | `true`               |
+| `falseValue`             | 未选中时写入 model 的值                                                                                             | `T`                             | `false`              |
+| `value`                  | 随表单提交的 `name` 对应值                                                                                          | `AcceptableValue`               | `'on'`               |
+| `variant`                | 外观变体                                                                                                            | `'soft' \| 'outline' \| 'card'` | `'soft'`             |
+| `size`                   | 尺寸                                                                                                                | `'sm' \| 'md' \| 'lg'`          | `'md'`               |
+| `align`                  | 指示器与文案的交叉轴对齐                                                                                            | `'start' \| 'center' \| 'end'`  | `'start'`            |
+| `indicator`              | 指示器位置；`none` 时仅保留无障碍指示器（可视隐藏）                                                                 | `'start' \| 'end' \| 'none'`    | `'start'`            |
+| `checkedIcon`            | 选中态图标（Iconify）                                                                                               | `IconifyIconProps['icon']`      | `'ri:check-line'`    |
+| `checkedIconClass`       | 选中态图标额外 class                                                                                                | `any`                           | —                    |
+| `indeterminateIcon`      | 半选态图标（Iconify）                                                                                               | `IconifyIconProps['icon']`      | `'ri:subtract-line'` |
+| `indeterminateIconClass` | 半选态图标额外 class                                                                                                | `any`                           | —                    |
+| `label`                  | 标签文案；未传且无 `label` 插槽时不渲染标签区                                                                       | `string`                        | —                    |
+| `description`            | 描述文案；未传且无 `description` 插槽时不渲染描述                                                                   | `string`                        | —                    |
+| `inverted`               | 反色样式变体                                                                                                        | `boolean`                       | —                    |
+| `unstyled`               | 移除样式变体类，仅保留结构                                                                                          | `boolean`                       | —                    |
+| `inGroup`                | 是否作为 Checkbox Group 子项；为真时不合并 FormField bindings、不向 FormField 注册控件，标签渲染为 `span`           | `boolean`                       | `false`              |
+| `id`                     | 控件 `id`；未传时回退到 FormField Context                                                                           | `string`                        | —                    |
+| `name`                   | 控件 `name`；未传时回退到 FormField Context                                                                         | `string`                        | —                    |
+| `required`               | 是否必填；会与 FormField Context 的 `required` 合并                                                                 | `boolean`                       | —                    |
+| `disabled`               | 是否禁用；会与 FormField Context 的 `disabled` 合并                                                                 | `boolean`                       | —                    |
+| `invalid`                | 是否无效；会与 FormField Context 的 `invalid` 合并                                                                  | `boolean`                       | —                    |
+| `class`                  | 根节点额外 class                                                                                                    | `any`                           | —                    |
+| `ui`                     | 覆盖 slots 样式（`root` / `indicator` / `checkedIcon` / `indeterminateIcon` / `content` / `label` / `description`） | `Partial<CheckboxStyleSlots>`   | —                    |
 
 ## Events
 

@@ -16,7 +16,6 @@ defineOptions({
 const props = withDefaults(defineProps<CheckboxProps<T>>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'sm',
   indicator: 'start',
   checkedIcon: 'ri:check-line',
   indeterminateIcon: 'ri:subtract-line',
@@ -24,7 +23,7 @@ const props = withDefaults(defineProps<CheckboxProps<T>>(), {
 })
 
 const emits = defineEmits<CheckboxEmits<T>>()
-const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'align', 'indicator', 'checkedIcon', 'indeterminateIcon', 'checkedIconClass', 'indeterminateIconClass', 'label', 'description', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'variant', 'size', 'align', 'indicator', 'checkedIcon', 'indeterminateIcon', 'checkedIconClass', 'indeterminateIconClass', 'label', 'description', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -63,7 +62,6 @@ onUnmounted(() => {
 const ui = computed(() => useCheckboxStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   align: props.align,
   disabled: disabled.value,
   unstyled: toBoolValue(props.unstyled),

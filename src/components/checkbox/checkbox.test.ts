@@ -37,7 +37,7 @@ function mountCheckbox(
 }
 
 describe('checkbox', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useCheckboxStyle({})
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('gap-md')
@@ -52,12 +52,6 @@ describe('checkbox', () => {
     expect(useCheckboxStyle({ size: 'sm' }).indicator()).toContain('size-3')
     expect(useCheckboxStyle({ size: 'lg' }).root()).toContain('gap-lg')
     expect(useCheckboxStyle({ size: 'lg' }).indicator()).toContain('size-5')
-  })
-
-  it('applies radius on the indicator', () => {
-    expect(useCheckboxStyle({ radius: 'none' }).indicator()).toContain('rounded-none')
-    expect(useCheckboxStyle({ radius: 'md' }).indicator()).toContain('rounded-md')
-    expect(useCheckboxStyle({ radius: 'full' }).indicator()).toContain('rounded-full')
   })
 
   it('applies align variants', () => {
@@ -82,10 +76,9 @@ describe('checkbox', () => {
     expect(useCheckboxStyle({ inverted: false }).indicator()).toContain('text-accent-1')
   })
 
-  it('applies card size and radius compounds', () => {
+  it('applies card size compounds', () => {
     expect(useCheckboxStyle({ variant: 'card', size: 'sm' }).root()).toContain('px-sm')
     expect(useCheckboxStyle({ variant: 'card', size: 'md' }).root()).toContain('px-lg')
-    expect(useCheckboxStyle({ variant: 'card', radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies disabled state', () => {

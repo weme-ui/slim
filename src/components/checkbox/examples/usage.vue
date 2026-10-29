@@ -26,7 +26,7 @@ function onFormSubmit(values: { terms: boolean }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField v-slot="{ field }" name="terms" required>
+    <FormField v-slot="{ field }" label="Privacy Policy" name="terms" required>
       <Checkbox
         :model-value="field.state.value"
         label="Accept terms and conditions"

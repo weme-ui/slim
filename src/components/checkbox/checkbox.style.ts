@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useCheckboxStyle = createVariants({
   slots: {
     root: 'flex focus-visible:outline-none',
-    indicator: 'flex flex-center',
+    indicator: 'rounded-sm flex flex-center',
     checkedIcon: '',
     indeterminateIcon: '',
     content: 'text-left flex flex-1 flex-col select-none items-start',
@@ -16,35 +16,28 @@ export const useCheckboxStyle = createVariants({
     variant: {
       soft: {},
       outline: {},
-      card: {},
+      card: {
+        root: 'rounded-sm',
+      },
     },
     size: {
       sm: {
         root: 'gap-sm',
-        indicator: 'size-3',
+        indicator: 'my-0.5 size-3',
         content: 'text-xs gap-0.5',
       },
       md: {
         root: 'gap-md',
-        indicator: 'size-4',
+        indicator: 'my-0.5 size-4',
         content: 'text-sm gap-1',
         description: 'text-xs',
       },
       lg: {
         root: 'gap-lg',
-        indicator: 'size-5',
+        indicator: 'my-0.5 size-5',
         content: 'text-base gap-1.5',
         description: 'text-sm',
       },
-    },
-    radius: {
-      none: { indicator: 'rounded-none' },
-      xs: { indicator: 'rounded-xs' },
-      sm: { indicator: 'rounded-sm' },
-      md: { indicator: 'rounded-md' },
-      lg: { indicator: 'rounded-lg' },
-      xl: { indicator: 'rounded-xl' },
-      full: { indicator: 'rounded-full' },
     },
     align: {
       start: { root: 'items-start' },
@@ -202,7 +195,6 @@ export const useCheckboxStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'sm',
     align: 'start',
   },
 })
