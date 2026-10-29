@@ -125,6 +125,16 @@ export default defineConfig({
             return resolve(configDir, 'theme/stubs/vue-router.ts')
         },
       },
+      {
+        name: 'weme-vp-doc-example-island',
+        enforce: 'pre',
+        transform(code, id) {
+          const file = id.split('?')[0]!.replace(/\\/g, '/')
+          if (!file.endsWith('/theme-default/styles/components/vp-doc.css'))
+            return
+          return code.replaceAll('.vp-doc a', '.vp-doc a:not(.example-stage-body *)')
+        },
+      },
     ],
     resolve: {
       alias: {
