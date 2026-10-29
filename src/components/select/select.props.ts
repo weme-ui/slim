@@ -18,7 +18,6 @@ export interface SelectProps<
   items?: SelectItems
   variant?: SelectStyleProps['variant']
   size?: SelectStyleProps['size']
-  radius?: SelectStyleProps['radius']
   prefix?: string
   suffix?: string
   prefixIcon?: IconifyIconProps['icon']

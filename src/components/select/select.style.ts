@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useSelectStyle = createVariants({
   slots: {
-    trigger: 'group/trigger flex select-none flex-y-center relative focus-visible:outline-none',
+    trigger: 'group/trigger flex min-w-60 select-none flex-y-center relative focus-visible:outline-none',
     prefix: '',
     prefixIcon: '',
     value: 'leading-none text-left flex flex-1 text-nowrap flex-y-center',
@@ -37,15 +37,6 @@ export const useSelectStyle = createVariants({
       sm: { trigger: 'text-xs', content: 'text-xs' },
       md: { trigger: 'text-sm', content: 'text-sm' },
       lg: { trigger: 'text-base', content: 'text-base' },
-    },
-    radius: {
-      none: { trigger: 'rounded-none', content: 'rounded-none', item: 'rounded-none' },
-      xs: { trigger: 'rounded-xs', content: 'rounded-xs', item: 'rounded-xs' },
-      sm: { trigger: 'rounded-sm', content: 'rounded-sm', item: 'rounded-xs' },
-      md: { trigger: 'rounded-md', content: 'rounded-md', item: 'rounded-sm' },
-      lg: { trigger: 'rounded-lg', content: 'rounded-lg', item: 'rounded-md' },
-      xl: { trigger: 'rounded-xl', content: 'rounded-xl', item: 'rounded-lg' },
-      full: { trigger: 'rounded-full', content: 'rounded-2xl', item: 'rounded-2xl' },
     },
     disabled: {
       true: { trigger: 'is-disabled' },
@@ -116,6 +107,12 @@ export const useSelectStyle = createVariants({
     },
 
     {
+      slots: ['trigger', 'content', 'item'],
+      unstyled: false,
+      class: 'rounded',
+    },
+
+    {
       slots: ['prefix', 'suffix'],
       invalid: false,
       class: 'group-data-[focused]:text-highlighted not-[[data-focused]]:text-subtle',
@@ -158,52 +155,19 @@ export const useSelectStyle = createVariants({
     },
 
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'sm',
       unstyled: false,
       class: { trigger: 'px-1.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'md',
       unstyled: false,
       class: { trigger: 'px-2.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'lg',
       unstyled: false,
       class: { trigger: 'px-3' },
-    },
-
-    {
-      radius: 'full',
-      size: 'sm',
-      unstyled: false,
-      class: { trigger: 'px-2.25' },
-    },
-    {
-      radius: 'full',
-      size: 'md',
-      unstyled: false,
-      class: { trigger: 'px-3.5' },
-    },
-    {
-      radius: 'full',
-      size: 'lg',
-      unstyled: false,
-      class: { trigger: 'px-4' },
-    },
-
-    {
-      radius: 'full',
-      unstyled: false,
-      class: {
-        trigger: 'rounded-full',
-        content: 'rounded-5',
-        item: 'rounded-4',
-        valueCount: 'rounded-full',
-      },
     },
 
     {
@@ -272,7 +236,6 @@ export const useSelectStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

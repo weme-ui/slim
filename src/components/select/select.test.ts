@@ -78,12 +78,12 @@ async function selectOption(label: string) {
 }
 
 describe('select', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useSelectStyle({})
     expect(ui.trigger()).toContain('group/trigger')
     expect(ui.trigger()).toContain('text-sm')
     expect(ui.trigger()).toContain('h-8')
-    expect(ui.trigger()).toContain('rounded-md')
+    expect(ui.trigger()).toContain('rounded')
     expect(ui.trigger()).toContain('bg-muted')
     expect(ui.trigger()).toContain('px-2.5')
     expect(ui.trigger()).toContain('gap-sm')
@@ -120,19 +120,6 @@ describe('select', () => {
     expect(lg.group()).toContain('p-1.5')
     expect(lg.groupLabel()).toContain('text-sm')
     expect(lg.item()).toContain('py-2.5')
-  })
-
-  it('applies radius variants', () => {
-    expect(useSelectStyle({ radius: 'none' }).trigger()).toContain('rounded-none')
-    expect(useSelectStyle({ radius: 'md' }).trigger()).toContain('rounded-md')
-    expect(useSelectStyle({ radius: 'xl' }).trigger()).toContain('rounded-xl')
-
-    const full = useSelectStyle({ radius: 'full' })
-    expect(full.trigger()).toContain('rounded-full')
-    expect(full.content()).toContain('rounded-5')
-    expect(full.item()).toContain('rounded-4')
-    expect(full.valueCount()).toContain('rounded-full')
-    expect(full.trigger()).toContain('px-3.5')
   })
 
   it('applies appearance variants', () => {
@@ -177,8 +164,11 @@ describe('select', () => {
   it('skips appearance styles when unstyled', () => {
     const unstyled = useSelectStyle({ unstyled: true, variant: 'soft' })
     expect(unstyled.trigger()).not.toContain('bg-muted')
+    expect(unstyled.trigger()).not.toContain('rounded')
     expect(unstyled.content()).not.toContain('bg-base')
+    expect(unstyled.content()).not.toContain('rounded')
     expect(unstyled.item()).not.toContain('data-[highlighted]:bg-muted')
+    expect(unstyled.item()).not.toContain('rounded')
     expect(unstyled.value()).not.toContain('data-[placeholder]:text-subtle')
     expect(unstyled.groupLabel() ?? '').not.toContain('text-subtle')
   })

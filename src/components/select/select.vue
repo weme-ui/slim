@@ -37,7 +37,6 @@ defineOptions({
 const props = withDefaults(defineProps<SelectProps<M>>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   loadingIcon: 'ri:loader-line',
   suffixIcon: 'ri:expand-up-down-line',
   indicatorIcon: 'ri:check-line',
@@ -45,7 +44,7 @@ const props = withDefaults(defineProps<SelectProps<M>>(), {
 })
 
 const emits = defineEmits<SelectEmits<M, V>>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'radius', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'indicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui', 'emptyText', 'emptyIcon')
+const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'indicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui', 'emptyText', 'emptyIcon')
 const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
@@ -99,7 +98,6 @@ const morph = usePopoverContent({
 const ui = computed(() => useSelectStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   loading: loading.value,
   disabled: disabled.value,
   invalid: invalid.value,
