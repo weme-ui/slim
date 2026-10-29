@@ -28,7 +28,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 | `tabIndex`    | 焦点顺序                                           | `number`                                                                                                  | `0`                |
 | `disabled`    | 是否禁用                                           | `boolean`                                                                                                 | —                  |
 | `loading`     | 是否加载中                                         | `boolean`                                                                                                 | —                  |
-| `unstyled`    | 是否去掉默认样式                                   | `boolean`                                                                                                 | `false`            |
+| `unstyled`    | 移除样式变体类，仅保留结构                         | `boolean`                                                                                                 | `false`            |
 | `class`       | 根节点额外 class                                   | `any`                                                                                                     | —                  |
 | `ui`          | 覆盖 slots 样式（`root` / `icon`）                 | `Partial<ButtonStyleSlots>`                                                                               | —                  |
 | `onClick`     | 点击回调（支持异步；异步执行期间自动进入 loading） | `((event: MouseEvent) => void \| Promise<void>) \| Array<((event: MouseEvent) => void \| Promise<void>)>` | —                  |

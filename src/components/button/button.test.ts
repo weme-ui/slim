@@ -8,7 +8,7 @@ describe('button', () => {
   it('applies default size, solid variant, and scalable press style', () => {
     const ui = useButtonStyle({})
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-sm')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-foreground-highlighted')
     expect(ui.root()).toContain('transition-all')
     expect(ui.root()).toContain('aria-[pressed=true]:scale-97')
@@ -44,6 +44,7 @@ describe('button', () => {
     const unstyled = useButtonStyle({ unstyled: true })
     expect(unstyled.root()).not.toContain('bg-foreground-highlighted')
     expect(unstyled.root()).not.toContain('fancy-')
+    expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.root()).not.toContain('aria-[pressed=true]:scale-97')
 
     expect(useButtonStyle({ scalable: false }).root()).not.toContain('aria-[pressed=true]:scale-97')

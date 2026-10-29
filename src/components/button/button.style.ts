@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'font-medium rounded-sm flex-(inline center) w-fit cursor-pointer select-none text-nowrap relative',
+    root: 'font-medium flex-(inline center) w-fit cursor-pointer select-none text-nowrap relative',
     icon: 'shrink-0',
   },
 
@@ -37,7 +37,9 @@ export const useButtonStyle = createVariants({
       true: { root: 'is-loading', icon: 'animate-spin' },
     },
     scalable: { true: {} },
-    unstyled: { true: {} },
+    unstyled: {
+      false: { root: 'rounded' },
+    },
   },
 
   compoundVariants: [
