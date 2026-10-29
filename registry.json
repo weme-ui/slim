@@ -228,11 +228,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/button/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/button/examples/with-icon.vue"
         },
         {
@@ -301,11 +296,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/button-group/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/radius.vue"
         },
         {
           "type": "component",
@@ -1700,11 +1690,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/checkbox/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/checkbox/examples/radius.vue"
         },
         {
           "type": "component",
