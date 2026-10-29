@@ -106,16 +106,14 @@ export const useCheckboxStyle = createVariants({
     },
 
     {
-      variant: ['soft', 'outline'],
       unstyled: false,
       inverted: false,
-      class: { indicator: 'text-highlighted' },
+      class: { indicator: 'text-accent-1' },
     },
     {
-      variant: ['soft', 'outline'],
       unstyled: false,
       inverted: true,
-      class: { indicator: 'text-inverted' },
+      class: { indicator: 'text-accent-12' },
     },
 
     {

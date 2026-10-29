@@ -77,10 +77,9 @@ describe('checkbox', () => {
     expect(card.indicator()).toContain('text-accent')
   })
 
-  it('applies inverted indicator text for soft and outline', () => {
-    expect(useCheckboxStyle({ variant: 'soft', inverted: true }).indicator()).toContain('text-inverted')
-    expect(useCheckboxStyle({ variant: 'soft', inverted: false }).indicator()).toContain('text-highlighted')
-    expect(useCheckboxStyle({ variant: 'outline', inverted: true }).indicator()).toContain('text-inverted')
+  it('applies inverted indicator text colors', () => {
+    expect(useCheckboxStyle({ inverted: true }).indicator()).toContain('text-accent-12')
+    expect(useCheckboxStyle({ inverted: false }).indicator()).toContain('text-accent-1')
   })
 
   it('applies card size and radius compounds', () => {
@@ -96,7 +95,7 @@ describe('checkbox', () => {
   it('skips appearance compounds when unstyled', () => {
     const unstyled = useCheckboxStyle({ unstyled: true, variant: 'soft', inverted: true })
     expect(unstyled.indicator()).not.toContain('bg-muted')
-    expect(unstyled.indicator()).not.toContain('text-inverted')
+    expect(unstyled.indicator()).not.toContain('text-accent-12')
     expect(unstyled.content()).not.toContain('text-foreground')
   })
 
