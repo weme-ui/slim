@@ -11,7 +11,6 @@ import { useToggleButtonStyle } from './toggle-button.style'
 const props = withDefaults(defineProps<ToggleButtonProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   scalable: true,
 })
 
@@ -25,7 +24,6 @@ const hasLabel = computed(() => !!props.label)
 const ui = computed(() => useToggleButtonStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   scalable: toBoolValue(props.scalable),
   unstyled: toBoolValue(props.unstyled),
   disabled: toBoolValue(props.disabled),

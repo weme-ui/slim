@@ -25,14 +25,14 @@ function mountToggle(toggleProps: Record<string, unknown> = {}) {
 }
 
 describe('toggle-button', () => {
-  it('applies default labeled size, radius, and appearance', () => {
+  it('applies default labeled size and appearance', () => {
     const ui = useToggleButtonStyle({ hasLabel: true })
     expect(ui.root()).toContain('flex-(inline center)')
     expect(ui.root()).toContain('w-fit')
     expect(ui.root()).toContain('h-8')
     expect(ui.root()).toContain('text-sm')
     expect(ui.root()).toContain('px-md')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('data-[state=on]:(bg-elevated')
     expect(ui.root()).toContain('hover:data-[state=off]:(bg-elevated text-highlighted)')
@@ -63,6 +63,7 @@ describe('toggle-button', () => {
   it('skips appearance and pressed scale when unstyled or scalable is false', () => {
     const unstyled = useToggleButtonStyle({ unstyled: true })
     expect(unstyled.root()).not.toContain('bg-muted')
+    expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.root()).not.toContain('aria-[pressed=true]:scale-97')
 
     expect(useToggleButtonStyle({ scalable: false }).root()).not.toContain('aria-[pressed=true]:scale-97')
@@ -73,12 +74,6 @@ describe('toggle-button', () => {
     expect(useToggleButtonStyle({ hasLabel: true, size: 'sm' }).icon()).toContain('size-3')
     expect(useToggleButtonStyle({ hasLabel: true, size: 'lg' }).root()).toContain('h-10')
     expect(useToggleButtonStyle({ hasLabel: true, size: 'lg' }).icon()).toContain('size-4')
-  })
-
-  it('applies radius variants', () => {
-    expect(useToggleButtonStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useToggleButtonStyle({ radius: 'sm' }).root()).toContain('rounded-sm')
-    expect(useToggleButtonStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies disabled state', () => {

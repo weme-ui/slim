@@ -12,25 +12,24 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/toggle-button
 
 ## Props
 
-| 属性           | 说明                                                   | 类型                                                       | 默认值     |
-| -------------- | ------------------------------------------------------ | ---------------------------------------------------------- | ---------- |
-| `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）        | `AsTag \| Component`                                       | `'button'` |
-| `asChild`      | 合并到子元素上渲染（Reka UI composition）              | `boolean`                                                  | —          |
-| `modelValue`   | 受控开关状态；可用 `v-model`                           | `boolean \| null`                                          | —          |
-| `defaultValue` | 非受控初始开关状态                                     | `boolean`                                                  | —          |
-| `variant`      | 外观变体                                               | `'soft' \| 'outline' \| 'ghost'`                           | `'soft'`   |
-| `size`         | 尺寸；无 `label` 时为正方形                            | `'sm' \| 'md' \| 'lg'`                                     | `'md'`     |
-| `radius`       | 圆角                                                   | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'`     |
-| `label`        | 按钮文案；未传且无默认插槽时不渲染标签                 | `string`                                                   | —          |
-| `icon`         | 未按下态图标（Iconify）；有值时用 `AnimatedToggleIcon` | `IconifyIconProps['icon']`                                 | —          |
-| `activeIcon`   | 按下态图标（Iconify）；未传时按下态回退到 `icon`       | `IconifyIconProps['icon']`                                 | —          |
-| `scalable`     | 指针按下时是否缩放（禁用时不生效）                     | `boolean`                                                  | `true`     |
-| `unstyled`     | 移除样式变体类，仅保留结构                             | `boolean`                                                  | —          |
-| `disabled`     | 是否禁用                                               | `boolean`                                                  | `false`    |
-| `name`         | 随表单提交的字段名                                     | `string`                                                   | —          |
-| `required`     | 是否必填                                               | `boolean`                                                  | —          |
-| `class`        | 根节点额外 class                                       | `any`                                                      | —          |
-| `ui`           | 覆盖 slots 样式（`root` / `icon` / `label`）           | `Partial<ToggleButtonStyleSlots>`                          | —          |
+| 属性           | 说明                                                   | 类型                              | 默认值     |
+| -------------- | ------------------------------------------------------ | --------------------------------- | ---------- |
+| `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）        | `AsTag \| Component`              | `'button'` |
+| `asChild`      | 合并到子元素上渲染（Reka UI composition）              | `boolean`                         | —          |
+| `modelValue`   | 受控开关状态；可用 `v-model`                           | `boolean \| null`                 | —          |
+| `defaultValue` | 非受控初始开关状态                                     | `boolean`                         | —          |
+| `variant`      | 外观变体                                               | `'soft' \| 'outline' \| 'ghost'`  | `'soft'`   |
+| `size`         | 尺寸；无 `label` 时为正方形                            | `'sm' \| 'md' \| 'lg'`            | `'md'`     |
+| `label`        | 按钮文案；未传且无默认插槽时不渲染标签                 | `string`                          | —          |
+| `icon`         | 未按下态图标（Iconify）；有值时用 `AnimatedToggleIcon` | `IconifyIconProps['icon']`        | —          |
+| `activeIcon`   | 按下态图标（Iconify）；未传时按下态回退到 `icon`       | `IconifyIconProps['icon']`        | —          |
+| `scalable`     | 指针按下时是否缩放（禁用时不生效）                     | `boolean`                         | `true`     |
+| `unstyled`     | 移除样式变体类，仅保留结构                             | `boolean`                         | —          |
+| `disabled`     | 是否禁用                                               | `boolean`                         | `false`    |
+| `name`         | 随表单提交的字段名                                     | `string`                          | —          |
+| `required`     | 是否必填                                               | `boolean`                         | —          |
+| `class`        | 根节点额外 class                                       | `any`                             | —          |
+| `ui`           | 覆盖 slots 样式（`root` / `icon` / `label`）           | `Partial<ToggleButtonStyleSlots>` | —          |
 
 ## Events
 

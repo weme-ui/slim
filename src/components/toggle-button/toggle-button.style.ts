@@ -19,15 +19,6 @@ export const useToggleButtonStyle = createVariants({
       md: { root: 'text-sm', icon: 'size-3.5' },
       lg: { root: 'text-base', icon: 'size-4' },
     },
-    radius: {
-      none: { root: 'rounded-none' },
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-      full: { root: 'rounded-full' },
-    },
     disabled: {
       true: { root: 'is-disabled' },
     },
@@ -35,7 +26,9 @@ export const useToggleButtonStyle = createVariants({
       true: { root: 'w-fit' },
     },
     scalable: { true: {} },
-    unstyled: { false: {} },
+    unstyled: {
+      false: { root: 'rounded' },
+    },
   },
 
   compoundVariants: [
@@ -102,7 +95,6 @@ export const useToggleButtonStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

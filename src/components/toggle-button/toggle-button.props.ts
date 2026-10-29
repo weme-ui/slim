@@ -5,7 +5,6 @@ import type { ToggleButtonStyleProps, ToggleButtonStyleSlots } from './toggle-bu
 export interface ToggleButtonProps extends ToggleProps {
   variant?: ToggleButtonStyleProps['variant']
   size?: ToggleButtonStyleProps['size']
-  radius?: ToggleButtonStyleProps['radius']
   label?: string
   icon?: IconifyIconProps['icon']
   activeIcon?: IconifyIconProps['icon']
