@@ -1688,6 +1688,99 @@
       ]
     },
     {
+      "name": "radio-group",
+      "type": "component",
+      "title": "Radio Group",
+      "description": "A group of radio buttons that binds to FormField context.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/radio-group/radio-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/radio-group/radio-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/radio-group/radio-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/radio-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/indicator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/inverted.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/radio-group/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/radio-group/radio-group.test.ts"
+        }
+      ],
+      "registryDependencies": [
+        "use-form-field-context",
+        "use-group-items"
+      ]
+    },
+    {
       "name": "switch",
       "type": "component",
       "title": "Switch",
