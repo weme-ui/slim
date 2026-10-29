@@ -1,6 +1,6 @@
 # Password Input
 
-密码输入控件，基于 `Input`，内置可见性切换。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。
+密码输入控件，基于 `Input`，内置可见性切换。`type` 由可见性决定。没有 `loading`、`suffix`、清除、字数、`autocomplete`。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。
 
 ## Installation
 
@@ -26,7 +26,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/password-input
 | `size`             | 尺寸                                                                         | `'sm' \| 'md' \| 'lg'`                  | `'md'`              |
 | `placeholder`      | 占位文案                                                                     | `string`                                | —                   |
 | `autoFocus`        | 挂载后聚焦原生 `<input>`                                                     | `boolean`                               | —                   |
-| `prefix`           | 前缀文案（无 `prefix` 插槽且无 `prefixIcon` 时展示）                         | `string`                                | —                   |
+| `prefix`           | 前缀文案（无 `prefixIcon` 时展示）                                           | `string`                                | —                   |
 | `prefixIcon`       | 前缀图标（Iconify）                                                          | `IconifyIconProps['icon']`              | —                   |
 | `id`               | 控件 `id`；未传时回退到 FormField Context                                    | `string`                                | —                   |
 | `name`             | 控件 `name`；未传时回退到 FormField Context                                  | `string`                                | —                   |
@@ -35,8 +35,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/password-input
 | `invalid`          | 是否无效；会与 FormField Context 的 `invalid` 合并                           | `boolean`                               | —                   |
 | `class`            | 根节点额外 class                                                             | `any`                                   | —                   |
 | `ui`               | 覆盖 slots 样式（`root` / `prefix` / `prefixIcon` / `input` / `visibility`） | `Partial<PasswordInputStyleSlots>`      | —                   |
-
-相对 `Input` 已省略：`type`（由可见性决定）、`loading` / `loadingIcon`、`suffix` / `suffixIcon`、`clearable` / `clearIcon`、`autocomplete`、`countable` / `maxLength`、`modelModifiers`。
 
 ## Events
 
@@ -51,12 +49,10 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/password-input
 
 ## Slots
 
-| 插槽         | 说明                                                                                    |
-| ------------ | --------------------------------------------------------------------------------------- |
-| `default`    | 透传至 `Input` 的默认插槽                                                               |
-| `visibility` | 自定义可见性控件；作用域参数 `{ visible: boolean }`；未传时为带 `aria-label` 的切换按钮 |
-
-`visibility` 仅在 `toggleVisibility` 为真时渲染。
+| 插槽         | 说明                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------- |
+| `default`    | 透传至 `Input` 的默认插槽                                                                               |
+| `visibility` | 仅 `toggleVisibility` 为真时渲染；作用域参数 `{ visible: boolean }`；未传时为带 `aria-label` 的切换按钮 |
 
 ## Accessibility
 
