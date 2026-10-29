@@ -12,38 +12,37 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/number-input
 
 ## Props
 
-| 属性                 | 说明                                                                                             | 类型                                                       | 默认值               |
-| -------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | -------------------- |
-| `as`                 | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                  | `AsTag \| Component`                                       | `'div'`              |
-| `asChild`            | 将根节点行为合并到子元素                                                                         | `boolean`                                                  | —                    |
-| `modelValue`         | 受控值                                                                                           | `number \| null`                                           | —                    |
-| `defaultValue`       | 非受控初始值                                                                                     | `number`                                                   | —                    |
-| `min`                | 允许的最小值                                                                                     | `number`                                                   | —                    |
-| `max`                | 允许的最大值                                                                                     | `number`                                                   | —                    |
-| `step`               | 每次增减的步长                                                                                   | `number`                                                   | `1`                  |
-| `stepSnapping`       | 为 `false` 时不将值吸附到最近的 `step` 增量                                                      | `boolean`                                                  | `true`               |
-| `allowInvalid`       | 为 `true` 时保留超出范围或偏离步长网格的键入值；步进交互仍会钳制与吸附                           | `boolean`                                                  | —                    |
-| `focusOnChange`      | 值变化时是否聚焦输入框                                                                           | `boolean`                                                  | `true`               |
-| `formatOptions`      | 显示值的 `Intl.NumberFormat` 选项，同时影响可键入字符                                            | `Intl.NumberFormatOptions`                                 | —                    |
-| `locale`             | 格式化与货币所用 locale                                                                          | `string`                                                   | —                    |
-| `disableWheelChange` | 为 `true` 时禁止滚轮改值                                                                         | `boolean`                                                  | —                    |
-| `invertWheelChange`  | 为 `true` 时反转滚轮增减方向                                                                     | `boolean`                                                  | —                    |
-| `startingValue`      | 空值时首次增减采用的起始值（钳制到 `min`/`max`，不吸附到 `step`；默认 `min`，无 `min` 则为 `0`） | `number`                                                   | —                    |
-| `variant`            | 外观变体                                                                                         | `'soft' \| 'outline'`                                      | `'soft'`             |
-| `unstyled`           | 移除所有样式类，仅保留布局结构                                                                   | `boolean`                                                  | —                    |
-| `size`               | 尺寸                                                                                             | `'sm' \| 'md' \| 'lg'`                                     | `'md'`               |
-| `radius`             | 圆角                                                                                             | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'`               |
-| `placeholder`        | 占位文案                                                                                         | `string`                                                   | —                    |
-| `decrementIcon`      | 减少按钮图标（Iconify）                                                                          | `IconifyIconProps['icon']`                                 | `'ri:subtract-line'` |
-| `incrementIcon`      | 增加按钮图标（Iconify）                                                                          | `IconifyIconProps['icon']`                                 | `'ri:add-line'`      |
-| `id`                 | 控件 `id`；未传时回退到 FormField Context                                                        | `string`                                                   | —                    |
-| `name`               | 控件 `name`；未传时回退到 FormField Context                                                      | `string`                                                   | —                    |
-| `required`           | 是否必填；会与 FormField Context 的 `required` 合并                                              | `boolean`                                                  | —                    |
-| `disabled`           | 是否禁用；会与 FormField Context 的 `disabled` 合并                                              | `boolean`                                                  | —                    |
-| `readonly`           | 是否只读（Reka `NumberFieldRoot`）                                                               | `boolean`                                                  | —                    |
-| `invalid`            | 是否无效；会与 FormField Context 的 `invalid` 合并                                               | `boolean`                                                  | —                    |
-| `class`              | 根节点额外 class                                                                                 | `any`                                                      | —                    |
-| `ui`                 | 覆盖 slots 样式                                                                                  | `Partial<NumberInputStyleSlots>`                           | —                    |
+| 属性                 | 说明                                                                                             | 类型                             | 默认值               |
+| -------------------- | ------------------------------------------------------------------------------------------------ | -------------------------------- | -------------------- |
+| `as`                 | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                  | `AsTag \| Component`             | `'div'`              |
+| `asChild`            | 将根节点行为合并到子元素                                                                         | `boolean`                        | —                    |
+| `modelValue`         | 受控值                                                                                           | `number \| null`                 | —                    |
+| `defaultValue`       | 非受控初始值                                                                                     | `number`                         | —                    |
+| `min`                | 允许的最小值                                                                                     | `number`                         | —                    |
+| `max`                | 允许的最大值                                                                                     | `number`                         | —                    |
+| `step`               | 每次增减的步长                                                                                   | `number`                         | `1`                  |
+| `stepSnapping`       | 为 `false` 时不将值吸附到最近的 `step` 增量                                                      | `boolean`                        | `true`               |
+| `allowInvalid`       | 为 `true` 时保留超出范围或偏离步长网格的键入值；步进交互仍会钳制与吸附                           | `boolean`                        | —                    |
+| `focusOnChange`      | 值变化时是否聚焦输入框                                                                           | `boolean`                        | `true`               |
+| `formatOptions`      | 显示值的 `Intl.NumberFormat` 选项，同时影响可键入字符                                            | `Intl.NumberFormatOptions`       | —                    |
+| `locale`             | 格式化与货币所用 locale                                                                          | `string`                         | —                    |
+| `disableWheelChange` | 为 `true` 时禁止滚轮改值                                                                         | `boolean`                        | —                    |
+| `invertWheelChange`  | 为 `true` 时反转滚轮增减方向                                                                     | `boolean`                        | —                    |
+| `startingValue`      | 空值时首次增减采用的起始值（钳制到 `min`/`max`，不吸附到 `step`；默认 `min`，无 `min` 则为 `0`） | `number`                         | —                    |
+| `variant`            | 外观变体                                                                                         | `'soft' \| 'outline'`            | `'soft'`             |
+| `unstyled`           | 移除样式变体类，仅保留结构                                                                       | `boolean`                        | —                    |
+| `size`               | 尺寸                                                                                             | `'sm' \| 'md' \| 'lg'`           | `'md'`               |
+| `placeholder`        | 占位文案                                                                                         | `string`                         | —                    |
+| `decrementIcon`      | 减少按钮图标（Iconify）                                                                          | `IconifyIconProps['icon']`       | `'ri:subtract-line'` |
+| `incrementIcon`      | 增加按钮图标（Iconify）                                                                          | `IconifyIconProps['icon']`       | `'ri:add-line'`      |
+| `id`                 | 控件 `id`；未传时回退到 FormField Context                                                        | `string`                         | —                    |
+| `name`               | 控件 `name`；未传时回退到 FormField Context                                                      | `string`                         | —                    |
+| `required`           | 是否必填；会与 FormField Context 的 `required` 合并                                              | `boolean`                        | —                    |
+| `disabled`           | 是否禁用；会与 FormField Context 的 `disabled` 合并                                              | `boolean`                        | —                    |
+| `readonly`           | 是否只读（Reka `NumberFieldRoot`）                                                               | `boolean`                        | —                    |
+| `invalid`            | 是否无效；会与 FormField Context 的 `invalid` 合并                                               | `boolean`                        | —                    |
+| `class`              | 根节点额外 class                                                                                 | `any`                            | —                    |
+| `ui`                 | 覆盖 slots 样式（`root` / `input` / `increment` / `decrement`）                                  | `Partial<NumberInputStyleSlots>` | —                    |
 
 ## Events
 

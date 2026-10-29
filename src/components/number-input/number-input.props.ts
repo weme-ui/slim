@@ -6,7 +6,6 @@ import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
 export interface NumberInputProps extends NumberFieldRootProps, Omit<FormFieldSharedProps, 'loading'> {
   variant?: NumberInputStyleProps['variant']
   size?: NumberInputStyleProps['size']
-  radius?: NumberInputStyleProps['radius']
   decrementIcon?: IconifyIconProps['icon']
   incrementIcon?: IconifyIconProps['icon']
   placeholder?: string

@@ -34,10 +34,10 @@ function mountNumberInput(inputProps: Record<string, unknown> = {}) {
 }
 
 describe('number-input', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useNumberInputStyle({})
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('flex-(inline y-center)')
     expect(ui.root()).toContain('transition-colors')
@@ -54,12 +54,6 @@ describe('number-input', () => {
     expect(useNumberInputStyle({ size: 'md' }).decrement()).toContain('size-7.5')
     expect(useNumberInputStyle({ size: 'lg' }).root()).toContain('h-10')
     expect(useNumberInputStyle({ size: 'lg' }).increment()).toContain('size-9.5')
-  })
-
-  it('applies radius variants', () => {
-    expect(useNumberInputStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useNumberInputStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useNumberInputStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies appearance variants', () => {
@@ -79,6 +73,7 @@ describe('number-input', () => {
     const unstyledRoot = useNumberInputStyle({ unstyled: true }).root()
     expect(unstyledRoot).not.toContain('bg-muted')
     expect(unstyledRoot).not.toContain('b-transparent')
+    expect(unstyledRoot).not.toContain('rounded')
   })
 
   it('applies soft and outline focus compounds when valid', () => {

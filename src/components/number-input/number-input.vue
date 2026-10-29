@@ -16,13 +16,12 @@ defineOptions({
 const props = withDefaults(defineProps<NumberInputProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   decrementIcon: 'ri:subtract-line',
   incrementIcon: 'ri:add-line',
 })
 
 const emits = defineEmits<NumberInputEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'readonly', 'invalid', 'variant', 'size', 'radius', 'decrementIcon', 'incrementIcon', 'placeholder', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'readonly', 'invalid', 'variant', 'size', 'decrementIcon', 'incrementIcon', 'placeholder', 'unstyled', 'class', 'ui')
 const forwarded = useForwardProps(delegated)
 
 const {
@@ -45,7 +44,6 @@ const modelValue = computed(() => props.modelValue)
 const ui = computed(() => useNumberInputStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),
