@@ -34,10 +34,10 @@ function mountInput(inputProps: Record<string, unknown> = {}) {
 }
 
 describe('input', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useInputStyle({})
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('px-2.5')
     expect(ui.root()).toContain('transition-colors')
@@ -49,14 +49,6 @@ describe('input', () => {
     expect(useInputStyle({ size: 'sm' }).root()).toContain('px-1.5')
     expect(useInputStyle({ size: 'lg' }).root()).toContain('h-10')
     expect(useInputStyle({ size: 'lg' }).root()).toContain('px-3')
-    expect(useInputStyle({ size: 'sm', radius: 'full' }).root()).toContain('px-2.25')
-    expect(useInputStyle({ size: 'md', radius: 'full' }).root()).toContain('px-3.5')
-  })
-
-  it('applies radius variants', () => {
-    expect(useInputStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useInputStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useInputStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies appearance variants', () => {
@@ -72,6 +64,7 @@ describe('input', () => {
     const unstyledRoot = useInputStyle({ unstyled: true }).root()
     expect(unstyledRoot).not.toContain('bg-muted')
     expect(unstyledRoot).not.toContain('b-transparent')
+    expect(unstyledRoot).not.toContain('rounded')
   })
 
   it('applies soft and outline focus compounds when valid', () => {

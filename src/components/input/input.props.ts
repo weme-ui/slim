@@ -19,7 +19,6 @@ export interface InputProps extends FormFieldSharedProps {
   defaultValue?: InputValue
   variant?: InputStyleProps['variant']
   size?: InputStyleProps['size']
-  radius?: InputStyleProps['radius']
   prefix?: string
   suffix?: string
   prefixIcon?: IconifyIconProps['icon']

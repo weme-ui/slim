@@ -17,7 +17,6 @@ const props = withDefaults(defineProps<InputProps>(), {
   as: 'div',
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   autocomplete: 'off',
   loadingIcon: 'ri:loader-line',
   clearIcon: 'ri:close-line',
@@ -77,7 +76,6 @@ onMounted(() => {
 const ui = computed(() => useInputStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   loading: loading.value,
   invalid: invalid.value,

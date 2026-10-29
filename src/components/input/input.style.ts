@@ -15,15 +15,6 @@ export const useInputStyle = createVariants({
 
   variants: {
     variant: { soft: {}, outline: {} },
-    radius: {
-      none: { root: 'rounded-none' },
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-      full: { root: 'rounded-full' },
-    },
     size: {
       sm: { root: 'text-xs gap-xs h-6' },
       md: { root: 'text-sm gap-sm h-8' },
@@ -41,7 +32,7 @@ export const useInputStyle = createVariants({
     invalid: { true: {} },
     unstyled: {
       false: {
-        root: 'b',
+        root: 'b rounded',
         input: 'placeholder:text-subtle',
         counter: 'text-(xs subtle nowrap)',
         cleanBtn: 'op-0 transition-[opacity,background-color] duration-200 hover:bg-accent-3 group-data-[focused]:op-100',
@@ -98,48 +89,25 @@ export const useInputStyle = createVariants({
     },
 
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'sm',
       unstyled: false,
       class: { root: 'px-1.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'md',
       unstyled: false,
       class: { root: 'px-2.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'lg',
       unstyled: false,
       class: { root: 'px-3' },
-    },
-
-    {
-      radius: 'full',
-      size: 'sm',
-      unstyled: false,
-      class: { root: 'px-2.25' },
-    },
-    {
-      radius: 'full',
-      size: 'md',
-      unstyled: false,
-      class: { root: 'px-3.5' },
-    },
-    {
-      radius: 'full',
-      size: 'lg',
-      unstyled: false,
-      class: { root: 'px-4' },
     },
   ],
 
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 
