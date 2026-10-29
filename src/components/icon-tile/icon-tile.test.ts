@@ -5,10 +5,10 @@ import { useIconTileStyle } from './icon-tile.style'
 import IconTile from './icon-tile.vue'
 
 describe('icon-tile', () => {
-  it('applies default color, variant, size, and radius', () => {
+  it('applies default color, variant, and size', () => {
     const ui = useIconTileStyle({})
     expect(ui.root()).toContain('size-10')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('plain-neutral')
     expect(ui.icon()).toContain('size-4.5')
     expect(ui.icon()).toContain('pointer-events-none')
@@ -21,12 +21,6 @@ describe('icon-tile', () => {
     expect(useIconTileStyle({ size: 'lg' }).root()).toContain('size-12')
     expect(useIconTileStyle({ size: 'xl' }).root()).toContain('size-14')
     expect(useIconTileStyle({ size: 'xl' }).icon()).toContain('size-7')
-  })
-
-  it('applies radius variants', () => {
-    expect(useIconTileStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useIconTileStyle({ radius: 'sm' }).root()).toContain('rounded-sm')
-    expect(useIconTileStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies color and variant compound classes', () => {

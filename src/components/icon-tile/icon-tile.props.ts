@@ -7,7 +7,6 @@ export interface IconTileProps extends PrimitiveProps {
   color?: IconTileStyleProps['color']
   variant?: IconTileStyleProps['variant']
   size?: IconTileStyleProps['size']
-  radius?: IconTileStyleProps['radius']
   unstyled?: boolean
   class?: any
   ui?: Partial<IconTileStyleSlots>

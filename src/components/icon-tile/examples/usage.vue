@@ -4,6 +4,6 @@ import IconTile from '../icon-tile.vue'
 
 <template>
   <div class="flex flex-wrap gap-3 items-center">
-    <IconTile icon="ri:bookmark-line" />
+    <IconTile icon="ri:bookmark-line" class="rounded-full" />
   </div>
 </template>

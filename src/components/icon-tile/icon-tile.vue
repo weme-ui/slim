@@ -12,14 +12,12 @@ const props = withDefaults(defineProps<IconTileProps>(), {
   color: 'neutral',
   variant: 'solid',
   size: 'md',
-  radius: 'md',
 })
 
 const ui = computed(() => useIconTileStyle({
   color: props.color,
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   unstyled: toBoolValue(props.unstyled),
 }))
 </script>
