@@ -45,6 +45,7 @@ describe('pin-input', () => {
     expect(ui.input()).toContain('outline-none')
     expect(ui.input()).toContain('bg-muted')
     expect(ui.input()).toContain('text-foreground')
+    expect(ui.input()).toContain('rounded')
     expect(ui.input()).toContain('transition-colors')
     expect(ui.input()).toContain('duration-200')
   })
@@ -55,12 +56,6 @@ describe('pin-input', () => {
     expect(usePinInputStyle({ size: 'md' }).input()).toContain('size-8')
     expect(usePinInputStyle({ size: 'lg' }).root()).toContain('gap-md')
     expect(usePinInputStyle({ size: 'lg' }).input()).toContain('size-10')
-  })
-
-  it('applies radius variants on inputs', () => {
-    expect(usePinInputStyle({ radius: 'none' }).input()).toContain('rounded-none')
-    expect(usePinInputStyle({ radius: 'md' }).input()).toContain('rounded-md')
-    expect(usePinInputStyle({ radius: 'full' }).input()).toContain('rounded-full')
   })
 
   it('applies appearance variants', () => {
@@ -76,6 +71,7 @@ describe('pin-input', () => {
     expect(unstyledInput).not.toContain('bg-muted')
     expect(unstyledInput).not.toContain('b-transparent')
     expect(unstyledInput).not.toContain('text-foreground')
+    expect(unstyledInput).not.toContain('rounded')
     expect(unstyledInput).not.toContain('transition-colors')
   })
 

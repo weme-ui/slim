@@ -14,21 +14,12 @@ export const usePinInputStyle = createVariants({
       md: { root: 'gap-sm', input: 'text-sm size-8' },
       lg: { root: 'gap-md', input: 'text-base size-10' },
     },
-    radius: {
-      none: { input: 'rounded-none' },
-      xs: { input: 'rounded-xs' },
-      sm: { input: 'rounded-sm' },
-      md: { input: 'rounded-md' },
-      lg: { input: 'rounded-lg' },
-      xl: { input: 'rounded-xl' },
-      full: { input: 'rounded-full' },
-    },
     disabled: {
       true: { root: 'is-disabled' },
     },
     invalid: { true: {} },
     unstyled: {
-      false: { input: 'text-foreground transition-colors duration-200' },
+      false: { input: 'text-foreground rounded transition-colors duration-200' },
     },
   },
 

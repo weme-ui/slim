@@ -11,14 +11,13 @@ import { usePinInputStyle } from './pin-input.style'
 const props = withDefaults(defineProps<PinInputProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   length: 4,
   placeholder: '○',
   otp: true,
 })
 
 const emits = defineEmits<PinInputEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'invalid', 'variant', 'size', 'radius', 'length', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'invalid', 'variant', 'size', 'length', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -39,7 +38,6 @@ const modelValue = computed(() => props.modelValue)
 const ui = computed(() => usePinInputStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),

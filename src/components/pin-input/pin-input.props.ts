@@ -5,7 +5,6 @@ import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
 export interface PinInputProps extends PinInputRootProps, Omit<FormFieldSharedProps, 'loading'> {
   variant?: PinInputStyleProps['variant']
   size?: PinInputStyleProps['size']
-  radius?: PinInputStyleProps['radius']
   length?: number
   unstyled?: boolean
   class?: any
