@@ -19,13 +19,13 @@ export interface ComboboxProps<
   items?: ComboboxItems
   variant?: ComboboxStyleProps['variant']
   size?: ComboboxStyleProps['size']
-  radius?: ComboboxStyleProps['radius']
   prefix?: string
   suffix?: string
   prefixIcon?: IconifyIconProps['icon']
   suffixIcon?: IconifyIconProps['icon']
   loadingIcon?: IconifyIconProps['icon']
   placeholder?: string
+  filterPlaceholder?: string
   emptyText?: string
   emptyIcon?: IconifyIconProps['icon']
   itemIndicatorIcon?: IconifyIconProps['icon']

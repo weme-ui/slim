@@ -9,6 +9,7 @@ export const useComboboxStyle = createVariants({
     value: 'flex text-nowrap flex-y-center',
     valueIcon: '',
     valueCount: '',
+    placeholder: '',
     prefix: '',
     prefixIcon: '',
     suffix: 'ml-auto outline-none',
@@ -32,15 +33,6 @@ export const useComboboxStyle = createVariants({
 
   variants: {
     variant: { soft: {}, outline: {} },
-    radius: {
-      none: {},
-      xs: {},
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
-      full: {},
-    },
     size: { sm: {}, md: {}, lg: {} },
     disabled: {
       true: { root: 'is-disabled' },
@@ -62,6 +54,7 @@ export const useComboboxStyle = createVariants({
         root: 'b',
         values: 'text-subtle',
         valueCount: 'bg-elevated group-data-[focused]:bg-muted group-not-[[data-focused]]:group-hover:bg-muted',
+        placeholder: 'text-subtle',
         filterInput: 'b-b b-base/60 placeholder:text-subtle',
         content: 'bg-base shadow-xs',
         label: 'text-subtle',
@@ -114,64 +107,8 @@ export const useComboboxStyle = createVariants({
         'content',
         'item',
       ],
-      radius: 'none',
       unstyled: false,
-      class: 'rounded-none',
-    },
-    {
-      slots: [
-        'root',
-        'valueCount',
-        'content',
-        'item',
-      ],
-      radius: 'xs',
-      unstyled: false,
-      class: 'rounded-xs',
-    },
-    {
-      slots: [
-        'root',
-        'valueCount',
-        'content',
-        'item',
-      ],
-      radius: 'sm',
-      unstyled: false,
-      class: 'rounded-sm',
-    },
-    {
-      slots: [
-        'root',
-        'valueCount',
-        'content',
-        'item',
-      ],
-      radius: 'md',
-      unstyled: false,
-      class: 'rounded-md',
-    },
-    {
-      slots: [
-        'root',
-        'valueCount',
-        'content',
-        'item',
-      ],
-      radius: 'lg',
-      unstyled: false,
-      class: 'rounded-lg',
-    },
-    {
-      slots: [
-        'root',
-        'valueCount',
-        'content',
-        'item',
-      ],
-      radius: 'xl',
-      unstyled: false,
-      class: 'rounded-xl',
+      class: 'rounded',
     },
   ],
 
@@ -211,52 +148,19 @@ export const useComboboxStyle = createVariants({
     },
 
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'sm',
       unstyled: false,
       class: { anchor: 'px-1.5', filterInput: 'px-2 py-1.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'md',
       unstyled: false,
       class: { anchor: 'px-2.5', filterInput: 'px-3 py-2.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'lg',
       unstyled: false,
       class: { anchor: 'px-3', filterInput: 'px-4 py-3' },
-    },
-
-    {
-      radius: 'full',
-      size: 'sm',
-      unstyled: false,
-      class: { anchor: 'px-2.25', filterInput: 'px-2.5 py-2.25' },
-    },
-    {
-      radius: 'full',
-      size: 'md',
-      unstyled: false,
-      class: { anchor: 'px-3.5', filterInput: 'px-3.5 py-3.5' },
-    },
-    {
-      radius: 'full',
-      size: 'lg',
-      unstyled: false,
-      class: { anchor: 'px-4', filterInput: 'px-4 py-4' },
-    },
-
-    {
-      radius: 'full',
-      unstyled: false,
-      class: {
-        root: 'rounded-full',
-        content: 'rounded-5',
-        item: 'rounded-4',
-        valueCount: 'rounded-full',
-      },
     },
 
     {
@@ -328,7 +232,6 @@ export const useComboboxStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

@@ -39,7 +39,6 @@ defineOptions({
 const props = withDefaults(defineProps<ComboboxProps<M>>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   loadingIcon: 'ri:loader-line',
   suffixIcon: 'ri:expand-up-down-line',
   itemIndicatorIcon: 'ri:check-line',
@@ -48,7 +47,7 @@ const props = withDefaults(defineProps<ComboboxProps<M>>(), {
 })
 
 const emits = defineEmits<ComboboxEmits<M, V>>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'radius', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'filterPlaceholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
 const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
@@ -117,7 +116,6 @@ onUnmounted(() => {
 const ui = computed(() => useComboboxStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   loading: loading.value,
   invalid: invalid.value,
@@ -196,7 +194,8 @@ function handleBlur(e: FocusEvent) {
       </div>
 
       <template v-else>
-        {{ selectedLabel }}
+        <span v-if="selectedLabel">{{ selectedLabel }}</span>
+        <span v-else :class="cn(ui.placeholder(), props.ui?.placeholder)">{{ placeholder }}</span>
       </template>
 
       <ComboboxCancel v-if="hasClean" :class="cn(ui.clearBtn(), props.ui?.clearBtn)">
@@ -241,7 +240,7 @@ function handleBlur(e: FocusEvent) {
                 <ComboboxInput
                   v-bind="bindings"
                   value=""
-                  :placeholder="placeholder"
+                  :placeholder="filterPlaceholder || placeholder"
                   :class="cn(ui.filterInput(), props.ui?.filterInput)"
                   @focus="handleFocus"
                   @blur="handleBlur"

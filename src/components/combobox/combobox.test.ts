@@ -67,13 +67,13 @@ async function openList(wrapper: ReturnType<typeof mount>) {
 }
 
 describe('combobox', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useComboboxStyle({})
     expect(ui.root()).toContain('group')
     expect(ui.root()).toContain('relative')
     expect(ui.root()).toContain('text-sm')
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.anchor()).toContain('px-2.5')
     expect(ui.anchor()).toContain('gap-sm')
@@ -116,19 +116,6 @@ describe('combobox', () => {
     expect(lg.group()).toContain('p-1.5')
     expect(lg.label()).toContain('text-base')
     expect(lg.item()).toContain('py-3')
-  })
-
-  it('applies radius variants', () => {
-    expect(useComboboxStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useComboboxStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useComboboxStyle({ radius: 'xl' }).root()).toContain('rounded-xl')
-
-    const full = useComboboxStyle({ radius: 'full' })
-    expect(full.root()).toContain('rounded-full')
-    expect(full.content()).toContain('rounded-5')
-    expect(full.item()).toContain('rounded-4')
-    expect(full.valueCount()).toContain('rounded-full')
-    expect(full.anchor()).toContain('px-3.5')
   })
 
   it('applies appearance variants', () => {
