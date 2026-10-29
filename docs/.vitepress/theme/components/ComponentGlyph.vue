@@ -19,6 +19,27 @@ defineProps<{
       <span><i class="g-bar is-sm" /></span>
     </div>
 
+    <div v-else-if="name === 'toggle-button'" class="g-toggle-btn">
+      <span class="g-pill is-ghost is-sq">
+        <i class="g-spark is-sm" />
+      </span>
+      <span class="g-pill is-fill is-sq">
+        <i class="g-spark is-sm" />
+      </span>
+    </div>
+
+    <div v-else-if="name === 'toggle-button-group'" class="g-toggle-btn">
+      <span class="g-pill is-ghost">
+        <i class="g-bar is-sm" />
+      </span>
+      <span class="g-pill is-fill">
+        <i class="g-bar g-bar-on is-sm" />
+      </span>
+      <span class="g-pill is-ghost">
+        <i class="g-bar is-sm" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'form'" class="g-root g-mini">
       <div class="g-row is-stack">
         <i class="g-bar is-md" />
@@ -357,10 +378,19 @@ defineProps<{
   border-radius: 0.45rem;
 }
 
-.g-button {
+.g-button,
+.g-toggle-btn {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+}
+
+.g-pill.is-sq {
+  width: 1.75rem;
+}
+
+.g-pill.is-fill .g-spark {
+  background: var(--docs-well);
 }
 
 .g-pill.is-fill {

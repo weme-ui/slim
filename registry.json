@@ -335,6 +335,160 @@
       ]
     },
     {
+      "name": "toggle-button",
+      "type": "component",
+      "title": "Toggle Button",
+      "description": "A button that switches between on and off.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "animated-toggle-icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/toggle-button/toggle-button.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toggle-button/toggle-button.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toggle-button/toggle-button.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/toggle-button/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/toggle-button/toggle-button.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "toggle-button-group",
+      "type": "component",
+      "title": "Toggle Button Group",
+      "description": "A group of toggle buttons for single or multiple selection.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "toggle-button"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/toggle-button-group/toggle-button-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toggle-button-group/toggle-button-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toggle-button-group/toggle-button-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/toggle-button-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/radius.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/type.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/toggle-button-group/toggle-button-group.test.ts"
+        }
+      ]
+    },
+    {
       "name": "form",
       "type": "component",
       "title": "Form",

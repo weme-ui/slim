@@ -38,6 +38,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `animated-toggle-icon`
   - [x] `button-group`
   - [x] `button`
+  - [x] `toggle-button-group`
+  - [x] `toggle-button`
   - [x] `config-provider`
   - [x] `icon-stack`
   - [x] `icon-tile`
