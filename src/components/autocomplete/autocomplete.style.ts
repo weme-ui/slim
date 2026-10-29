@@ -26,15 +26,6 @@ export const useAutocompleteStyle = createVariants({
 
   variants: {
     variant: { soft: {}, outline: {} },
-    radius: {
-      none: {},
-      xs: {},
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
-      full: {},
-    },
     size: { sm: {}, md: {}, lg: {} },
     disabled: {
       true: { root: 'is-disabled' },
@@ -90,39 +81,8 @@ export const useAutocompleteStyle = createVariants({
 
     {
       slots: ['root', 'content', 'item'],
-      radius: 'none',
       unstyled: false,
-      class: 'rounded-none',
-    },
-    {
-      slots: ['root', 'content', 'item'],
-      radius: 'xs',
-      unstyled: false,
-      class: 'rounded-xs',
-    },
-    {
-      slots: ['root', 'content', 'item'],
-      radius: 'sm',
-      unstyled: false,
-      class: 'rounded-sm',
-    },
-    {
-      slots: ['root', 'content', 'item'],
-      radius: 'md',
-      unstyled: false,
-      class: 'rounded-md',
-    },
-    {
-      slots: ['root', 'content', 'item'],
-      radius: 'lg',
-      unstyled: false,
-      class: 'rounded-lg',
-    },
-    {
-      slots: ['root', 'content', 'item'],
-      radius: 'xl',
-      unstyled: false,
-      class: 'rounded-xl',
+      class: 'rounded',
     },
   ],
 
@@ -162,47 +122,19 @@ export const useAutocompleteStyle = createVariants({
     },
 
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'sm',
       unstyled: false,
       class: { anchor: 'px-1.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'md',
       unstyled: false,
       class: { anchor: 'px-2.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'lg',
       unstyled: false,
       class: { anchor: 'px-3' },
-    },
-
-    {
-      radius: 'full',
-      size: 'sm',
-      unstyled: false,
-      class: { anchor: 'px-2.25' },
-    },
-    {
-      radius: 'full',
-      size: 'md',
-      unstyled: false,
-      class: { anchor: 'px-3.5' },
-    },
-    {
-      radius: 'full',
-      size: 'lg',
-      unstyled: false,
-      class: { anchor: 'px-4' },
-    },
-
-    {
-      radius: 'full',
-      unstyled: false,
-      class: { root: 'rounded-full', content: 'rounded-5', item: 'rounded-full' },
     },
 
     {
@@ -243,7 +175,6 @@ export const useAutocompleteStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

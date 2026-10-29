@@ -38,7 +38,6 @@ defineOptions({
 const props = withDefaults(defineProps<AutocompleteProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   loadingIcon: 'ri:loader-line',
   suffixIcon: 'ri:expand-up-down-line',
   itemIndicatorIcon: 'ri:check-line',
@@ -46,7 +45,7 @@ const props = withDefaults(defineProps<AutocompleteProps>(), {
 })
 
 const emits = defineEmits<AutocompleteEmits>()
-const delegated = reactiveOmit(props, 'items', 'variant', 'size', 'radius', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'items', 'variant', 'size', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
 const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
@@ -112,7 +111,6 @@ onUnmounted(() => {
 const ui = computed(() => useAutocompleteStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   loading: loading.value,
   invalid: invalid.value,

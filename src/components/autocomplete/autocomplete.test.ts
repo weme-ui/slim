@@ -41,13 +41,13 @@ function mountAutocomplete(inputProps: Record<string, unknown> = {}) {
 }
 
 describe('autocomplete', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useAutocompleteStyle({})
     expect(ui.root()).toContain('group')
     expect(ui.root()).toContain('relative')
     expect(ui.root()).toContain('text-sm')
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.anchor()).toContain('px-2.5')
     expect(ui.anchor()).toContain('gap-sm')
@@ -86,18 +86,6 @@ describe('autocomplete', () => {
     expect(lg.label()).toContain('text-base')
     expect(lg.label()).toContain('py-3')
     expect(lg.item()).toContain('py-3')
-  })
-
-  it('applies radius variants', () => {
-    expect(useAutocompleteStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useAutocompleteStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useAutocompleteStyle({ radius: 'xl' }).root()).toContain('rounded-xl')
-
-    const full = useAutocompleteStyle({ radius: 'full' })
-    expect(full.root()).toContain('rounded-full')
-    expect(full.content()).toContain('rounded-5')
-    expect(full.item()).toContain('rounded-full')
-    expect(full.anchor()).toContain('px-3.5')
   })
 
   it('applies appearance variants', () => {

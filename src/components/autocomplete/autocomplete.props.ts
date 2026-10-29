@@ -13,7 +13,6 @@ export interface AutocompleteProps extends AutocompleteRootProps, FormFieldShare
   items?: AutocompleteItems
   variant?: AutocompleteStyleProps['variant']
   size?: AutocompleteStyleProps['size']
-  radius?: AutocompleteStyleProps['radius']
   prefix?: string
   suffix?: string
   prefixIcon?: IconifyIconProps['icon']
