@@ -23,7 +23,7 @@ export const usePasswordStrengthStyle = createVariants({
     },
     unstyled: {
       false: {
-        root: 'rounded-inherit',
+        root: 'rounded',
         track: 'rounded-inherit',
         indicator: 'rounded-inherit bg-muted transition-colors duration-200',
         message: 'text-muted',

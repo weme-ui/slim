@@ -5,10 +5,10 @@ import { usePasswordStrengthStyle } from './password-strength.style'
 import PasswordStrength from './password-strength.vue'
 
 describe('password-strength', () => {
-  it('applies default size and inherit radius classes', () => {
+  it('applies default size and styled surface classes', () => {
     const ui = usePasswordStrengthStyle({})
     expect(ui.root()).toContain('relative')
-    expect(ui.root()).toContain('rounded-inherit')
+    expect(ui.root()).toContain('rounded')
     expect(ui.track()).toContain('mt-3')
     expect(ui.track()).toContain('flex')
     expect(ui.track()).toContain('gap-sm')
@@ -42,7 +42,7 @@ describe('password-strength', () => {
 
   it('skips strength colors and muted styles when unstyled', () => {
     const unstyled = usePasswordStrengthStyle({ unstyled: true, strength: 'strong' })
-    expect(unstyled.root()).not.toContain('rounded-inherit')
+    expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.track()).not.toContain('rounded-inherit')
     expect(unstyled.indicator()).not.toContain('bg-password-strength-strong')
     expect(unstyled.indicator()).not.toContain('bg-muted')
