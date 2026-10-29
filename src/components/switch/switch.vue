@@ -16,12 +16,11 @@ defineOptions({
 const props = withDefaults(defineProps<SwitchProps<T>>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'full',
   loadingIcon: 'ri:loader-line',
 })
 
 const emits = defineEmits<SwitchEmits<T>>()
-const delegated = reactiveOmit(props, 'variant', 'size', 'radius', 'inverted', 'indicatorIcon', 'loadingIcon', 'checkedIcon', 'uncheckedIcon', 'unstyled', 'loading', 'invalid', 'class', 'ui')
+const delegated = reactiveOmit(props, 'variant', 'size', 'inverted', 'indicatorIcon', 'loadingIcon', 'checkedIcon', 'uncheckedIcon', 'unstyled', 'loading', 'invalid', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -59,7 +58,6 @@ onUnmounted(() => {
 const ui = computed(() => useSwitchStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   inverted: toBoolValue(props.inverted),
   unstyled: toBoolValue(props.unstyled),
   loading: loading.value,

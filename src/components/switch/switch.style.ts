@@ -15,15 +15,6 @@ export const useSwitchStyle = createVariants({
       soft: {},
       outline: {},
     },
-    radius: {
-      none: { root: 'rounded-none' },
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-      full: { root: 'rounded-full' },
-    },
     size: {
       sm: { root: 'h-4 w-7', thumb: 'size-3 data-[state=checked]:translate-x-3.5', indicator: 'size-2' },
       md: { root: 'h-5 w-9', thumb: 'size-4 data-[state=checked]:translate-x-4.5', indicator: 'size-2.5' },
@@ -38,7 +29,7 @@ export const useSwitchStyle = createVariants({
     inverted: { true: {} },
     unstyled: {
       false: {
-        root: 'bg-muted transition-colors duration-200 data-[state=checked]:bg-accent hover:data-[state=unchecked]:bg-elevated',
+        root: 'rounded-full bg-muted transition-colors duration-200 data-[state=checked]:bg-accent hover:data-[state=unchecked]:bg-elevated',
         thumb: 'shadow-xs transition-transform duration-200 ease-out group-aria-[pressed=true]/switch:scale-90',
       },
     },
@@ -65,7 +56,6 @@ export const useSwitchStyle = createVariants({
 
   defaultVariants: {
     variant: 'soft',
-    radius: 'full',
     size: 'md',
     inverted: false,
   },

@@ -1056,11 +1056,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/pin-input/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/pin-input/examples/length.vue"
         },
         {
@@ -1134,11 +1129,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/range-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/radius.vue"
         },
         {
           "type": "component",
@@ -1485,11 +1475,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/select/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/select/examples/with-affix.vue"
         },
         {
@@ -1580,11 +1565,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/listbox/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/radius.vue"
         },
         {
           "type": "component",
@@ -1846,11 +1826,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/radio-group/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/radio-group/examples/orientation.vue"
         },
         {
@@ -1935,11 +1910,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/switch/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/switch/examples/radius.vue"
         },
         {
           "type": "component",

@@ -1,6 +1,6 @@
 # Switch
 
-开关控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。基于 Reka UI `SwitchRoot` / `SwitchThumb`，支持外观变体、尺寸、圆角、加载态与拇指指示图标。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
+开关控件。可以单独用，也可以放进 `FormField`。有 `FormField` 时会合并 `id` / `aria-*` / `data-*`。基于 Reka UI `SwitchRoot` / `SwitchThumb`，支持外观变体、尺寸、加载态与拇指指示图标。泛型 `T extends boolean`（默认 `boolean`）用于 `modelValue` / `trueValue` / `falseValue`。
 
 ## Installation
 
@@ -12,32 +12,31 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/switch
 
 ## Props
 
-| 属性            | 说明                                                                                | 类型                                                       | 默认值             |
-| --------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ |
-| `as`            | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                     | `AsTag \| Component`                                       | `'button'`         |
-| `asChild`       | 合并到子元素上渲染（Reka UI composition）                                           | `boolean`                                                  | —                  |
-| `modelValue`    | 受控值；可用 `v-model`                                                              | `T \| null`                                                | —                  |
-| `defaultValue`  | 非受控初始值                                                                        | `T`                                                        | —                  |
-| `trueValue`     | 开启时写入 model 的值                                                               | `T`                                                        | `true`             |
-| `falseValue`    | 关闭时写入 model 的值                                                               | `T`                                                        | `false`            |
-| `value`         | 随表单提交的 `name` 对应值                                                          | `string`                                                   | `'on'`             |
-| `variant`       | 外观变体                                                                            | `'soft' \| 'outline'`                                      | `'soft'`           |
-| `size`          | 尺寸                                                                                | `'sm' \| 'md' \| 'lg'`                                     | `'md'`             |
-| `radius`        | 圆角                                                                                | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'full'`           |
-| `indicatorIcon` | 拇指指示图标（Iconify）；无 checked / unchecked 图标时的回退                        | `IconifyIconProps['icon']`                                 | —                  |
-| `loadingIcon`   | 加载中图标（Iconify）；`loading` 为真时显示                                         | `IconifyIconProps['icon']`                                 | `'ri:loader-line'` |
-| `checkedIcon`   | 选中态拇指图标（Iconify）                                                           | `IconifyIconProps['icon']`                                 | —                  |
-| `uncheckedIcon` | 未选中态拇指图标（Iconify）                                                         | `IconifyIconProps['icon']`                                 | —                  |
-| `inverted`      | 反色拇指（`true` 时拇指为 inverted 色，否则为 base 色）                             | `boolean`                                                  | `false`            |
-| `unstyled`      | 移除样式变体类，仅保留结构                                                          | `boolean`                                                  | —                  |
-| `id`            | 控件 `id`；未传时回退到 FormField Context                                           | `string`                                                   | —                  |
-| `name`          | 控件 `name`；未传时回退到 FormField Context                                         | `string`                                                   | —                  |
-| `loading`       | 是否加载中；会与 FormField Context 的 `loading` 合并                                | `boolean`                                                  | —                  |
-| `required`      | 是否必填；会与 FormField Context 的 `required` 合并                                 | `boolean`                                                  | —                  |
-| `disabled`      | 是否禁用；会与 FormField Context 的 `disabled` 合并                                 | `boolean`                                                  | —                  |
-| `invalid`       | 是否无效；会与 FormField Context 的 `invalid` 合并；不转发到 Reka `SwitchRoot`      | `boolean`                                                  | —                  |
-| `class`         | 根节点额外 class                                                                    | `any`                                                      | —                  |
-| `ui`            | 覆盖 slots 样式（`root` / `thumb` / `indicator` / `checkedIcon` / `uncheckedIcon`） | `Partial<SwitchStyleSlots>`                                | —                  |
+| 属性            | 说明                                                                                | 类型                        | 默认值             |
+| --------------- | ----------------------------------------------------------------------------------- | --------------------------- | ------------------ |
+| `as`            | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                     | `AsTag \| Component`        | `'button'`         |
+| `asChild`       | 合并到子元素上渲染（Reka UI composition）                                           | `boolean`                   | —                  |
+| `modelValue`    | 受控值；可用 `v-model`                                                              | `T \| null`                 | —                  |
+| `defaultValue`  | 非受控初始值                                                                        | `T`                         | —                  |
+| `trueValue`     | 开启时写入 model 的值                                                               | `T`                         | `true`             |
+| `falseValue`    | 关闭时写入 model 的值                                                               | `T`                         | `false`            |
+| `value`         | 随表单提交的 `name` 对应值                                                          | `string`                    | `'on'`             |
+| `variant`       | 外观变体                                                                            | `'soft' \| 'outline'`       | `'soft'`           |
+| `size`          | 尺寸                                                                                | `'sm' \| 'md' \| 'lg'`      | `'md'`             |
+| `indicatorIcon` | 拇指指示图标（Iconify）；无 checked / unchecked 图标时的回退                        | `IconifyIconProps['icon']`  | —                  |
+| `loadingIcon`   | 加载中图标（Iconify）；`loading` 为真时显示                                         | `IconifyIconProps['icon']`  | `'ri:loader-line'` |
+| `checkedIcon`   | 选中态拇指图标（Iconify）                                                           | `IconifyIconProps['icon']`  | —                  |
+| `uncheckedIcon` | 未选中态拇指图标（Iconify）                                                         | `IconifyIconProps['icon']`  | —                  |
+| `inverted`      | 反色拇指（`true` 时拇指为 inverted 色，否则为 base 色）                             | `boolean`                   | `false`            |
+| `unstyled`      | 移除样式变体类，仅保留结构                                                          | `boolean`                   | —                  |
+| `id`            | 控件 `id`；未传时回退到 FormField Context                                           | `string`                    | —                  |
+| `name`          | 控件 `name`；未传时回退到 FormField Context                                         | `string`                    | —                  |
+| `loading`       | 是否加载中；会与 FormField Context 的 `loading` 合并                                | `boolean`                   | —                  |
+| `required`      | 是否必填；会与 FormField Context 的 `required` 合并                                 | `boolean`                   | —                  |
+| `disabled`      | 是否禁用；会与 FormField Context 的 `disabled` 合并                                 | `boolean`                   | —                  |
+| `invalid`       | 是否无效；会与 FormField Context 的 `invalid` 合并；不转发到 Reka `SwitchRoot`      | `boolean`                   | —                  |
+| `class`         | 根节点额外 class                                                                    | `any`                       | —                  |
+| `ui`            | 覆盖 slots 样式（`root` / `thumb` / `indicator` / `checkedIcon` / `uncheckedIcon`） | `Partial<SwitchStyleSlots>` | —                  |
 
 ## Events
 

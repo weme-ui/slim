@@ -35,7 +35,7 @@ function mountSwitch(
 }
 
 describe('switch', () => {
-  it('applies default soft variant, size, and full radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useSwitchStyle({})
     expect(ui.root()).toContain('h-5')
     expect(ui.root()).toContain('w-9')
@@ -52,12 +52,6 @@ describe('switch', () => {
     expect(useSwitchStyle({ size: 'sm' }).thumb()).toContain('size-3')
     expect(useSwitchStyle({ size: 'lg' }).root()).toContain('h-6')
     expect(useSwitchStyle({ size: 'lg' }).thumb()).toContain('size-5')
-  })
-
-  it('applies radius variants', () => {
-    expect(useSwitchStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useSwitchStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useSwitchStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies outline variant border compounds', () => {
@@ -85,6 +79,8 @@ describe('switch', () => {
   it('skips appearance compounds when unstyled', () => {
     const unstyled = useSwitchStyle({ unstyled: true, inverted: true, variant: 'outline' })
     expect(unstyled.root()).not.toContain('bg-muted')
+    expect(unstyled.root()).not.toContain('rounded-full')
+    expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.root()).not.toContain('data-[state=unchecked]:b-base')
     expect(unstyled.thumb()).not.toContain('bg-inverted')
     expect(unstyled.thumb()).not.toContain('bg-base')
