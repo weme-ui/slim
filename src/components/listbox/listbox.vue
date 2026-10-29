@@ -29,7 +29,6 @@ defineOptions({
 const props = withDefaults(defineProps<ListboxProps<M>>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   itemIndicatorIcon: 'ri:check-line',
   orientation: 'vertical',
   emptyText: '无数据',
@@ -38,7 +37,7 @@ const props = withDefaults(defineProps<ListboxProps<M>>(), {
 })
 
 const emits = defineEmits<ListboxEmits<M, V>>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'radius', 'filter', 'placeholder', 'emptyText', 'emptyIcon', 'itemIndicatorIcon', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'filter', 'placeholder', 'emptyText', 'emptyIcon', 'itemIndicatorIcon', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -86,7 +85,6 @@ const filteredItems = computed(() => {
 const ui = computed(() => useListboxStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   orientation: props.orientation,
   unstyled: toBoolValue(props.unstyled),
   disabled: disabled.value,

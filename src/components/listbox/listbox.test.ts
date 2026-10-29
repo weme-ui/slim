@@ -56,14 +56,14 @@ function getListbox(wrapper: ReturnType<typeof mount>) {
 }
 
 describe('listbox', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useListboxStyle({})
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('flex-col')
     expect(ui.root()).toContain('text-sm')
     expect(ui.root()).toContain('gap-sm')
     expect(ui.filter()).toContain('h-8')
-    expect(ui.filter()).toContain('rounded-md')
+    expect(ui.filter()).toContain('rounded')
     expect(ui.filter()).toContain('bg-muted')
     expect(ui.filterInput()).toContain('placeholder:text-subtle')
     expect(ui.content()).toContain('bg-muted')
@@ -91,18 +91,6 @@ describe('listbox', () => {
     expect(lg.content()).toContain('p-md')
     expect(lg.item()).toContain('px-lg')
     expect(lg.itemDescription()).toContain('text-sm')
-  })
-
-  it('applies radius variants', () => {
-    expect(useListboxStyle({ radius: 'none' }).filter()).toContain('rounded-none')
-    expect(useListboxStyle({ radius: 'md' }).filter()).toContain('rounded-md')
-    expect(useListboxStyle({ radius: 'xl' }).content()).toContain('rounded-xl')
-
-    const full = useListboxStyle({ radius: 'full' })
-    expect(full.filter()).toContain('rounded-full')
-    expect(full.content()).toContain('rounded-2xl')
-    expect(full.item()).toContain('rounded-2xl')
-    expect(full.filter()).toContain('px-3.5')
   })
 
   it('applies appearance variants', () => {
@@ -153,7 +141,9 @@ describe('listbox', () => {
   it('skips appearance styles when unstyled', () => {
     const unstyled = useListboxStyle({ unstyled: true, variant: 'soft' })
     expect(unstyled.filter()).not.toContain('bg-muted')
+    expect(unstyled.filter()).not.toContain('rounded')
     expect(unstyled.content()).not.toContain('bg-muted')
+    expect(unstyled.content()).not.toContain('rounded')
     expect(unstyled.item()).not.toContain('data-[highlighted]:not-[[data-state=checked]]:b-elevated')
     expect(unstyled.filterInput()).not.toContain('placeholder:text-subtle')
     expect(unstyled.groupLabel() ?? '').not.toContain('text-muted')

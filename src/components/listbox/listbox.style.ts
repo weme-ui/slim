@@ -45,15 +45,6 @@ export const useListboxStyle = createVariants({
         itemDescription: 'text-sm',
       },
     },
-    radius: {
-      none: { filter: 'rounded-none', content: 'rounded-none', item: 'rounded-none' },
-      xs: { filter: 'rounded-xs', content: 'rounded-xs', item: 'rounded-xs' },
-      sm: { filter: 'rounded-sm', content: 'rounded-sm', item: 'rounded-sm' },
-      md: { filter: 'rounded-md', content: 'rounded-md', item: 'rounded-md' },
-      lg: { filter: 'rounded-lg', content: 'rounded-lg', item: 'rounded-lg' },
-      xl: { filter: 'rounded-xl', content: 'rounded-xl', item: 'rounded-xl' },
-      full: { filter: 'rounded-full', content: 'rounded-2xl', item: 'rounded-2xl' },
-    },
     orientation: {
       vertical: {
         group: 'flex flex-col',
@@ -77,6 +68,7 @@ export const useListboxStyle = createVariants({
         item: 'b b-transparent data-[highlighted]:not-[[data-state=checked]]:b-elevated',
         itemLabel: 'font-medium group-data-[highlighted]/item:font-medium',
         itemIcon: 'text-subtle group-data-[highlighted]/item:text-highlighted',
+        itemIndicator: 'text-accent',
         itemDescription: 'text-subtle',
       },
     },
@@ -91,6 +83,15 @@ export const useListboxStyle = createVariants({
   },
 
   compoundSlots: [
+    {
+      slots: [
+        'filter',
+        'content',
+        'item',
+      ],
+      unstyled: false,
+      class: 'rounded',
+    },
     {
       slots: [
         'filter',
@@ -141,41 +142,19 @@ export const useListboxStyle = createVariants({
     },
 
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'sm',
       unstyled: false,
       class: { filter: 'px-1.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'md',
       unstyled: false,
       class: { filter: 'px-2.5' },
     },
     {
-      radius: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
       size: 'lg',
       unstyled: false,
       class: { filter: 'px-3' },
-    },
-
-    {
-      radius: 'full',
-      size: 'sm',
-      unstyled: false,
-      class: { filter: 'px-2.25' },
-    },
-    {
-      radius: 'full',
-      size: 'md',
-      unstyled: false,
-      class: { filter: 'px-3.5' },
-    },
-    {
-      radius: 'full',
-      size: 'lg',
-      unstyled: false,
-      class: { filter: 'px-4' },
     },
 
     {
@@ -201,7 +180,6 @@ export const useListboxStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

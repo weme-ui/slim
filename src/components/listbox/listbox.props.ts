@@ -18,7 +18,6 @@ export interface ListboxProps<
   items?: ListboxItems
   variant?: ListboxStyleProps['variant']
   size?: ListboxStyleProps['size']
-  radius?: ListboxStyleProps['radius']
   placeholder?: string
   emptyText?: string
   emptyIcon?: IconifyIconProps['icon']
