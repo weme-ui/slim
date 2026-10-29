@@ -6,7 +6,6 @@ export interface ButtonProps extends PrimitiveProps {
   variant?: ButtonStyleProps['variant']
   color?: ButtonStyleProps['color']
   size?: ButtonStyleProps['size']
-  radius?: ButtonStyleProps['radius']
   scalable?: ButtonStyleProps['scalable']
   type?: 'button' | 'submit' | 'reset'
   icon?: IconifyIconProps['icon']

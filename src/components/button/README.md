@@ -19,7 +19,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 | `variant`     | 外观变体                                           | `'solid' \| 'soft' \| 'outline' \| 'ghost' \| 'plain' \| 'inverse'`                                       | `'solid'`          |
 | `color`       | 语义色（与 `variant` 组合）                        | `'default' \| 'accent' \| 'neutral' \| 'info' \| 'error' \| 'success' \| 'warning'`                       | `'default'`        |
 | `size`        | 尺寸                                               | `'sm' \| 'md' \| 'lg'`                                                                                    | `'md'`             |
-| `radius`      | 圆角                                               | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`                                                | `'sm'`             |
 | `scalable`    | 按下时是否启用缩放动效（禁用 / loading 时不生效）  | `boolean`                                                                                                 | `true`             |
 | `type`        | 原生 button 类型                                   | `'button' \| 'submit' \| 'reset'`                                                                         | `'button'`         |
 | `icon`        | 前置图标（Iconify）                                | `IconifyIconProps['icon']`                                                                                | —                  |

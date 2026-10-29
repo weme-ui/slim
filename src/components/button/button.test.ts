@@ -5,7 +5,7 @@ import { useButtonStyle } from './button.style'
 import Button from './button.vue'
 
 describe('button', () => {
-  it('applies default size, radius, solid variant, and scalable press style', () => {
+  it('applies default size, solid variant, and scalable press style', () => {
     const ui = useButtonStyle({})
     expect(ui.root()).toContain('h-8')
     expect(ui.root()).toContain('rounded-sm')
@@ -19,12 +19,6 @@ describe('button', () => {
     expect(useButtonStyle({ size: 'lg' }).root()).toContain('h-10')
     expect(useButtonStyle({ size: 'sm' }).icon()).toContain('size-3')
     expect(useButtonStyle({ size: 'lg' }).icon()).toContain('size-4')
-  })
-
-  it('applies radius variants', () => {
-    expect(useButtonStyle({ radius: 'none' }).root()).not.toContain('rounded-')
-    expect(useButtonStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useButtonStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies appearance variants', () => {

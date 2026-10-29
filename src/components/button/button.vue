@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'button',
   variant: 'solid',
   color: 'default',
+  size: 'md',
   loadingIcon: 'ri:loader-line',
   scalable: true,
 })
@@ -28,7 +29,6 @@ const ui = computed(() => useButtonStyle({
   variant: props.variant,
   color: props.color,
   size: props.size,
-  radius: props.radius,
   disabled: isDisabled.value,
   loading: isLoading.value,
   scalable: toBoolValue(props.scalable),

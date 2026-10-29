@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useButtonStyle = createVariants({
   slots: {
-    root: 'font-medium flex-(inline center) w-fit cursor-pointer select-none text-nowrap relative',
+    root: 'font-medium rounded-sm flex-(inline center) w-fit cursor-pointer select-none text-nowrap relative',
     icon: 'shrink-0',
   },
 
@@ -29,15 +29,6 @@ export const useButtonStyle = createVariants({
       sm: { root: 'text-xs px-sm gap-xs h-6', icon: 'size-3' },
       md: { root: 'text-sm px-md gap-sm h-8', icon: 'size-3.5' },
       lg: { root: 'text-base px-lg gap-md h-10', icon: 'size-4' },
-    },
-    radius: {
-      none: '',
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-      full: { root: 'rounded-full' },
     },
     disabled: {
       true: { root: 'is-disabled' },
@@ -336,7 +327,6 @@ export const useButtonStyle = createVariants({
     variant: 'solid',
     color: 'default',
     size: 'md',
-    radius: 'sm',
     scalable: true,
     unstyled: false,
   },
