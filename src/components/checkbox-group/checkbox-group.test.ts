@@ -55,12 +55,12 @@ describe('checkbox-group', () => {
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('flex-col')
     expect(ui.root()).toContain('py-sm')
-    expect(ui.root()).toContain('gap-md')
+    expect(ui.root()).toContain('gap-lg')
   })
 
   it('applies size and orientation variants', () => {
-    expect(useCheckboxGroupStyle({ size: 'sm' }).root()).toContain('gap-sm')
-    expect(useCheckboxGroupStyle({ size: 'lg' }).root()).toContain('gap-lg')
+    expect(useCheckboxGroupStyle({ size: 'sm' }).root()).toContain('gap-md')
+    expect(useCheckboxGroupStyle({ size: 'lg' }).root()).toContain('gap-xl')
     expect(useCheckboxGroupStyle({ orientation: 'horizontal' }).root()).not.toContain('flex-col')
     expect(useCheckboxGroupStyle({ orientation: 'vertical' }).root()).toContain('flex-col')
   })

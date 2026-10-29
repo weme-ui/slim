@@ -16,9 +16,9 @@ export const useCheckboxGroupStyle = createVariants({
   variants: {
     variant: { soft: {}, outline: {}, card: {} },
     size: {
-      sm: { root: 'py-xs gap-sm' },
-      md: { root: 'py-sm gap-md' },
-      lg: { root: 'py-md gap-lg' },
+      sm: { root: 'py-xs gap-md' },
+      md: { root: 'py-sm gap-lg' },
+      lg: { root: 'py-md gap-xl' },
     },
     orientation: {
       horizontal: {},
