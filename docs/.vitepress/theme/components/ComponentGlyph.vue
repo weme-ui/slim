@@ -158,6 +158,21 @@ defineProps<{
       </div>
     </div>
 
+    <div v-else-if="name === 'radio-group'" class="g-checks">
+      <div class="g-check-row">
+        <span class="g-box g-radio is-on" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+      <div class="g-check-row">
+        <span class="g-box g-radio" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+      <div class="g-check-row">
+        <span class="g-box g-radio" />
+        <i class="g-bar is-soft is-full" />
+      </div>
+    </div>
+
     <div v-else-if="name === 'switch'" class="g-switch">
       <span class="g-knob" />
     </div>
@@ -561,6 +576,10 @@ defineProps<{
 .g-box.is-on {
   background: var(--fill);
   border-color: transparent;
+}
+
+.g-radio {
+  border-radius: 999px;
 }
 
 .g-switch {

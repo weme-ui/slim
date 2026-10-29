@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { installationHtml, usageHtml } from 'virtual:docs-highlighted'
 import { computed } from 'vue'
-import { renderMarkdown } from '../../lib/markdown'
+import { renderInlineMarkdown, renderMarkdown } from '../../lib/markdown'
 import { buildComponentPage, flattenOutline, getRegistryItem, registry } from '../../lib/registry'
 import ApiTable from './ApiTable.vue'
 import ExamplePreview from './ExamplePreview.vue'
@@ -59,9 +59,11 @@ function html(source: string) {
   <div v-if="page" class="component-doc">
     <header class="doc-hero">
       <h1>{{ page.title }}</h1>
-      <p v-if="page.lead || page.description" class="component-lead">
-        {{ page.lead || page.description }}
-      </p>
+      <p
+        v-if="page.lead || page.description"
+        class="component-lead"
+        v-html="renderInlineMarkdown(page.lead || page.description)"
+      />
       <div v-if="page.dependencies.length" class="doc-dependencies">
         <a
           v-for="dependency in page.dependencies"
@@ -251,7 +253,9 @@ function html(source: string) {
 }
 
 .doc-dependency:hover {
+  color: var(--vp-c-text-1);
   background: var(--neutral-4);
+  text-decoration: none;
 }
 
 .doc-dependency:focus-visible {

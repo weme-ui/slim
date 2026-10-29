@@ -316,6 +316,13 @@
   text-decoration: none;
 }
 
+.vp-doc .doc-dependencies a.doc-dependency,
+.vp-doc .doc-dependencies a.doc-dependency:hover,
+.vp-doc .doc-dependencies a.doc-dependency:visited {
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+
 .vp-doc .api-table .api-detail-desc code {
   color: var(--docs-token-type);
 }
