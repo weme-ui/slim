@@ -16,7 +16,6 @@ export interface ToggleButtonGroupProps extends ToggleGroupRootProps {
   items: ToggleButtonGroupItem[]
   variant?: ToggleButtonProps['variant']
   size?: ToggleButtonProps['size']
-  radius?: ToggleButtonProps['radius']
   icon?: ToggleButtonProps['icon']
   activeIcon?: ToggleButtonProps['activeIcon']
   scalable?: ToggleButtonProps['scalable']

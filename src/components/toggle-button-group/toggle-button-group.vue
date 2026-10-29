@@ -10,7 +10,6 @@ import { useToggleButtonGroupStyle } from './toggle-button-group.style'
 const props = withDefaults(defineProps<ToggleButtonGroupProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   orientation: 'horizontal',
   scalable: true,
 })
@@ -19,7 +18,7 @@ const emits = defineEmits<ToggleButtonGroupEmits>()
 const delegated = reactivePick(props, 'as', 'asChild', 'defaultValue', 'dir', 'disabled', 'loop', 'modelValue', 'name', 'orientation', 'required', 'rovingFocus', 'type')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const itemProps = reactivePick(props, 'variant', 'size', 'radius', 'scalable', 'unstyled')
+const itemProps = reactivePick(props, 'variant', 'size', 'scalable', 'unstyled')
 
 const ui = computed(() => useToggleButtonGroupStyle({
   orientation: props.orientation,

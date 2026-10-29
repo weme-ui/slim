@@ -372,11 +372,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/toggle-button/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/toggle-button/examples/with-icon.vue"
         },
         {
@@ -440,11 +435,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/toggle-button-group/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/radius.vue"
         },
         {
           "type": "component",
