@@ -12,29 +12,29 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/password-input
 
 ## Props
 
-| 属性               | 说明                                                 | 类型                                                       | 默认值              |
-| ------------------ | ---------------------------------------------------- | ---------------------------------------------------------- | ------------------- |
-| `as`               | 根节点渲染为的元素或组件（Reka UI `Primitive`）      | `any`                                                      | `'div'`             |
-| `modelValue`       | 受控值                                               | `string \| number \| null \| undefined`                    | —                   |
-| `defaultValue`     | 非受控初始值                                         | `string \| number \| null \| undefined`                    | —                   |
-| `visible`          | 密码是否明文显示；可用 `v-model:visible`             | `boolean`                                                  | `false`             |
-| `toggleVisibility` | 是否显示可见性切换控件（`suffix` 位）                | `boolean`                                                  | —                   |
-| `visibleIcon`      | 明文态图标（Iconify）                                | `IconifyIconProps['icon']`                                 | `'ri:eye-line'`     |
-| `invisibleIcon`    | 掩码态图标（Iconify）                                | `IconifyIconProps['icon']`                                 | `'ri:eye-off-line'` |
-| `variant`          | 外观变体                                             | `'soft' \| 'outline'`                                      | `'soft'`            |
-| `unstyled`         | 移除所有样式类，仅保留布局结构                       | `boolean`                                                  | —                   |
-| `size`             | 尺寸                                                 | `'sm' \| 'md' \| 'lg'`                                     | `'md'`              |
-| `radius`           | 圆角                                                 | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'`              |
-| `placeholder`      | 占位文案                                             | `string`                                                   | —                   |
-| `prefix`           | 前缀文案（无 `prefix` 插槽且无 `prefixIcon` 时展示） | `string`                                                   | —                   |
-| `prefixIcon`       | 前缀图标（Iconify）                                  | `IconifyIconProps['icon']`                                 | —                   |
-| `id`               | 控件 `id`；未传时回退到 FormField Context            | `string`                                                   | —                   |
-| `name`             | 控件 `name`；未传时回退到 FormField Context          | `string`                                                   | —                   |
-| `required`         | 是否必填；会与 FormField Context 的 `required` 合并  | `boolean`                                                  | —                   |
-| `disabled`         | 是否禁用；会与 FormField Context 的 `disabled` 合并  | `boolean`                                                  | —                   |
-| `invalid`          | 是否无效；会与 FormField Context 的 `invalid` 合并   | `boolean`                                                  | —                   |
-| `class`            | 根节点额外 class                                     | `any`                                                      | —                   |
-| `ui`               | 覆盖 slots 样式（含 `visibility`）                   | `Partial<PasswordInputStyleSlots>`                         | —                   |
+| 属性               | 说明                                                                         | 类型                                    | 默认值              |
+| ------------------ | ---------------------------------------------------------------------------- | --------------------------------------- | ------------------- |
+| `as`               | 根节点渲染为的元素或组件（Reka UI `Primitive`）                              | `any`                                   | `'div'`             |
+| `modelValue`       | 受控值                                                                       | `string \| number \| null \| undefined` | —                   |
+| `defaultValue`     | 非受控初始值                                                                 | `string \| number \| null \| undefined` | —                   |
+| `visible`          | 密码是否明文显示；可用 `v-model:visible`                                     | `boolean`                               | `false`             |
+| `toggleVisibility` | 是否显示可见性切换控件（`suffix` 位）                                        | `boolean`                               | —                   |
+| `visibleIcon`      | 明文态图标（Iconify）                                                        | `IconifyIconProps['icon']`              | `'ri:eye-line'`     |
+| `invisibleIcon`    | 掩码态图标（Iconify）                                                        | `IconifyIconProps['icon']`              | `'ri:eye-off-line'` |
+| `variant`          | 外观变体                                                                     | `'soft' \| 'outline'`                   | `'soft'`            |
+| `unstyled`         | 移除样式变体类，仅保留结构                                                   | `boolean`                               | —                   |
+| `size`             | 尺寸                                                                         | `'sm' \| 'md' \| 'lg'`                  | `'md'`              |
+| `placeholder`      | 占位文案                                                                     | `string`                                | —                   |
+| `autoFocus`        | 挂载后聚焦原生 `<input>`                                                     | `boolean`                               | —                   |
+| `prefix`           | 前缀文案（无 `prefix` 插槽且无 `prefixIcon` 时展示）                         | `string`                                | —                   |
+| `prefixIcon`       | 前缀图标（Iconify）                                                          | `IconifyIconProps['icon']`              | —                   |
+| `id`               | 控件 `id`；未传时回退到 FormField Context                                    | `string`                                | —                   |
+| `name`             | 控件 `name`；未传时回退到 FormField Context                                  | `string`                                | —                   |
+| `required`         | 是否必填；会与 FormField Context 的 `required` 合并                          | `boolean`                               | —                   |
+| `disabled`         | 是否禁用；会与 FormField Context 的 `disabled` 合并                          | `boolean`                               | —                   |
+| `invalid`          | 是否无效；会与 FormField Context 的 `invalid` 合并                           | `boolean`                               | —                   |
+| `class`            | 根节点额外 class                                                             | `any`                                   | —                   |
+| `ui`               | 覆盖 slots 样式（`root` / `prefix` / `prefixIcon` / `input` / `visibility`） | `Partial<PasswordInputStyleSlots>`      | —                   |
 
 相对 `Input` 已省略：`type`（由可见性决定）、`loading` / `loadingIcon`、`suffix` / `suffixIcon`、`clearable` / `clearIcon`、`autocomplete`、`countable` / `maxLength`、`modelModifiers`。
 

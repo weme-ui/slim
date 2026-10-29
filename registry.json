@@ -653,11 +653,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/input/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/input/examples/with-affix.vue"
         },
         {
@@ -825,11 +820,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/number-input/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/number-input/examples/with-icons.vue"
         },
         {
@@ -904,11 +894,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/password-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/radius.vue"
         },
         {
           "type": "component",

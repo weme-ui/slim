@@ -47,7 +47,7 @@ describe('password-input', () => {
   it('applies extended input defaults and visibility base classes', () => {
     const ui = usePasswordInputStyle({})
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('transition-colors')
     expect(ui.visibility()).toContain('cursor-pointer')
@@ -65,10 +65,7 @@ describe('password-input', () => {
     expect(usePasswordInputStyle({ size: 'lg' }).visibility()).toContain('-mr-1.5')
   })
 
-  it('applies radius and appearance from the extended input style', () => {
-    expect(usePasswordInputStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(usePasswordInputStyle({ radius: 'full' }).root()).toContain('rounded-full')
-
+  it('applies appearance from the extended input style', () => {
     const soft = usePasswordInputStyle({ variant: 'soft' }).root().split(/\s+/)
     expect(soft).toContain('bg-muted')
     expect(soft).toContain('b')
@@ -82,6 +79,7 @@ describe('password-input', () => {
     const unstyled = usePasswordInputStyle({ unstyled: true })
     expect(unstyled.visibility()).not.toContain('hover:text-foreground')
     expect(unstyled.root()).not.toContain('bg-muted')
+    expect(unstyled.root()).not.toContain('rounded')
   })
 
   describe('given a password input inside a labeled form field', () => {

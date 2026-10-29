@@ -24,7 +24,6 @@ const type = computed(() => visible.value ? 'text' : 'password')
 
 const ui = computed(() => usePasswordInputStyle({
   variant: props.variant,
-  radius: props.radius,
   size: props.size,
   unstyled: toBoolValue(props.unstyled),
 }))
