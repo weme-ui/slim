@@ -42,7 +42,7 @@ describe('checkbox', () => {
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('gap-md')
     expect(ui.indicator()).toContain('size-4')
-    expect(ui.indicator()).toContain('rounded-sm')
+    expect(ui.indicator()).toContain('rounded')
     expect(ui.indicator()).toContain('bg-muted')
     expect(ui.content()).toContain('text-sm')
   })
@@ -68,6 +68,7 @@ describe('checkbox', () => {
     const card = useCheckboxStyle({ variant: 'card' })
     expect(card.root()).toContain('b-base')
     expect(card.root()).toContain('bg-base')
+    expect(card.root()).toContain('rounded')
     expect(card.indicator()).toContain('text-accent')
   })
 
@@ -89,6 +90,7 @@ describe('checkbox', () => {
     const unstyled = useCheckboxStyle({ unstyled: true, variant: 'soft', inverted: true })
     expect(unstyled.indicator()).not.toContain('bg-muted')
     expect(unstyled.indicator()).not.toContain('text-accent-12')
+    expect(unstyled.indicator()).not.toContain('rounded')
     expect(unstyled.content()).not.toContain('text-foreground')
   })
 

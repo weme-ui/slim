@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useCheckboxStyle = createVariants({
   slots: {
     root: 'flex focus-visible:outline-none',
-    indicator: 'rounded-sm flex flex-center',
+    indicator: 'flex flex-center',
     checkedIcon: '',
     indeterminateIcon: '',
     content: 'text-left flex flex-1 flex-col select-none items-start',
@@ -16,9 +16,7 @@ export const useCheckboxStyle = createVariants({
     variant: {
       soft: {},
       outline: {},
-      card: {
-        root: 'rounded-sm',
-      },
+      card: {},
     },
     size: {
       sm: {
@@ -49,6 +47,7 @@ export const useCheckboxStyle = createVariants({
     },
     unstyled: {
       false: {
+        indicator: 'rounded',
         content: 'text-foreground data-[state=checked]:text-highlighted',
         description: 'text-subtle',
       },
@@ -150,45 +149,8 @@ export const useCheckboxStyle = createVariants({
 
     {
       variant: 'card',
-      radius: 'none',
       unstyled: false,
-      class: { root: 'rounded-none' },
-    },
-    {
-      variant: 'card',
-      radius: 'xs',
-      unstyled: false,
-      class: { root: 'rounded-xs' },
-    },
-    {
-      variant: 'card',
-      radius: 'sm',
-      unstyled: false,
-      class: { root: 'rounded-sm' },
-    },
-    {
-      variant: 'card',
-      radius: 'md',
-      unstyled: false,
-      class: { root: 'rounded-md' },
-    },
-    {
-      variant: 'card',
-      radius: 'lg',
-      unstyled: false,
-      class: { root: 'rounded-lg' },
-    },
-    {
-      variant: 'card',
-      radius: 'xl',
-      unstyled: false,
-      class: { root: 'rounded-xl' },
-    },
-    {
-      variant: 'card',
-      radius: 'full',
-      unstyled: false,
-      class: { root: 'rounded-full' },
+      class: { root: 'rounded' },
     },
   ],
 
