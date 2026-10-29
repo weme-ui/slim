@@ -33,11 +33,15 @@ const ui = computed(() => useLinkStyle({
   <RouterLink
     v-slot="{ href, navigate }"
     v-bind="delegated"
-    data-slot="link"
-    :class="cn(ui.root(), props.ui?.root, props.class)"
     custom
   >
-    <a v-bind="$attrs" :href="isExternal ? String(to) : href" @click="(e) => isExternal ? undefined : navigate(e)">
+    <a
+      v-bind="$attrs"
+      data-slot="link"
+      :class="cn(ui.root(), props.ui?.root, props.class)"
+      :href="isExternal ? String(to) : href"
+      @click="(e) => isExternal ? undefined : navigate(e)"
+    >
       <Icon v-if="prefixIcon" :name="prefixIcon" :class="cn(ui.prefixIcon(), props.ui?.prefixIcon)" />
       <slot>{{ label }}</slot>
       <template v-if="!hideExternalIcon">

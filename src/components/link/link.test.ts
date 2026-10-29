@@ -52,6 +52,22 @@ describe('link', () => {
     expect(ui.suffixIcon()).toContain('text-muted')
   })
 
+  describe('given an unstyled link', () => {
+    it('keeps layout classes on the anchor without fancy color', () => {
+      const wrapper = mount(Link, {
+        props: { to: '/', label: 'Unstyled', unstyled: true },
+        global: {
+          plugins: [router],
+        },
+      })
+      const anchor = wrapper.get('a')
+      const className = anchor.attributes('class') || ''
+      expect(className).toContain('flex-(inline y-center)')
+      expect(className).not.toContain('fancy-')
+      wrapper.unmount()
+    })
+  })
+
   describe('given an internal link', () => {
     it('renders an anchor with the label and has no accessibility violations', async () => {
       const wrapper = mount(Link, {
@@ -64,6 +80,9 @@ describe('link', () => {
       const anchor = wrapper.get('a')
       expect(anchor.text()).toContain('Documentation')
       expect(anchor.attributes('href')).toBe('/')
+      expect(anchor.attributes('data-slot')).toBe('link')
+      expect(anchor.attributes('class')).toContain('flex-(inline y-center)')
+      expect(anchor.attributes('class')).toContain('fancy-accent-plain')
       expect(await axe(wrapper.element)).toHaveNoViolations()
       wrapper.unmount()
     })
