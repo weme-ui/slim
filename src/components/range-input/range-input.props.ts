@@ -10,7 +10,6 @@ export interface RangeInputProps extends PrimitiveProps, Omit<FormFieldSharedPro
   modelValue?: RangeInputValue
   variant?: RangeInputStyleProps['variant']
   size?: RangeInputStyleProps['size']
-  radius?: RangeInputStyleProps['radius']
   min?: number
   max?: number
   fromPlaceholder?: string

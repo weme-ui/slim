@@ -16,7 +16,6 @@ defineOptions({
 const props = withDefaults(defineProps<RangeInputProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'md',
   separator: '-',
 })
 
@@ -50,7 +49,6 @@ const hasToIcon = computed(() => !!slots.toIcon || !!props.toIcon)
 const ui = computed(() => useRangeInputStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   disabled: disabled.value,
   invalid: invalid.value,
   unstyled: toBoolValue(props.unstyled),

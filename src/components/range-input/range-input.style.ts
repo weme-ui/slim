@@ -20,22 +20,13 @@ export const useRangeInputStyle = createVariants({
       md: { root: 'text-sm h-8' },
       lg: { root: 'text-base h-10' },
     },
-    radius: {
-      none: { root: 'rounded-none' },
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-      full: { root: 'rounded-full' },
-    },
     disabled: {
       true: { root: 'is-disabled' },
     },
     invalid: { true: {} },
     unstyled: {
       false: {
-        root: 'text-foreground b',
+        root: 'text-foreground b rounded',
         separator: 'text-muted group-data-[focused]:text-foreground',
       },
     },
@@ -119,7 +110,6 @@ export const useRangeInputStyle = createVariants({
     },
 
     {
-      variant: ['soft', 'outline'],
       invalid: true,
       unstyled: false,
       class: { root: 'b-error outline-2 outline-error-4' },
@@ -129,7 +119,6 @@ export const useRangeInputStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'md',
   },
 })
 

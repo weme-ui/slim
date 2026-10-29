@@ -35,10 +35,10 @@ function mountRangeInput(inputProps: Record<string, unknown> = {}) {
 }
 
 describe('range-input', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useRangeInputStyle({})
     expect(ui.root()).toContain('h-8')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('text-foreground')
     expect(ui.root()).toContain('flex')
@@ -60,12 +60,6 @@ describe('range-input', () => {
     expect(useRangeInputStyle({ size: 'lg' }).toIcon()).toContain('size-10')
   })
 
-  it('applies radius variants', () => {
-    expect(useRangeInputStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useRangeInputStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useRangeInputStyle({ radius: 'full' }).root()).toContain('rounded-full')
-  })
-
   it('applies appearance variants', () => {
     const soft = useRangeInputStyle({ variant: 'soft' }).root().split(/\s+/)
     expect(soft).toContain('bg-muted')
@@ -79,6 +73,7 @@ describe('range-input', () => {
     expect(unstyledRoot).not.toContain('bg-muted')
     expect(unstyledRoot).not.toContain('b-transparent')
     expect(unstyledRoot).not.toContain('text-foreground')
+    expect(unstyledRoot).not.toContain('rounded')
   })
 
   it('applies soft and outline focus compounds when valid', () => {
