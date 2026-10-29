@@ -61,14 +61,7 @@ export const useRadioGroupStyle = createVariants({
     disabled: {
       true: { root: 'is-disabled' },
     },
-    inverted: {
-      true: {
-        indicatorIcon: 'bg-accent-12',
-      },
-      false: {
-        indicatorIcon: 'bg-accent-1',
-      },
-    },
+    inverted: { true: {} },
     unstyled: {
       false: {
         indicator: 'data-[state=checked]:bg-accent data-[state=unchecked]:bg-muted hover:data-[state=unchecked]:bg-elevated',
@@ -99,6 +92,17 @@ export const useRadioGroupStyle = createVariants({
       class: {
         item: 'b b-base bg-base data-[state=checked]:b-accent data-[state=checked]:outline-2 data-[state=checked]:outline-accent-4 hover:data-[state=unchecked]:b-elevated',
       },
+    },
+
+    {
+      inverted: false,
+      unstyled: false,
+      class: { indicatorIcon: 'bg-accent-1' },
+    },
+    {
+      inverted: true,
+      unstyled: false,
+      class: { indicatorIcon: 'bg-accent-12' },
     },
 
     {
