@@ -7,7 +7,6 @@ export type TagsInputValue = string
 
 export interface TagsInputProps extends TagsInputRootProps<TagsInputValue>, Omit<FormFieldSharedProps, 'loading'> {
   variant?: TagsInputStyleProps['variant']
-  radius?: TagsInputStyleProps['radius']
   size?: TagsInputStyleProps['size']
   prefix?: string
   prefixIcon?: IconifyIconProps['icon']

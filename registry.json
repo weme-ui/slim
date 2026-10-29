@@ -1211,11 +1211,6 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/tags-input/examples/radius.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
           "path": "src/components/tags-input/examples/with-prefix.vue"
         },
         {
@@ -1993,11 +1988,6 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/tag-group/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tag-group/examples/radius.vue"
         },
         {
           "type": "component",

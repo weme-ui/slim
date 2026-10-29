@@ -35,11 +35,11 @@ function mountTagsInput(tagsInputProps: Record<string, unknown> = {}) {
 }
 
 describe('tags-input', () => {
-  it('applies default soft variant, size, and radius', () => {
+  it('applies default soft variant and size', () => {
     const ui = useTagsInputStyle({})
     expect(ui.root()).toContain('flex-wrap')
     expect(ui.root()).toContain('min-h-6')
-    expect(ui.root()).toContain('rounded-md')
+    expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
     // soft compounds add `b` + `b-transparent`; twMerge keeps `b`
     expect(ui.root().split(/\s+/)).toContain('b')
@@ -65,12 +65,6 @@ describe('tags-input', () => {
     expect(lg.root()).toContain('text-base')
     expect(lg.item()).toContain('h-6.5')
     expect(lg.item()).toContain('text-base')
-  })
-
-  it('applies radius variants', () => {
-    expect(useTagsInputStyle({ radius: 'none' }).root()).toContain('rounded-none')
-    expect(useTagsInputStyle({ radius: 'md' }).root()).toContain('rounded-md')
-    expect(useTagsInputStyle({ radius: 'full' }).root()).toContain('rounded-full')
   })
 
   it('applies appearance variants', () => {
@@ -106,6 +100,7 @@ describe('tags-input', () => {
   it('skips appearance styles when unstyled', () => {
     const unstyled = useTagsInputStyle({ unstyled: true, variant: 'soft' })
     expect(unstyled.root()).not.toContain('bg-muted')
+    expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.root()).not.toContain('b-transparent')
     expect(unstyled.input()).not.toContain('placeholder:text-subtle')
     expect(unstyled.item()).not.toContain('group-not-[[data-focused]]:bg-elevated')

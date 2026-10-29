@@ -16,15 +16,6 @@ export const useTagsInputStyle = createVariants({
 
   variants: {
     variant: { soft: {}, outline: {} },
-    radius: {
-      none: { root: 'rounded-none' },
-      xs: { root: 'rounded-xs' },
-      sm: { root: 'rounded-sm' },
-      md: { root: 'rounded-md' },
-      lg: { root: 'rounded-lg' },
-      xl: { root: 'rounded-xl' },
-      full: { root: 'rounded-full' },
-    },
     size: {
       sm: {
         root: 'text-xs p-1 gap-1 min-h-4',
@@ -55,6 +46,7 @@ export const useTagsInputStyle = createVariants({
     hasPrefix: { true: {} },
     unstyled: {
       false: {
+        root: 'rounded',
         input: 'placeholder:text-subtle',
         item: 'font-medium group-data-[focused]:(text-accent bg-accent-3) group-not-[[data-focused]]:bg-elevated group-not-[[data-focused]]:group-hover:bg-muted',
         itemDelete: 'rounded-inherit hover:(text-highlighted b-elevated bg-accent-5)',
@@ -147,7 +139,6 @@ export const useTagsInputStyle = createVariants({
 
   defaultVariants: {
     variant: 'soft',
-    radius: 'md',
     size: 'md',
   },
 })

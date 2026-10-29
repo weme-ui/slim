@@ -11,13 +11,12 @@ import { useTagsInputStyle } from './tags-input.style'
 
 const props = withDefaults(defineProps<TagsInputProps>(), {
   variant: 'soft',
-  radius: 'md',
   size: 'md',
   clearIcon: 'ri:close-line',
 })
 
 const emits = defineEmits<TagsInputEmits>()
-const delegated = reactiveOmit(props, 'variant', 'radius', 'size', 'prefix', 'prefixIcon', 'clearIcon', 'clearable', 'unstyled', 'class', 'ui', 'required', 'disabled', 'invalid')
+const delegated = reactiveOmit(props, 'variant', 'size', 'prefix', 'prefixIcon', 'clearIcon', 'clearable', 'unstyled', 'class', 'ui', 'required', 'disabled', 'invalid')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -41,7 +40,6 @@ const hasClean = computed(() => !disabled.value && props.clearable && inputValue
 
 const ui = computed(() => useTagsInputStyle({
   variant: props.variant,
-  radius: props.radius,
   size: props.size,
   disabled: disabled.value,
   invalid: invalid.value,
