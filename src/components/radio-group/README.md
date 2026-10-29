@@ -12,28 +12,27 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/radio-group
 
 ## Props
 
-| 属性           | 说明                                                                                                     | 类型                                                       | 默认值         |
-| -------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------- |
-| `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                          | `AsTag \| Component`                                       | `'div'`        |
-| `items`        | 选项列表（见 Types 的 `RadioGroupItem`）                                                                 | `RadioGroupItem[]`                                         | —              |
-| `modelValue`   | 受控选中值；可用 `v-model`                                                                               | `AcceptableValue`                                          | —              |
-| `defaultValue` | 非受控初始选中值                                                                                         | `AcceptableValue`                                          | —              |
-| `loop`         | 键盘漫游到尽头时是否循环                                                                                 | `boolean`                                                  | `true`         |
-| `dir`          | 阅读方向（影响水平漫游）；未传时继承 `ConfigProvider`                                                    | `'ltr' \| 'rtl'`                                           | —              |
-| `variant`      | 外观变体                                                                                                 | `'soft' \| 'outline' \| 'card'`                            | `'soft'`       |
-| `size`         | 尺寸                                                                                                     | `'sm' \| 'md' \| 'lg'`                                     | `'md'`         |
-| `radius`       | 圆角（指示器；`card` 时也作用在各项）                                                                    | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'full'`       |
-| `orientation`  | 布局与漫游方向                                                                                           | `'horizontal' \| 'vertical'`                               | `'horizontal'` |
-| `indicator`    | 指示器位置；`none` 时仅保留无障碍指示器（可视隐藏）                                                      | `'start' \| 'end' \| 'none'`                               | `'start'`      |
-| `inverted`     | 反色样式变体                                                                                             | `boolean`                                                  | —              |
-| `unstyled`     | 移除样式变体类，仅保留结构                                                                               | `boolean`                                                  | —              |
-| `id`           | 控件 `id`；未传时回退到 FormField Context                                                                | `string`                                                   | —              |
-| `name`         | 控件 `name`；未传时回退到 FormField Context                                                              | `string`                                                   | —              |
-| `required`     | 是否必填                                                                                                 | `boolean`                                                  | —              |
-| `disabled`     | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                                  | `boolean`                                                  | —              |
-| `invalid`      | 是否无效；会与 FormField Context 的 `invalid` 合并                                                       | `boolean`                                                  | —              |
-| `class`        | 根节点额外 class                                                                                         | `any`                                                      | —              |
-| `ui`           | 覆盖 slots 样式（`root` / `item` / `indicator` / `indicatorIcon` / `content` / `label` / `description`） | `Partial<RadioGroupStyleSlots>`                            | —              |
+| 属性           | 说明                                                                                                         | 类型                            | 默认值         |
+| -------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------- | -------------- |
+| `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                              | `AsTag \| Component`            | `'div'`        |
+| `items`        | 选项列表；单项含 `value`（`AcceptableValue`）、`label`、`description`、`disabled`、`class`                   | `RadioGroupItem[]`              | —              |
+| `modelValue`   | 受控选中值；可用 `v-model`；`AcceptableValue` 为 `string \| number \| bigint \| Record<string, any> \| null` | `AcceptableValue`               | —              |
+| `defaultValue` | 非受控初始选中值                                                                                             | `AcceptableValue`               | —              |
+| `loop`         | 键盘漫游到尽头时是否循环                                                                                     | `boolean`                       | `true`         |
+| `dir`          | 阅读方向（影响水平漫游）；未传时继承 `ConfigProvider`                                                        | `'ltr' \| 'rtl'`                | —              |
+| `variant`      | 外观变体                                                                                                     | `'soft' \| 'outline' \| 'card'` | `'soft'`       |
+| `size`         | 尺寸                                                                                                         | `'sm' \| 'md' \| 'lg'`          | `'md'`         |
+| `orientation`  | 布局与漫游方向                                                                                               | `'horizontal' \| 'vertical'`    | `'horizontal'` |
+| `indicator`    | 指示器位置；`none` 时仅保留无障碍指示器（可视隐藏）                                                          | `'start' \| 'end' \| 'none'`    | `'start'`      |
+| `inverted`     | 反色样式变体                                                                                                 | `boolean`                       | —              |
+| `unstyled`     | 移除样式变体类，仅保留结构                                                                                   | `boolean`                       | —              |
+| `id`           | 控件 `id`；未传时回退到 FormField Context                                                                    | `string`                        | —              |
+| `name`         | 控件 `name`；未传时回退到 FormField Context                                                                  | `string`                        | —              |
+| `required`     | 是否必填；会与 FormField Context 的 `required` 合并                                                          | `boolean`                       | —              |
+| `disabled`     | 是否禁用整组；会与 FormField Context 的 `disabled` 合并                                                      | `boolean`                       | —              |
+| `invalid`      | 是否无效；会与 FormField Context 的 `invalid` 合并                                                           | `boolean`                       | —              |
+| `class`        | 根节点额外 class                                                                                             | `any`                           | —              |
+| `ui`           | 覆盖 slots 样式（`root` / `item` / `indicator` / `indicatorIcon` / `content` / `label` / `description`）     | `Partial<RadioGroupStyleSlots>` | —              |
 
 ## Events
 
@@ -49,22 +48,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/radio-group
 | `indicator`   | 覆盖各项指示器内容；作用域参数 `{ state }`（`'checked' \| 'unchecked'`） |
 | `label`       | 覆盖各项标签；作用域参数 `{ state }`；未传时回退到 `item.label`          |
 | `description` | 覆盖各项描述；作用域参数 `{ state }`；未传时回退到 `item.description`    |
-
-## Types
-
-### `AcceptableValue`
-
-Reka UI 可提交值：`string | number | bigint | Record<string, any> | null`。
-
-### `RadioGroupItem`
-
-| 字段          | 说明           | 类型              |
-| ------------- | -------------- | ----------------- |
-| `value`       | 选项值         | `AcceptableValue` |
-| `label`       | 选项标签       | `string`          |
-| `description` | 选项描述       | `string`          |
-| `disabled`    | 是否禁用该项   | `boolean`         |
-| `class`       | 该项额外 class | `any`             |
 
 ## Accessibility
 

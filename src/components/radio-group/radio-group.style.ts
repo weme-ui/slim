@@ -22,37 +22,28 @@ export const useRadioGroupStyle = createVariants({
     },
     size: {
       sm: {
-        root: 'py-xs gap-sm',
-        item: 'gap-xs',
+        root: 'py-xs gap-md',
+        item: 'gap-sm',
         indicator: 'my-0.5 size-3',
         indicatorIcon: 'size-1.5',
         content: 'text-xs gap-0.5',
       },
       md: {
-        root: 'py-sm gap-md',
-        item: 'gap-sm',
+        root: 'py-sm gap-lg',
+        item: 'gap-md',
         indicator: 'my-0.5 size-4',
         indicatorIcon: 'size-2',
         content: 'text-sm gap-1',
         description: 'text-xs',
       },
       lg: {
-        root: 'py-md gap-lg',
-        item: 'gap-md',
+        root: 'py-md gap-xl',
+        item: 'gap-lg',
         indicator: 'my-0.5 size-5',
         indicatorIcon: 'size-3',
         content: 'text-base gap-1.5',
         description: 'text-sm',
       },
-    },
-    radius: {
-      none: { indicator: 'rounded-none', indicatorIcon: 'rounded-inherit' },
-      xs: { indicator: 'rounded-xs' },
-      sm: { indicator: 'rounded-sm' },
-      md: { indicator: 'rounded-md' },
-      lg: { indicator: 'rounded-lg' },
-      xl: { indicator: 'rounded-xl' },
-      full: { indicator: 'rounded-full', indicatorIcon: 'rounded-inherit' },
     },
     orientation: {
       horizontal: {},
@@ -64,8 +55,8 @@ export const useRadioGroupStyle = createVariants({
     inverted: { true: {} },
     unstyled: {
       false: {
-        indicator: 'data-[state=checked]:bg-accent data-[state=unchecked]:bg-muted hover:data-[state=unchecked]:bg-elevated',
-        indicatorIcon: 'shadow-xs origin-center scale-0 data-[state=checked]:scale-100',
+        indicator: 'rounded-full data-[state=checked]:bg-accent data-[state=unchecked]:bg-muted hover:data-[state=unchecked]:bg-elevated',
+        indicatorIcon: 'rounded-inherit shadow-xs origin-center scale-0 data-[state=checked]:scale-100',
         content: 'text-foreground data-[state=checked]:text-highlighted',
         description: 'text-subtle',
       },
@@ -106,62 +97,9 @@ export const useRadioGroupStyle = createVariants({
     },
 
     {
-      radius: ['xs', 'sm'],
-      unstyled: false,
-      class: { indicatorIcon: 'rounded-0.5' },
-    },
-    {
-      radius: 'md',
-      unstyled: false,
-      class: { indicatorIcon: 'rounded-0.75' },
-    },
-    {
-      radius: ['lg', 'xl'],
-      unstyled: false,
-      class: { indicatorIcon: 'rounded-1.25' },
-    },
-
-    {
-      radius: 'none',
       variant: 'card',
       unstyled: false,
-      class: { item: 'rounded-none' },
-    },
-    {
-      radius: 'xs',
-      variant: 'card',
-      unstyled: false,
-      class: { item: 'rounded-xs' },
-    },
-    {
-      radius: 'sm',
-      variant: 'card',
-      unstyled: false,
-      class: { item: 'rounded-sm' },
-    },
-    {
-      radius: 'md',
-      variant: 'card',
-      unstyled: false,
-      class: { item: 'rounded-md' },
-    },
-    {
-      radius: 'lg',
-      variant: 'card',
-      unstyled: false,
-      class: { item: 'rounded-lg' },
-    },
-    {
-      radius: 'xl',
-      variant: 'card',
-      unstyled: false,
-      class: { item: 'rounded-xl' },
-    },
-    {
-      radius: 'full',
-      variant: 'card',
-      unstyled: false,
-      class: { item: 'rounded-full' },
+      class: { item: 'rounded' },
     },
 
     {
@@ -189,7 +127,6 @@ export const useRadioGroupStyle = createVariants({
   defaultVariants: {
     variant: 'soft',
     size: 'md',
-    radius: 'full',
     orientation: 'horizontal',
   },
 })

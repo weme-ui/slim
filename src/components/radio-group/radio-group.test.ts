@@ -51,27 +51,22 @@ function mountRadioGroup(
 }
 
 describe('radio-group', () => {
-  it('applies default horizontal orientation, size, and radius', () => {
+  it('applies default horizontal orientation and size', () => {
     const ui = useRadioGroupStyle({})
     expect(ui.root()).toContain('flex')
     expect(ui.root()).not.toContain('flex-col')
     expect(ui.root()).toContain('py-sm')
-    expect(ui.root()).toContain('gap-md')
+    expect(ui.root()).toContain('gap-lg')
     expect(ui.indicator()).toContain('size-4')
     expect(ui.indicator()).toContain('rounded-full')
     expect(ui.content()).toContain('text-sm')
   })
 
   it('applies size and orientation variants', () => {
-    expect(useRadioGroupStyle({ size: 'sm' }).root()).toContain('gap-sm')
-    expect(useRadioGroupStyle({ size: 'lg' }).root()).toContain('gap-lg')
+    expect(useRadioGroupStyle({ size: 'sm' }).root()).toContain('gap-md')
+    expect(useRadioGroupStyle({ size: 'lg' }).root()).toContain('gap-xl')
     expect(useRadioGroupStyle({ orientation: 'horizontal' }).root()).not.toContain('flex-col')
     expect(useRadioGroupStyle({ orientation: 'vertical' }).root()).toContain('flex-col')
-  })
-
-  it('applies radius on the indicator', () => {
-    expect(useRadioGroupStyle({ radius: 'none' }).indicator()).toContain('rounded-none')
-    expect(useRadioGroupStyle({ radius: 'full' }).indicator()).toContain('rounded-full')
   })
 
   it('applies soft, outline, and card appearance compounds', () => {
@@ -90,10 +85,10 @@ describe('radio-group', () => {
     expect(useRadioGroupStyle({ inverted: false }).indicatorIcon()).toContain('bg-accent-1')
   })
 
-  it('applies card size and radius compounds', () => {
+  it('applies card size compounds', () => {
     expect(useRadioGroupStyle({ variant: 'card', size: 'sm' }).item()).toContain('px-sm')
     expect(useRadioGroupStyle({ variant: 'card', size: 'md' }).item()).toContain('px-lg')
-    expect(useRadioGroupStyle({ variant: 'card', radius: 'full' }).item()).toContain('rounded-full')
+    expect(useRadioGroupStyle({ variant: 'card' }).item()).toContain('rounded')
   })
 
   it('scales the indicator icon in when checked and out when unchecked', () => {
@@ -110,9 +105,11 @@ describe('radio-group', () => {
   it('skips appearance compounds when unstyled', () => {
     const unstyled = useRadioGroupStyle({ unstyled: true, variant: 'card' })
     expect(unstyled.indicator()).not.toContain('bg-muted')
+    expect(unstyled.indicator()).not.toContain('rounded-full')
     expect(unstyled.indicatorIcon()).not.toContain('scale-0')
     expect(unstyled.content()).not.toContain('text-foreground')
     expect(unstyled.item()).not.toContain('data-[state=checked]:outline-accent-4')
+    expect(unstyled.item()).not.toContain('rounded')
   })
 
   describe('given a group inside a form field', () => {

@@ -12,7 +12,6 @@ import { useRadioGroupStyle } from './radio-group.style'
 const props = withDefaults(defineProps<RadioGroupProps>(), {
   variant: 'soft',
   size: 'md',
-  radius: 'full',
   indicator: 'start',
   orientation: 'horizontal',
 })
@@ -55,7 +54,6 @@ onUnmounted(() => {
 const ui = computed(() => useRadioGroupStyle({
   variant: props.variant,
   size: props.size,
-  radius: props.radius,
   orientation: props.orientation,
   disabled: disabled.value,
   inverted: toBoolValue(props.inverted),

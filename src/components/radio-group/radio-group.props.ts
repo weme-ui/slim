@@ -19,7 +19,6 @@ export interface RadioGroupProps extends
   items: RadioGroupItem[]
   variant?: RadioGroupStyleProps['variant']
   size?: RadioGroupStyleProps['size']
-  radius?: RadioGroupStyleProps['radius']
   orientation?: RadioGroupStyleProps['orientation']
   indicator?: 'start' | 'end' | 'none'
   inverted?: boolean
