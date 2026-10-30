@@ -243,7 +243,6 @@ function html(source: string) {
 
 .component-lead {
   margin: 0.75rem 0 0;
-  max-width: 36rem;
   color: var(--vp-c-text-2);
   font-size: 1.05rem;
   line-height: 1.6;
