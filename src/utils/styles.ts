@@ -4,9 +4,9 @@ import type { TWMergeConfig, VariantProps } from 'tailwind-variants'
 import { isColorAlias, isCustomThemeToken } from '@weme-ui/unocss-preset/tokens'
 import { clsx } from 'clsx'
 import { extendTailwindMerge } from 'tailwind-merge'
-import { createTV, cx } from 'tailwind-variants'
+import { createTV } from 'tailwind-variants/config'
 
-export { cx, type VariantProps }
+export { type VariantProps }
 
 export type ComponentProps<Props, Key extends string> = Props extends Record<string, any>
   ? Props[Key]
