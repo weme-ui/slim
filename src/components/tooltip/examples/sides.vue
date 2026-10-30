@@ -23,7 +23,7 @@ const sides = [
         :key="side"
         :content="side"
         :side="side"
-        :trigger-props="{ asChild: true }"
+        as-child
       >
         <Button :label="side" />
       </Tooltip>

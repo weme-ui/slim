@@ -10,7 +10,7 @@ import Tooltip from '../tooltip.vue'
       <Tooltip
         content="Saving"
         loading
-        :trigger-props="{ asChild: true }"
+        as-child
       >
         <Button label="Save" />
       </Tooltip>

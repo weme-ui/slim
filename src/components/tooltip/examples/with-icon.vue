@@ -10,7 +10,7 @@ import Tooltip from '../tooltip.vue'
       <Tooltip
         content="Favorite"
         icon="ri:heart-line"
-        :trigger-props="{ asChild: true }"
+        as-child
       >
         <Button
           icon="ri:heart-line"

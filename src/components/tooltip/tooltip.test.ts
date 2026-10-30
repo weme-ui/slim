@@ -48,7 +48,7 @@ describe('tooltip', () => {
     expect(ui.trigger()).toContain('focus-visible:outline-none')
     expect(ui.content()).toContain('bg-tooltip')
     expect(ui.content()).toContain('text-tooltip')
-    expect(ui.content()).toContain('text-sm')
+    expect(ui.content()).toContain('text-xs')
     expect(ui.content()).toContain('rounded')
     expect(ui.content()).toContain('z-highest')
     expect(ui.icon()).toContain('shrink-0')
@@ -115,6 +115,17 @@ describe('tooltip', () => {
       await flush()
       expect(tooltipContent()?.textContent).toContain('Custom')
       expect(tooltipContent()?.textContent).not.toContain('Fallback')
+    })
+
+    it('renders an arrow by default and hides it when arrowProps is false', async () => {
+      mountTooltip({ content: 'Hint', defaultOpen: true })
+      await flush()
+      expect(tooltipContent()?.querySelector('svg')).toBeTruthy()
+      wrapper?.unmount()
+
+      mountTooltip({ content: 'Hint', defaultOpen: true, arrowProps: false })
+      await flush()
+      expect(tooltipContent()?.querySelector('svg')).toBeFalsy()
     })
   })
 })

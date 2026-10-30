@@ -10,7 +10,7 @@ import Tooltip from '../tooltip.vue'
       <Tooltip
         content="Unavailable"
         disabled
-        :trigger-props="{ asChild: true }"
+        as-child
       >
         <Button label="Hover" />
       </Tooltip>

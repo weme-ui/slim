@@ -11,6 +11,7 @@ import Icon from '../icon/icon.vue'
 import { useTooltipStyle } from './tooltip.style'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
+  delayDuration: 20,
   side: 'top',
   loadingIcon: 'ri:loader-line',
   arrowProps: true,
