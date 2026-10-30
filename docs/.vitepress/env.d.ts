@@ -22,6 +22,11 @@ declare module '*.vue?raw' {
   export default content
 }
 
+declare module '*.svg?raw' {
+  const content: string
+  export default content
+}
+
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
 

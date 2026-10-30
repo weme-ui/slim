@@ -244,6 +244,15 @@ defineProps<{
       <i class="g-bar is-soft is-80" />
     </div>
 
+    <div v-else-if="name === 'tooltip'" class="g-tooltip">
+      <span class="g-tooltip-bubble">
+        <i class="g-bar is-lg" />
+      </span>
+      <span class="g-pill is-ghost">
+        <i class="g-bar is-sm" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'animated-toggle-icon'" class="g-toggle">
       <span class="g-spark is-off" />
       <span class="g-spark is-on" />
@@ -686,6 +695,38 @@ defineProps<{
   width: 12.5rem;
   padding: 1.5rem;
   border-style: dashed;
+}
+
+.g-tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.g-tooltip-bubble {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.4rem;
+  height: 1.75rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-tooltip-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+  background: var(--shell);
+  transform: translateX(-50%) rotate(45deg);
 }
 
 .g-dot-lg {

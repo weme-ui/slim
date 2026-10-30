@@ -100,6 +100,67 @@
   margin-top: 2.75rem;
 }
 
+/**
+ * Copy / download as Markdown — sit on the heading row, compact.
+ */
+.markdown-copy-buttons {
+  width: auto;
+}
+
+.markdown-copy-buttons-inner {
+  margin: 0;
+  gap: 0.375rem;
+}
+
+.markdown-copy-buttons .dropdown-trigger,
+.markdown-copy-buttons .download-btn {
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.markdown-copy-buttons .copy-page {
+  gap: 0.375rem;
+  padding: 0.3125rem 0.625rem;
+}
+
+.markdown-copy-buttons .chevron-wrapper {
+  padding: 0 0.4375rem;
+}
+
+.markdown-copy-buttons .download-btn {
+  padding: 0.3125rem 0.5rem;
+}
+
+.markdown-copy-buttons .icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.markdown-copy-buttons .divider {
+  height: 0.875rem;
+}
+
+.markdown-copy-buttons .dropdown-menu {
+  min-width: 11.5rem;
+  font-size: 0.8125rem;
+}
+
+.vp-doc.vp-doc {
+  position: relative;
+}
+
+.vp-doc.vp-doc > h1 {
+  padding-right: 11rem;
+}
+
+.vp-doc.vp-doc > h1 + .markdown-copy-buttons {
+  position: absolute;
+  top: 0.35rem;
+  right: 0;
+  margin: 0;
+}
+
 .VPSidebar .group + .group {
   border-top: none !important;
 }

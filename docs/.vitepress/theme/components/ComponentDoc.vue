@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { installationHtml, usageHtml } from 'virtual:docs-highlighted'
+import CopyOrDownloadAsMarkdownButtons from 'vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue'
 import { computed } from 'vue'
 import { renderInlineMarkdown, renderMarkdown } from '../../lib/markdown'
 import { buildComponentPage, flattenOutline, getRegistryItem, registry } from '../../lib/registry'
@@ -58,7 +59,10 @@ function html(source: string) {
 <template>
   <div v-if="page" class="component-doc">
     <header class="doc-hero">
-      <h1>{{ page.title }}</h1>
+      <div class="doc-hero-title">
+        <h1>{{ page.title }}</h1>
+        <CopyOrDownloadAsMarkdownButtons />
+      </div>
       <p
         v-if="page.lead || page.description"
         class="component-lead"
@@ -211,12 +215,30 @@ function html(source: string) {
   margin-bottom: 1.75rem;
 }
 
+.doc-hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .doc-hero h1 {
+  min-width: 0;
   margin: 0;
   letter-spacing: -0.035em;
   font-size: 2.25rem;
   line-height: 1.15;
   font-weight: 700;
+}
+
+.doc-hero :deep(.markdown-copy-buttons) {
+  flex-shrink: 0;
+  width: auto;
+  margin: 0;
+}
+
+.doc-hero :deep(.markdown-copy-buttons-inner) {
+  margin: 0;
 }
 
 .component-lead {

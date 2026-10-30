@@ -4,7 +4,9 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vitepress'
+import llmstxt, { copyOrDownloadAsMarkdownButtons } from 'vitepress-plugin-llms'
 import { firstGuideLink, getGuideSidebar, GUIDE_BASE } from './lib/guide.ts'
+import { docsLlmsPlugin } from './lib/llms.ts'
 import { buildComponentPage, getComponentSidebar, getRegistryItem } from './lib/registry.ts'
 import { docsShikiPlugin } from './lib/shiki-plugin.ts'
 
@@ -12,6 +14,9 @@ const configDir = dirname(fileURLToPath(import.meta.url))
 const repoRoot = resolve(configDir, '../..')
 const docsDir = resolve(configDir, '..')
 const siteBase = '/slim/'
+const siteOrigin = 'https://weme-ui.github.io'
+const siteTitle = 'Slim'
+const siteDescription = '一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。'
 
 function assetUrl(path: string) {
   return `${siteBase}${path.replace(/^\//, '')}`
@@ -23,8 +28,19 @@ const firstGuide = firstGuideLink(docsDir)
 
 const sidebar: DefaultTheme.Sidebar = {}
 
-if (guideSidebar.length)
-  sidebar[GUIDE_BASE] = guideSidebar
+if (guideSidebar.length) {
+  sidebar[GUIDE_BASE] = guideSidebar.map((group) => {
+    if (!group.items)
+      return group
+    return {
+      ...group,
+      items: [
+        ...group.items,
+        { text: 'llms.txt', link: '/llms.txt' },
+      ],
+    }
+  })
+}
 
 if (componentSidebar.length) {
   for (const prefix of ['/components/', '/composables/'] as const)
@@ -53,10 +69,19 @@ const umamiHead: HeadConfig[] = [
   ],
 ]
 
-export default defineConfig({
+type ThemeConfig = DefaultTheme.Config & {
+  llms?: {
+    copyText?: string
+    copiedText?: string
+    viewMarkdownText?: string
+    openInAIText?: string
+  }
+}
+
+export default defineConfig<ThemeConfig>({
   base: siteBase,
-  title: 'Slim',
-  description: '一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。',
+  title: siteTitle,
+  description: siteDescription,
   head: [
     [
       'link',
@@ -96,6 +121,17 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/weme-ui/slim' },
     ],
+    llms: {
+      copyText: '复制页面',
+      copiedText: '已复制',
+      viewMarkdownText: '查看 Markdown',
+      openInAIText: '在 {provider} 中打开',
+    },
+  },
+  markdown: {
+    config(md) {
+      md.use(copyOrDownloadAsMarkdownButtons)
+    },
   },
   vite: {
     optimizeDeps: {
@@ -135,6 +171,23 @@ export default defineConfig({
           return code.replaceAll('.vp-doc a', '.vp-doc a:not(.example-stage-body *)')
         },
       },
+      llmstxt({
+        domain: siteOrigin,
+        ignoreFiles: [
+          'components/index.md',
+          'components/[[]name].md',
+          'composables/[[]name].md',
+        ],
+        sidebar: guideSidebar,
+      }),
+      docsLlmsPlugin({
+        repoRoot,
+        docsDir,
+        base: siteBase,
+        domain: siteOrigin,
+        title: siteTitle,
+        description: siteDescription,
+      }),
     ],
     resolve: {
       alias: {
@@ -145,9 +198,12 @@ export default defineConfig({
       fs: {
         allow: [repoRoot],
       },
+      watch: {
+        ignored: ['**/.vitepress/dist/**'],
+      },
     },
     ssr: {
-      noExternal: ['@weme-ui/unocss-preset'],
+      noExternal: ['@weme-ui/unocss-preset', 'vitepress-plugin-llms'],
     },
   },
 })

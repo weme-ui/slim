@@ -1,4 +1,5 @@
 import type { Theme } from 'vitepress'
+import CopyOrDownloadAsMarkdownButtons from 'vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue'
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import ApiTable from './components/ApiTable.vue'
@@ -18,5 +19,6 @@ export default {
     app.component('ComponentIndex', ComponentIndex)
     app.component('ExamplePreview', ExamplePreview)
     app.component('HomePage', HomePage)
+    app.component('CopyOrDownloadAsMarkdownButtons', CopyOrDownloadAsMarkdownButtons)
   },
 } satisfies Theme
