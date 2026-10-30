@@ -3,6 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useSelectStyle = createVariants({
   slots: {
+    root: '',
     trigger: 'group/trigger flex min-w-60 select-none flex-y-center relative focus-visible:outline-none',
     prefix: '',
     prefixIcon: '',
@@ -239,5 +240,5 @@ export const useSelectStyle = createVariants({
   },
 })
 
-export type SelectStyleSlots = typeof useSelectStyle['slots']
+export type SelectStyleSlots = Omit<typeof useSelectStyle['slots'], 'root'>
 export type SelectStyleProps = VariantProps<typeof useSelectStyle>
