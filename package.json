@@ -35,7 +35,7 @@
     "play:preview": "NODE_ENV=development bun run --cwd playground preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.docs.json && vue-tsc --noEmit -p tsconfig.playground.json",
+    "typecheck": "vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.docs.json && vue-tsc --noEmit -p tsconfig.playground.json && tsc --noEmit -p skills/tsconfig.json",
     "test": "vitest run"
   },
   "dependencies": {
@@ -44,16 +44,16 @@
     "@vueuse/core": "^15.0.0",
     "clsx": "^2.1.1",
     "defu": "^6.1.7",
-    "motion-v": "^2.8.0",
+    "motion-v": "^2.9.0",
     "reka-ui": "^2.11.0",
     "tailwind-merge": "^3.7.0",
-    "tailwind-variants": "^3.3.1"
+    "tailwind-variants": "^4.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^10.0.0",
     "@iconify-json/ri": "^1.2.10",
     "@testing-library/vue": "^8.1.0",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@unocss/eslint-plugin": "^66.12.0",
     "@vitejs/plugin-vue": "^6.0.10",
     "@vitejs/plugin-vue-jsx": "^5.1.6",
@@ -77,10 +77,11 @@
     "vite-plugin-vue-devtools": "^8.2.1",
     "vite-plugin-vue-layouts": "^0.11.0",
     "vitepress": "^2.0.0-alpha.21",
+    "vitepress-plugin-llms": "^1.14.0",
     "vitest": "^5.0.5",
     "vitest-axe": "^0.1.0",
     "vue": "^3.5.44",
     "vue-router": "^5.4.0",
-    "vue-tsc": "^3.3.13"
+    "vue-tsc": "^3.3.14"
   }
 }
