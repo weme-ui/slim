@@ -2321,6 +2321,74 @@
       ]
     },
     {
+      "name": "tooltip",
+      "type": "component",
+      "title": "Tooltip",
+      "description": "A short description that appears on hover or focus.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/tooltip/tooltip.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tooltip/tooltip.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tooltip/tooltip.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/tooltip/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tooltip/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tooltip/examples/sides.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tooltip/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tooltip/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tooltip/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/tooltip/tooltip.test.ts"
+        }
+      ],
+      "registryDependencies": [
+        "icon"
+      ],
+      "cssVars": {
+        "tooltip": {
+          "background": "neutral.11",
+          "color": "neutral.1"
+        }
+      }
+    },
+    {
       "name": "animated-toggle-icon",
       "type": "component",
       "title": "Animated Toggle Icon",

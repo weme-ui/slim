@@ -11,6 +11,10 @@ export default defineConfig({
           'medium-color': 'success.7',
           'strong-color': 'success.9',
         },
+        'tooltip': {
+          background: 'neutral.11',
+          color: 'neutral.1',
+        },
       },
     }),
   ],
