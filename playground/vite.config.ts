@@ -50,6 +50,7 @@ const plugins: PluginOption[] = [
     ],
     dirs: [
       'src/composables',
+      '../src/composables',
     ],
     vueTemplate: true,
     viteOptimizeDeps: true,
