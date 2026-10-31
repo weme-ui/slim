@@ -13,6 +13,19 @@ description: >-
 
 判定类型后再读对应契约，只凭本文件不够。
 
+## 流程
+
+```text
+Task Progress:
+- [ ] 判定类型，读对应契约（component.md 或 composable.md）
+- [ ] bun skills/create-docs/scripts/item.ts <name>
+- [ ] 读本 item 源码（组件目录下的 .vue / .props.ts / .style.ts；composable 读 <name>.ts）
+- [ ] 源码有 from 'reka-ui' 时跑 bun skills/create-docs/scripts/reka.ts <name>。非 0 则 Shell 读 node_modules 的 *Props，不要用 WebFetch 或浏览器
+- [ ] 选模式 A / B。A 写简介，或用户要求按行文重写简介时，读 prose.md
+- [ ] 写文档、示例、测试，按 item.ts 输出的 line 定点改 registry
+- [ ] 再跑 item.ts；只跑当前测试文件（bun run test <file>，不要 bun test）
+```
+
 ## 判定
 
 | 输入                                     | 类型       | 接着读                         |
@@ -23,17 +36,6 @@ description: >-
 用户只说 create-docs、未给路径时，按当前打开的文件或对话里的目录判定。两种都点名则各走一遍。
 
 新 `type: "component"` 之后点名 `update-component-index` 补 glyph。
-
-## 查阅
-
-- 本 item 源码：组件读该目录下的 `.vue` / `.props.ts` / `.style.ts`；composable 读 `<name>.ts`。文件不存在则跳过。API 必须能在源码里核对；对不上就写「待补充」。Slim 是否透传某成员，只看本 item 源码。
-- 上游文档（先单页，禁止灌全集）：
-  - Reka UI：源码 `from 'reka-ui'` 时，打开 [llms.txt](https://reka-ui.com/llms.txt) 对上 slug，再取单页 `https://reka-ui.com/docs/components/<slug>.md` 或 `https://reka-ui.com/docs/utilities/<slug>.md`（如 `tooltip`、`config-provider`）。用于透传 props 的说明、默认值、Events、键盘。禁止抓 `llms-full.txt`。
-  - 单页没有的字段，才用 Shell 读 `node_modules/<pkg>` 里的 `*Props`（工作区 Grep 扫不到依赖目录）。
-  - 默认值：本组件 `withDefaults` / `*.style.ts` `defaultVariants` 优先，未设的才用上游文档或上游 `withDefaults`。
-- registry / `files` / frontmatter：跑 `bun skills/create-docs/scripts/item.ts <name>`。它打印该 item、邻居、磁盘 vs `kind` 差、frontmatter vs `dependencies`，并在对齐时以退出码 0 结束。禁止 Read `registry.json` 全文。改 item 时按输出里的 `line` 做定点编辑或 StrReplace。
-- 活范本只学结构，API 以本 item 源码为准。
-- H2 / 表格解析拿不准时，才 Grep `buildComponentPage` 或 `parseMarkdown`。不预读整份渲染器。
 
 ## 模式
 
@@ -46,6 +48,18 @@ description: >-
 
 - **A** 必写文档和测试。写简介时读 [prose.md](prose.md)。
 - **B** 以源码更新 API 章节；默认保留简介、Installation、Usage、已有示例和测试。用户要求按行文重写简介时才读 [prose.md](prose.md)。API 变更让示例 / 测试失效，或文档新增了可核对的公开行为而测试缺失时，才改或补，并说明改了什么。
+
+## 查阅
+
+- 本 item 源码：组件读该目录下的 `.vue` / `.props.ts` / `.style.ts`；composable 读 `<name>.ts`。文件不存在则跳过。API 必须能在源码里核对；对不上就写「待补充」。Slim 是否透传某成员，只看本 item 源码。
+- 上游 Reka UI：只在源码有 `from 'reka-ui'` 时查。数据源是本地 `skills/create-docs/refs/reka-ui.txt`，用 `bun skills/create-docs/scripts/reka.ts <name>` 查询。脚本默认不刷新索引；命中唯一 slug 后才拉对应单页，打印 JSON（正文在 `body`）。用于透传 props 的说明、默认值、Events、键盘。
+- 单页没有的字段，或 `reka.ts` 超时 / 非 2xx（退出码非 0），才用 Shell 读 `node_modules/<pkg>` 里的 `*Props`（工作区 Grep 扫不到依赖目录）。多个 slug 命中时同样不要自己抓单页。
+- 默认值：本组件 `withDefaults` / `*.style.ts` `defaultVariants` 优先，未设的才用上游文档或上游 `withDefaults`。
+- 本地索引缺失时，脚本退出非 0，并提示 `bun skills/create-docs/scripts/reka.ts --refresh`。只有这条命令会请求远端索引；失败则保留旧缓存。日常 create-docs 不跑 `--refresh`。查询路径里不要自己去拉索引。
+- 禁止 WebFetch、浏览器，以及 markdown 链接去碰 `llms.txt` / `llms-full.txt`（`https://reka-ui.com/llms.txt`、`https://reka-ui.com/llms-full.txt`）。单页也只走 `reka.ts`。禁止 Read `registry.json` 全文。
+- registry / `files` / frontmatter：跑 `bun skills/create-docs/scripts/item.ts <name>`。它打印该 item、邻居、磁盘 vs `kind` 差、frontmatter vs `dependencies`，并在对齐时以退出码 0 结束。改 item 时按输出里的 `line` 做定点编辑或 StrReplace。
+- 活范本只学结构，API 以本 item 源码为准。
+- H2 / 表格解析拿不准时，才 Grep `buildComponentPage` 或 `parseMarkdown`。不预读整份渲染器。
 
 ## 文档
 
