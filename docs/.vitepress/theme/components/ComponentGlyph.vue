@@ -113,6 +113,13 @@ defineProps<{
       </span>
     </div>
 
+    <div v-else-if="name === 'slider'" class="g-slider">
+      <span class="g-slider-track">
+        <i class="g-slider-fill" />
+        <span class="g-slider-thumb" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'tags-input'" class="g-input g-tags">
       <span class="g-chip" />
       <span class="g-chip" />
@@ -533,6 +540,40 @@ defineProps<{
   width: 0.7rem;
   height: 0.12rem;
   background: var(--ink);
+}
+
+.g-slider {
+  display: flex;
+  align-items: center;
+  width: 8.5rem;
+}
+
+.g-slider-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: var(--ink-soft);
+}
+
+.g-slider-fill {
+  width: 35%;
+  height: 100%;
+  border-radius: 999px 0 0 999px;
+  background: var(--fill);
+}
+
+.g-slider-thumb {
+  position: absolute;
+  left: 35%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--fill);
+  transform: translateX(-50%);
 }
 
 .g-tags {

@@ -101,7 +101,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `modal`
   - [ ] `pop-confirm`
   - [ ] `popover`
-  - [ ] `tooltip`
+  - [x] `tooltip`
 
 - **Form**
   - [ ] `cascader`
@@ -111,7 +111,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `file-upload`
   - [ ] `filters`
   - [ ] `rich-text`
-  - [ ] `slider`
   - [x] `autocomplete`
   - [x] `checkbox-group`
   - [x] `checkbox`
@@ -127,6 +126,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `radio-group`
   - [x] `range-input`
   - [x] `select`
+  - [x] `slider`
   - [x] `switch`
   - [x] `tag-group`
   - [x] `tags-input`

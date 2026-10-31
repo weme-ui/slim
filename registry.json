@@ -1152,6 +1152,84 @@
       ]
     },
     {
+      "name": "slider",
+      "type": "component",
+      "title": "Slider",
+      "description": "A slider for selecting one or more numeric values.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/slider/slider.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/slider/slider.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/slider/slider.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/slider/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/range.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/steps.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/marks.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/slider/slider.test.ts"
+        }
+      ],
+      "registryDependencies": [
+        "tooltip",
+        "use-form-field-context"
+      ]
+    },
+    {
       "name": "tags-input",
       "type": "component",
       "title": "Tags Input",
