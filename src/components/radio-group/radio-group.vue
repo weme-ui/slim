@@ -108,9 +108,9 @@ function handleUpdate(value: AcceptableValue) {
           </slot>
 
           <slot v-if="hasDescription || item.description" name="description" :state="getState(checked)">
-            <div :class="cn(ui.description(), props.ui?.description)">
+            <p :class="cn(ui.description(), props.ui?.description)">
               {{ item.description }}
-            </div>
+            </p>
           </slot>
         </div>
 
