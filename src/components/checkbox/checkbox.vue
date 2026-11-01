@@ -126,9 +126,9 @@ function handleUpdate(value: boolean | 'indeterminate') {
       </slot>
 
       <slot v-if="hasDescription" name="description" :state="getState(state)">
-        <div :class="cn(ui.description(), props.ui?.description)">
+        <p :class="cn(ui.description(), props.ui?.description)">
           {{ description }}
-        </div>
+        </p>
       </slot>
     </div>
 
