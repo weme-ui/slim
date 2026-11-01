@@ -199,16 +199,16 @@ function handleBlur(e: FocusEvent) {
                 <slot name="item-content" :item="item" :selected="selected">
                   <div v-if="item.label && item.description" :class="cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)">
                     <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                    <div :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                    <p :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                       {{ item.description }}
-                    </div>
+                    </p>
                   </div>
 
                   <template v-else>
                     <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                    <div v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                    <p v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                       {{ item.description }}
-                    </div>
+                    </p>
                   </template>
                 </slot>
               </slot>
