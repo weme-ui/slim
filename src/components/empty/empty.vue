@@ -45,11 +45,11 @@ const ui = computed(() => useEmptyStyle({
             {{ title }}
           </slot>
         </div>
-        <div v-if="!!$slots.description || !!description" :class="cn(ui.description(), props.ui?.description)">
+        <p v-if="!!$slots.description || !!description" :class="cn(ui.description(), props.ui?.description)">
           <slot name="description">
             {{ description }}
           </slot>
-        </div>
+        </p>
       </slot>
     </div>
     <div v-if="!!$slots.content" :class="cn(ui.content(), props.ui?.content)">
