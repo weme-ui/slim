@@ -11,8 +11,13 @@ export default defineConfig({
           'medium-color': 'success.7',
           'strong-color': 'success.9',
         },
+        'scrollbar': {
+          'color': 'neutral.3',
+          'thumb-color': 'neutral.8',
+          'thumb-hover-color': 'neutral.9',
+        },
         'tooltip': {
-          background: 'neutral.11',
+          bg: 'neutral.11',
           color: 'neutral.1',
         },
       },

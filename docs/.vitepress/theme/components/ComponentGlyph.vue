@@ -224,6 +224,19 @@ defineProps<{
       </div>
     </div>
 
+    <div v-else-if="name === 'scroll-area'" class="g-root g-mini g-scroll">
+      <div class="g-scroll-body">
+        <i class="g-bar is-60" />
+        <i class="g-bar is-soft is-full" />
+        <i class="g-bar is-lg" />
+        <i class="g-bar is-soft is-80" />
+        <i class="g-bar is-md" />
+      </div>
+      <span class="g-scroll-track">
+        <i />
+      </span>
+    </div>
+
     <div v-else-if="name === 'config-provider'" class="g-root g-mini">
       <div class="g-row">
         <i class="g-bar is-md" />
@@ -243,6 +256,13 @@ defineProps<{
 
     <div v-else-if="name === 'icon-tile'" class="g-root g-tile">
       <span class="g-spark is-sm" />
+    </div>
+
+    <div v-else-if="name === 'alert'" class="g-root g-mini">
+      <div class="g-row">
+        <span class="g-alert-mark" />
+        <i class="g-bar is-soft is-70" />
+      </div>
     </div>
 
     <div v-else-if="name === 'empty'" class="g-root g-empty">
@@ -728,6 +748,37 @@ defineProps<{
   border-left: 1px solid var(--edge);
 }
 
+.g-scroll {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.g-scroll-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.75rem;
+}
+
+.g-scroll-track {
+  flex-shrink: 0;
+  width: 0.375rem;
+  margin: 0.5rem 0.35rem 0.5rem 0;
+  border-radius: 999px;
+  background: var(--ink-soft);
+}
+
+.g-scroll-track i {
+  display: block;
+  width: 100%;
+  height: 42%;
+  margin-top: 0.35rem;
+  border-radius: inherit;
+  background: var(--fill);
+}
+
 .g-empty {
   display: flex;
   flex-direction: column;
@@ -775,6 +826,42 @@ defineProps<{
   height: 2rem;
   border-radius: 999px;
   background: var(--ink-soft);
+}
+
+.g-alert-mark {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+}
+
+.g-alert-mark::before,
+.g-alert-mark::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.g-alert-mark::before {
+  top: 0.18rem;
+  width: 0.14rem;
+  height: 0.14rem;
+  border-radius: 999px;
+}
+
+.g-alert-mark::after {
+  top: 0.4rem;
+  width: 0.12rem;
+  height: 0.38rem;
+  border-radius: 999px;
+}
+
+.g-bar.is-70 {
+  width: 70%;
 }
 
 .g-spark {

@@ -78,8 +78,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `empty`
 
 - **Layout**
-  - [ ] `marquee`
-  - [ ] `scroll-area`
+  - [x] `scroll-area`
 
 - **Agents**
   - [ ] `agent-activity`
@@ -111,6 +110,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `file-upload`
   - [ ] `filters`
   - [ ] `rich-text`
+  - [ ] `segmented-control`
   - [x] `autocomplete`
   - [x] `checkbox-group`
   - [x] `checkbox`

@@ -9,6 +9,7 @@ import { firstGuideLink, getGuideSidebar, GUIDE_BASE } from './lib/guide.ts'
 import { docsLlmsPlugin } from './lib/llms.ts'
 import { buildComponentPage, getComponentSidebar, getRegistryItem } from './lib/registry.ts'
 import { docsShikiPlugin } from './lib/shiki-plugin.ts'
+import { vpDocExampleIslandPlugin } from './lib/vp-doc-island.ts'
 
 const configDir = dirname(fileURLToPath(import.meta.url))
 const repoRoot = resolve(configDir, '../..')
@@ -161,16 +162,7 @@ export default defineConfig<ThemeConfig>({
             return resolve(configDir, 'theme/stubs/vue-router.ts')
         },
       },
-      {
-        name: 'weme-vp-doc-example-island',
-        enforce: 'pre',
-        transform(code, id) {
-          const file = id.split('?')[0]!.replace(/\\/g, '/')
-          if (!file.endsWith('/theme-default/styles/components/vp-doc.css'))
-            return
-          return code.replaceAll('.vp-doc a', '.vp-doc a:not(.example-stage-body *)')
-        },
-      },
+      vpDocExampleIslandPlugin(),
       llmstxt({
         domain: siteOrigin,
         ignoreFiles: [

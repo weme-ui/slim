@@ -2145,6 +2145,55 @@
       ]
     },
     {
+      "name": "scroll-area",
+      "type": "component",
+      "title": "Scroll Area",
+      "description": "Custom-styled scrollbars that keep native scrolling.",
+      "meta": {
+        "docs.category": "layout",
+        "docs.categoryLabel": "Layout"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/scroll-area/scroll-area.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/scroll-area/scroll-area.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/scroll-area/scroll-area.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/scroll-area/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/scroll-area/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/scroll-area/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/scroll-area/examples/type.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/scroll-area/scroll-area.test.ts"
+        }
+      ]
+    },
+    {
       "name": "config-provider",
       "type": "component",
       "title": "Config Provider",
@@ -2333,6 +2382,79 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/icon-tile/icon-tile.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "component",
+      "title": "Alert",
+      "description": "Used to display a status message.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "registryDependencies": [
+        "icon",
+        "link-overlay"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/alert/alert.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/alert/alert.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/alert/alert.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/alert/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/statuses.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/closable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/with-link.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/with-actions.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/alert/alert.test.ts"
         }
       ]
     },
