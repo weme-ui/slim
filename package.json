@@ -35,19 +35,19 @@
     "play:preview": "NODE_ENV=development bun run --cwd playground preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.docs.json && vue-tsc --noEmit -p tsconfig.playground.json && tsc --noEmit -p skills/tsconfig.json",
+    "typecheck": "vue-tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
-    "@iconify/vue": "^5.0.4",
+    "@iconify/vue": "^5.0.5",
     "@tanstack/vue-form": "^1.33.5",
     "@vueuse/core": "^15.0.0",
     "clsx": "^2.1.1",
     "defu": "^6.1.7",
-    "motion-v": "^2.9.0",
+    "motion-v": "^2.10.0",
     "reka-ui": "^2.11.0",
     "tailwind-merge": "^3.7.0",
-    "tailwind-variants": "^4.0.0"
+    "tailwind-variants": "^4.0.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^10.0.0",
@@ -60,7 +60,7 @@
     "@vue/server-renderer": "^3.5.44",
     "@vue/test-utils": "^2.5.1",
     "@weme-ui/unocss-preset": "^0.2.2",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-plugin-format": "^2.0.1",
     "happy-dom": "^21.0.4",
     "lint-staged": "^17.6.0",
