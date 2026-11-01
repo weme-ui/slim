@@ -225,11 +225,11 @@ useForwardExpose()
         </span>
       </div>
 
-      <div v-if="hasDescription" :id="descriptionId" :class="cn(ui.description(), props.ui?.description)">
+      <p v-if="hasDescription" :id="descriptionId" :class="cn(ui.description(), props.ui?.description)">
         <slot name="description">
           {{ description }}
         </slot>
-      </div>
+      </p>
     </div>
 
     <div :class="cn(ui.content(), props.ui?.content)">
@@ -246,18 +246,18 @@ useForwardExpose()
                 {{ error.message }}
               </li>
             </ul>
-            <div v-else>
+            <p v-else>
               {{ field.state.meta.errors[0]?.message }}
-            </div>
+            </p>
           </slot>
         </div>
       </Presence>
 
-      <div v-if="!isInvalid && hasHelp" :class="cn(ui.help(), props.ui?.help)">
+      <p v-if="!isInvalid && hasHelp" :class="cn(ui.help(), props.ui?.help)">
         <slot name="help">
           {{ help }}
         </slot>
-      </div>
+      </p>
     </div>
   </Primitive>
 </template>
