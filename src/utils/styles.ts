@@ -57,6 +57,21 @@ function isBorderSideOrAxis(value: string) {
 }
 
 /**
+ * UnoCSS `text-*` 字号，与 preset 的 `rem()` 一致：
+ * `2.75` → `0.6875rem`，`12px` / `px` 等同理。
+ * 默认 `theme.color` 是 `isAny`，这些值会先被当成 text-color，从而盖掉 `text-subtle`。
+ */
+const UNO_TEXT_SIZE_RE = /^(-?\d*(?:\.\d+)?)(?:px|pt|pc|%|r?(?:em|ex|lh|cap|ch|ic)|(?:[sld]?v|cq)(?:[whib]|min|max)|in|cm|mm|rpx)?$/i
+const UNO_TEXT_UNIT_ONLY_RE = /^(?:px|[sld]?v[wh])$/i
+
+function isUnoTextSize(value: string) {
+  if (UNO_TEXT_UNIT_ONLY_RE.test(value))
+    return true
+  const amount = UNO_TEXT_SIZE_RE.exec(value)?.[1]
+  return !!amount && amount !== '-' && !Number.isNaN(Number(amount))
+}
+
+/**
  * UnoCSS `b-*` 边框色；排除宽度、style、方向。
  * hybrid：主题 token/别名 + 色板 / cssVars / transparent 等。
  */
@@ -78,6 +93,9 @@ function isBorderColor(value: string) {
  */
 const twMergeConfig = {
   extend: {
+    theme: {
+      text: [isUnoTextSize],
+    },
     classGroups: {
       'fancy': [
         {
