@@ -283,6 +283,12 @@ defineProps<{
       </span>
     </div>
 
+    <div v-else-if="name === 'skeleton'" class="g-skeleton">
+      <i class="g-bar is-full is-soft" />
+      <i class="g-bar is-80 is-soft" />
+      <i class="g-bar is-60 is-soft" />
+    </div>
+
     <div v-else-if="name === 'tooltip'" class="g-tooltip">
       <span class="g-tooltip-bubble">
         <i class="g-bar is-lg" />
@@ -599,6 +605,14 @@ defineProps<{
   height: 100%;
   border-radius: 999px 0 0 999px;
   background: var(--fill);
+}
+
+.g-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  width: 8.5rem;
 }
 
 .g-progress-circle {

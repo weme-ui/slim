@@ -1,30 +1,17 @@
 <script setup lang="ts">
-import { TooltipProvider } from 'reka-ui'
-import { ref } from 'vue'
-
-const progress = ref<number[]>([40])
 </script>
 
 <template>
-  <TooltipProvider>
-    <div class="flex flex-col gap-6 h-screen flex-center">
-      <ProgressBar
-        :model-value="progress[0] === 0 ? null : progress[0]"
-        :max="100"
-        size="md"
-        label="Progress"
-        description="This is a progress bar"
-        class="w-80"
-      />
-
-      <ProgressCircle
-        :model-value="progress[0] === 0 ? null : progress[0]"
-        :max="100"
-        size="sm"
-        color="accent"
-      />
-
-      <Slider v-model="progress" :min="0" :max="100" class="w-80" />
+  <div class="flex flex-col gap-6 h-screen flex-center">
+    <div class="p-6 b b-base rounded-lg w-60 space-y-4">
+      <div class="flex gap-4 items-center">
+        <Skeleton variant="circle" class="size-10" />
+        <div class="flex-1 space-y-2">
+          <Skeleton variant="text" />
+          <Skeleton variant="text" class="w-1/3" />
+        </div>
+      </div>
+      <Skeleton variant="rect" class="h-30 w-full" />
     </div>
-  </TooltipProvider>
+  </div>
 </template>

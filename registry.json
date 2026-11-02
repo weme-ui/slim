@@ -2684,6 +2684,50 @@
       ]
     },
     {
+      "name": "skeleton",
+      "type": "component",
+      "title": "Skeleton",
+      "description": "A placeholder while content is loading.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/skeleton/skeleton.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/skeleton/skeleton.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/skeleton/skeleton.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/skeleton/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/skeleton/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/skeleton/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/skeleton/skeleton.test.ts"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "component",
       "title": "Tooltip",
