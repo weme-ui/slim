@@ -132,6 +132,13 @@ describe('twMergeConfig', () => {
       expect(cn('text-2.75', 'text-3')).toBe('text-3')
     })
 
+    it('keeps line height beside a font size', () => {
+      expect(cn('leading-none', 'text-2.75')).toBe('leading-none text-2.75')
+      expect(cn('text-2.5', 'leading-none')).toBe('text-2.5 leading-none')
+      expect(cn('text-sm', 'leading-tight')).toBe('text-sm leading-tight')
+      expect(cn('leading-none', 'leading-tight')).toBe('leading-tight')
+    })
+
     it('does not treat a bare container-query unit as a font size', () => {
       for (const size of TEXT_SIZE_EXCLUSIONS) {
         expect(cn('text-xs', `text-${size}`), size).toBe(`text-xs text-${size}`)

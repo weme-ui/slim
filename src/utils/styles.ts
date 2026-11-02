@@ -92,6 +92,12 @@ function isBorderColor(value: string) {
  * Pure class-group matching — no shortcut expansion at runtime.
  */
 const twMergeConfig = {
+  override: {
+    conflictingClassGroups: {
+      // UnoCSS 的 `text-*` 用 `var(--un-leading, …)` 叠行高，字号不应吃掉 `leading-*`。
+      'font-size': [],
+    },
+  },
   extend: {
     theme: {
       text: [isUnoTextSize],
