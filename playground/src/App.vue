@@ -2,16 +2,12 @@
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 h-screen flex-center">
-    <div class="p-6 b b-base rounded-lg w-60 space-y-4">
-      <div class="flex gap-4 items-center">
-        <Skeleton variant="circle" class="size-10" />
-        <div class="flex-1 space-y-2">
-          <Skeleton variant="text" />
-          <Skeleton variant="text" class="w-1/3" />
-        </div>
-      </div>
-      <Skeleton variant="rect" class="h-30 w-full" />
-    </div>
+  <div class="flex flex-wrap gap-6 h-screen flex-center">
+    <Kbd value="meta_control_v" size="sm" />
+    <Kbd value="meta_control_v" />
+    <Kbd value="meta_control_v" size="lg" />
+    <Kbd value="meta_control_v" variant="plain" size="sm" />
+    <Kbd value="meta_control_v" variant="plain" />
+    <Kbd value="meta_control_v" variant="plain" size="lg" />
   </div>
 </template>

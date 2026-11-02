@@ -258,6 +258,10 @@ defineProps<{
       <span class="g-spark is-sm" />
     </div>
 
+    <div v-else-if="name === 'kbd'" class="g-kbd">
+      <span class="g-kbd-key">K</span>
+    </div>
+
     <div v-else-if="name === 'alert'" class="g-root g-mini">
       <div class="g-row">
         <span class="g-alert-mark" />
@@ -984,6 +988,20 @@ defineProps<{
   width: 2.85rem;
   height: 2.85rem;
   border-radius: 0.7rem;
+}
+
+.g-kbd-key {
+  display: grid;
+  width: 1.75rem;
+  height: 1.65rem;
+  place-items: center;
+  border: 1px solid var(--edge);
+  border-radius: 0.35rem;
+  background: var(--shell);
+  box-shadow: 0 1px 0 var(--ink-soft);
+  color: var(--fill);
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .g-toggle {

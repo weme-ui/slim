@@ -34,19 +34,19 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 ## 组件列表
 
 - **General**
-  - [ ] `kbd`
   - [x] `animated-toggle-icon`
   - [x] `button-group`
   - [x] `button`
-  - [x] `toggle-button-group`
-  - [x] `toggle-button`
   - [x] `config-provider`
   - [x] `icon-stack`
   - [x] `icon-tile`
   - [x] `icon`
+  - [x] `kbd`
   - [x] `link-overlay`
   - [x] `link`
   - [x] `separator`
+  - [x] `toggle-button-group`
+  - [x] `toggle-button`
 
 - **Navigation**
   - [ ] `activity-bar`
@@ -70,12 +70,12 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tree`
 
 - **Feedback**
-  - [ ] `skeleton`
-  - [ ] `toast`
   - [x] `alert`
   - [x] `empty`
   - [x] `progress-bar`
   - [x] `progress-circle`
+  - [x] `skeleton`
+  - [x] `toast`
 
 - **Layout**
   - [x] `scroll-area`
@@ -134,12 +134,14 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 ## 组合式函数
 
-- [ ] `useToast()`
-- [x] `useGroupItems()`
 - [x] `useFormContext()`
 - [x] `useFormFieldContext()`
+- [x] `useGroupItems()`
+- [x] `useKbd()`
+- [x] `useNumberFormatter()`
 - [x] `usePasswordStrength()`
 - [x] `usePopoverContent()`
+- [x] `useToast()`
 
 ## 许可证
 

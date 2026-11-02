@@ -121,6 +121,32 @@
       ]
     },
     {
+      "name": "use-kbd",
+      "type": "composable",
+      "title": "useKbd",
+      "description": "Map key names to keyboard symbols.",
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      },
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-kbd.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-kbd.md"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-kbd.test.ts"
+        }
+      ]
+    },
+    {
       "name": "use-number-formatter",
       "type": "composable",
       "title": "useNumberFormatter",
@@ -2411,6 +2437,58 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/icon-tile/icon-tile.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "component",
+      "title": "Kbd",
+      "description": "A keycap for a keyboard shortcut.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "use-kbd"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/kbd/kbd.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/kbd/kbd.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/kbd/kbd.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/kbd/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/kbd/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/kbd/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/kbd/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/kbd/kbd.test.ts"
         }
       ]
     },
