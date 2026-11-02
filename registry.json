@@ -121,6 +121,35 @@
       ]
     },
     {
+      "name": "use-number-formatter",
+      "type": "composable",
+      "title": "useNumberFormatter",
+      "description": "Format numbers using the current locale.",
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      },
+      "dependencies": [
+        "@internationalized/number"
+      ],
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-number-formatter.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-number-formatter.md"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-number-formatter.test.ts"
+        }
+      ]
+    },
+    {
       "name": "use-popover-content",
       "type": "composable",
       "title": "usePopoverContent",
@@ -2517,6 +2546,140 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/empty/empty.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "component",
+      "title": "Progress Bar",
+      "description": "Displays the completion progress of a task.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "registryDependencies": [
+        "use-number-formatter"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/progress-bar/progress-bar.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/progress-bar/progress-bar.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/progress-bar/progress-bar.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/progress-bar/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/without-label.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/format-options.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/progress-bar/progress-bar.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "progress-circle",
+      "type": "component",
+      "title": "Progress Circle",
+      "description": "Displays completion as a circular indicator.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "registryDependencies": [
+        "use-number-formatter"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/progress-circle/progress-circle.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/progress-circle/progress-circle.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/progress-circle/progress-circle.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/progress-circle/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/format-options.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/hide-value.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/indeterminate.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/progress-circle/progress-circle.test.ts"
         }
       ]
     },

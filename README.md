@@ -70,12 +70,12 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tree`
 
 - **Feedback**
-  - [ ] `alert`
-  - [ ] `banner`
-  - [ ] `progress`
   - [ ] `skeleton`
   - [ ] `toast`
+  - [x] `alert`
   - [x] `empty`
+  - [x] `progress-bar`
+  - [x] `progress-circle`
 
 - **Layout**
   - [x] `scroll-area`

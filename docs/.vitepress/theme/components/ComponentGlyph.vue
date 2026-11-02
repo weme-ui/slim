@@ -271,6 +271,18 @@ defineProps<{
       <i class="g-bar is-soft is-80" />
     </div>
 
+    <div v-else-if="name === 'progress-bar'" class="g-progress">
+      <span class="g-progress-track">
+        <i class="g-progress-fill" />
+      </span>
+    </div>
+
+    <div v-else-if="name === 'progress-circle'" class="g-progress-circle">
+      <span class="g-progress-ring">
+        <i class="g-progress-arc" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'tooltip'" class="g-tooltip">
       <span class="g-tooltip-bubble">
         <i class="g-bar is-lg" />
@@ -566,6 +578,52 @@ defineProps<{
   display: flex;
   align-items: center;
   width: 8.5rem;
+}
+
+.g-progress {
+  width: 12.5rem;
+}
+
+.g-progress-track {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--ink-soft);
+}
+
+.g-progress-fill {
+  display: block;
+  width: 45%;
+  height: 100%;
+  border-radius: 999px 0 0 999px;
+  background: var(--fill);
+}
+
+.g-progress-circle {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+}
+
+.g-progress-ring {
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 3px solid var(--ink-soft);
+  border-radius: 999px;
+}
+
+.g-progress-arc {
+  position: absolute;
+  inset: -3px;
+  border: 3px solid transparent;
+  border-top-color: var(--fill);
+  border-right-color: var(--fill);
+  border-radius: inherit;
+  transform: rotate(-24deg);
 }
 
 .g-slider-track {
