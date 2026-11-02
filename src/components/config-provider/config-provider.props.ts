@@ -1,4 +1,5 @@
-import type { ConfigProviderProps as PrimitiveConfigProviderProps } from 'reka-ui'
+import type { ConfigProviderProps as PrimitiveConfigProviderProps, TooltipProviderProps } from 'reka-ui'
 
 export interface ConfigProviderProps extends PrimitiveConfigProviderProps {
+  tooltip?: TooltipProviderProps
 }
