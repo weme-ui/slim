@@ -2,7 +2,9 @@
 name: create-docs
 description: >-
   Writes or syncs Slim docs, examples, Vitest files, and the matching
-  registry item for a component or composable. Use when the user asks to
+  registry item for a component or composable. Direct imports in
+  implementation source decide which other items to document and which
+  names belong in registryDependencies. Use when the user asks to
   generate or sync documentation. Do not use when implementing component
   or composable source.
 ---
@@ -17,13 +19,11 @@ description: >-
 
 ```text
 Task Progress:
-- [ ] 判定类型，读对应契约（component.md 或 composable.md）
-- [ ] bun skills/create-docs/scripts/item.ts <name>
-- [ ] 读本 item 源码（组件目录下的 .vue / .props.ts / .style.ts；composable 读 <name>.ts）
-- [ ] 源码有 from 'reka-ui' 时跑 bun skills/create-docs/scripts/reka.ts <name>。非 0 则 Shell 读 node_modules 的 *Props，不要用 WebFetch 或浏览器
+- [ ] 从实现源码列出直接依赖的 registry item；尚无文档的并进本轮
+- [ ] 按类型读契约，并行跑各 item 的 item.ts、读源码、按需 reka.ts
 - [ ] 选模式 A / B。A 写简介，或用户要求按行文重写简介时，读 prose.md
-- [ ] 写文档、示例、测试，按 item.ts 输出的 line 定点改 registry
-- [ ] 再跑 item.ts；只跑当前测试文件（bun run test <file>，不要 bun test）
+- [ ] 并行写各 item 的文档、示例、测试；registryDependencies 按源码名单对齐
+- [ ] 再跑各 item 的 item.ts，核对 registryDependencies；只跑本轮测试文件（bun run test <file>，不要 bun test）
 ```
 
 ## 判定
@@ -33,9 +33,25 @@ Task Progress:
 | 组件目录                                 | 组件       | [component.md](component.md)   |
 | composable 的 `.ts` / `.md` / `.test.ts` | composable | [composable.md](composable.md) |
 
-用户只说 create-docs、未给路径时，按当前打开的文件或对话里的目录判定。两种都点名则各走一遍。
+用户只说 create-docs、未给路径时，按当前打开的文件或对话里的目录判定。
 
-新 `type: "component"` 之后点名 `update-component-index` 补 glyph。
+## 源码依赖
+
+本轮要写的文档，以及 `registryDependencies`，都从实现源码的直接 import 得出。不按同一批新增来收 item。
+
+组件读该目录的 `.vue` / `.props.ts` / `.style.ts`。composable 读 `<name>.ts`。不含 `examples/` 和测试。类型 import 算。只算直接 import，不展开对方自己的依赖。自己目录里的相对 import 忽略。
+
+- `from '~/composables/<name>'` → `<name>`
+- `from '../<name>/...'`（落在 `src/components/<name>/`）→ `<name>`
+- `from '~/utils/props'`、`from '~/utils/styles'` 属于 `utils`（`when: "on-init"`），不写进 `registryDependencies`，也不为此开文档
+
+`registryDependencies` 与这份名单一致，按名字排序。没有则省略该字段。多了删，少了补。这些名字不写入 `dependencies` 或 frontmatter。`progress-bar.vue` import `use-number-formatter`，则 `progress-bar` 的 `registryDependencies` 是 `["use-number-formatter"]`。
+
+名单里还没有文档的 item 并进本轮，和入口并行写。已经有文档的只对齐 `registryDependencies`，不重写它的文档，除非用户点名。用户点名的每个 item 都纳入。
+
+每个 item 按自己的类型读契约，文档互相独立。读契约、`item.ts`、源码、`reka.ts`、写文档文件并行。`registry.json` 按各自 `line` 逐个改。
+
+新 `type: "component"` 之后点名 `update-component-index` 补 glyph。composable 不补。
 
 ## 模式
 
@@ -75,13 +91,13 @@ registry `description` 保持英文短句，默认不改。新 item 写一句英
 
 ## 外部依赖
 
-item.`dependencies` 是该 item 源码直接用到的、且不在 registry 顶层共享列表里的 npm 包。同一列表写进文档 YAML frontmatter，作为文件第一段。没有独有包则整段 `---` 省略。只改一边视为未完成。`registryDependencies` 只写直接依赖的其它 item 名，不展开进 `dependencies` 或 frontmatter。页面 npm 芯片由渲染器按闭包计算。不要新增 `when: "on-init"`。
+item.`dependencies` 是该 item 源码直接用到的、且不在 registry 顶层共享列表里的 npm 包。同一列表写进文档 YAML frontmatter，作为文件第一段。没有独有包则整段 `---` 省略。只改一边视为未完成。其它 registry item 只出现在 `registryDependencies`，规则见「源码依赖」。页面 npm 芯片由渲染器按闭包计算。不要新增 `when: "on-init"`。
 
 ## registry item
 
 在脚本输出的 item 上改，不重排整个 `items` 数组。新 item 按自然排序插到功能相近的已有 item 旁边（看 `neighbors` 和未找到时的 `names`：`button` 旁 `button-group`，`icon*` 一组，`link*` 一组，form composable 靠在一起）。`utils` 保持最前。
 
-`files` 顺序：实现文件 → `kind: "doc"` → `kind: "example"` → `kind: "test"`。已有实现 path 保持不动。`files[].type` 与 item.`type` 一致。磁盘上的文档 / 示例 / 测试与这些 `kind` 一一对应；新增、删除、改名时两边一起改。不改与本次无关的 `description`、`registryDependencies`、`when`、`cssVars`。
+`files` 顺序：实现文件 → `kind: "doc"` → `kind: "example"` → `kind: "test"`。已有实现 path 保持不动。`files[].type` 与 item.`type` 一致。磁盘上的文档 / 示例 / 测试与这些 `kind` 一一对应；新增、删除、改名时两边一起改。`registryDependencies` 每次都按实现源码对齐。不改与本次无关的 `description`、`when`、`cssVars`。
 
 ## 测试
 
@@ -92,9 +108,10 @@ bun run test src/components/<name>/<name>.test.ts
 bun run test src/composables/<name>.test.ts
 ```
 
-只跑当前 item 的测试文件。不要 `bun test`，不改 `vitest.config.ts`。
+只跑本轮每个 item 的测试文件。不要 `bun test`，不改 `vitest.config.ts`。
 
 ## 验证
 
-- `bun skills/create-docs/scripts/item.ts <name>` 退出码 0（`kind` 与磁盘一致，frontmatter 与 `dependencies` 一致，JSON 合法）
-- `bun run test <file>` 通过
+- 本轮每个 name：`bun skills/create-docs/scripts/item.ts <name>` 退出码 0（`kind` 与磁盘一致，frontmatter 与 `dependencies` 一致，JSON 合法）
+- 脚本不核对 `registryDependencies`。对照它打印的数组和「源码依赖」名单，不一致就改 registry 再跑一次
+- 本轮每个测试文件：`bun run test <file>` 通过
