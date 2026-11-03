@@ -40,6 +40,19 @@
       ]
     },
     {
+      "name": "theme",
+      "type": "theme",
+      "title": "Slim Theme",
+      "description": "The slim theme for Weme UI",
+      "when": "on-init",
+      "files": [
+        {
+          "type": "theme",
+          "path": "src/themes/slim.theme.ts"
+        }
+      ]
+    },
+    {
       "name": "use-form-context",
       "type": "composable",
       "title": "useFormContext",
@@ -2691,6 +2704,11 @@
           "type": "component",
           "kind": "example",
           "path": "src/components/progress-bar/examples/format-options.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/indeterminate.vue"
         },
         {
           "type": "component",

@@ -1,7 +1,11 @@
+import type { Theme } from '@weme-ui/unocss-preset/types'
 import { presetWemeUI } from '@weme-ui/unocss-preset'
 import { defineConfig } from 'unocss'
+import { theme } from './src/themes/slim.theme'
 
-export default defineConfig({
+export default defineConfig<Theme>({
+  theme,
+
   presets: [
     presetWemeUI({
       cssVars: {
