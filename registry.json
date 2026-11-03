@@ -2829,6 +2829,69 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "component",
+      "title": "Toast",
+      "description": "A temporary message shown in a stack.",
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      },
+      "registryDependencies": [
+        "button",
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/toast/toast.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toast.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toast.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toast-provider.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toast-provider.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toast-provider.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toaster.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/toast/toaster.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/toast/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toast/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/toast/toast.test.ts"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "component",
       "title": "Tooltip",
