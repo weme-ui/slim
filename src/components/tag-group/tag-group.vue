@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<TagGroupProps>(), {
 })
 
 const emits = defineEmits<TagGroupEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'deleteIcon', 'closeable', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'deleteIcon', 'closable', 'unstyled', 'class', 'ui')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -99,7 +99,7 @@ function handleUpdate(value: TagGroupItemValue | TagGroupItemValue[] | undefined
           </slot>
         </TagGroupItemText>
 
-        <TagGroupItemDelete v-if="closeable && !item.disabled" :class="cn(ui.itemDelete(), props.ui?.itemDelete)">
+        <TagGroupItemDelete v-if="closable && !item.disabled" :class="cn(ui.itemDelete(), props.ui?.itemDelete)">
           <slot name="tag-delete" :item="item" :selected="selected">
             <Icon :name="deleteIcon" :class="cn(ui.itemDeleteIcon(), props.ui?.itemDeleteIcon)" />
           </slot>

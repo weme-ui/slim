@@ -25,8 +25,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
 | `by`                     | 比较选中值的字段名或自定义比较函数                                                                                                                                   | `string \| ((a: TagGroupItemValue, b: TagGroupItemValue) => boolean)` | —                  |
 | `variant`                | 外观变体                                                                                                                                                             | `'soft' \| 'outline' \| 'inverted'`                                   | `'soft'`           |
 | `size`                   | 尺寸                                                                                                                                                                 | `'sm' \| 'md' \| 'lg'`                                                | `'md'`             |
-| `closeable`              | 是否显示删除按钮（`TagGroupItemDelete`）                                                                                                                             | `boolean`                                                             | `false`            |
-| `deleteIcon`             | 删除图标（Iconify）；`closeable` 为真时生效                                                                                                                          | `IconifyIconProps['icon']`                                            | `'ri:close-line'`  |
+| `closable`              | 是否显示删除按钮（`TagGroupItemDelete`）                                                                                                                             | `boolean`                                                             | `false`            |
+| `deleteIcon`             | 删除图标（Iconify）；`closable` 为真时生效                                                                                                                          | `IconifyIconProps['icon']`                                            | `'ri:close-line'`  |
 | `loop`                   | 键盘导航是否在首尾循环                                                                                                                                               | `boolean`                                                             | `true`             |
 | `dir`                    | 阅读方向；未传时继承 `ConfigProvider`                                                                                                                                | `'ltr' \| 'rtl'`                                                      | —                  |
 | `unstyled`               | 移除样式变体类，仅保留结构                                                                                                                                           | `boolean`                                                             | —                  |
@@ -50,7 +50,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
 | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | `tag-icon`   | 自定义标签图标；作用域参数 `{ item, selected }`；未传且 `item.icon` 存在时渲染 `AnimatedToggleIcon`             |
 | `tag-text`   | 自定义标签文案；作用域参数 `{ item, selected }`；未传时回退到 `item.label`                                      |
-| `tag-delete` | 自定义删除控件内容；作用域参数 `{ item, selected }`；仅在 `closeable` 且该项未禁用时渲染；未传时用 `deleteIcon` |
+| `tag-delete` | 自定义删除控件内容；作用域参数 `{ item, selected }`；仅在 `closable` 且该项未禁用时渲染；未传时用 `deleteIcon` |
 | `empty`      | `items` 为空或不存在时的占位内容                                                                                |
 
 ## Accessibility

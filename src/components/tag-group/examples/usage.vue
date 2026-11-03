@@ -51,7 +51,7 @@ function onFormSubmit(values: { tags: string }) {
         :model-value="field.state.value"
         :items="items"
         selection-mode="single"
-        closeable
+        closable
         @change="field.api.handleChange"
         @remove="onRemove"
       />

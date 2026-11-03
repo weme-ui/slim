@@ -14,7 +14,7 @@ export interface TagGroupProps extends TagGroupRootProps<TagGroupItemValue> {
   size?: TagGroupStyleProps['size']
   deleteIcon?: IconifyIconProps['icon']
   unstyled?: boolean
-  closeable?: boolean
+  closable?: boolean
   class?: any
   ui?: Partial<TagGroupStyleSlots>
 }

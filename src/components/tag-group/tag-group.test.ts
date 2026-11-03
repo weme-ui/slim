@@ -122,7 +122,7 @@ describe('tag-group', () => {
     it('has no accessibility violations', async () => {
       const { wrapper } = mountTagGroup({
         selectionMode: 'single',
-        closeable: true,
+        closable: true,
       })
       expect(await axe(wrapper.element, {
         rules: {
@@ -208,9 +208,9 @@ describe('tag-group', () => {
       wrapper.unmount()
     })
 
-    it('renders delete controls when closeable and emits remove', async () => {
+    it('renders delete controls when closable and emits remove', async () => {
       const { wrapper, items } = mountTagGroup({
-        closeable: true,
+        closable: true,
       })
       const deleteButtons = wrapper.findAll('button').filter(btn =>
         btn.element.closest('[role="row"]') != null,
@@ -228,9 +228,9 @@ describe('tag-group', () => {
       wrapper.unmount()
     })
 
-    it('does not render delete controls when closeable is false', () => {
+    it('does not render delete controls when closable is false', () => {
       const { wrapper } = mountTagGroup({
-        closeable: false,
+        closable: false,
       })
       const deleteButtons = wrapper.findAll('button').filter(btn =>
         btn.element.closest('[role="row"]') != null,
