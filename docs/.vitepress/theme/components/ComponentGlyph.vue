@@ -286,6 +286,11 @@ defineProps<{
       <i class="g-bar is-sm" />
     </div>
 
+    <div v-else-if="name === 'float'" class="g-float">
+      <span class="g-float-host" />
+      <span class="g-float-mark" />
+    </div>
+
     <div v-else-if="name === 'kbd'" class="g-kbd">
       <span class="g-kbd-key">K</span>
     </div>
@@ -528,6 +533,32 @@ defineProps<{
   flex-shrink: 0;
   border-radius: 999px;
   background: var(--fill);
+}
+
+.g-float {
+  position: relative;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.g-float-host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-float-mark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--fill);
+  transform: translate(50%, -50%);
 }
 
 .g-field-control {

@@ -2759,6 +2759,55 @@
       ]
     },
     {
+      "name": "float",
+      "type": "component",
+      "title": "Float",
+      "description": "Anchors content to an edge or corner of its parent.",
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/float/float.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/float/float.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/float/float.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/float/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/float/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/float/examples/placements.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/float/examples/offset.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/float/float.test.ts"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "component",
       "title": "Kbd",

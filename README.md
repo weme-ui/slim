@@ -59,7 +59,6 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 - **Data Display**
   - [ ] `calendar`
   - [ ] `card`
-  - [ ] `chip`
   - [ ] `image-viewer`
   - [ ] `image`
   - [ ] `table`
@@ -68,6 +67,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `avatar-group`
   - [x] `avatar`
   - [x] `badge`
+  - [x] `chip`
+  - [x] `float`
 
 - **Feedback**
   - [x] `alert`
