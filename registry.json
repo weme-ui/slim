@@ -1996,6 +1996,70 @@
       ]
     },
     {
+      "name": "segmented-control",
+      "type": "component",
+      "title": "Segmented Control",
+      "description": "A segmented control that selects one option at a time.",
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/segmented-control/segmented-control.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/segmented-control/segmented-control.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/segmented-control/segmented-control.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/segmented-control/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/segmented-control/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/segmented-control/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/segmented-control/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/segmented-control/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/segmented-control/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/segmented-control/segmented-control.test.ts"
+        }
+      ],
+      "registryDependencies": [
+        "animated-toggle-icon",
+        "use-form-field-context",
+        "use-group-items"
+      ]
+    },
+    {
       "name": "switch",
       "type": "component",
       "title": "Switch",

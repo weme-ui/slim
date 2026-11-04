@@ -201,6 +201,12 @@ defineProps<{
       </div>
     </div>
 
+    <div v-else-if="name === 'segmented-control'" class="g-segment">
+      <span class="is-on"><i class="g-bar g-bar-on is-sm" /></span>
+      <span><i class="g-bar is-soft is-sm" /></span>
+      <span><i class="g-bar is-soft is-sm" /></span>
+    </div>
+
     <div v-else-if="name === 'switch'" class="g-switch">
       <span class="g-knob" />
     </div>
@@ -806,6 +812,26 @@ defineProps<{
 
 .g-group .is-on .g-bar {
   background: var(--docs-well);
+}
+
+.g-segment {
+  display: flex;
+  padding: 0.125rem;
+  border-radius: 0.45rem;
+  background: var(--ink-soft);
+}
+
+.g-segment span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 0.35rem;
+}
+
+.g-segment .is-on {
+  background: var(--shell);
+  box-shadow: 0 0 0 1px var(--edge);
 }
 
 .g-sep-split {
