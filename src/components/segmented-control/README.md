@@ -60,7 +60,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/segmented-control
 
 ## Accessibility
 
-根节点是 Reka UI `RovingFocusGroup`，`role="radiogroup"`，`data-slot="segmented-control"`。每一项是按钮，`role="radio"`，`data-slot="segmented-control-item"`，带 `aria-checked`、`aria-label`（来自 `item.label`）和 `data-state`（`checked` / `unchecked`）。组内使用 roving focus。`useFormFieldControl` 合并 `id`、`name`、`disabled` 和字段 `data-*`，并向 FormField 注册控件。另有一个可视隐藏的 `input`，承接这些表单属性。点击、获得焦点、`Enter` 或 `Space` 会选中该项。
+根节点是 Reka UI `RovingFocusGroup`，`role="radiogroup"`，`data-slot="segmented-control"`。每一项是 `span`，`role="radio"`，`data-slot="segmented-control-item"`，带 `aria-checked`、`aria-label`（来自 `item.label`）和 `data-state`（`checked` / `unchecked`）。组内使用 roving focus。`useFormFieldControl` 合并 `id`、`name`、`disabled` 和字段 `data-*`，并向 FormField 注册控件。另有一个可视隐藏的 `input`，承接这些表单属性。点击、获得焦点、`Enter` 或 `Space` 会选中该项。
 
 ### Keyboard Interactions
 
