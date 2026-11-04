@@ -2366,8 +2366,8 @@
       "title": "Avatar",
       "description": "Used to display a user image with a fallback.",
       "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
       },
       "registryDependencies": [
         "icon"
@@ -2428,8 +2428,8 @@
       "title": "Avatar Group",
       "description": "Used to display a row of overlapping avatars.",
       "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
       },
       "registryDependencies": [
         "avatar"
@@ -2642,8 +2642,8 @@
       "title": "Badge",
       "description": "A compact label for status or category.",
       "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
       },
       "registryDependencies": [
         "icon",
@@ -2701,6 +2701,60 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/badge/badge.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "component",
+      "title": "Chip",
+      "description": "A status dot with an optional label.",
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/chip/chip.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/chip/chip.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/chip/chip.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/chip/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/animate.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/chip/chip.test.ts"
         }
       ]
     },

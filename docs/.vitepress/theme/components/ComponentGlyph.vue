@@ -281,6 +281,11 @@ defineProps<{
       <i class="g-bar" />
     </div>
 
+    <div v-else-if="name === 'chip'" class="g-chip-label">
+      <span class="g-chip-dot" />
+      <i class="g-bar is-sm" />
+    </div>
+
     <div v-else-if="name === 'kbd'" class="g-kbd">
       <span class="g-kbd-key">K</span>
     </div>
@@ -509,6 +514,20 @@ defineProps<{
 .g-badge .g-bar {
   width: auto;
   flex: 1;
+}
+
+.g-chip-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.g-chip-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--fill);
 }
 
 .g-field-control {

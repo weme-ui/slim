@@ -204,7 +204,6 @@ const items = getComponentItems()
   font-size: 0.875rem;
   line-height: 1.45;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   min-height: 2.55em;
 }
 
