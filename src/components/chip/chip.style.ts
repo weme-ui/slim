@@ -5,7 +5,7 @@ export const useChipStyle = createVariants({
   slots: {
     root: 'flex-inline flex-y-center',
     indicatorWrapper: 'pointer-events-none',
-    indicator: 'rounded-full block',
+    indicator: 'rounded-full block ring ring-$background-base',
     label: 'leading-none font-medium ml-sm select-none whitespace-nowrap text-nowrap',
   },
 
