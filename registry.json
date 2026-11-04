@@ -2361,6 +2361,120 @@
       ]
     },
     {
+      "name": "avatar",
+      "type": "component",
+      "title": "Avatar",
+      "description": "Used to display a user image with a fallback.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/avatar/avatar.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/avatar/avatar.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/avatar/avatar.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/avatar/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/fallback.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/avatar/avatar.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "avatar-group",
+      "type": "component",
+      "title": "Avatar Group",
+      "description": "Used to display a row of overlapping avatars.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "avatar"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/avatar-group/avatar-group.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/avatar-group/avatar-group.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/avatar-group/avatar-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/avatar-group/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar-group/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/avatar-group/avatar-group.test.ts"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "component",
       "title": "Icon",

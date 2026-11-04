@@ -252,6 +252,18 @@ defineProps<{
       </div>
     </div>
 
+    <div v-else-if="name === 'avatar'" class="g-root g-avatar">
+      <span class="g-avatar-person" />
+    </div>
+
+    <div v-else-if="name === 'avatar-group'" class="g-avatars">
+      <span class="g-root" />
+      <span class="g-root" />
+      <span class="g-root">
+        <i class="g-avatar-person" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'icon'" class="g-icon">
       <span class="g-spark" />
     </div>
@@ -977,6 +989,88 @@ defineProps<{
 .g-spark.is-sm {
   width: 0.95rem;
   height: 0.95rem;
+}
+
+.g-avatar {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.g-avatar-person {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.g-avatar-person::before,
+.g-avatar-person::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  background: var(--fill);
+  transform: translateX(-50%);
+}
+
+.g-avatar-person::before {
+  top: 22%;
+  width: 32%;
+  height: 32%;
+  border-radius: 999px;
+}
+
+.g-avatar-person::after {
+  bottom: -18%;
+  width: 68%;
+  height: 46%;
+  border-radius: 999px 999px 0 0;
+}
+
+.g-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.g-avatars .g-root {
+  position: relative;
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px var(--docs-well);
+}
+
+.g-avatars .g-root + .g-root {
+  margin-left: -0.7rem;
+}
+
+.g-avatars .g-root:not(:last-child)::before,
+.g-avatars .g-root:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.g-avatars .g-root:not(:last-child)::before {
+  top: 22%;
+  width: 32%;
+  height: 32%;
+  border-radius: 999px;
+}
+
+.g-avatars .g-root:not(:last-child)::after {
+  bottom: -18%;
+  width: 68%;
+  height: 46%;
+  border-radius: 999px 999px 0 0;
 }
 
 .g-icon {
