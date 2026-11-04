@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useSegmentedControlStyle = createVariants({
   slots: {
-    root: 'p-1 rounded bg-muted flex relative',
+    root: 'p-1 rounded bg-muted flex place-self-start relative',
     item: 'text-foreground rounded-inherit flex select-none transition-colors flex-center relative z-1 data-[state=checked]:text-highlighted hover:text-highlighted disabled:is-disabled',
     icon: 'shrink-0',
     label: 'text-subtle font-medium text-nowrap data-[state=checked]:(text-highlighted font-medium) data-[state=unchecked]:hover:text-foreground',
