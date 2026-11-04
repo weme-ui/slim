@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 | 属性          | 说明                                               | 类型                                                                                                      | 默认值             |
 | ------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------ |
 | `as`          | 渲染为的元素或组件（Reka UI `Primitive`）          | `AsTag \| Component`                                                                                      | `'button'`         |
-| `asChild`     | 合并到子元素上渲染（Reka UI composition）          | `boolean`                                                                                                 | —                  |
+| `asChild`     | 合并到子元素上渲染（Reka UI composition）          | `boolean`                                                                                                 | `false`            |
 | `variant`     | 外观变体                                           | `'solid' \| 'soft' \| 'outline' \| 'ghost' \| 'plain' \| 'inverse'`                                       | `'solid'`          |
 | `color`       | 语义色（与 `variant` 组合）                        | `'default' \| 'accent' \| 'neutral' \| 'info' \| 'error' \| 'success' \| 'warning'`                       | `'default'`        |
 | `size`        | 尺寸                                               | `'sm' \| 'md' \| 'lg'`                                                                                    | `'md'`             |
@@ -35,16 +35,17 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
 
 ## Slots
 
-| 插槽           | 说明                                                 |
-| -------------- | ---------------------------------------------------- |
-| `default`      | 自定义文案，作用域参数：`{ label }`                  |
-| `icon`         | 自定义前置图标，作用域参数：`{ icon }`               |
-| `loading-icon` | 自定义加载图标，作用域参数：`{ loadingIcon }`        |
-| `loading-text` | 自定义加载文案，作用域参数：`{ label, loadingText }` |
+| 插槽           | 说明                                                                                                                                |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `label`        | 文案。作用域参数：`{ label }`。未提供插槽时显示 `label`。loading 时不渲染                                                           |
+| `icon`         | 前置图标。作用域参数：`{ icon }`。未提供插槽且有 `icon` 时渲染 `Icon`。loading 时不渲染                                             |
+| `loading-icon` | 加载图标。作用域参数：`{ loadingIcon }`。仅 loading 时渲染；未提供插槽时用 `loadingIcon`                                            |
+| `loading-text` | 加载文案。作用域参数：`{ label, loadingText }`。仅 loading 且有 `loadingText` 或 `label` 时渲染；未提供插槽时优先显示 `loadingText` |
+| `default`      | 跟在图标和文案后面，loading 时也渲染。不替换 `label`                                                                                |
 
 ## Accessibility
 
-默认是原生 `button`（Reka UI `Primitive`）。按下时 `aria-pressed`，加载中 `aria-busy`，禁用或加载中 `aria-disabled`。
+默认是原生 `button`（Reka UI `Primitive`）。按下时 `aria-pressed`，加载中 `aria-busy`，禁用或加载中 `aria-disabled`。根节点设置 `data-slot="button"`。
 
 ### Keyboard Interactions
 

@@ -86,6 +86,25 @@ describe('button', () => {
       expect(onClick).toHaveBeenCalledTimes(1)
       wrapper.unmount()
     })
+
+    it('renders the label slot instead of the label text', () => {
+      const wrapper = mount(Button, {
+        props: { label: 'Save' },
+        slots: { label: 'Keep' },
+      })
+      expect(wrapper.text()).toBe('Keep')
+      wrapper.unmount()
+    })
+
+    it('renders the default slot after the label', () => {
+      const wrapper = mount(Button, {
+        props: { label: 'Save' },
+        slots: { default: 'Extra' },
+      })
+      expect(wrapper.text()).toContain('Save')
+      expect(wrapper.text()).toContain('Extra')
+      wrapper.unmount()
+    })
   })
 
   describe('given a disabled button', () => {

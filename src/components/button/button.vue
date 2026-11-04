@@ -80,9 +80,11 @@ async function handleClick(event: MouseEvent) {
       <slot name="icon" :icon="icon">
         <Icon v-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
-      <slot :label="label">
+      <slot :label="label" name="label">
         {{ label }}
       </slot>
     </template>
+
+    <slot />
   </Primitive>
 </template>
