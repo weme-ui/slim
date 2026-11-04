@@ -18,8 +18,8 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/avatar
 | `color`          | 回退内容的颜色                                                       | `'default' \| 'accent' \| 'neutral' \| 'info' \| 'success' \| 'warning' \| 'error' \| 'inverse'`                                                                                         | `'default'`      |
 | `size`           | 尺寸                                                                 | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl'`                                                                                                                        | `'md'`           |
 | `src`            | 图片地址。有值才渲染 `AvatarImage`                                   | `string`                                                                                                                                                                                 | —                |
-| `fallback`       | 回退文案。没有默认插槽时显示                                         | `string`                                                                                                                                                                                 | —                |
-| `icon`           | 没有默认插槽、也没有 `fallback` 时的图标（Iconify）                  | `IconifyIconProps['icon']`                                                                                                                                                               | `'ri:user-line'` |
+| `fallback`       | 回退文案。没有 `fallback` 插槽时显示                                 | `string`                                                                                                                                                                                 | —                |
+| `icon`           | 没有 `fallback` 插槽、也没有 `fallback` 时的图标（Iconify）          | `IconifyIconProps['icon']`                                                                                                                                                               | `'ri:user-line'` |
 | `delayMs`        | 延迟显示回退内容的毫秒数（Reka UI `AvatarFallback`）。不传则马上显示 | `number`                                                                                                                                                                                 | —                |
 | `crossOrigin`    | 图片 `crossorigin`（透传 Reka UI `AvatarImage`）                     | `'' \| 'anonymous' \| 'use-credentials'`                                                                                                                                                 | —                |
 | `referrerPolicy` | 图片 `referrerpolicy`（透传 Reka UI `AvatarImage`）                  | `'' \| 'no-referrer' \| 'no-referrer-when-downgrade' \| 'origin' \| 'origin-when-cross-origin' \| 'same-origin' \| 'strict-origin' \| 'strict-origin-when-cross-origin' \| 'unsafe-url'` | —                |
@@ -34,10 +34,11 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/avatar
 
 ## Slots
 
-| 插槽      | 说明                                                                            |
-| --------- | ------------------------------------------------------------------------------- |
-| `default` | 自定义回退内容。传入后不再显示 `fallback`；未传且有 `fallback` 时，显示这段文案 |
-| `icon`    | 自定义回退图标。仅在没有默认插槽且没有 `fallback` 时使用；未传时渲染 `Icon`     |
+| 插槽       | 说明                                                                                    |
+| ---------- | --------------------------------------------------------------------------------------- |
+| `fallback` | 自定义回退内容。未提供插槽时显示 `fallback`。有插槽或有 `fallback` 时渲染，否则不渲染   |
+| `icon`     | 自定义回退图标。仅在没有 `fallback` 插槽且没有 `fallback` 时渲染；未提供插槽时用 `icon` |
+| `default`  | 跟在图片和回退内容后面。不替换回退                                                      |
 
 ## Accessibility
 

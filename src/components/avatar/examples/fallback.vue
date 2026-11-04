@@ -5,6 +5,10 @@ import Avatar from '../avatar.vue'
 <template>
   <div class="flex gap-3 items-center">
     <Avatar fallback="WX" />
-    <Avatar>文</Avatar>
+    <Avatar>
+      <template #fallback>
+        文
+      </template>
+    </Avatar>
   </div>
 </template>

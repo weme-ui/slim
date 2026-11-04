@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useAvatarStyle = createVariants({
   slots: {
-    root: 'rounded-full flex shrink-0 select-none flex-center relative overflow-hidden',
+    root: 'rounded-full flex shrink-0 select-none flex-center relative',
     image: 'rounded-inherit size-full object-cover',
     fallback: 'leading-none font-semibold rounded-inherit flex size-full text-nowrap flex-center',
     icon: 'shrink-0',

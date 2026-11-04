@@ -70,12 +70,21 @@ describe('avatar', () => {
       wrapper.unmount()
     })
 
-    it('renders the default slot instead of fallback text', () => {
+    it('renders the fallback slot instead of fallback text', () => {
+      const wrapper = mount(Avatar, {
+        props: { fallback: 'WX' },
+        slots: { fallback: '文' },
+      })
+      expect(wrapper.text()).toBe('文')
+      wrapper.unmount()
+    })
+
+    it('renders the default slot after the fallback', () => {
       const wrapper = mount(Avatar, {
         props: { fallback: 'WX' },
         slots: { default: '文' },
       })
-      expect(wrapper.text()).toBe('文')
+      expect(wrapper.text()).toBe('WX文')
       wrapper.unmount()
     })
 
