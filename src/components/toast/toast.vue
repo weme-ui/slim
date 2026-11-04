@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ToastEmits, ToastProps } from './toast.props'
-import { reactivePick } from '@vueuse/core'
+import { isClient, reactivePick } from '@vueuse/core'
 import { ToastAction, ToastClose, ToastDescription, ToastRoot, ToastTitle, useForwardPropsEmits } from 'reka-ui'
 import { computed, useTemplateRef } from 'vue'
 import { cn } from '~/utils/styles'
@@ -61,7 +61,7 @@ const ui = computed(() => useToastStyle({
 }))
 
 const height = computed(() => {
-  if (!rootRef.value?.$el?.getBoundingClientRect)
+  if (!isClient || !rootRef.value?.$el)
     return 0
 
   return rootRef.value.$el.getBoundingClientRect().height
