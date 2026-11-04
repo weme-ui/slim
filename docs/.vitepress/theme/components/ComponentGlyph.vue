@@ -276,6 +276,11 @@ defineProps<{
       <span class="g-spark is-sm" />
     </div>
 
+    <div v-else-if="name === 'badge'" class="g-badge">
+      <span class="g-badge-dot" />
+      <i class="g-bar" />
+    </div>
+
     <div v-else-if="name === 'kbd'" class="g-kbd">
       <span class="g-kbd-key">K</span>
     </div>
@@ -480,6 +485,30 @@ defineProps<{
 .g-pill.is-ghost {
   border: 1px solid var(--edge);
   background: var(--shell);
+}
+
+.g-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 6rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--shell);
+}
+
+.g-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--ink);
+}
+
+.g-badge .g-bar {
+  width: auto;
+  flex: 1;
 }
 
 .g-field-control {

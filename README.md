@@ -57,17 +57,17 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [ ] `tabs`
 
 - **Data Display**
-  - [ ] `avatar`
-  - [ ] `avatar-group`
-  - [ ] `badge`
   - [ ] `calendar`
   - [ ] `card`
   - [ ] `chip`
-  - [ ] `image`
   - [ ] `image-viewer`
+  - [ ] `image`
   - [ ] `table`
   - [ ] `timeline`
   - [ ] `tree`
+  - [x] `avatar-group`
+  - [x] `avatar`
+  - [x] `badge`
 
 - **Feedback**
   - [x] `alert`

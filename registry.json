@@ -2637,6 +2637,74 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "component",
+      "title": "Badge",
+      "description": "A compact label for status or category.",
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      },
+      "registryDependencies": [
+        "icon",
+        "link-overlay"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/badge/badge.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/badge/badge.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/badge/badge.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/badge/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/clickable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/badge/badge.test.ts"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "component",
       "title": "Kbd",
