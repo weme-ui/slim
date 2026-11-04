@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useSegmentedControlStyle = createVariants({
   slots: {
     root: 'p-1 rounded bg-muted flex place-self-start relative',
-    item: 'text-foreground rounded-inherit flex select-none transition-colors flex-center relative z-1 data-[state=checked]:text-highlighted hover:text-highlighted disabled:is-disabled',
+    item: 'text-foreground rounded-inherit flex select-none transition-colors flex-center relative z-1 data-[state=checked]:text-highlighted data-[disabled]:is-disabled hover-not-[data-disabled]:text-highlighted',
     icon: 'shrink-0',
     label: 'text-subtle font-medium text-nowrap data-[state=checked]:(text-highlighted font-medium) data-[state=unchecked]:hover:text-foreground',
     indicator: 'rounded-inherit bg-foreground-inverted shadow-sm ease-in-out abs',
@@ -28,12 +28,12 @@ export const useSegmentedControlStyle = createVariants({
       },
       md: {
         root: 'gap-sm',
-        item: 'text-sm px-md gap-sm h-6',
+        item: 'text-xs px-md gap-sm h-6',
         indicator: 'h-6',
       },
       lg: {
         root: 'gap-md',
-        item: 'text-base px-lg gap-md h-8',
+        item: 'text-sm px-lg gap-md h-8',
         indicator: 'h-8',
       },
     },
