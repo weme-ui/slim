@@ -38,7 +38,7 @@ describe('image-preview', () => {
       expect(wrapper.attributes('data-state')).toBe('closed')
       expect(trigger.attributes('src')).toBe('https://example.com/photo.png')
       expect(trigger.attributes('width')).toBe('100')
-      expect(trigger.classes()).toContain('cursor-pointer')
+      expect(trigger.classes()).toContain('not-[[data-disabled]]:cursor-pointer')
       wrapper.unmount()
     })
 
@@ -126,6 +126,7 @@ describe('image-preview', () => {
         attachTo: document.body,
         props: { src: 'https://example.com/photo.png', alt: 'Photo' },
       })
+      expect(wrapper.get('img').attributes('alt')).toBeUndefined()
       // Trigger `Image` declares `alt` but does not bind it onto the img.
       expect(await axe(wrapper.element, {
         rules: {
