@@ -2277,6 +2277,46 @@
       ]
     },
     {
+      "name": "aspect-ratio",
+      "type": "component",
+      "title": "Aspect Ratio",
+      "description": "Displays content within a desired ratio.",
+      "meta": {
+        "docs.category": "layout",
+        "docs.categoryLabel": "Layout"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/aspect-ratio/aspect-ratio.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/aspect-ratio/aspect-ratio.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/aspect-ratio/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/aspect-ratio/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/aspect-ratio/examples/ratios.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/aspect-ratio/aspect-ratio.test.ts"
+        }
+      ]
+    },
+    {
       "name": "scroll-area",
       "type": "component",
       "title": "Scroll Area",
@@ -2471,6 +2511,106 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/avatar-group/avatar-group.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "type": "component",
+      "title": "Image",
+      "description": "An image with an optional fallback while it loads.",
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/image/image.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/image/image.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/image/image.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/image/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image/examples/fit.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image/examples/fallback.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/image/image.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "image-preview",
+      "type": "component",
+      "title": "Image Preview",
+      "description": "Opens an image in a preview with optional thumbnails.",
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      },
+      "registryDependencies": [
+        "icon",
+        "image"
+      ],
+      "dependencies": [
+        "motion-v"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/image-preview/image-preview.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/image-preview/image-preview.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/image-preview/image-preview.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/image-preview/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image-preview/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image-preview/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/image-preview/image-preview.test.ts"
         }
       ]
     },

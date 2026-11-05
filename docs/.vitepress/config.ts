@@ -136,6 +136,15 @@ export default defineConfig<ThemeConfig>({
   },
   vite: {
     optimizeDeps: {
+      include: [
+        '@iconify/vue',
+        '@weme-ui/unocss-preset/tokens',
+        'clsx',
+        'defu',
+        'reka-ui',
+        'tailwind-merge',
+        'tailwind-variants/config',
+      ],
       exclude: [
         'vitepress',
       ],

@@ -230,6 +230,13 @@ defineProps<{
       </div>
     </div>
 
+    <div v-else-if="name === 'aspect-ratio'" class="g-aspect">
+      <span class="g-aspect-media">
+        <i class="g-aspect-sun" />
+        <i class="g-aspect-hill" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'scroll-area'" class="g-root g-mini g-scroll">
       <div class="g-scroll-body">
         <i class="g-bar is-60" />
@@ -261,6 +268,21 @@ defineProps<{
       <span class="g-root" />
       <span class="g-root">
         <i class="g-avatar-person" />
+      </span>
+    </div>
+
+    <div v-else-if="name === 'image'" class="g-image">
+      <i class="g-image-sun" />
+      <i class="g-image-hill" />
+    </div>
+
+    <div v-else-if="name === 'image-preview'" class="g-preview">
+      <span class="g-preview-photo">
+        <i class="g-preview-sun" />
+        <i class="g-preview-hill" />
+      </span>
+      <span class="g-preview-thumbs">
+        <i /><i class="is-on" /><i />
       </span>
     </div>
 
@@ -941,6 +963,45 @@ defineProps<{
   border-left: 1px solid var(--edge);
 }
 
+.g-aspect {
+  width: 10.5rem;
+  aspect-ratio: 16 / 9;
+  padding: 0.4rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-aspect-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.28rem;
+  background: var(--ink-soft);
+}
+
+.g-aspect-sun {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.5rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: var(--fill);
+}
+
+.g-aspect-hill {
+  position: absolute;
+  right: -8%;
+  bottom: -18%;
+  left: 18%;
+  height: 78%;
+  background: var(--ink);
+  clip-path: polygon(8% 100%, 38% 42%, 62% 72%, 100% 18%, 100% 100%);
+}
+
 .g-scroll {
   flex-direction: row;
   align-items: stretch;
@@ -1150,6 +1211,96 @@ defineProps<{
   width: 68%;
   height: 46%;
   border-radius: 999px 999px 0 0;
+}
+
+.g-image {
+  position: relative;
+  width: 6.5rem;
+  height: 5rem;
+  overflow: hidden;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--ink-soft);
+}
+
+.g-image-sun {
+  position: absolute;
+  top: 0.45rem;
+  left: 0.55rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: var(--fill);
+}
+
+.g-image-hill {
+  position: absolute;
+  right: -8%;
+  bottom: -18%;
+  left: 22%;
+  height: 72%;
+  background: var(--ink);
+  clip-path: polygon(8% 100%, 38% 42%, 62% 72%, 100% 18%, 100% 100%);
+}
+
+.g-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 7.5rem;
+  padding: 0.45rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.45rem;
+  background: var(--shell);
+}
+
+.g-preview-photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3.4rem;
+  overflow: hidden;
+  border-radius: 0.28rem;
+  background: var(--ink-soft);
+}
+
+.g-preview-sun {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.45rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--fill);
+}
+
+.g-preview-hill {
+  position: absolute;
+  right: -8%;
+  bottom: -20%;
+  left: 28%;
+  height: 78%;
+  background: var(--ink);
+  clip-path: polygon(8% 100%, 38% 42%, 62% 72%, 100% 18%, 100% 100%);
+}
+
+.g-preview-thumbs {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.g-preview-thumbs i {
+  display: block;
+  width: 1.15rem;
+  height: 0.85rem;
+  border-radius: 0.2rem;
+  background: var(--ink-soft);
+}
+
+.g-preview-thumbs i.is-on {
+  background: var(--fill);
+  box-shadow: 0 0 0 1px var(--edge);
 }
 
 .g-icon {
