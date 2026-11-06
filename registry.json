@@ -3500,6 +3500,67 @@
       ]
     },
     {
+      "name": "activity-bar",
+      "type": "component",
+      "title": "Activity Bar",
+      "description": "A vertical bar of icon buttons for switching activities.",
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
+      },
+      "registryDependencies": [
+        "animated-toggle-icon",
+        "float",
+        "tooltip"
+      ],
+      "cssVars": {
+        "activity-bar": {
+          "bg": "neutral.1",
+          "active-bg": "neutral.3",
+          "width": "3.5rem"
+        }
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/activity-bar/activity-bar.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/activity-bar/activity-bar.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/activity-bar/activity-bar.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/activity-bar/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/activity-bar/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/activity-bar/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/activity-bar/examples/chipped.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/activity-bar/activity-bar.test.ts"
+        }
+      ]
+    },
+    {
       "name": "link",
       "type": "component",
       "title": "Link",

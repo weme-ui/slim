@@ -24,6 +24,11 @@ export default defineConfig<Theme>({
           bg: 'neutral.11',
           color: 'neutral.1',
         },
+        'activity-bar': {
+          'bg': 'neutral.1',
+          'active-bg': 'neutral.3',
+          'width': '3.5rem',
+        },
       },
     }),
   ],

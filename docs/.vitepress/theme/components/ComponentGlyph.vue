@@ -362,6 +362,18 @@ defineProps<{
       <span class="g-spark is-on" />
     </div>
 
+    <div v-else-if="name === 'activity-bar'" class="g-activity">
+      <span class="g-pill is-sq is-fill">
+        <i class="g-spark is-sm" />
+      </span>
+      <span class="g-pill is-sq">
+        <i class="g-spark is-sm" />
+      </span>
+      <span class="g-pill is-sq is-foot">
+        <i class="g-spark is-sm" />
+      </span>
+    </div>
+
     <div v-else-if="name === 'link'" class="g-link">
       <span class="g-link-text" />
       <span class="g-link-arrow" />
@@ -1374,6 +1386,26 @@ defineProps<{
 .g-toggle .is-on {
   right: 0;
   background: var(--fill);
+}
+
+.g-activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  height: 9rem;
+  padding: 0.45rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.7rem;
+  background: var(--shell);
+}
+
+.g-activity .g-pill:not(.is-fill) {
+  background: var(--ink-soft);
+}
+
+.g-activity .is-foot {
+  margin-top: auto;
 }
 
 .g-link {

@@ -49,12 +49,12 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `toggle-button`
 
 - **Navigation**
-  - [ ] `activity-bar`
   - [ ] `breadcrumb`
   - [ ] `command-palette`
   - [ ] `pagination`
   - [ ] `steps`
   - [ ] `tabs`
+  - [x] `activity-bar`
 
 - **Data Display**
   - [ ] `calendar`
