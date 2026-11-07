@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { axe } from 'vitest-axe'
 import { defineComponent, h, nextTick } from 'vue'
 import AnimatedToggleIcon from '../animated-toggle-icon/animated-toggle-icon.vue'
+import Float from '../float/float.vue'
 import Tooltip from '../tooltip/tooltip.vue'
 import { useActivityBarStyle } from './activity-bar.style'
 import ActivityBar from './activity-bar.vue'
@@ -22,6 +23,7 @@ const groups = [
       {
         id: 'inbox',
         label: 'Inbox',
+        tooltip: 'Open inbox',
         icon: 'ri:inbox-line',
         disabled: true,
       },
@@ -75,9 +77,10 @@ describe('activity-bar', () => {
     it('renders a nav with grouped buttons', () => {
       const wrapper = mountBar({ active: 'home' })
       const bar = wrapper.getComponent(ActivityBar)
+      const nav = bar.get('nav')
 
-      expect(bar.element.tagName).toBe('NAV')
-      expect(bar.attributes('data-slot')).toBe('activity-bar')
+      expect(nav.element.tagName).toBe('NAV')
+      expect(nav.attributes('data-slot')).toBe('activity-bar')
       expect(bar.find('header').exists()).toBe(false)
       expect(bar.find('footer').exists()).toBe(true)
       expect(bar.find('ul').exists()).toBe(false)
@@ -86,14 +89,14 @@ describe('activity-bar', () => {
       expect(buttons[0]!.attributes('aria-current')).toBe('true')
       expect(buttons[0]!.attributes('aria-label')).toBe('Go home')
       expect(buttons[0]!.attributes('data-orientation')).toBe('vertical')
-      expect(buttons[1]!.attributes('aria-label')).toBe('Inbox')
+      expect(buttons[1]!.attributes('aria-label')).toBe('Open inbox')
       expect(buttons[1]!.attributes('aria-current')).toBeUndefined()
       expect(buttons[1]!.attributes('disabled')).toBe('')
 
       const tooltips = bar.findAllComponents(Tooltip)
-      expect(tooltips[0]!.props('content')).toBe('Go home')
+      expect(tooltips[0]!.props('content')).toBe('Home')
       expect(tooltips[0]!.props('side')).toBe('right')
-      expect(tooltips[1]!.props('content')).toBe('Inbox')
+      expect(tooltips[1]!.props('content')).toBe('Open inbox')
 
       const icons = bar.findAllComponents(AnimatedToggleIcon)
       expect(icons[0]!.props('active')).toBe(true)
@@ -218,7 +221,7 @@ describe('activity-bar', () => {
       wrapper.unmount()
     })
 
-    it('shows a chip only on content items', () => {
+    it('shows a chip on chipped items in content and footer', () => {
       const wrapper = mountBar({
         active: 'home',
         groups: [
@@ -246,14 +249,35 @@ describe('activity-bar', () => {
           },
         ],
       })
-      const buttons = wrapper.getComponent(ActivityBar).findAll('button')
+      const bar = wrapper.getComponent(ActivityBar)
+      const buttons = bar.findAll('button')
+      const floats = bar.findAllComponents(Float)
 
+      expect(floats).toHaveLength(2)
+      expect(floats[0]!.props('placement')).toBe('top-right')
+      expect(floats[0]!.props('offset')).toBe('1px')
       expect(buttons[0]!.find('span').classes()).toEqual(expect.arrayContaining([
         'rounded-full',
         'bg-accent',
         'size-1.5',
       ]))
-      expect(buttons[1]!.find('span').exists()).toBe(false)
+      expect(buttons[1]!.find('span').classes()).toEqual(expect.arrayContaining([
+        'rounded-full',
+        'bg-accent',
+        'size-1.5',
+      ]))
+      wrapper.unmount()
+    })
+
+    it('renders content slots around the groups', () => {
+      const wrapper = mountBar({ active: 'home' }, {
+        'content-top': () => h('span', 'Top'),
+        'content-bottom': () => h('span', 'Bottom'),
+      })
+      const content = wrapper.getComponent(ActivityBar).get('nav').element.children[0]!
+
+      expect(content.firstElementChild?.textContent).toBe('Top')
+      expect(content.lastElementChild?.textContent).toBe('Bottom')
       wrapper.unmount()
     })
 
@@ -269,7 +293,7 @@ describe('activity-bar', () => {
 
     it('has no accessibility violations', async () => {
       const wrapper = mountBar({ active: 'home' })
-      expect(await axe(wrapper.getComponent(ActivityBar).element)).toHaveNoViolations()
+      expect(await axe(wrapper.getComponent(ActivityBar).get('nav').element)).toHaveNoViolations()
       wrapper.unmount()
     })
   })
