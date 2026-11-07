@@ -24,7 +24,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/activity-bar
 | `class`         | 根节点额外 class                                                                                                                    | `any`                            | —       |
 | `ui`            | 覆盖 slots 样式。模板会用 `root` / `header` / `content` / `footer` / `group` / `item` / `itemChip`。`itemIcon` 在类型里，模板没有用 | `Partial<ActivityBarStyleSlots>` | —       |
 
-每一项有 `id`、`label`、`tooltip`、`icon`、`activeIcon`、`disabled`、`chipped`、`onActive`、`class`。提示内容是 `tooltip`，没有就用 `label`，固定出现在右侧。`label` 不会画在按钮上。有 `icon` 才渲染图标，当前项切到 `activeIcon`。`class` 加在这一项的按钮上。`chipped` 为真时，内容区按钮右上角多一个点，用 `Float` 放在 `top-right`，偏移 `2px`。底部项不画这个点。`disabled` 的项点了不切换，也不调用 `onActive`。`onActive` 会收到这一项，调用后不等待它结束。项要带 `id`，不然 `active` 变成 `undefined`，所有没 `id` 的项都会带上 `data-active`。
+每一项有 `id`、`label`、`tooltip`、`icon`、`activeIcon`、`disabled`、`chipped`、`onActive`、`class`。提示内容是 `tooltip`，没有就用 `label`，固定出现在右侧。`label` 不会画在按钮上。有 `icon` 才渲染图标，当前项切到 `activeIcon`。`class` 加在这一项的按钮上。`chipped` 为真时，内容区按钮右上角多一个点，用 `Float` 放在 `top-right`，偏移 `2px`。底部项不画这个点。`disabled` 的项点了不切换，也不调用 `onActive`。`onActive` 会收到这一项。它返回 Promise 时，等结束后才切换，并再发 `update:active`。项要带 `id`，不然 `active` 变成 `undefined`，所有没 `id` 的项都会带上 `data-active`。
 
 ## Events
 

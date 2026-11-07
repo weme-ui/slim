@@ -3515,9 +3515,9 @@
       ],
       "cssVars": {
         "activity-bar": {
-          "bg": "neutral.1",
+          "width": "3.5rem",
           "active-bg": "neutral.3",
-          "width": "3.5rem"
+          "active-color": "neutral.12"
         }
       },
       "files": [

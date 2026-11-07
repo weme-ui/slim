@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { TooltipProvider } from 'reka-ui'
 import { describe, expect, it, vi } from 'vitest'
 import { axe } from 'vitest-axe'
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, nextTick } from 'vue'
 import AnimatedToggleIcon from '../animated-toggle-icon/animated-toggle-icon.vue'
 import Tooltip from '../tooltip/tooltip.vue'
 import { useActivityBarStyle } from './activity-bar.style'
@@ -53,14 +53,15 @@ describe('activity-bar', () => {
   it('applies activity bar layout classes', () => {
     const ui = useActivityBarStyle()
     expect(ui.root()).toContain('w-activity-bar')
-    expect(ui.root()).toContain('bg-activity-bar')
+    expect(ui.root()).toContain('relative')
     expect(ui.root()).toContain('flex-col')
     expect(ui.header()).toContain('flex-center')
     expect(ui.content()).toContain('grow')
     expect(ui.footer()).toContain('flex-col')
-    expect(ui.group()).toContain('py-4')
+    expect(ui.group()).toContain('py-2')
     expect(ui.group()).toContain('gap-2')
-    expect(ui.item()).toContain('data-[active]:bg-activity-bar-active')
+    expect(ui.item()).toContain('data-[active]:(text-activity-bar-active bg-activity-bar-active)')
+    expect(ui.item()).toContain('hover:not-[[data-active]]:text-activity-bar-active')
     expect(ui.item()).toContain('rounded-lg')
     expect(ui.item()).toContain('disabled:is-disabled')
     expect(ui.item()).toContain('relative')
@@ -122,6 +123,44 @@ describe('activity-bar', () => {
 
       expect(onActive).toHaveBeenCalledOnce()
       expect(onActive).toHaveBeenCalledWith(expect.objectContaining({ id: 'inbox' }))
+      expect(bar.emitted('update:active')).toEqual([
+        ['inbox'],
+        ['inbox'],
+      ])
+      wrapper.unmount()
+    })
+
+    it('waits for onActive before emitting update:active', async () => {
+      let resolveActive = () => {}
+      const onActive = vi.fn(() => new Promise<void>((resolve) => {
+        resolveActive = resolve
+      }))
+      const wrapper = mountBar({
+        active: 'home',
+        groups: [
+          {
+            slot: 'content',
+            items: [
+              { id: 'home', label: 'Home', icon: 'ri:home-4-line' },
+              {
+                id: 'inbox',
+                label: 'Inbox',
+                icon: 'ri:inbox-line',
+                onActive,
+              },
+            ],
+          },
+        ],
+      })
+      const bar = wrapper.getComponent(ActivityBar)
+      const pending = bar.findAll('button')[1]!.trigger('click')
+
+      await nextTick()
+      expect(onActive).toHaveBeenCalledOnce()
+      expect(bar.emitted('update:active')).toBeUndefined()
+
+      resolveActive()
+      await pending
       expect(bar.emitted('update:active')).toEqual([
         ['inbox'],
         ['inbox'],
