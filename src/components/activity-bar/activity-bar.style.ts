@@ -7,7 +7,7 @@ export const useActivityBarStyle = createVariants({
     content: 'grow',
     footer: '',
     group: 'py-2 gap-2 items-center',
-    item: 'text-subtle p-2 rounded-lg flex transition-colors flex-center relative data-[active]:(text-activity-bar-active bg-activity-bar-active) disabled:is-disabled hover:not-[[data-active]]:text-activity-bar-active',
+    item: 'text-subtle p-2 rounded-lg flex transition-colors flex-center relative aria-[current=true]:(text-activity-bar-active bg-activity-bar-active) disabled:is-disabled hover:not-[[aria-current=true]]:text-activity-bar-active',
     itemIcon: 'shrink-0 size-4',
     itemChip: 'rounded-full bg-accent size-1.5',
   },

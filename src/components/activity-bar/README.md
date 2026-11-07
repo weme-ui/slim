@@ -24,7 +24,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/activity-bar
 | `class`         | 根节点额外 class                                                                                                                    | `any`                            | —       |
 | `ui`            | 覆盖 slots 样式。模板会用 `root` / `header` / `content` / `footer` / `group` / `item` / `itemChip`。`itemIcon` 在类型里，模板没有用 | `Partial<ActivityBarStyleSlots>` | —       |
 
-每一项有 `id`、`label`、`tooltip`、`icon`、`activeIcon`、`disabled`、`chipped`、`onActive`、`class`。提示内容是 `tooltip`，没有就用 `label`，固定出现在右侧。`label` 不会画在按钮上。有 `icon` 才渲染图标，当前项切到 `activeIcon`。`class` 加在这一项的按钮上。`chipped` 为真时，内容区按钮右上角多一个点，用 `Float` 放在 `top-right`，偏移 `2px`。底部项不画这个点。`disabled` 的项点了不切换，也不调用 `onActive`。`onActive` 会收到这一项。它返回 Promise 时，等结束后才切换，并再发 `update:active`。项要带 `id`，不然 `active` 变成 `undefined`，所有没 `id` 的项都会带上 `data-active`。
+每一项有 `id`、`label`、`tooltip`、`icon`、`activeIcon`、`disabled`、`chipped`、`onActive`、`class`。提示内容是 `tooltip`，没有就用 `label`，固定出现在右侧。`label` 不会画在按钮上。有 `icon` 才渲染图标，当前项切到 `activeIcon`。`class` 加在这一项的按钮上。`chipped` 为真时，内容区按钮右上角多一个点，用 `Float` 放在 `top-right`，偏移 `2px`。底部项不画这个点。`disabled` 的项点了不切换，也不调用 `onActive`。`onActive` 会收到这一项。它返回 Promise 时，等结束后才切换，并再发 `update:active`。项要带 `id`，不然 `active` 变成 `undefined`，所有没 `id` 的项都会带上 `aria-current="true"`。
 
 ## Events
 
@@ -42,10 +42,14 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/activity-bar
 
 ## Accessibility
 
-根节点默认是 `nav`（Reka UI `Primitive`），`data-slot="activity-bar"`。每一项是 `type="button"` 的按钮。当前项带 `data-active`，禁用项带原生 `disabled`。按钮上没有可见文字，也没有 `aria-label`。`label` 和 `tooltip` 只进 `Tooltip`。
+根节点默认是 `nav`（Reka UI `Primitive`），`data-slot="activity-bar"`。每一组是垂直的 `RovingFocusGroup`。每一项是 `RovingFocusItem`，渲染成 `button`。`aria-label` 用 `tooltip`，没有就用 `label`。当前项是 `aria-current="true"`。禁用项带原生 `disabled`。方向键只在同一组里移动。
 
 ### Keyboard Interactions
 
-| Key               | Description                        |
-| ----------------- | ---------------------------------- |
-| `Enter` / `Space` | 激活当前聚焦的按钮。禁用项不能聚焦 |
+| Key                | Description                        |
+| ------------------ | ---------------------------------- |
+| `Enter` / `Space`  | 激活当前聚焦的按钮。禁用项不能聚焦 |
+| `ArrowUp`          | 焦点移到同组里的上一项             |
+| `ArrowDown`        | 焦点移到同组里的下一项             |
+| `Home` / `PageUp`  | 焦点移到同组第一项                 |
+| `End` / `PageDown` | 焦点移到同组最后一项               |

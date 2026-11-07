@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { ActivityBarEmits, ActivityBarItem, ActivityBarProps } from './activity-bar.props'
 import { useVModel } from '@vueuse/core'
-import { Primitive } from 'reka-ui'
+import { Primitive, RovingFocusGroup, RovingFocusItem } from 'reka-ui'
 import { computed, toRef } from 'vue'
-import { toBoolDataAttrValue } from '~/utils/props'
+import { toBoolAriaValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import AnimatedToggleIcon from '../animated-toggle-icon/animated-toggle-icon.vue'
 import Float from '../float/float.vue'
@@ -56,31 +56,30 @@ async function handleActiveChange(item: ActivityBarItem) {
       <slot name="content-top" />
 
       <template v-for="(group, gIdx) in contentGroups" :key="`content-${gIdx}`">
-        <ul :class="cn(ui.group(), props.ui?.group)">
+        <RovingFocusGroup orientation="vertical" :class="cn(ui.group(), props.ui?.group)">
           <template v-for="(item, idx) in group.items" :key="`content-${gIdx}-${idx}`">
-            <li>
-              <Tooltip :content="item.tooltip || item.label" side="right" as-child>
-                <button
-                  type="button"
-                  :data-active="toBoolDataAttrValue(active === item.id)"
-                  :disabled="item.disabled"
-                  :class="cn(ui.item(), props.ui?.item, item.class)"
-                  @click="handleActiveChange(item)"
-                >
-                  <Float v-if="item.chipped" placement="top-right" offset="2px">
-                    <span :class="cn(ui.itemChip(), props.ui?.itemChip)" />
-                  </Float>
-                  <AnimatedToggleIcon
-                    v-if="item.icon"
-                    :active="active === item.id"
-                    :icon="item.icon"
-                    :active-icon="item.activeIcon"
-                  />
-                </button>
-              </Tooltip>
-            </li>
+            <Tooltip :content="item.tooltip || item.label" side="right" as-child>
+              <RovingFocusItem
+                as="button"
+                :aria-label="item.tooltip || item.label"
+                :aria-current="toBoolAriaValue(active === item.id)"
+                :disabled="item.disabled"
+                :class="cn(ui.item(), props.ui?.item, item.class)"
+                @click="handleActiveChange(item)"
+              >
+                <Float v-if="item.chipped" placement="top-right" offset="2px">
+                  <span :class="cn(ui.itemChip(), props.ui?.itemChip)" />
+                </Float>
+                <AnimatedToggleIcon
+                  v-if="item.icon"
+                  :active="active === item.id"
+                  :icon="item.icon"
+                  :active-icon="item.activeIcon"
+                />
+              </RovingFocusItem>
+            </Tooltip>
           </template>
-        </ul>
+        </RovingFocusGroup>
       </template>
 
       <slot name="content-bottom" />
@@ -88,28 +87,27 @@ async function handleActiveChange(item: ActivityBarItem) {
 
     <footer v-if="footerGroups && footerGroups.length > 0" :class="cn(ui.footer(), props.ui?.footer)">
       <template v-for="(group, gIdx) in footerGroups" :key="`footer-${gIdx}`">
-        <ul :class="cn(ui.group(), props.ui?.group)">
+        <RovingFocusGroup orientation="vertical" :class="cn(ui.group(), props.ui?.group)">
           <template v-for="(item, idx) in group.items" :key="`footer-${gIdx}-${idx}`">
-            <li>
-              <Tooltip :content="item.tooltip || item.label" side="right" as-child>
-                <button
-                  type="button"
-                  :data-active="toBoolDataAttrValue(active === item.id)"
-                  :disabled="item.disabled"
-                  :class="cn(ui.item(), props.ui?.item, item.class)"
-                  @click="handleActiveChange(item)"
-                >
-                  <AnimatedToggleIcon
-                    v-if="item.icon"
-                    :active="active === item.id"
-                    :icon="item.icon"
-                    :active-icon="item.activeIcon"
-                  />
-                </button>
-              </Tooltip>
-            </li>
+            <Tooltip :content="item.tooltip || item.label" side="right" as-child>
+              <RovingFocusItem
+                as="button"
+                :aria-label="item.tooltip || item.label"
+                :aria-current="toBoolAriaValue(active === item.id)"
+                :disabled="item.disabled"
+                :class="cn(ui.item(), props.ui?.item, item.class)"
+                @click="handleActiveChange(item)"
+              >
+                <AnimatedToggleIcon
+                  v-if="item.icon"
+                  :active="active === item.id"
+                  :icon="item.icon"
+                  :active-icon="item.activeIcon"
+                />
+              </RovingFocusItem>
+            </Tooltip>
           </template>
-        </ul>
+        </RovingFocusGroup>
       </template>
     </footer>
   </Primitive>

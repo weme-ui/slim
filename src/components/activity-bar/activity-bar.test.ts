@@ -60,8 +60,8 @@ describe('activity-bar', () => {
     expect(ui.footer()).toContain('flex-col')
     expect(ui.group()).toContain('py-2')
     expect(ui.group()).toContain('gap-2')
-    expect(ui.item()).toContain('data-[active]:(text-activity-bar-active bg-activity-bar-active)')
-    expect(ui.item()).toContain('hover:not-[[data-active]]:text-activity-bar-active')
+    expect(ui.item()).toContain('aria-[current=true]:(text-activity-bar-active bg-activity-bar-active)')
+    expect(ui.item()).toContain('hover:not-[[aria-current=true]]:text-activity-bar-active')
     expect(ui.item()).toContain('rounded-lg')
     expect(ui.item()).toContain('disabled:is-disabled')
     expect(ui.item()).toContain('relative')
@@ -80,10 +80,15 @@ describe('activity-bar', () => {
       expect(bar.attributes('data-slot')).toBe('activity-bar')
       expect(bar.find('header').exists()).toBe(false)
       expect(bar.find('footer').exists()).toBe(true)
-      expect(bar.findAll('ul')).toHaveLength(2)
-      expect(bar.findAll('button')).toHaveLength(3)
-      expect(bar.findAll('button')[0]!.attributes('data-active')).toBe('')
-      expect(bar.findAll('button')[1]!.attributes('disabled')).toBe('')
+      expect(bar.find('ul').exists()).toBe(false)
+      const buttons = bar.findAll('button')
+      expect(buttons).toHaveLength(3)
+      expect(buttons[0]!.attributes('aria-current')).toBe('true')
+      expect(buttons[0]!.attributes('aria-label')).toBe('Go home')
+      expect(buttons[0]!.attributes('data-orientation')).toBe('vertical')
+      expect(buttons[1]!.attributes('aria-label')).toBe('Inbox')
+      expect(buttons[1]!.attributes('aria-current')).toBeUndefined()
+      expect(buttons[1]!.attributes('disabled')).toBe('')
 
       const tooltips = bar.findAllComponents(Tooltip)
       expect(tooltips[0]!.props('content')).toBe('Go home')
@@ -173,14 +178,14 @@ describe('activity-bar', () => {
       const bar = wrapper.getComponent(ActivityBar)
       const buttons = bar.findAll('button')
 
-      expect(buttons[0]!.attributes('data-active')).toBe('')
+      expect(buttons[0]!.attributes('aria-current')).toBe('true')
       await buttons[2]!.trigger('click')
       expect(bar.emitted('update:active')).toEqual([
         ['settings'],
         ['settings'],
       ])
-      expect(buttons[0]!.attributes('data-active')).toBe('')
-      expect(buttons[2]!.attributes('data-active')).toBeUndefined()
+      expect(buttons[0]!.attributes('aria-current')).toBe('true')
+      expect(buttons[2]!.attributes('aria-current')).toBeUndefined()
       wrapper.unmount()
     })
 
@@ -264,12 +269,7 @@ describe('activity-bar', () => {
 
     it('has no accessibility violations', async () => {
       const wrapper = mountBar({ active: 'home' })
-      // Icon buttons have no accessible name. `label` only becomes Tooltip content.
-      expect(await axe(wrapper.getComponent(ActivityBar).element, {
-        rules: {
-          'button-name': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(await axe(wrapper.getComponent(ActivityBar).element)).toHaveNoViolations()
       wrapper.unmount()
     })
   })
