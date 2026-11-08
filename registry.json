@@ -3668,6 +3668,82 @@
           "path": "src/components/link-overlay/link-overlay.test.ts"
         }
       ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "component",
+      "title": "Navigation Menu",
+      "description": "A vertical menu of labels, links, and nested groups.",
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
+      },
+      "registryDependencies": [
+        "animated-toggle-icon",
+        "badge",
+        "chip",
+        "icon",
+        "link"
+      ],
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu-list.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu-list.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu-item.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu-item.props.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/navigation-menu/navigation-menu-item.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/navigation-menu/README.md"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/navigation-menu/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/navigation-menu/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/navigation-menu/examples/nested.vue"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/navigation-menu/navigation-menu.test.ts"
+        }
+      ]
     }
   ]
 }

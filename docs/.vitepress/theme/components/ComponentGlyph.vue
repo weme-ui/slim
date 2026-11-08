@@ -389,6 +389,13 @@ defineProps<{
       </div>
     </div>
 
+    <div v-else-if="name === 'navigation-menu'" class="g-nav">
+      <i class="g-bar is-sm is-soft" />
+      <i class="g-bar is-lg g-bar-on" />
+      <i class="g-bar is-md" />
+      <i class="g-bar is-md is-sub" />
+    </div>
+
     <div v-else class="g-root g-mini g-fallback">
       <i class="g-bar is-full" />
       <i class="g-bar is-lg" />
@@ -1406,6 +1413,24 @@ defineProps<{
 
 .g-activity .is-foot {
   margin-top: auto;
+}
+
+.g-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid var(--edge);
+  border-radius: 0.7rem;
+  background: var(--shell);
+}
+
+.g-nav .is-sub {
+  margin-inline-start: 0.85rem;
+  background: var(--ink-soft);
 }
 
 .g-link {
