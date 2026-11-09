@@ -67,6 +67,43 @@ describe('navigation-menu', () => {
     expect(ui.root()).toContain('relative')
   })
 
+  it('forwards menu ui slots onto lists, rows, and separators', () => {
+    const wrapper = mountMenu({
+      ui: {
+        list: 'menu-list',
+        item: 'menu-item',
+        icon: 'menu-icon',
+        separator: 'menu-separator',
+      },
+      items: [
+        { type: 'label', label: 'General', icon: 'ri:list-check' },
+        { type: 'separator', label: 'Divider' },
+        {
+          label: 'Settings',
+          to: '/settings',
+          class: 'parent-row',
+          children: [{ label: 'Roles', to: '/roles', class: 'child-row' }],
+        },
+      ] satisfies NavigationMenuItem[],
+    })
+    const rows = wrapper.findAll('[data-slot="navigation-menu-item"]')
+
+    expect(wrapper.get('ul').classes()).toContain('menu-list')
+    expect(rows[0].find('div').classes()).toContain('menu-item')
+    expect(rows[0].findComponent(Icon).classes()).toContain('menu-icon')
+    expect(rows[1].classes()).toContain('menu-separator')
+    expect(rows[1].classes()).not.toContain('menu-item')
+
+    const child = rows[2].find('[data-slot="navigation-menu-item"]')
+    expect(child.classes()).toContain('menu-item')
+    expect(child.get('a').classes()).toEqual(expect.arrayContaining([
+      'menu-item',
+      'parent-row',
+      'child-row',
+    ]))
+    wrapper.unmount()
+  })
+
   it('applies link, label, and separator item classes', () => {
     const link = useNavigationMenuItemStyle({})
     expect(link.root()).toContain('flex-col')

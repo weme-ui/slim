@@ -14,14 +14,14 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/navigation-menu
 
 ## Props
 
-| 属性            | 说明                                                                                                                     | 类型                                             | 默认值                          |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ | ------------------------------- |
-| `active`        | 当前项。等于某一项的 `to` 或 `id` 时，那一项带 `data-active`。传了它就不再用 `defaultActive`                             | `string`                                         | —                               |
-| `defaultActive` | 没传 `active` 时用来比较的值。点击不会改它                                                                               | `string`                                         | —                               |
-| `items`         | 一项的数组，或数组的数组。后者每一组成一个列表。不传就不渲染列表。字段见 Navigation Menu Item，数据里还可以有 `children` | `NavigationMenuItem[] \| NavigationMenuItem[][]` | —                               |
-| `externalIcon`  | 外链右侧图标（Iconify）。`to` 是字符串且以 `http` 开头才算外链                                                           | `IconifyIconProps['icon']`                       | `'mingcute:external-link-line'` |
-| `class`         | 根节点额外 class                                                                                                         | `any`                                            | —                               |
-| `ui`            | 覆盖 slots 样式。模板只用 `root`                                                                                         | `Partial<NavigationMenuStyleSlots>`              | —                               |
+| 属性            | 说明                                                                                                                                                                                                                                                                          | 类型                                             | 默认值                          |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------- |
+| `active`        | 当前项。等于某一项的 `to` 或 `id` 时，那一项带 `data-active`。传了它就不再用 `defaultActive`                                                                                                                                                                                  | `string`                                         | —                               |
+| `defaultActive` | 没传 `active` 时用来比较的值。点击不会改它                                                                                                                                                                                                                                    | `string`                                         | —                               |
+| `items`         | 一项的数组，或数组的数组。后者每一组成一个列表。不传就不渲染列表。字段见 Navigation Menu Item，数据里还可以有 `children`                                                                                                                                                      | `NavigationMenuItem[] \| NavigationMenuItem[][]` | —                               |
+| `externalIcon`  | 外链右侧图标（Iconify）。`to` 是字符串且以 `http` 开头才算外链                                                                                                                                                                                                                | `IconifyIconProps['icon']`                       | `'mingcute:external-link-line'` |
+| `class`         | 根节点额外 class                                                                                                                                                                                                                                                              | `any`                                            | —                               |
+| `ui`            | 覆盖 `root` / `list` / `item` / `icon` / `label` / `append` / `separator`。`root` 在菜单根上，`list` 在每一层 `ul` 上。顶层 `item` 加在链接或标签那一行，顶层分隔线用 `separator` 加在 `li` 上。更深层的 `item` 同时加在 `li` 和那一行上，分隔线也是 `item`，不用 `separator` | `Partial<NavigationMenuStyleSlots>`              | —                               |
 
 ## Events
 
@@ -76,7 +76,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/navigation-menu
 | `disabled`     | 为真时根节点加 `is-disabled`。链接没有 `disabled`，仍然可以点                                                                                 | `boolean`                                        | —           |
 | `active`       | 为真时带 `data-active`。菜单用 `to` 或 `id` 计算。第三层传入的是上一层的结果，不看自己                                                        | `boolean`                                        | —           |
 | `externalIcon` | 外链右侧图标（Iconify）。没有 `chip` 和 `badge` 时才画。菜单会传入根上的 `externalIcon`                                                       | `IconifyIconProps['icon']`                       | —           |
-| `class`        | 加在链接或标签那一行，不在 `li` 上                                                                                                            | `any`                                            | —           |
+| `class`        | 加在链接或标签那一行。菜单嵌套时，第二层同时带上自己的 `class` 和上一层的 `class`，第三层同时带上自己的 `class` 和第二层的 `class`            | `any`                                            | —           |
 | `ui`           | 覆盖 slots 样式。模板会用 `root` / `base` / `icon` / `label` / `append`                                                                       | `Partial<NavigationMenuItemStyleSlots>`          | —           |
 
 ## Accessibility
