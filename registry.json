@@ -2251,6 +2251,13 @@
         "docs.category": "layout",
         "docs.categoryLabel": "Layout"
       },
+      "cssVars": {
+        "scrollbar": {
+          "color": "neutral.3",
+          "thumb-color": "neutral.8",
+          "thumb-hover-color": "neutral.9"
+        }
+      },
       "files": [
         {
           "type": "component",
