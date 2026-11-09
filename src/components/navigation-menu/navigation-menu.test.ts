@@ -96,11 +96,9 @@ describe('navigation-menu', () => {
 
     const child = rows[2].find('[data-slot="navigation-menu-item"]')
     expect(child.classes()).toContain('menu-item')
-    expect(child.get('a').classes()).toEqual(expect.arrayContaining([
-      'menu-item',
-      'parent-row',
-      'child-row',
-    ]))
+    expect(child.get('a').classes()).toEqual(
+      expect.arrayContaining(['menu-item', 'parent-row', 'child-row']),
+    )
     wrapper.unmount()
   })
 
