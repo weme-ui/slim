@@ -6,6 +6,9 @@ export const theme = {
       carousel:
         '{0%,100%{width:50%}0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}',
 
+      'scale-in': '{0%{transform:scale(0.95);opacity:0}100%{transform:scale(1);opacity:1}}',
+      'scale-out': '{0%{transform:scale(1);opacity:1}100%{transform:scale(0.95);opacity:0}}',
+
       // Toast
       'toast-close':
         '{0%{transform:var(--transform)}100%{transform:translateY(calc((var(--offset)-var(--height))*var(--translate-factor)))}}',
@@ -23,6 +26,9 @@ export const theme = {
     durations: {
       carousel: '2s',
 
+      'scale-in': '0.1s',
+      'scale-out': '0.1s',
+
       // Toast
       'toast-close': '0.2s',
       'toast-collapse': '0.2s',
@@ -33,6 +39,9 @@ export const theme = {
     },
     timingFns: {
       carousel: 'linear',
+
+      'scale-in': 'ease-out',
+      'scale-out': 'ease-in',
 
       // Toast
       'toast-close': 'ease-in-out',
