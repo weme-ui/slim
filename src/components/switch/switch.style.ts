@@ -16,9 +16,21 @@ export const useSwitchStyle = createVariants({
       outline: {},
     },
     size: {
-      sm: { root: 'h-4 w-7', thumb: 'size-3 data-[state=checked]:translate-x-3.5', indicator: 'size-2' },
-      md: { root: 'h-5 w-9', thumb: 'size-4 data-[state=checked]:translate-x-4.5', indicator: 'size-2.5' },
-      lg: { root: 'h-6 w-11', thumb: 'size-5 data-[state=checked]:translate-x-5.5', indicator: 'size-3' },
+      sm: {
+        root: 'h-4 w-7',
+        thumb: 'size-3 data-[state=checked]:translate-x-3.5',
+        indicator: 'size-2',
+      },
+      md: {
+        root: 'h-5 w-9',
+        thumb: 'size-4 data-[state=checked]:translate-x-4.5',
+        indicator: 'size-2.5',
+      },
+      lg: {
+        root: 'h-6 w-11',
+        thumb: 'size-5 data-[state=checked]:translate-x-5.5',
+        indicator: 'size-3',
+      },
     },
     disabled: {
       true: { root: 'is-disabled' },
@@ -30,7 +42,8 @@ export const useSwitchStyle = createVariants({
     unstyled: {
       false: {
         root: 'rounded-full bg-muted transition-colors duration-200 data-[state=checked]:bg-accent hover:data-[state=unchecked]:bg-elevated',
-        thumb: 'shadow-xs transition-transform duration-200 ease-out group-aria-[pressed=true]/switch:scale-90',
+        thumb:
+          'shadow-xs transition-transform duration-200 ease-out group-aria-[pressed=true]/switch:scale-90',
       },
     },
   },
@@ -50,7 +63,9 @@ export const useSwitchStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b-transparent data-[state=unchecked]:b data-[state=unchecked]:b-base hover:data-[state=unchecked]:b-elevated' },
+      class: {
+        root: 'b-transparent data-[state=unchecked]:b data-[state=unchecked]:b-base hover:data-[state=unchecked]:b-elevated',
+      },
     },
   ],
 
@@ -61,5 +76,5 @@ export const useSwitchStyle = createVariants({
   },
 })
 
-export type SwitchStyleSlots = typeof useSwitchStyle['slots']
+export type SwitchStyleSlots = (typeof useSwitchStyle)['slots']
 export type SwitchStyleProps = VariantProps<typeof useSwitchStyle>

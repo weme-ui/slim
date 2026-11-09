@@ -1,7 +1,18 @@
 <script lang="ts" setup>
-import type { SegmentedControlEmits, SegmentedControlItem, SegmentedControlProps, SegmentedControlValue } from './segmented-control.props'
+import type {
+  SegmentedControlEmits,
+  SegmentedControlItem,
+  SegmentedControlProps,
+  SegmentedControlValue,
+} from './segmented-control.props'
 import { reactivePick, useResizeObserver, useVModel } from '@vueuse/core'
-import { RovingFocusGroup, RovingFocusItem, useForwardExpose, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
+import {
+  RovingFocusGroup,
+  RovingFocusItem,
+  useForwardExpose,
+  useForwardPropsEmits,
+  VisuallyHidden,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref, watch, watchPostEffect } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolAriaValue } from '~/utils/props'
@@ -19,24 +30,34 @@ const props = withDefaults(defineProps<SegmentedControlProps>(), {
 })
 
 const emits = defineEmits<SegmentedControlEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'dir', 'loop', 'orientation', 'currentTabStopId', 'defaultCurrentTabStopId', 'preventScrollOnEntryFocus')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'dir',
+  'loop',
+  'orientation',
+  'currentTabStopId',
+  'defaultCurrentTabStopId',
+  'preventScrollOnEntryFocus',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
-const modelValue = useVModel<SegmentedControlProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
+const modelValue = useVModel<SegmentedControlProps, 'modelValue', 'update:modelValue'>(
+  props,
+  'modelValue',
+  emits,
+  { defaultValue: props.defaultValue },
+)
 
-const {
-  id,
-  name,
-  bindings,
-  disabled,
-  dataAttributes,
-  registerControl,
-} = useFormFieldControl(props)
+const { id, name, bindings, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 
-const ui = computed(() => useSegmentedControlStyle({
-  orientation: props.orientation,
-  size: props.size,
-  disabled: disabled.value,
-}))
+const ui = computed(() =>
+  useSegmentedControlStyle({
+    orientation: props.orientation,
+    size: props.size,
+    disabled: disabled.value,
+  }),
+)
 
 const { forwardRef, currentElement } = useForwardExpose()
 
@@ -55,11 +76,16 @@ onUnmounted(() => {
 })
 
 const itemElements = ref<HTMLButtonElement[]>([])
-const indicatorStyles = ref<{ size: number | null, offset: number | null }>({ size: null, offset: null })
+const indicatorStyles = ref<{ size: number | null; offset: number | null }>({
+  size: null,
+  offset: null,
+})
 
 watchPostEffect(() => {
   itemElements.value = Array.from(
-    currentElement.value?.querySelectorAll<HTMLButtonElement>('[data-slot="segmented-control-item"]') || [],
+    currentElement.value?.querySelectorAll<HTMLButtonElement>(
+      '[data-slot="segmented-control-item"]',
+    ) || [],
   )
 })
 
@@ -67,44 +93,36 @@ useResizeObserver(itemElements, () => {
   updateIndicatorStyles()
 })
 
-watch(
-  [
-    modelValue,
-    () => props.items,
-  ],
-  () => updateIndicatorStyles(),
-  { immediate: true, flush: 'post' },
-)
+watch([modelValue, () => props.items], () => updateIndicatorStyles(), {
+  immediate: true,
+  flush: 'post',
+})
 
 function getState(val: SegmentedControlValue) {
-  return val === modelValue.value
-    ? 'checked'
-    : 'unchecked'
+  return val === modelValue.value ? 'checked' : 'unchecked'
 }
 
 function updateIndicatorStyles() {
   const checked = currentElement.value?.querySelector<HTMLButtonElement>('[data-state="checked"]')
 
-  if (!checked)
-    return
+  if (!checked) return
 
-  indicatorStyles.value = props.orientation === 'horizontal'
-    ? {
-        size: checked.offsetWidth,
-        offset: checked.offsetLeft,
-      }
-    : {
-        size: checked.offsetHeight,
-        offset: checked.offsetTop,
-      }
+  indicatorStyles.value =
+    props.orientation === 'horizontal'
+      ? {
+          size: checked.offsetWidth,
+          offset: checked.offsetLeft,
+        }
+      : {
+          size: checked.offsetHeight,
+          offset: checked.offsetTop,
+        }
 }
 
 function handleSelect(item: SegmentedControlItem) {
-  if (item.disabled || disabled.value || modelValue.value === item.value)
-    return
+  if (item.disabled || disabled.value || modelValue.value === item.value) return
 
-  if (item.onSelect)
-    item.onSelect(item.value)
+  if (item.onSelect) item.onSelect(item.value)
 
   modelValue.value = item.value
   emits('change', item.value)
@@ -132,18 +150,25 @@ function handleSelect(item: SegmentedControlItem) {
         :class="cn(ui.item(), props.ui?.item, item.class)"
         @focus="handleSelect(item)"
         @click="handleSelect(item)"
-        @mousedown.left="(event: MouseEvent) => {
-          if (!disabled && !item.disabled && event.ctrlKey === false) {
-            handleSelect(item)
+        @mousedown.left="
+          (event: MouseEvent) => {
+            if (!disabled && !item.disabled && event.ctrlKey === false) {
+              handleSelect(item)
+            } else {
+              event.preventDefault()
+            }
           }
-          else {
-            event.preventDefault()
-          }
-        }"
+        "
         @keydown.enter.space="handleSelect(item)"
       >
         <slot :item="item" :state="getState(item.value)" :value="modelValue">
-          <slot v-if="item.icon || $slots.icon" name="icon" :item="item" :state="getState(item.value)" :value="modelValue">
+          <slot
+            v-if="item.icon || $slots.icon"
+            name="icon"
+            :item="item"
+            :state="getState(item.value)"
+            :value="modelValue"
+          >
             <AnimatedToggleIcon
               v-if="item.icon"
               :icon="item.icon"
@@ -153,7 +178,13 @@ function handleSelect(item: SegmentedControlItem) {
             />
           </slot>
 
-          <slot v-if="item.label || $slots.label" name="label" :item="item" :state="getState(item.value)" :value="modelValue">
+          <slot
+            v-if="item.label || $slots.label"
+            name="label"
+            :item="item"
+            :state="getState(item.value)"
+            :value="modelValue"
+          >
             <span :class="cn(ui.label(), props.ui?.label)" :data-state="getState(item.value)">
               {{ item.label }}
             </span>

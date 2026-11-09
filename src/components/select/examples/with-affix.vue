@@ -17,11 +17,6 @@ const items: SelectItems = [
       placeholder="Select…"
     />
 
-    <Select
-      prefix="@"
-      suffix=".com"
-      :items="items"
-      placeholder="handle"
-    />
+    <Select prefix="@" suffix=".com" :items="items" placeholder="handle" />
   </div>
 </template>

@@ -22,28 +22,38 @@ function mountSelect(inputProps: Record<string, unknown> = {}) {
   const isMultiple = inputProps.multiple === true || inputProps.multiple === ''
   const model = ref<SelectModel>(
     inputProps.modelValue !== undefined
-      ? inputProps.modelValue as SelectModel
-      : (isMultiple
-          ? []
-          : ''),
+      ? (inputProps.modelValue as SelectModel)
+      : isMultiple
+        ? []
+        : '',
   )
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { fruit: model.value },
-      }, () =>
-        h(FormField, { name: 'fruit', label: 'Fruit' }, {
-          // Generic SFC props are not fully inferred under `h()`.
-          default: () => h(Select as any, {
-            'items': fruitItems,
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: SelectModel) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { fruit: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'fruit', label: 'Fruit' },
+              {
+                // Generic SFC props are not fully inferred under `h()`.
+                default: () =>
+                  h(Select as any, {
+                    items: fruitItems,
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: SelectModel) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -68,7 +78,7 @@ function contentOptions() {
 }
 
 async function selectOption(label: string) {
-  const option = contentOptions().find(el => el.textContent?.includes(label))
+  const option = contentOptions().find((el) => el.textContent?.includes(label))
   expect(option).toBeTruthy()
   // Reka SelectItem commits on pointerup.
   option!.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }))
@@ -135,11 +145,15 @@ describe('select', () => {
 
   it('applies open-state compounds when valid', () => {
     const soft = useSelectStyle({ variant: 'soft', invalid: false })
-    expect(soft.trigger()).toContain('data-[state=open]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.trigger()).toContain(
+      'data-[state=open]:(bg-base b-accent outline-2 outline-accent-4)',
+    )
     expect(soft.trigger()).toContain('hover:bg-elevated')
 
     const outline = useSelectStyle({ variant: 'outline', invalid: false })
-    expect(outline.trigger()).toContain('data-[state=open]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.trigger()).toContain(
+      'data-[state=open]:(bg-base b-accent outline-2 outline-accent-4)',
+    )
     expect(outline.trigger()).toContain('hover:b-elevated')
   })
 
@@ -176,12 +190,14 @@ describe('select', () => {
   describe('given a select inside a labeled form field', () => {
     it('has no accessibility violations', async () => {
       const { wrapper } = mountSelect({ placeholder: 'Pick fruit…' })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify stub SVGs use role="img" without alt.
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify stub SVGs use role="img" without alt.
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 

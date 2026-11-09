@@ -27,7 +27,7 @@ describe('icon', () => {
     it('renders data-slot and has no accessibility violations', async () => {
       const wrapper = mount(Icon, {
         attachTo: document.body,
-        props: { 'name': 'ri:discord-line', 'aria-hidden': true },
+        props: { name: 'ri:discord-line', 'aria-hidden': true },
       })
       expect(wrapper.attributes('data-slot')).toBe('icon')
       expect(await axe(wrapper.element)).toHaveNoViolations()

@@ -39,7 +39,8 @@ export const useSliderStyle = createVariants({
       false: {
         track: 'bg-muted transition-colors duration-200 ease-in-out hover:bg-elevated',
         range: 'bg-accent',
-        thumb: 'bg-accent-1 ring-2 ring-accent transition-[transform,shadow] duration-200 ease-in-out aria-[pressed=true]:scale-90',
+        thumb:
+          'bg-accent-1 ring-2 ring-accent transition-[transform,shadow] duration-200 ease-in-out aria-[pressed=true]:scale-90',
         step: 'bg-accent-1',
         marks: 'text-xs text-subtle',
         mark: 'text-center',
@@ -129,5 +130,5 @@ export const useSliderStyle = createVariants({
   },
 })
 
-export type SliderStyleSlots = typeof useSliderStyle['slots']
+export type SliderStyleSlots = (typeof useSliderStyle)['slots']
 export type SliderStyleProps = VariantProps<typeof useSliderStyle>

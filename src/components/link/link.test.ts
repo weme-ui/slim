@@ -101,11 +101,13 @@ describe('link', () => {
       expect(anchor.attributes('href')).toBe('https://example.com')
       expect(wrapper.find('[data-slot="icon"]').exists()).toBe(true)
       // Iconify SVG uses role="img" without alt; decorative external icon is not labeled today.
-      expect(await axe(wrapper.element, {
-        rules: {
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

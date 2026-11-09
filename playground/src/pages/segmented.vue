@@ -28,9 +28,5 @@ const items = ref([
 </script>
 
 <template>
-  <SegmentedControl
-    v-model="value"
-    orientation="vertical"
-    :items="items"
-  />
+  <SegmentedControl v-model="value" orientation="vertical" :items="items" />
 </template>

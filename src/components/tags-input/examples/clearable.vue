@@ -8,10 +8,6 @@ const tags = ref<TagsInputValue[]>(['alpha', 'beta', 'gamma'])
 
 <template>
   <div class="max-w-sm w-full">
-    <TagsInput
-      v-model="tags"
-      clearable
-      placeholder="Add a tag…"
-    />
+    <TagsInput v-model="tags" clearable placeholder="Add a tag…" />
   </div>
 </template>

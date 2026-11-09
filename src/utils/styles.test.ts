@@ -50,38 +50,12 @@ const TEXT_SIZES = [
 ] as const
 
 /** 没有数字前缀时不算字号，避免和 `text-subtle` 抢同一组。 */
-const TEXT_SIZE_EXCLUSIONS = [
-  'cqw',
-  'cqh',
-  'cqi',
-  'cqb',
-  'cqmin',
-  'cqmax',
-] as const
+const TEXT_SIZE_EXCLUSIONS = ['cqw', 'cqh', 'cqi', 'cqb', 'cqmin', 'cqmax'] as const
 
-const FOREGROUND_TOKENS = [
-  'highlighted',
-  'base',
-  'subtle',
-  'muted',
-  'inverted',
-] as const
-const BACKGROUND_TOKENS = [
-  'base',
-  'muted',
-  'elevated',
-  'inverted',
-  'foreground',
-] as const
+const FOREGROUND_TOKENS = ['highlighted', 'base', 'subtle', 'muted', 'inverted'] as const
+const BACKGROUND_TOKENS = ['base', 'muted', 'elevated', 'inverted', 'foreground'] as const
 const BORDER_TOKENS = ['base', 'elevated', 'inverted'] as const
-const COLOR_ALIASES = [
-  'accent',
-  'neutral',
-  'success',
-  'info',
-  'warning',
-  'error',
-] as const
+const COLOR_ALIASES = ['accent', 'neutral', 'success', 'info', 'warning', 'error'] as const
 
 const BORDER_NON_COLORS = [
   'solid',
@@ -99,18 +73,7 @@ const BORDER_NON_COLORS = [
   'auto',
 ] as const
 
-const BORDER_SIDES = [
-  't',
-  'r',
-  'b',
-  'l',
-  'x',
-  'y',
-  's',
-  'e',
-  'bs',
-  'be',
-] as const
+const BORDER_SIDES = ['t', 'r', 'b', 'l', 'x', 'y', 's', 'e', 'bs', 'be'] as const
 
 describe('twMergeConfig', () => {
   describe('theme.text', () => {
@@ -161,7 +124,9 @@ describe('twMergeConfig', () => {
     })
 
     it('leaves unrelated utilities in place', () => {
-      expect(cn('fancy-info', 'text-subtle', 'bg-muted', 'plain-error')).toBe('text-subtle bg-muted plain-error')
+      expect(cn('fancy-info', 'text-subtle', 'bg-muted', 'plain-error')).toBe(
+        'text-subtle bg-muted plain-error',
+      )
     })
   })
 
@@ -192,9 +157,9 @@ describe('twMergeConfig', () => {
     it('merges text, c, and color prefixes for foreground tokens and aliases', () => {
       for (const token of FOREGROUND_TOKENS) {
         // `text-base` 是字号，不和文字色抢同一组；`c-base` / `color-base` 仍是颜色。
-        expect(cn('text-subtle', `text-${token}`), token).toBe(token === 'base'
-          ? `text-subtle text-${token}`
-          : `text-${token}`)
+        expect(cn('text-subtle', `text-${token}`), token).toBe(
+          token === 'base' ? `text-subtle text-${token}` : `text-${token}`,
+        )
         expect(cn('c-subtle', `c-${token}`), token).toBe(`c-${token}`)
         expect(cn('color-subtle', `color-${token}`), token).toBe(`color-${token}`)
         expect(cn('text-subtle', `c-${token}`), token).toBe(`c-${token}`)

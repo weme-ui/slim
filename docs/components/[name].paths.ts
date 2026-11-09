@@ -7,24 +7,18 @@ import { buildComponentPage, getComponentItems, getRegistryItem } from '../.vite
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 function readReadme(path?: string) {
-  if (!path)
-    return ''
+  if (!path) return ''
   try {
     return readFileSync(resolve(repoRoot, path), 'utf8')
-  }
-  catch {
+  } catch {
     return ''
   }
 }
 
 export default {
-  watch: [
-    '../../registry.json',
-    '../../src/components/**/README.md',
-    '../../src/composables/*.md',
-  ],
+  watch: ['../../registry.json', '../../src/components/**/README.md', '../../src/composables/*.md'],
   paths() {
-    return getComponentItems().map(item => ({
+    return getComponentItems().map((item) => ({
       params: {
         name: item.name,
       },
@@ -32,12 +26,10 @@ export default {
   },
   transformPageData(pageData: PageData) {
     const name = pageData.params?.name
-    if (!name)
-      return
+    if (!name) return
     const item = getRegistryItem(name)
-    if (!item)
-      return
-    const docFile = item.files.find(file => file.kind === 'doc')
+    if (!item) return
+    const docFile = item.files.find((file) => file.kind === 'doc')
     const page = buildComponentPage(item, readReadme(docFile?.path))
     pageData.title = page.title
     pageData.description = page.description

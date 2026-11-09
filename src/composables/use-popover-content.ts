@@ -17,11 +17,11 @@ export interface UsePopoverContentReturn {
   transition: Options['transition']
 }
 
-export function usePopoverContent(options: UsePopoverContentOptions = {}): ComputedRef<UsePopoverContentReturn> {
+export function usePopoverContent(
+  options: UsePopoverContentOptions = {},
+): ComputedRef<UsePopoverContentReturn> {
   const open = options.open ?? ref(false)
-  const height = open
-    ? toValue(options.height) || 0
-    : 0
+  const height = open ? toValue(options.height) || 0 : 0
   const side = toValue(options.side) || 'bottom'
   const sideOffset = toValue(options.sideOffset) || 6
 
@@ -34,11 +34,7 @@ export function usePopoverContent(options: UsePopoverContentOptions = {}): Compu
     animate: {
       height,
       opacity: open.value ? 1 : 0,
-      y: open.value
-        ? side === 'bottom'
-          ? sideOffset
-          : -sideOffset
-        : 0,
+      y: open.value ? (side === 'bottom' ? sideOffset : -sideOffset) : 0,
     },
     transition: {
       type: 'spring',

@@ -1,21 +1,7 @@
 <script lang="ts" setup>
-const variants = [
-  'solid',
-  'soft',
-  'outline',
-  'plain',
-  'inverted',
-] as const
+const variants = ['solid', 'soft', 'outline', 'plain', 'inverted'] as const
 
-const colors = [
-  'default',
-  'accent',
-  'neutral',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+const colors = ['default', 'accent', 'neutral', 'info', 'success', 'warning', 'error'] as const
 </script>
 
 <template>

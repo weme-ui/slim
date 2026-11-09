@@ -9,15 +9,25 @@ import FormField from './form-field.vue'
 function mountFormField(props: Record<string, unknown> = {}) {
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { email: '' },
-      }, () =>
-        h(FormField, { name: 'email', label: 'Email', ...props }, {
-          default: () => h('input', {
-            'type': 'email',
-            'aria-label': 'Email',
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { email: '' },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'email', label: 'Email', ...props },
+              {
+                default: () =>
+                  h('input', {
+                    type: 'email',
+                    'aria-label': 'Email',
+                  }),
+              },
+            ),
+        )
     },
   })
 

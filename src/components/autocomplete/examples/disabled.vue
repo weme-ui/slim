@@ -10,10 +10,6 @@ const items: AutocompleteItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Autocomplete
-      disabled
-      :items="items"
-      placeholder="Disabled"
-    />
+    <Autocomplete disabled :items="items" placeholder="Disabled" />
   </div>
 </template>

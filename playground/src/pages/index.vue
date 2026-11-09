@@ -55,27 +55,15 @@ function showLoadingToast() {
 </script>
 
 <template>
-  <Button @click="showToast()">
-    Default
-  </Button>
+  <Button @click="showToast()"> Default </Button>
 
-  <Button @click="showToast('info')">
-    Info
-  </Button>
+  <Button @click="showToast('info')"> Info </Button>
 
-  <Button @click="showToast('success')">
-    Success
-  </Button>
+  <Button @click="showToast('success')"> Success </Button>
 
-  <Button @click="showToast('warning')">
-    Warning
-  </Button>
+  <Button @click="showToast('warning')"> Warning </Button>
 
-  <Button @click="showToast('error')">
-    Error
-  </Button>
+  <Button @click="showToast('error')"> Error </Button>
 
-  <Button @click="showLoadingToast">
-    Promise
-  </Button>
+  <Button @click="showLoadingToast"> Promise </Button>
 </template>

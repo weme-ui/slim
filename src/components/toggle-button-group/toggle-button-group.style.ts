@@ -21,5 +21,5 @@ export const useToggleButtonGroupStyle = createVariants({
   },
 })
 
-export type ToggleButtonGroupStyleSlots = typeof useToggleButtonGroupStyle['slots']
+export type ToggleButtonGroupStyleSlots = (typeof useToggleButtonGroupStyle)['slots']
 export type ToggleButtonGroupStyleProps = VariantProps<typeof useToggleButtonGroupStyle>

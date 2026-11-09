@@ -4,9 +4,6 @@ import Textarea from '../textarea.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Textarea
-      disabled
-      placeholder="Disabled"
-    />
+    <Textarea disabled placeholder="Disabled" />
   </div>
 </template>

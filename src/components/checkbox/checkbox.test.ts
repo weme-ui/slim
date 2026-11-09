@@ -11,24 +11,32 @@ function mountCheckbox(
   checkboxProps: Record<string, unknown> = {},
   fieldProps: Record<string, unknown> = {},
 ) {
-  const model = ref(
-    (checkboxProps.modelValue as boolean | 'indeterminate' | undefined) ?? false,
-  )
+  const model = ref((checkboxProps.modelValue as boolean | 'indeterminate' | undefined) ?? false)
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { terms: model.value },
-      }, () =>
-        h(FormField, { name: 'terms', ...fieldProps }, {
-          default: () => h(Checkbox, {
-            ...checkboxProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: boolean | 'indeterminate') => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { terms: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'terms', ...fieldProps },
+              {
+                default: () =>
+                  h(Checkbox, {
+                    ...checkboxProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: boolean | 'indeterminate') => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -100,12 +108,14 @@ describe('checkbox', () => {
         modelValue: false,
         label: 'Accept terms',
       })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify SVG uses role="img" without alt when unchecked still may not show icon
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify SVG uses role="img" without alt when unchecked still may not show icon
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -231,11 +241,13 @@ describe('checkbox', () => {
         label: 'Accept terms',
       })
       await nextTick()
-      expect(await axe(wrapper.element, {
-        rules: {
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

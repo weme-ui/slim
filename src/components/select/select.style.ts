@@ -4,7 +4,8 @@ import { createVariants } from '~/utils/styles'
 export const useSelectStyle = createVariants({
   slots: {
     root: '',
-    trigger: 'group/trigger flex min-w-60 select-none flex-y-center relative focus-visible:outline-none',
+    trigger:
+      'group/trigger flex min-w-60 select-none flex-y-center relative focus-visible:outline-none',
     prefix: '',
     prefixIcon: '',
     value: 'leading-none text-left flex flex-1 text-nowrap flex-y-center',
@@ -13,7 +14,8 @@ export const useSelectStyle = createVariants({
     valueCount: '',
     suffix: 'ml-auto outline-none',
     suffixIcon: '',
-    content: 'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-select-trigger-width origin-$reka-select-content-transform-origin fixed z-high overflow-hidden',
+    content:
+      'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-select-trigger-width origin-$reka-select-content-transform-origin fixed z-high overflow-hidden',
     viewport: 'flex flex-col relative',
     group: 'flex flex-col',
     groupLabel: '',
@@ -56,7 +58,8 @@ export const useSelectStyle = createVariants({
         itemIcon: 'text-subtle group-data-[highlighted]/item:text-highlighted',
         itemDescription: 'text-subtle',
         itemIndicator: 'text-accent',
-        clearBtn: 'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[state=open]/trigger:op-100',
+        clearBtn:
+          'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[state=open]/trigger:op-100',
         separator: 'my-1 b-b b-base',
       },
     },
@@ -73,12 +76,7 @@ export const useSelectStyle = createVariants({
 
   compoundSlots: [
     {
-      slots: [
-        'prefix',
-        'suffix',
-        'scrollUp',
-        'scrollDown',
-      ],
+      slots: ['prefix', 'suffix', 'scrollUp', 'scrollDown'],
       class: 'flex flex-center',
     },
     {
@@ -137,7 +135,8 @@ export const useSelectStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        trigger: 'bg-muted data-[state=open]:(bg-base b-accent outline-2 outline-accent-4) hover:bg-elevated',
+        trigger:
+          'bg-muted data-[state=open]:(bg-base b-accent outline-2 outline-accent-4) hover:bg-elevated',
       },
     },
     {
@@ -240,5 +239,5 @@ export const useSelectStyle = createVariants({
   },
 })
 
-export type SelectStyleSlots = Omit<typeof useSelectStyle['slots'], 'root'>
+export type SelectStyleSlots = Omit<(typeof useSelectStyle)['slots'], 'root'>
 export type SelectStyleProps = VariantProps<typeof useSelectStyle>

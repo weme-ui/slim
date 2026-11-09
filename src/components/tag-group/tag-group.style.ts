@@ -36,7 +36,8 @@ export const useTagGroupStyle = createVariants({
       slots: ['item', 'itemDelete'],
       selectable: true,
       unstyled: false,
-      class: 'transition-[color,background-color,transform] duration-200 ease-out aria-[pressed=true]:scale-97',
+      class:
+        'transition-[color,background-color,transform] duration-200 ease-out aria-[pressed=true]:scale-97',
     },
   ],
 
@@ -129,5 +130,5 @@ export const useTagGroupStyle = createVariants({
   },
 })
 
-export type TagGroupStyleSlots = typeof useTagGroupStyle['slots']
+export type TagGroupStyleSlots = (typeof useTagGroupStyle)['slots']
 export type TagGroupStyleProps = VariantProps<typeof useTagGroupStyle>

@@ -10,10 +10,6 @@ const items: ListboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Listbox
-      disabled
-      :items="items"
-      placeholder="Disabled"
-    />
+    <Listbox disabled :items="items" placeholder="Disabled" />
   </div>
 </template>

@@ -11,8 +11,6 @@ const items: RadioGroupItem[] = [
 
 <template>
   <div class="max-w-sm w-full">
-    <RadioGroup
-      :items="items"
-    />
+    <RadioGroup :items="items" />
   </div>
 </template>

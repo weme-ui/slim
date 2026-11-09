@@ -59,5 +59,5 @@ export const usePasswordStrengthStyle = createVariants({
   },
 })
 
-export type PasswordStrengthStyleSlots = typeof usePasswordStrengthStyle['slots']
+export type PasswordStrengthStyleSlots = (typeof usePasswordStrengthStyle)['slots']
 export type PasswordStrengthStyleProps = VariantProps<typeof usePasswordStrengthStyle>

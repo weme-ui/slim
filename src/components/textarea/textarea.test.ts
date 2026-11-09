@@ -15,20 +15,28 @@ function mountTextarea(
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { bio: model.value },
-      }, () =>
-        h(FormField, { name: 'bio', label: 'Bio', ...fieldProps }, {
-          default: () => h(Textarea, {
-            ...textareaProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: string | null | undefined) => {
-              model.value = value == null
-                ? ''
-                : String(value)
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { bio: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'bio', label: 'Bio', ...fieldProps },
+              {
+                default: () =>
+                  h(Textarea, {
+                    ...textareaProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: string | null | undefined) => {
+                      model.value = value == null ? '' : String(value)
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -148,7 +156,10 @@ describe('textarea', () => {
     it('renders the loader when loading', async () => {
       const { wrapper } = mountTextarea({ loading: true })
       await nextTick()
-      expect(wrapper.find('[data-slot="textarea"] .animate-spin').exists() || wrapper.find('svg').exists()).toBe(true)
+      expect(
+        wrapper.find('[data-slot="textarea"] .animate-spin').exists() ||
+          wrapper.find('svg').exists(),
+      ).toBe(true)
       wrapper.unmount()
     })
 
@@ -201,11 +212,13 @@ describe('textarea', () => {
       // Iconify SVG uses role="img" without alt.
       const { wrapper } = mountTextarea({ loading: true })
       await nextTick()
-      expect(await axe(wrapper.element, {
-        rules: {
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

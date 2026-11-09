@@ -18,7 +18,12 @@ const props = withDefaults(defineProps<TextareaProps>(), {
 
 const emits = defineEmits<TextareaEmits>()
 
-const modelValue = useVModel<TextareaProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
+const modelValue = useVModel<TextareaProps, 'modelValue', 'update:modelValue'>(
+  props,
+  'modelValue',
+  emits,
+  { defaultValue: props.defaultValue },
+)
 
 const {
   bindings,
@@ -35,21 +40,23 @@ const {
 const textareaRef = useTemplateRef<HTMLTextAreaElement>('textareaRef')
 
 const hasCounter = computed(() => !!props.countable && props.maxLength !== undefined)
-const countLength = computed(() => modelValue.value
-  ? modelValue.value.toString().length
-  : 0)
-const overcount = computed(() => props.maxLength !== undefined && countLength.value > props.maxLength)
+const countLength = computed(() => (modelValue.value ? modelValue.value.toString().length : 0))
+const overcount = computed(
+  () => props.maxLength !== undefined && countLength.value > props.maxLength,
+)
 
-const ui = computed(() => useTextareaStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  loading: loading.value,
-  overcount: overcount.value,
-  invalid: invalid.value,
-  autosize: toBoolValue(props.autoSize),
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useTextareaStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    loading: loading.value,
+    overcount: overcount.value,
+    invalid: invalid.value,
+    autosize: toBoolValue(props.autoSize),
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -76,11 +83,13 @@ watch(
 )
 
 function updateValue(value: string | null | undefined) {
-  if (props.modelModifiers?.trim && (typeof value === 'string' || value === null || value === undefined))
+  if (
+    props.modelModifiers?.trim &&
+    (typeof value === 'string' || value === null || value === undefined)
+  )
     value = value?.toString().trim() ?? null
 
-  if (props.modelModifiers?.nullable)
-    value ||= null
+  if (props.modelModifiers?.nullable) value ||= null
 
   if (props.modelModifiers?.optional && !props.modelModifiers?.nullable && value !== null)
     value ||= undefined
@@ -102,25 +111,21 @@ function handleInput(e: Event) {
 function handleChange(e: Event) {
   const value = (e.target as HTMLTextAreaElement).value
 
-  if (props.modelModifiers?.lazy)
-    updateValue(value)
+  if (props.modelModifiers?.lazy) updateValue(value)
 
-  if (props.modelModifiers?.trim)
-    (e.target as HTMLTextAreaElement).value = value.trim()
+  if (props.modelModifiers?.trim) (e.target as HTMLTextAreaElement).value = value.trim()
 
   emits('change', (e.target as HTMLTextAreaElement).value)
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLTextAreaElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLTextAreaElement).value })) return
 
   emits('blur', e)
 }
@@ -138,9 +143,7 @@ function handleResize() {
     const rows = (scrollHeight - paddingTop - paddingBottom) / lineHeight
 
     if (rows > props.rows) {
-      textareaRef.value.rows = props.maxRows
-        ? Math.min(rows, props.maxRows)
-        : rows
+      textareaRef.value.rows = props.maxRows ? Math.min(rows, props.maxRows) : rows
     }
   }
 }

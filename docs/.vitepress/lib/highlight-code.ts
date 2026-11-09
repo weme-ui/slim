@@ -77,28 +77,20 @@ function getHighlighter() {
 }
 
 export function resolveHighlightLang(lang?: string | null): HighlightLang {
-  if (!lang)
-    return 'text'
+  if (!lang) return 'text'
   const key = lang.trim().toLowerCase()
-  if (key in LANG_ALIASES)
-    return LANG_ALIASES[key]!
-  if ((LANGS as readonly string[]).includes(key))
-    return key as BundledLanguage
+  if (key in LANG_ALIASES) return LANG_ALIASES[key]
+  if ((LANGS as readonly string[]).includes(key)) return key as BundledLanguage
   return 'text'
 }
 
 function classList(value: unknown): string[] {
-  if (Array.isArray(value))
-    return value.map(String).filter(Boolean)
-  if (typeof value === 'string')
-    return value.split(/\s+/).filter(Boolean)
+  if (Array.isArray(value)) return value.map(String).filter(Boolean)
+  if (typeof value === 'string') return value.split(/\s+/).filter(Boolean)
   return []
 }
 
-export async function highlightCode(
-  code: string,
-  lang?: string | null,
-): Promise<string> {
+export async function highlightCode(code: string, lang?: string | null): Promise<string> {
   const highlighter = await getHighlighter()
   const resolved = resolveHighlightLang(lang)
   const html = highlighter.codeToHtml(code.replace(/\n$/, ''), {
@@ -127,14 +119,14 @@ export async function highlightCode(
 }
 
 export async function renderHighlightedMarkdown(source = ''): Promise<string> {
-  if (!source.trim())
-    return ''
+  if (!source.trim()) return ''
 
-  const parts = await Promise.all(parseMarkdownFences(source).map(async (part) => {
-    if (part.type === 'text')
-      return renderMarkdownBlocks(part.content)
-    return highlightCode(part.content, part.lang)
-  }))
+  const parts = await Promise.all(
+    parseMarkdownFences(source).map(async (part) => {
+      if (part.type === 'text') return renderMarkdownBlocks(part.content)
+      return highlightCode(part.content, part.lang)
+    }),
+  )
 
   return parts.filter(Boolean).join('\n')
 }

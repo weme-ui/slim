@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import type { ToastEmits, ToastProps } from './toast.props'
 import { isClient, reactivePick } from '@vueuse/core'
-import { ToastAction, ToastClose, ToastDescription, ToastRoot, ToastTitle, useForwardPropsEmits } from 'reka-ui'
+import {
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastRoot,
+  ToastTitle,
+  useForwardPropsEmits,
+} from 'reka-ui'
 import { computed, useTemplateRef } from 'vue'
 import { cn } from '~/utils/styles'
 import Button from '../button/button.vue'
@@ -16,7 +23,16 @@ const props = withDefaults(defineProps<ToastProps>(), {
 })
 
 const emits = defineEmits<ToastEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'defaultOpen', 'duration', 'forceMount', 'open', 'type')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'defaultOpen',
+  'duration',
+  'forceMount',
+  'open',
+  'type',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const rootRef = useTemplateRef('rootRef')
@@ -55,14 +71,15 @@ const statusIcon = computed(() => {
 
 const hasIcon = computed(() => !!statusIcon.value || props.status === 'loading')
 
-const ui = computed(() => useToastStyle({
-  variant: resolvedVariant.value,
-  orientation: props.orientation,
-}))
+const ui = computed(() =>
+  useToastStyle({
+    variant: resolvedVariant.value,
+    orientation: props.orientation,
+  }),
+)
 
 const height = computed(() => {
-  if (!isClient || !rootRef.value?.$el)
-    return 0
+  if (!isClient || !rootRef.value?.$el) return 0
 
   return rootRef.value.$el.getBoundingClientRect().height
 })
@@ -81,7 +98,11 @@ defineExpose({
   >
     <div :class="cn(ui.container(), props.ui?.container)">
       <slot v-if="hasIcon" name="icon" :status="status">
-        <Icon v-if="status === 'loading'" :name="loadingIcon" :class="cn(ui.icon(), props.ui?.icon)" />
+        <Icon
+          v-if="status === 'loading'"
+          :name="loadingIcon"
+          :class="cn(ui.icon(), props.ui?.icon)"
+        />
         <Icon v-else-if="statusIcon" :name="statusIcon" :class="cn(ui.icon(), props.ui?.icon)" />
         <Icon v-else-if="icon" :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
       </slot>
@@ -94,7 +115,10 @@ defineExpose({
             </slot>
           </ToastTitle>
 
-          <ToastDescription v-if="!!description" :class="cn(ui.description(), props.ui?.description)">
+          <ToastDescription
+            v-if="!!description"
+            :class="cn(ui.description(), props.ui?.description)"
+          >
             <slot name="description">
               {{ description }}
             </slot>
@@ -110,7 +134,12 @@ defineExpose({
           >
             <Button
               v-bind="action"
-              :color="action.color || (status === 'loading' || resolvedVariant === 'loading' ? 'default' : resolvedVariant)"
+              :color="
+                action.color ||
+                (status === 'loading' || resolvedVariant === 'loading'
+                  ? 'default'
+                  : resolvedVariant)
+              "
               variant="soft"
               size="sm"
               :class="cn(ui.action(), props.ui?.action, action.class)"

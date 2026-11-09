@@ -6,10 +6,7 @@ import Form from '../../form/form.vue'
 import NumberInput from '../number-input.vue'
 
 const schema = v.object({
-  quantity: v.pipe(
-    v.number('数量不能为空'),
-    v.minValue(1, '至少为 1'),
-  ),
+  quantity: v.pipe(v.number('数量不能为空'), v.minValue(1, '至少为 1')),
 })
 
 const defaultValues = {
@@ -29,12 +26,7 @@ function onFormSubmit(values: { quantity: number }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="quantity"
-      label="Quantity"
-      required
-    >
+    <FormField v-slot="{ field }" name="quantity" label="Quantity" required>
       <NumberInput
         :model-value="field.state.value"
         :min="0"
@@ -42,8 +34,6 @@ function onFormSubmit(values: { quantity: number }) {
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

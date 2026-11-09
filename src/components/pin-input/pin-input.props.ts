@@ -1,6 +1,6 @@
 import type { PinInputRootEmits, PinInputRootProps } from 'reka-ui'
-import type { PinInputStyleProps, PinInputStyleSlots } from './pin-input.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { PinInputStyleProps, PinInputStyleSlots } from './pin-input.style'
 
 export interface PinInputProps extends PinInputRootProps, Omit<FormFieldSharedProps, 'loading'> {
   variant?: PinInputStyleProps['variant']

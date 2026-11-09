@@ -31,9 +31,15 @@ describe('alert', () => {
 
   it('applies status surfaces', () => {
     expect(useAlertStyle({ status: 'info', clickable: false }).root()).toContain('plain-info-soft')
-    expect(useAlertStyle({ status: 'success', clickable: false }).root()).toContain('plain-success-soft')
-    expect(useAlertStyle({ status: 'warning', clickable: false }).root()).toContain('plain-warning-soft')
-    expect(useAlertStyle({ status: 'error', clickable: false }).root()).toContain('plain-error-soft')
+    expect(useAlertStyle({ status: 'success', clickable: false }).root()).toContain(
+      'plain-success-soft',
+    )
+    expect(useAlertStyle({ status: 'warning', clickable: false }).root()).toContain(
+      'plain-warning-soft',
+    )
+    expect(useAlertStyle({ status: 'error', clickable: false }).root()).toContain(
+      'plain-error-soft',
+    )
     expect(useAlertStyle({ status: 'info', clickable: true }).root()).toContain('fancy-info-soft')
   })
 

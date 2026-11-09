@@ -45,20 +45,41 @@ const props = withDefaults(defineProps<AutocompleteProps>(), {
 })
 
 const emits = defineEmits<AutocompleteEmits>()
-const delegated = reactiveOmit(props, 'items', 'variant', 'size', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'items',
+  'variant',
+  'size',
+  'prefix',
+  'suffix',
+  'prefixIcon',
+  'suffixIcon',
+  'loading',
+  'loadingIcon',
+  'clearIcon',
+  'clearable',
+  'itemIndicatorIcon',
+  'portalProps',
+  'contentProps',
+  'placeholder',
+  'emptyText',
+  'emptyIcon',
+  'reference',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
 const contentProps = toRef(
-  () => defu(
-    props.contentProps,
-    {
+  () =>
+    defu(props.contentProps, {
       align: 'start',
       side: 'bottom',
       collisionPadding: 6,
       position: 'popper',
-    },
-  ) as AutocompleteContentProps,
+    }) as AutocompleteContentProps,
 )
 
 const {
@@ -82,8 +103,12 @@ const selectedIcon = computed(() => selectedItem.value?.selectedIcon || selected
 
 const slots = useSlots()
 
-const hasPrefix = computed(() => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix)
-const hasClean = computed(() => !disabled.value && props.clearable && modelValue.value !== undefined)
+const hasPrefix = computed(
+  () => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix,
+)
+const hasClean = computed(
+  () => !disabled.value && props.clearable && modelValue.value !== undefined,
+)
 
 const open = ref(false)
 
@@ -108,33 +133,32 @@ onUnmounted(() => {
   unregister?.()
 })
 
-const ui = computed(() => useAutocompleteStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  loading: loading.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useAutocompleteStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    loading: loading.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 function handleUpdate(value?: AutocompleteValue) {
-  if (value === undefined)
-    return
+  if (value === undefined) return
 
   emits('update:modelValue', value)
   emits('change', value)
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }
@@ -175,8 +199,16 @@ function handleBlur(e: FocusEvent) {
 
       <AutocompleteTrigger :class="cn(ui.suffix(), props.ui?.suffix)">
         <slot name="suffix">
-          <Icon v-if="loading" :name="loadingIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
-          <Icon v-else-if="suffixIcon" :name="suffixIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
+          <Icon
+            v-if="loading"
+            :name="loadingIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
+          <Icon
+            v-else-if="suffixIcon"
+            :name="suffixIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
           <template v-else>
             {{ suffix }}
           </template>
@@ -197,7 +229,11 @@ function handleBlur(e: FocusEvent) {
               <template v-if="groupedItems.length === 0">
                 <AutocompleteEmpty :class="cn(ui.empty(), props.ui?.empty)">
                   <slot name="empty">
-                    <Icon v-if="emptyIcon" :name="emptyIcon" :class="cn(ui.emptyIcon(), props.ui?.emptyIcon)" />
+                    <Icon
+                      v-if="emptyIcon"
+                      :name="emptyIcon"
+                      :class="cn(ui.emptyIcon(), props.ui?.emptyIcon)"
+                    />
                     {{ emptyText }}
                   </slot>
                 </AutocompleteEmpty>
@@ -212,7 +248,10 @@ function handleBlur(e: FocusEvent) {
                         :class="cn(ui.separator(), props.ui?.separator)"
                       />
 
-                      <AutocompleteLabel v-else-if="item.type === 'label'" :class="cn(ui.label(), props.ui?.label)">
+                      <AutocompleteLabel
+                        v-else-if="item.type === 'label'"
+                        :class="cn(ui.label(), props.ui?.label)"
+                      >
                         <slot name="label">
                           {{ item.label }}
                         </slot>
@@ -227,13 +266,28 @@ function handleBlur(e: FocusEvent) {
                       >
                         <slot name="item" :item="item" :selected="selected">
                           <slot name="item-icon" :item="item" :selected="selected">
-                            <Icon v-if="selected && (item.selectedIcon || item.icon)" :name="item.selectedIcon || item.icon || ''" :class="cn(ui.itemIcon(), props.ui?.itemIcon)" />
-                            <Icon v-else-if="item.icon" :name="item.icon" :class="cn(ui.itemIcon(), props.ui?.itemIcon, item.iconClass)" />
+                            <Icon
+                              v-if="selected && (item.selectedIcon || item.icon)"
+                              :name="item.selectedIcon || item.icon || ''"
+                              :class="cn(ui.itemIcon(), props.ui?.itemIcon)"
+                            />
+                            <Icon
+                              v-else-if="item.icon"
+                              :name="item.icon"
+                              :class="cn(ui.itemIcon(), props.ui?.itemIcon, item.iconClass)"
+                            />
                           </slot>
 
-                          <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
+                          <span
+                            v-if="item.label"
+                            :class="cn(ui.itemLabel(), props.ui?.itemLabel)"
+                            >{{ item.label }}</span
+                          >
 
-                          <AutocompleteItemIndicator :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)" as-child>
+                          <AutocompleteItemIndicator
+                            :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)"
+                            as-child
+                          >
                             <Icon :name="itemIndicatorIcon" />
                           </AutocompleteItemIndicator>
                         </slot>

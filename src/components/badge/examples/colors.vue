@@ -1,23 +1,9 @@
 <script lang="ts" setup>
 import Badge from '../badge.vue'
 
-const variants = [
-  'solid',
-  'soft',
-  'outline',
-  'plain',
-  'inverted',
-] as const
+const variants = ['solid', 'soft', 'outline', 'plain', 'inverted'] as const
 
-const colors = [
-  'default',
-  'accent',
-  'neutral',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+const colors = ['default', 'accent', 'neutral', 'info', 'success', 'warning', 'error'] as const
 </script>
 
 <template>

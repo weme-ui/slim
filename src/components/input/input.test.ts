@@ -12,20 +12,28 @@ function mountInput(inputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { name: model.value },
-      }, () =>
-        h(FormField, { name: 'name', label: 'Name' }, {
-          default: () => h(Input, {
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: string | number | null | undefined) => {
-              model.value = value == null
-                ? ''
-                : String(value)
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { name: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'name', label: 'Name' },
+              {
+                default: () =>
+                  h(Input, {
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: string | number | null | undefined) => {
+                      model.value = value == null ? '' : String(value)
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -218,12 +226,14 @@ describe('input', () => {
         clearable: true,
       })
       await nextTick()
-      expect(await axe(wrapper.element, {
-        rules: {
-          'button-name': { enabled: false },
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'button-name': { enabled: false },
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

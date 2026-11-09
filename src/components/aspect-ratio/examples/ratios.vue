@@ -10,11 +10,7 @@ const ratios = [
 
 <template>
   <div class="flex flex-wrap gap-3 items-start">
-    <div
-      v-for="item in ratios"
-      :key="item.label"
-      class="w-32"
-    >
+    <div v-for="item in ratios" :key="item.label" class="w-32">
       <AspectRatio :ratio="item.ratio">
         <div class="text-sm text-subtle bg-muted size-full flex-center">
           {{ item.label }}

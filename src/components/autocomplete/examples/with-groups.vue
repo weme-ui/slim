@@ -19,10 +19,6 @@ const items: AutocompleteItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Autocomplete
-      :items="items"
-      placeholder="Search food…"
-      open-on-focus
-    />
+    <Autocomplete :items="items" placeholder="Search food…" open-on-focus />
   </div>
 </template>

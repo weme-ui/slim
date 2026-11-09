@@ -7,10 +7,7 @@ import Form from '../../form/form.vue'
 import Select from '../select.vue'
 
 const schema = v.object({
-  drink: v.pipe(
-    v.string('请选择饮品'),
-    v.minLength(1, '请选择饮品'),
-  ),
+  drink: v.pipe(v.string('请选择饮品'), v.minLength(1, '请选择饮品')),
 })
 
 const defaultValues = {
@@ -37,12 +34,7 @@ function onFormSubmit(values: { drink: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="drink"
-      label="Drink"
-      required
-    >
+    <FormField v-slot="{ field }" name="drink" label="Drink" required>
       <Select
         :model-value="field.state.value"
         :items="items"
@@ -50,8 +42,6 @@ function onFormSubmit(values: { drink: string }) {
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

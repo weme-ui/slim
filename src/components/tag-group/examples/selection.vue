@@ -19,11 +19,11 @@ const singleValue = ref<TagGroupItemValue>()
 const multipleValue = ref<TagGroupItemValue[]>([])
 
 function onRemoveSingle(values: TagGroupItemValue[]) {
-  singleItems.value = singleItems.value.filter(item => !values.includes(item.value))
+  singleItems.value = singleItems.value.filter((item) => !values.includes(item.value))
 }
 
 function onRemoveMultiple(values: TagGroupItemValue[]) {
-  multipleItems.value = multipleItems.value.filter(item => !values.includes(item.value))
+  multipleItems.value = multipleItems.value.filter((item) => !values.includes(item.value))
 }
 </script>
 

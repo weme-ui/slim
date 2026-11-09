@@ -7,10 +7,7 @@ import Form from '../../form/form.vue'
 import RadioGroup from '../radio-group.vue'
 
 const schema = v.object({
-  plan: v.pipe(
-    v.string(),
-    v.minLength(1, '请选择一项'),
-  ),
+  plan: v.pipe(v.string(), v.minLength(1, '请选择一项')),
 })
 
 const defaultValues = {
@@ -36,21 +33,13 @@ function onFormSubmit(values: { plan: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="plan"
-      label="Plan"
-      :native-label="false"
-      required
-    >
+    <FormField v-slot="{ field }" name="plan" label="Plan" :native-label="false" required>
       <RadioGroup
         :model-value="field.state.value"
         :items="items"
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

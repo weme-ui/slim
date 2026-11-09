@@ -16,7 +16,8 @@ export const useComboboxStyle = createVariants({
     suffixIcon: '',
     clearBtn: '',
     filterInput: 'outline-none bg-base left-0 right-0 top-0 fixed z-high',
-    content: 'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',
+    content:
+      'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',
     viewport: 'flex flex-col relative',
     empty: '',
     emptyIcon: '',
@@ -53,7 +54,8 @@ export const useComboboxStyle = createVariants({
       false: {
         root: 'b',
         values: 'text-subtle',
-        valueCount: 'bg-elevated group-data-[focused]:bg-muted group-not-[[data-focused]]:group-hover:bg-muted',
+        valueCount:
+          'bg-elevated group-data-[focused]:bg-muted group-not-[[data-focused]]:group-hover:bg-muted',
         placeholder: 'text-subtle',
         filterInput: 'b-b b-base/60 placeholder:text-subtle',
         content: 'bg-base shadow-xs',
@@ -63,7 +65,8 @@ export const useComboboxStyle = createVariants({
         itemIcon: 'text-subtle group-data-[highlighted]/item:text-highlighted',
         itemDescription: 'text-subtle',
         itemIndicator: 'text-accent',
-        clearBtn: 'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
+        clearBtn:
+          'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
         separator: 'my-1 b-b b-base',
       },
     },
@@ -71,14 +74,7 @@ export const useComboboxStyle = createVariants({
 
   compoundSlots: [
     {
-      slots: [
-        'root',
-        'prefix',
-        'suffix',
-        'item',
-        'itemIcon',
-        'valueCount',
-      ],
+      slots: ['root', 'prefix', 'suffix', 'item', 'itemIcon', 'valueCount'],
       unstyled: false,
       class: 'transition-colors duration-200',
     },
@@ -89,24 +85,12 @@ export const useComboboxStyle = createVariants({
     },
 
     {
-      slots: [
-        'prefixIcon',
-        'suffixIcon',
-        'emptyIcon',
-        'itemIcon',
-        'itemIndicator',
-        'clearBtn',
-      ],
+      slots: ['prefixIcon', 'suffixIcon', 'emptyIcon', 'itemIcon', 'itemIndicator', 'clearBtn'],
       class: 'shrink-0',
     },
 
     {
-      slots: [
-        'root',
-        'valueCount',
-        'content',
-        'item',
-      ],
+      slots: ['root', 'valueCount', 'content', 'item'],
       unstyled: false,
       class: 'rounded',
     },
@@ -235,5 +219,5 @@ export const useComboboxStyle = createVariants({
   },
 })
 
-export type ComboboxStyleSlots = typeof useComboboxStyle['slots']
+export type ComboboxStyleSlots = (typeof useComboboxStyle)['slots']
 export type ComboboxStyleProps = VariantProps<typeof useComboboxStyle>

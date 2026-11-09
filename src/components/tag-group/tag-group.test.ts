@@ -24,22 +24,34 @@ function mountTagGroup(tagGroupProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { tags: model.value ?? '' },
-      }, () =>
-        h(FormField, { name: 'tags', label: 'Tags' }, {
-          default: () => h(TagGroup, {
-            ...tagGroupProps,
-            'items': items.value,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: TagGroupItemValue | TagGroupItemValue[] | undefined) => {
-              model.value = value
-            },
-            'onRemove': (values: TagGroupItemValue[]) => {
-              items.value = items.value.filter(item => !values.includes(item.value))
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { tags: model.value ?? '' },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'tags', label: 'Tags' },
+              {
+                default: () =>
+                  h(TagGroup, {
+                    ...tagGroupProps,
+                    items: items.value,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (
+                      value: TagGroupItemValue | TagGroupItemValue[] | undefined,
+                    ) => {
+                      model.value = value
+                    },
+                    onRemove: (values: TagGroupItemValue[]) => {
+                      items.value = items.value.filter((item) => !values.includes(item.value))
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -92,7 +104,9 @@ describe('tag-group', () => {
     expect(soft.item()).toContain('data-[state=checked]:(bg-accent-3 font-medium text-accent)')
 
     const outline = useTagGroupStyle({ variant: 'outline', selectable: true })
-    expect(outline.item()).toContain('data-[state=checked]:(bg-accent-3 font-medium text-accent b-accent)')
+    expect(outline.item()).toContain(
+      'data-[state=checked]:(bg-accent-3 font-medium text-accent b-accent)',
+    )
 
     const inverted = useTagGroupStyle({ variant: 'inverted', selectable: true })
     expect(inverted.item()).toContain('data-[state=checked]:(bg-accent font-medium text-accent-1)')
@@ -124,14 +138,16 @@ describe('tag-group', () => {
         selectionMode: 'single',
         closable: true,
       })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify stub SVGs use role="img" without alt.
-          'svg-img-alt': { enabled: false },
-          // Hidden form input sits inside TagGroupRoot (role=grid) for id/name association.
-          'aria-required-children': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify stub SVGs use role="img" without alt.
+            'svg-img-alt': { enabled: false },
+            // Hidden form input sits inside TagGroupRoot (role=grid) for id/name association.
+            'aria-required-children': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -167,15 +183,15 @@ describe('tag-group', () => {
         selectionMode: 'single',
       })
       const rows = wrapper.findAll('[role="row"]')
-      await rows[0]!.trigger('click')
+      await rows[0].trigger('click')
       await nextTick()
 
       expect(model.value).toBe('design')
       const tagGroup = wrapper.findComponent(TagGroup)
       expect(tagGroup.emitted('update:modelValue')?.at(-1)).toEqual(['design'])
       expect(tagGroup.emitted('change')?.at(-1)).toEqual(['design'])
-      expect(rows[0]!.attributes('data-state')).toBe('checked')
-      expect(rows[0]!.attributes('aria-selected')).toBe('true')
+      expect(rows[0].attributes('data-state')).toBe('checked')
+      expect(rows[0].attributes('aria-selected')).toBe('true')
       wrapper.unmount()
     })
 
@@ -185,13 +201,13 @@ describe('tag-group', () => {
         modelValue: [],
       })
       const rows = wrapper.findAll('[role="row"]')
-      await rows[0]!.trigger('click')
-      await rows[1]!.trigger('click')
+      await rows[0].trigger('click')
+      await rows[1].trigger('click')
       await nextTick()
 
       expect(model.value).toEqual(['design', 'engineering'])
-      expect(rows[0]!.attributes('data-state')).toBe('checked')
-      expect(rows[1]!.attributes('data-state')).toBe('checked')
+      expect(rows[0].attributes('data-state')).toBe('checked')
+      expect(rows[1].attributes('data-state')).toBe('checked')
       expect(wrapper.get('[data-slot="tag-group"]').attributes('aria-multiselectable')).toBe('true')
       wrapper.unmount()
     })
@@ -212,19 +228,17 @@ describe('tag-group', () => {
       const { wrapper, items } = mountTagGroup({
         closable: true,
       })
-      const deleteButtons = wrapper.findAll('button').filter(btn =>
-        btn.element.closest('[role="row"]') != null,
-      )
+      const deleteButtons = wrapper
+        .findAll('button')
+        .filter((btn) => btn.element.closest('[role="row"]') != null)
       expect(deleteButtons.length).toBeGreaterThanOrEqual(3)
 
-      await deleteButtons[0]!.trigger('click')
+      await deleteButtons[0].trigger('click')
       await nextTick()
 
       const tagGroup = wrapper.findComponent(TagGroup)
-      expect(tagGroup.emitted('remove')?.at(-1)).toEqual([
-        ['design'],
-      ])
-      expect(items.value.map(item => item.value)).toEqual(['engineering', 'product'])
+      expect(tagGroup.emitted('remove')?.at(-1)).toEqual([['design']])
+      expect(items.value.map((item) => item.value)).toEqual(['engineering', 'product'])
       wrapper.unmount()
     })
 
@@ -232,9 +246,9 @@ describe('tag-group', () => {
       const { wrapper } = mountTagGroup({
         closable: false,
       })
-      const deleteButtons = wrapper.findAll('button').filter(btn =>
-        btn.element.closest('[role="row"]') != null,
-      )
+      const deleteButtons = wrapper
+        .findAll('button')
+        .filter((btn) => btn.element.closest('[role="row"]') != null)
       expect(deleteButtons).toHaveLength(0)
       wrapper.unmount()
     })

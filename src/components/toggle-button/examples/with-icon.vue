@@ -4,11 +4,7 @@ import ToggleButton from '../toggle-button.vue'
 
 <template>
   <div class="flex flex-wrap gap-3 items-center">
-    <ToggleButton
-      label="Mute"
-      icon="ri:volume-mute-line"
-      active-icon="ri:volume-up-line"
-    />
+    <ToggleButton label="Mute" icon="ri:volume-mute-line" active-icon="ri:volume-up-line" />
     <ToggleButton
       icon="ri:heart-line"
       active-icon="ri:heart-fill"

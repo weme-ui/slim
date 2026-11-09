@@ -1,7 +1,7 @@
 import type { IconifyIconProps } from '@iconify/vue'
 import type { PrimitiveProps } from 'reka-ui'
-import type { RangeInputStyleProps, RangeInputStyleSlots } from './range-input.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { RangeInputStyleProps, RangeInputStyleSlots } from './range-input.style'
 
 export type RangeInputValue = [number | null, number | null]
 
@@ -25,7 +25,7 @@ export interface RangeInputProps extends PrimitiveProps, Omit<FormFieldSharedPro
 
 export interface RangeInputEmits {
   'update:modelValue': [value: RangeInputValue]
-  'change': [value: RangeInputValue]
-  'focus': [event: FocusEvent]
-  'blur': [event: FocusEvent]
+  change: [value: RangeInputValue]
+  focus: [event: FocusEvent]
+  blur: [event: FocusEvent]
 }

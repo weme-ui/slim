@@ -24,24 +24,34 @@ function mountCheckboxGroup(
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { interests: model.value },
-      }, () =>
-        h(FormField, {
-          name: 'interests',
-          label: 'Interests',
-          nativeLabel: false,
-          ...fieldProps,
-        }, {
-          default: () => h(CheckboxGroup, {
-            ...groupProps,
-            'items': (groupProps.items as CheckboxGroupItem[] | undefined) ?? defaultItems,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: CheckboxGroupValue[]) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { interests: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              {
+                name: 'interests',
+                label: 'Interests',
+                nativeLabel: false,
+                ...fieldProps,
+              },
+              {
+                default: () =>
+                  h(CheckboxGroup, {
+                    ...groupProps,
+                    items: (groupProps.items as CheckboxGroupItem[] | undefined) ?? defaultItems,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: CheckboxGroupValue[]) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -72,12 +82,14 @@ describe('checkbox-group', () => {
   describe('given a group inside a form field', () => {
     it('has no accessibility violations', async () => {
       const { wrapper } = mountCheckboxGroup()
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify SVG uses role="img" without alt.
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify SVG uses role="img" without alt.
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -102,7 +114,9 @@ describe('checkbox-group', () => {
       const { wrapper } = mountCheckboxGroup()
       await wrapper.findAll('[data-slot="checkbox"]')[1].trigger('click')
       await nextTick()
-      const emitted = wrapper.findComponent(CheckboxGroup).emitted('change') as CheckboxGroupValue[][][]
+      const emitted = wrapper
+        .findComponent(CheckboxGroup)
+        .emitted('change') as CheckboxGroupValue[][][]
       expect(emitted.at(-1)?.[0]).toEqual(['engineering'])
       wrapper.unmount()
     })

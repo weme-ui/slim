@@ -15,9 +15,7 @@ export interface ApiRow {
   default?: string
 }
 
-export type BodySegment
-  = | { type: 'markdown', content: string }
-    | { type: 'table', rows: ApiRow[] }
+export type BodySegment = { type: 'markdown'; content: string } | { type: 'table'; rows: ApiRow[] }
 
 const NAME_HEADERS = new Set([
   '属性',
@@ -45,20 +43,13 @@ const DESCRIPTION_HEADERS = new Set(['说明', 'description', 'desc'])
 const TYPE_HEADERS = new Set(['类型', 'type'])
 const DEFAULT_HEADERS = new Set(['默认值', 'default', 'value'])
 const EVENT_NAME_HEADERS = new Set(['event', 'events', '事件'])
-const PAYLOAD_HEADERS = new Set([
-  '参数',
-  'parameter',
-  'parameters',
-  'payload',
-  '载荷',
-])
+const PAYLOAD_HEADERS = new Set(['参数', 'parameter', 'parameters', 'payload', '载荷'])
 
 const NPM_PACKAGE_NAME = /^(?:@[a-z0-9][\w.~-]*\/)?[a-z0-9][\w.~-]*$/i
 
-export function splitReadmeFrontmatter(source = ''): { dependencies: string[], body: string } {
+export function splitReadmeFrontmatter(source = ''): { dependencies: string[]; body: string } {
   const match = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n)?/.exec(source)
-  if (!match)
-    return { dependencies: [], body: source }
+  if (!match) return { dependencies: [], body: source }
 
   return {
     dependencies: readFrontmatterDependencies(match[1] ?? ''),
@@ -68,10 +59,8 @@ export function splitReadmeFrontmatter(source = ''): { dependencies: string[], b
 
 function readFrontmatterDependencies(raw: string): string[] {
   const trimmed = raw.trim()
-  if (!trimmed)
-    return []
-  if (trimmed.startsWith('{'))
-    return readJsonDependencies(trimmed)
+  if (!trimmed) return []
+  if (trimmed.startsWith('{')) return readJsonDependencies(trimmed)
   return readYamlDependencies(trimmed)
 }
 
@@ -79,8 +68,7 @@ function readJsonDependencies(raw: string): string[] {
   try {
     const data = JSON.parse(raw) as { dependencies?: unknown }
     return normalizeDependencies(data.dependencies)
-  }
-  catch {
+  } catch {
     return []
   }
 }
@@ -92,13 +80,10 @@ function readYamlDependencies(raw: string): string[] {
   for (const line of raw.split(/\r?\n/)) {
     if (!inList) {
       const header = /^dependencies\s*:/.exec(line.trim())
-      if (!header)
-        continue
+      if (!header) continue
       const inline = line.trim().slice(header[0].length).trim()
-      if (inline)
-        names.push(...readInlineDependencyList(inline))
-      else
-        inList = true
+      if (inline) names.push(...readInlineDependencyList(inline))
+      else inList = true
       continue
     }
 
@@ -106,8 +91,7 @@ function readYamlDependencies(raw: string): string[] {
       names.push(unquote(line.replace(/^\s*-\s+/, '').trim()))
       continue
     }
-    if (line.trim() === '')
-      continue
+    if (line.trim() === '') continue
     break
   }
 
@@ -119,18 +103,16 @@ function readInlineDependencyList(value: string): string[] {
     return value
       .slice(1, -1)
       .split(',')
-      .map(part => unquote(part.trim()))
+      .map((part) => unquote(part.trim()))
       .filter(Boolean)
   }
-  return [
-    unquote(value),
-  ]
+  return [unquote(value)]
 }
 
 function unquote(value: string): string {
   if (
-    (value.startsWith('\'') && value.endsWith('\''))
-    || (value.startsWith('"') && value.endsWith('"'))
+    (value.startsWith("'") && value.endsWith("'")) ||
+    (value.startsWith('"') && value.endsWith('"'))
   ) {
     return value.slice(1, -1)
   }
@@ -139,24 +121,20 @@ function unquote(value: string): string {
 
 function normalizeDependencies(value: unknown): string[] {
   if (typeof value === 'string') {
-    return NPM_PACKAGE_NAME.test(value)
-      ? [value]
-      : []
+    return NPM_PACKAGE_NAME.test(value) ? [value] : []
   }
-  if (!Array.isArray(value))
-    return []
-  return value.filter((item): item is string => typeof item === 'string' && NPM_PACKAGE_NAME.test(item))
+  if (!Array.isArray(value)) return []
+  return value.filter(
+    (item): item is string => typeof item === 'string' && NPM_PACKAGE_NAME.test(item),
+  )
 }
 
 export function stripLeadingH1(source = ''): string {
-  if (!source.startsWith('# '))
-    return source
+  if (!source.startsWith('# ')) return source
   const newline = source.indexOf('\n')
-  if (newline < 0)
-    return ''
+  if (newline < 0) return ''
   let end = newline + 1
-  while (end < source.length && (source[end] === '\n' || source[end] === '\r'))
-    end++
+  while (end < source.length && (source[end] === '\n' || source[end] === '\r')) end++
   return source.slice(end)
 }
 
@@ -164,8 +142,7 @@ export function extractLead(markdown = ''): string {
   const lines = markdown.split('\n')
   const lead: string[] = []
   for (const line of lines) {
-    if (/^## (?!#)/.test(line))
-      break
+    if (/^## (?!#)/.test(line)) break
     lead.push(line)
   }
   return lead.join('\n').trim()
@@ -178,29 +155,25 @@ export function splitMarkdownH2(markdown = ''): MarkdownH2Section[] {
 
   for (const line of lines) {
     if (/^## (?!#)/.test(line)) {
-      if (current)
-        sections.push(current)
+      if (current) sections.push(current)
       current = {
         title: line.slice(3).trim(),
         body: '',
       }
       continue
     }
-    if (!current)
-      continue
+    if (!current) continue
     current.body += `${current.body ? '\n' : ''}${line}`
   }
 
-  if (current)
-    sections.push(current)
+  if (current) sections.push(current)
 
-  return sections.map(section => ({
-    ...section,
-    body: section.body.replace(/^\n+/, '').replace(/\n+$/, ''),
-  }))
+  return sections.map((section) =>
+    Object.assign(section, { body: section.body.replace(/^\n+/, '').replace(/\n+$/, '') }),
+  )
 }
 
-export function splitMarkdownH3(markdown = ''): { lead: string, sections: MarkdownH3Section[] } {
+export function splitMarkdownH3(markdown = ''): { lead: string; sections: MarkdownH3Section[] } {
   const lines = markdown.split('\n')
   const sections: MarkdownH3Section[] = []
   const leadLines: string[] = []
@@ -208,8 +181,7 @@ export function splitMarkdownH3(markdown = ''): { lead: string, sections: Markdo
 
   for (const line of lines) {
     if (/^### (?!#)/.test(line)) {
-      if (current)
-        sections.push(current)
+      if (current) sections.push(current)
       current = {
         title: line.slice(4).trim(),
         body: '',
@@ -223,15 +195,13 @@ export function splitMarkdownH3(markdown = ''): { lead: string, sections: Markdo
     current.body += `${current.body ? '\n' : ''}${line}`
   }
 
-  if (current)
-    sections.push(current)
+  if (current) sections.push(current)
 
   return {
     lead: leadLines.join('\n').replace(/^\n+/, '').replace(/\n+$/, ''),
-    sections: sections.map(section => ({
-      ...section,
-      body: section.body.replace(/^\n+/, '').replace(/\n+$/, ''),
-    })),
+    sections: sections.map((section) =>
+      Object.assign(section, { body: section.body.replace(/^\n+/, '').replace(/\n+$/, '') }),
+    ),
   }
 }
 
@@ -243,19 +213,16 @@ export function slugifyHeading(text: string, used = new Map<string, number>()): 
     .replace(/\s+/g, '-')
   const count = used.get(base) || 0
   used.set(base, count + 1)
-  return count === 0
-    ? base
-    : `${base}-${count}`
+  return count === 0 ? base : `${base}-${count}`
 }
 
 export function humanizeExampleName(slug: string, itemName?: string): string {
   let value = slug
-  if (itemName && value.startsWith(`${itemName}-`))
-    value = value.slice(itemName.length + 1)
+  if (itemName && value.startsWith(`${itemName}-`)) value = value.slice(itemName.length + 1)
   return value
     .split(/[-_]/)
     .filter(Boolean)
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ')
 }
 
@@ -267,8 +234,7 @@ export function splitBodySegments(body = ''): BodySegment[] {
 
   function flushMarkdown() {
     const content = markdownLines.join('\n').trim()
-    if (content)
-      segments.push({ type: 'markdown', content })
+    if (content) segments.push({ type: 'markdown', content })
     markdownLines = []
   }
 
@@ -276,12 +242,11 @@ export function splitBodySegments(body = ''): BodySegment[] {
     if (isTableStart(lines, i)) {
       flushMarkdown()
       const { rows, end } = readTable(lines, i)
-      if (rows.length)
-        segments.push({ type: 'table', rows })
+      if (rows.length) segments.push({ type: 'table', rows })
       i = end
       continue
     }
-    markdownLines.push(lines[i]!)
+    markdownLines.push(lines[i])
     i++
   }
 
@@ -292,8 +257,7 @@ export function splitBodySegments(body = ''): BodySegment[] {
 function isTableStart(lines: string[], index: number): boolean {
   const line = lines[index]
   const next = lines[index + 1]
-  if (!line || !next)
-    return false
+  if (!line || !next) return false
   return isTableRow(line) && isTableSeparator(next)
 }
 
@@ -304,31 +268,26 @@ function isTableRow(line: string): boolean {
 
 function isTableSeparator(line: string): boolean {
   const cells = splitTableRow(line)
-  return cells.length > 0 && cells.every(cell => /^:?-{3,}:?$/.test(cell.replace(/\s/g, '')))
+  return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell.replace(/\s/g, '')))
 }
 
-function readTable(lines: string[], start: number): { rows: ApiRow[], end: number } {
-  const rawHeaders = splitTableRow(lines[start]!)
-  const headers = rawHeaders.map(header => normalizeHeader(header, rawHeaders))
+function readTable(lines: string[], start: number): { rows: ApiRow[]; end: number } {
+  const rawHeaders = splitTableRow(lines[start])
+  const headers = rawHeaders.map((header) => normalizeHeader(header, rawHeaders))
   let i = start + 2
   const rows: ApiRow[] = []
 
-  while (i < lines.length && isTableRow(lines[i]!) && !isTableSeparator(lines[i]!)) {
-    const cells = splitTableRow(lines[i]!)
+  while (i < lines.length && isTableRow(lines[i]) && !isTableSeparator(lines[i])) {
+    const cells = splitTableRow(lines[i])
     const row: ApiRow = { name: '' }
     headers.forEach((key, index) => {
       const value = cells[index]?.trim() ?? ''
-      if (key === 'name' && !row.name)
-        row.name = unwrapInlineCode(value)
-      else if (key === 'description')
-        row.description = value
-      else if (key === 'type')
-        row.type = unwrapInlineCode(value)
-      else if (key === 'default')
-        row.default = unwrapInlineCode(value)
+      if (key === 'name' && !row.name) row.name = unwrapInlineCode(value)
+      else if (key === 'description') row.description = value
+      else if (key === 'type') row.type = unwrapInlineCode(value)
+      else if (key === 'default') row.default = unwrapInlineCode(value)
     })
-    if (row.name)
-      rows.push(row)
+    if (row.name) rows.push(row)
     i++
   }
 
@@ -337,10 +296,8 @@ function readTable(lines: string[], start: number): { rows: ApiRow[], end: numbe
 
 function splitTableRow(line: string): string[] {
   let inner = line.trim()
-  if (inner.startsWith('|'))
-    inner = inner.slice(1)
-  if (inner.endsWith('|'))
-    inner = inner.slice(0, -1)
+  if (inner.startsWith('|')) inner = inner.slice(1)
+  if (inner.endsWith('|')) inner = inner.slice(0, -1)
 
   const cells: string[] = []
   let current = ''
@@ -370,42 +327,38 @@ function headerKey(header: string): string {
   return header.replace(/[`*_]/g, '').trim().toLowerCase()
 }
 
-function normalizeHeader(header: string, allHeaders: string[] = []): 'name' | 'description' | 'type' | 'default' | 'other' {
+function normalizeHeader(
+  header: string,
+  allHeaders: string[] = [],
+): 'name' | 'description' | 'type' | 'default' | 'other' {
   const key = headerKey(header)
   const keys = allHeaders.map(headerKey)
-  const hasEventName = keys.some(item => EVENT_NAME_HEADERS.has(item))
-  if (hasEventName && PAYLOAD_HEADERS.has(key))
-    return 'type'
-  if (NAME_HEADERS.has(key))
-    return 'name'
-  if (DESCRIPTION_HEADERS.has(key))
-    return 'description'
-  if (TYPE_HEADERS.has(key))
-    return 'type'
-  if (DEFAULT_HEADERS.has(key))
-    return 'default'
+  const hasEventName = keys.some((item) => EVENT_NAME_HEADERS.has(item))
+  if (hasEventName && PAYLOAD_HEADERS.has(key)) return 'type'
+  if (NAME_HEADERS.has(key)) return 'name'
+  if (DESCRIPTION_HEADERS.has(key)) return 'description'
+  if (TYPE_HEADERS.has(key)) return 'type'
+  if (DEFAULT_HEADERS.has(key)) return 'default'
   return 'other'
 }
 
 export function unwrapInlineCode(value: string): string {
   const trimmed = value.trim()
   const single = trimmed.match(/^`([^`]*)`$/)
-  if (single)
-    return single[1] ?? ''
+  if (single) return single[1] ?? ''
   // `ArrowLeft` / `ArrowRight` is several spans, not one span that happens to start and end with backticks.
-  if (trimmed.includes('`'))
-    return trimmed.replace(/`([^`]*)`/g, '$1')
+  if (trimmed.includes('`')) return trimmed.replace(/`([^`]*)`/g, '$1')
   return trimmed
 }
 
 export function firstTableRows(segments: BodySegment[]): ApiRow[] {
-  return segments.find(segment => segment.type === 'table')?.rows ?? []
+  return segments.find((segment) => segment.type === 'table')?.rows ?? []
 }
 
 export function markdownWithoutTables(segments: BodySegment[]): string {
   return segments
-    .filter(segment => segment.type === 'markdown')
-    .map(segment => segment.content)
+    .filter((segment) => segment.type === 'markdown')
+    .map((segment) => segment.content)
     .join('\n\n')
     .trim()
 }
@@ -427,9 +380,9 @@ export function renderInlineMarkdown(value: string): string {
 function renderBlocks(source: string): string {
   return source
     .split(/\n{2,}/)
-    .map(block => block.trim())
+    .map((block) => block.trim())
     .filter(Boolean)
-    .map(block => `<p>${renderInlineMarkdown(block).replace(/\n/g, '<br>')}</p>`)
+    .map((block) => `<p>${renderInlineMarkdown(block).replace(/\n/g, '<br>')}</p>`)
     .join('\n')
 }
 
@@ -454,7 +407,7 @@ export function parseMarkdownFences(source: string): MarkdownFencePart[] {
     parts.push({
       type: 'fence',
       lang: match[1] || 'txt',
-      content: match[2]!.replace(/\n$/, ''),
+      content: match[2].replace(/\n$/, ''),
     })
     last = match.index + match[0].length
     match = fence.exec(source)
@@ -477,13 +430,11 @@ function renderFenceFallback(lang: string, code: string): string {
 }
 
 export function renderMarkdown(source = ''): string {
-  if (!source.trim())
-    return ''
+  if (!source.trim()) return ''
 
   return parseMarkdownFences(source)
     .map((part) => {
-      if (part.type === 'text')
-        return renderBlocks(part.content)
+      if (part.type === 'text') return renderBlocks(part.content)
       return renderFenceFallback(part.lang || 'txt', part.content)
     })
     .filter(Boolean)

@@ -8,10 +8,6 @@ const tags = ref<TagsInputValue[]>(['locked', 'readonly'])
 
 <template>
   <div class="max-w-sm w-full">
-    <TagsInput
-      v-model="tags"
-      disabled
-      placeholder="Disabled"
-    />
+    <TagsInput v-model="tags" disabled placeholder="Disabled" />
   </div>
 </template>

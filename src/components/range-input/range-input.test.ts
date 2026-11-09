@@ -15,18 +15,28 @@ function mountRangeInput(inputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { price: model.value },
-      }, () =>
-        h(FormField, { name: 'price', label: 'Price' }, {
-          default: () => h(RangeInput, {
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: RangeInputValue) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { price: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'price', label: 'Price' },
+              {
+                default: () =>
+                  h(RangeInput, {
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: RangeInputValue) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -88,7 +98,9 @@ describe('range-input', () => {
 
   it('applies invalid border for soft and outline', () => {
     expect(useRangeInputStyle({ variant: 'soft', invalid: true }).root()).toContain('b-error')
-    expect(useRangeInputStyle({ variant: 'soft', invalid: true }).root()).toContain('outline-error-4')
+    expect(useRangeInputStyle({ variant: 'soft', invalid: true }).root()).toContain(
+      'outline-error-4',
+    )
     expect(useRangeInputStyle({ variant: 'outline', invalid: true }).root()).toContain('b-error')
   })
 

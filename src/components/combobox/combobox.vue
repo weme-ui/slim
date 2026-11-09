@@ -1,7 +1,11 @@
-<script lang="ts" generic="M extends boolean = false, V = M extends false ? ComboboxValue : ComboboxValue[]" setup>
+<script
+  lang="ts"
+  generic="M extends boolean = false, V = M extends false ? ComboboxValue : ComboboxValue[]"
+  setup
+>
 import type { ComboboxContentProps } from 'reka-ui'
-import type { ComboboxEmits, ComboboxProps, ComboboxValue } from './combobox.props'
 import type { GroupItem } from '~/composables/use-group-items'
+import type { ComboboxEmits, ComboboxProps, ComboboxValue } from './combobox.props'
 import { reactiveOmit } from '@vueuse/core'
 import { defu } from 'defu'
 import { AnimatePresence, Motion } from 'motion-v'
@@ -47,16 +51,45 @@ const props = withDefaults(defineProps<ComboboxProps<M>>(), {
 })
 
 const emits = defineEmits<ComboboxEmits<M, V>>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'clearIcon', 'clearable', 'itemIndicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'filterPlaceholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'id',
+  'name',
+  'items',
+  'variant',
+  'size',
+  'prefix',
+  'suffix',
+  'prefixIcon',
+  'suffixIcon',
+  'loading',
+  'loadingIcon',
+  'clearIcon',
+  'clearable',
+  'itemIndicatorIcon',
+  'portalProps',
+  'contentProps',
+  'placeholder',
+  'filterPlaceholder',
+  'emptyText',
+  'emptyIcon',
+  'reference',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
-const contentProps = toRef(() => defu(props.contentProps, {
-  align: 'start',
-  side: 'bottom',
-  collisionPadding: 6,
-  position: 'popper',
-}) as ComboboxContentProps)
+const contentProps = toRef(
+  () =>
+    defu(props.contentProps, {
+      align: 'start',
+      side: 'bottom',
+      collisionPadding: 6,
+      position: 'popper',
+    }) as ComboboxContentProps,
+)
 
 const {
   bindings,
@@ -71,23 +104,30 @@ const {
 } = useFormFieldControl(props)
 
 const computedValues = computed(() => props.modelValue)
-const computedValuesCount = computed(() => Array.isArray(computedValues.value)
-  ? computedValues.value.length
-  : 0)
+const computedValuesCount = computed(() =>
+  Array.isArray(computedValues.value) ? computedValues.value.length : 0,
+)
 const isMultiple = computed(() => toBoolValue(props.multiple))
 
 const { forwardRef, currentElement } = useForwardExpose()
-const { flattenedItems, groupedItems, selectedItem } = useGroupItems<ComboboxValue, M>(props.items ?? [], computedValues)
+const { flattenedItems, groupedItems, selectedItem } = useGroupItems<ComboboxValue, M>(
+  props.items ?? [],
+  computedValues,
+)
 
-const selectedIcon = selectItemProp(item => item.selectedIcon || item.icon)
-const selectedIconClass = selectItemProp(item => item.iconClass)
-const selectedLabel = selectItemProp(item => item.label)
+const selectedIcon = selectItemProp((item) => item.selectedIcon || item.icon)
+const selectedIconClass = selectItemProp((item) => item.iconClass)
+const selectedLabel = selectItemProp((item) => item.label)
 
 const slots = useSlots()
 
 const hasValues = computed(() => computedValuesCount.value > 0)
-const hasPrefix = computed(() => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix)
-const hasSuffix = computed(() => !!loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix)
+const hasPrefix = computed(
+  () => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix,
+)
+const hasSuffix = computed(
+  () => !!loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix,
+)
 const hasClean = computed(() => !disabled.value && props.clearable && hasValues.value)
 
 const open = ref(false)
@@ -113,24 +153,25 @@ onUnmounted(() => {
   unregister?.()
 })
 
-const ui = computed(() => useComboboxStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  loading: loading.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useComboboxStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    loading: loading.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 function selectItem(value: ComboboxValue) {
-  return flattenedItems.value.find(item => item.value === value)
+  return flattenedItems.value.find((item) => item.value === value)
 }
 
 function selectItemProp<R>(selector: (item: GroupItem<ComboboxValue>) => R) {
   return computed(() => {
     const item = selectedItem.value
-    if (isMultiple.value || !item || Array.isArray(item))
-      return undefined
+    if (isMultiple.value || !item || Array.isArray(item)) return undefined
     return selector(item)
   })
 }
@@ -141,15 +182,13 @@ function handleUpdate(value: any) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }
@@ -164,7 +203,11 @@ function handleBlur(e: FocusEvent) {
     :class="cn(ui.root(), props.ui?.root, props.class)"
     @update:model-value="handleUpdate"
   >
-    <ComboboxAnchor :reference="reference" :class="cn(ui.anchor(), props.ui?.anchor)" @click="open = !open">
+    <ComboboxAnchor
+      :reference="reference"
+      :class="cn(ui.anchor(), props.ui?.anchor)"
+      @click="open = !open"
+    >
       <span v-if="hasPrefix && !hasValues" :class="cn(ui.prefix(), props.ui?.prefix)">
         <slot name="prefix">
           <Icon
@@ -178,9 +221,19 @@ function handleBlur(e: FocusEvent) {
 
       <div v-if="isMultiple" :class="cn(ui.values(), props.ui?.values)">
         <template v-if="hasValues">
-          <span v-for="(value, idx) in computedValues" :key="value" :class="cn(ui.value(), props.ui?.value)">
-            <Icon v-if="selectItem(value)?.icon" :name="selectItem(value)?.icon || ''" :class="cn(ui.valueIcon(), props.ui?.valueIcon, selectItem(value)?.iconClass)" />
-            <template v-if="idx === (Array.isArray(computedValues) ? computedValues.length : 1) - 1">
+          <span
+            v-for="(value, idx) in computedValues"
+            :key="value"
+            :class="cn(ui.value(), props.ui?.value)"
+          >
+            <Icon
+              v-if="selectItem(value)?.icon"
+              :name="selectItem(value)?.icon || ''"
+              :class="cn(ui.valueIcon(), props.ui?.valueIcon, selectItem(value)?.iconClass)"
+            />
+            <template
+              v-if="idx === (Array.isArray(computedValues) ? computedValues.length : 1) - 1"
+            >
               {{ selectItem(value)?.label }}
             </template>
           </span>
@@ -205,11 +258,20 @@ function handleBlur(e: FocusEvent) {
       <ComboboxTrigger
         v-if="hasSuffix"
         :id="!open ? id : undefined"
-        :class="cn(ui.suffix(), props.ui?.suffix)" @click.stop
+        :class="cn(ui.suffix(), props.ui?.suffix)"
+        @click.stop
       >
         <slot name="suffix">
-          <Icon v-if="loading" :name="loadingIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
-          <Icon v-else-if="suffixIcon" :name="suffixIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
+          <Icon
+            v-if="loading"
+            :name="loadingIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
+          <Icon
+            v-else-if="suffixIcon"
+            :name="suffixIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
           <template v-else>
             {{ suffix }}
           </template>
@@ -230,7 +292,11 @@ function handleBlur(e: FocusEvent) {
               <template v-if="groupedItems.length === 0">
                 <ComboboxEmpty :class="cn(ui.empty(), props.ui?.empty)">
                   <slot name="empty">
-                    <Icon v-if="emptyIcon" :name="emptyIcon" :class="cn(ui.emptyIcon(), props.ui?.emptyIcon)" />
+                    <Icon
+                      v-if="emptyIcon"
+                      :name="emptyIcon"
+                      :class="cn(ui.emptyIcon(), props.ui?.emptyIcon)"
+                    />
                     {{ emptyText }}
                   </slot>
                 </ComboboxEmpty>
@@ -254,7 +320,10 @@ function handleBlur(e: FocusEvent) {
                         :class="cn(ui.separator(), props.ui?.separator)"
                       />
 
-                      <ComboboxLabel v-else-if="item.type === 'label'" :class="cn(ui.label(), props.ui?.label)">
+                      <ComboboxLabel
+                        v-else-if="item.type === 'label'"
+                        :class="cn(ui.label(), props.ui?.label)"
+                      >
                         <slot name="label">
                           {{ item.label }}
                         </slot>
@@ -271,37 +340,58 @@ function handleBlur(e: FocusEvent) {
                             <Icon
                               v-if="selected && (item.selectedIcon || item.icon)"
                               :name="item.selectedIcon || item.icon || ''"
-                              :class="cn(
-                                ui.itemIcon({ hasDescription: !!item.description }),
-                                props.ui?.itemIcon,
-                                item.iconClass,
-                              )"
+                              :class="
+                                cn(
+                                  ui.itemIcon({ hasDescription: !!item.description }),
+                                  props.ui?.itemIcon,
+                                  item.iconClass,
+                                )
+                              "
                             />
                             <Icon
                               v-else-if="item.icon"
                               :name="item.icon"
-                              :class="cn(
-                                ui.itemIcon({ hasDescription: !!item.description }),
-                                props.ui?.itemIcon,
-                                item.iconClass,
-                              )"
+                              :class="
+                                cn(
+                                  ui.itemIcon({ hasDescription: !!item.description }),
+                                  props.ui?.itemIcon,
+                                  item.iconClass,
+                                )
+                              "
                             />
                           </slot>
 
-                          <div v-if="item.label && item.description" :class="cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)">
-                            <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
+                          <div
+                            v-if="item.label && item.description"
+                            :class="
+                              cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)
+                            "
+                          >
+                            <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{
+                              item.label
+                            }}</span>
                             <p :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                               {{ item.description }}
                             </p>
                           </div>
                           <template v-else>
-                            <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                            <p v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                            <span
+                              v-if="item.label"
+                              :class="cn(ui.itemLabel(), props.ui?.itemLabel)"
+                              >{{ item.label }}</span
+                            >
+                            <p
+                              v-if="item.description"
+                              :class="cn(ui.itemDescription(), props.ui?.itemDescription)"
+                            >
                               {{ item.description }}
                             </p>
                           </template>
 
-                          <ComboboxItemIndicator :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)" as-child>
+                          <ComboboxItemIndicator
+                            :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)"
+                            as-child
+                          >
                             <Icon :name="itemIndicatorIcon" />
                           </ComboboxItemIndicator>
                         </slot>

@@ -8,26 +8,26 @@ function titleFromFilename(name: string) {
   return name
     .split(/[-_]/)
     .filter(Boolean)
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ')
 }
 
 function pageTitle(filePath: string, fallback: string) {
   const content = readFileSync(filePath, 'utf8')
   for (const line of content.split('\n')) {
-    if (line.startsWith('# '))
-      return line.slice(2).trim()
+    if (line.startsWith('# ')) return line.slice(2).trim()
     const titlePrefix = 'title:'
     if (line.startsWith(titlePrefix))
-      return line.slice(titlePrefix.length).trim().replace(/^['"]|['"]$/g, '')
+      return line
+        .slice(titlePrefix.length)
+        .trim()
+        .replace(/^['"]|['"]$/g, '')
   }
   return titleFromFilename(fallback)
 }
 
 function pageLink(name: string) {
-  return name === 'index'
-    ? GUIDE_BASE
-    : `${GUIDE_BASE}${name}`
+  return name === 'index' ? GUIDE_BASE : `${GUIDE_BASE}${name}`
 }
 
 export function getGuideDir(docsDir: string) {
@@ -36,21 +36,17 @@ export function getGuideDir(docsDir: string) {
 
 export function getGuidePages(docsDir: string): DefaultTheme.SidebarItem[] {
   const guideDir = getGuideDir(docsDir)
-  if (!existsSync(guideDir) || !statSync(guideDir).isDirectory())
-    return []
+  if (!existsSync(guideDir) || !statSync(guideDir).isDirectory()) return []
 
   const files = readdirSync(guideDir)
     .filter((file) => {
-      if (!file.endsWith('.md'))
-        return false
-      const name = file.slice(0, -3)
-      return !name.includes('[') && !name.includes(']')
+      if (!file.endsWith('.md')) return false
+      const name = new Set(file.slice(0, -3))
+      return !name.has('[') && !name.has(']')
     })
-    .sort((a, b) => {
-      if (a === 'index.md')
-        return -1
-      if (b === 'index.md')
-        return 1
+    .toSorted((a, b) => {
+      if (a === 'index.md') return -1
+      if (b === 'index.md') return 1
       return a.localeCompare(b)
     })
 
@@ -58,8 +54,7 @@ export function getGuidePages(docsDir: string): DefaultTheme.SidebarItem[] {
 
   for (const file of files) {
     const fullPath = join(guideDir, file)
-    if (!statSync(fullPath).isFile())
-      continue
+    if (!statSync(fullPath).isFile()) continue
 
     const name = file.slice(0, -3)
     items.push({
@@ -73,8 +68,7 @@ export function getGuidePages(docsDir: string): DefaultTheme.SidebarItem[] {
 
 export function getGuideSidebar(docsDir: string): DefaultTheme.SidebarItem[] {
   const items = getGuidePages(docsDir)
-  if (!items.length)
-    return []
+  if (!items.length) return []
 
   return [
     {

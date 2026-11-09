@@ -1,9 +1,16 @@
 import type { IconifyIconProps } from '@iconify/vue'
-import type { AutocompleteAnchorProps, AutocompleteContentEmits, AutocompleteContentProps, AutocompletePortalProps, AutocompleteRootEmits, AutocompleteRootProps } from 'reka-ui'
-import type { AutocompleteStyleProps, AutocompleteStyleSlots } from './autocomplete.style'
+import type {
+  AutocompleteAnchorProps,
+  AutocompleteContentEmits,
+  AutocompleteContentProps,
+  AutocompletePortalProps,
+  AutocompleteRootEmits,
+  AutocompleteRootProps,
+} from 'reka-ui'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
 import type { GroupItems } from '~/composables/use-group-items'
 import type { EmitsToProps } from '~/utils/props'
+import type { AutocompleteStyleProps, AutocompleteStyleSlots } from './autocomplete.style'
 
 export type AutocompleteValue = NonNullable<AutocompleteRootProps['modelValue']>
 
@@ -27,7 +34,8 @@ export interface AutocompleteProps extends AutocompleteRootProps, FormFieldShare
   unstyled?: boolean
   reference?: AutocompleteAnchorProps['reference']
   portalProps?: Partial<AutocompletePortalProps>
-  contentProps?: Partial<Omit<AutocompleteContentProps, 'as' | 'asChild'>> & Partial<EmitsToProps<AutocompleteContentEmits>>
+  contentProps?: Partial<Omit<AutocompleteContentProps, 'as' | 'asChild'>> &
+    Partial<EmitsToProps<AutocompleteContentEmits>>
   class?: any
   ui?: Partial<AutocompleteStyleSlots>
 }

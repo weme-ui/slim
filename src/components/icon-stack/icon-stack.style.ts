@@ -7,7 +7,8 @@ export const useIconStackStyle = createVariants({
     layerWrapper: 'size-full overflow-visible',
     layer: '',
     ellipse: 'blur-xs',
-    iconWrapper: 'flex pointer-events-none skew-y--26 scale-x-90 flex-center left-$icon-stack-content-x top-$icon-stack-content-y abs -translate-x-1/2 -translate-y-1/2',
+    iconWrapper:
+      'flex pointer-events-none skew-y--26 scale-x-90 flex-center left-$icon-stack-content-x top-$icon-stack-content-y abs -translate-x-1/2 -translate-y-1/2',
     icon: '',
   },
 
@@ -33,5 +34,5 @@ export const useIconStackStyle = createVariants({
   },
 })
 
-export type IconStackStyleSlots = typeof useIconStackStyle['slots']
+export type IconStackStyleSlots = (typeof useIconStackStyle)['slots']
 export type IconStackStyleProps = VariantProps<typeof useIconStackStyle>

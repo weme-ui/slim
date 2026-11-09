@@ -29,19 +29,17 @@ const labels = computed(() => {
 })
 
 const items = computed(() => props.items)
-const showType = computed(() => items.value.some(row => Boolean(row.type)))
+const showType = computed(() => items.value.some((row) => Boolean(row.type)))
 const showDefault = computed(() => {
-  if (props.kind === 'css-vars')
-    return false
-  return items.value.some(row => Boolean(row.default))
+  if (props.kind === 'css-vars') return false
+  return items.value.some((row) => Boolean(row.default))
 })
 const showCollapsedDescription = computed(() => {
   return !showType.value && !showDefault.value
 })
 
 function displayDefault(row: ApiRow) {
-  if (props.kind === 'css-vars')
-    return row.default || row.type || ''
+  if (props.kind === 'css-vars') return row.default || row.type || ''
   return row.default || ''
 }
 
@@ -72,11 +70,7 @@ function highlight(value?: string) {
       <span class="api-table-head-icon" />
     </div>
 
-    <details
-      v-for="row in items"
-      :key="`${kind}-${row.name}`"
-      class="api-table-row"
-    >
+    <details v-for="row in items" :key="`${kind}-${row.name}`" class="api-table-row">
       <summary>
         <span class="api-cell api-name">{{ row.name }}</span>
         <span
@@ -97,7 +91,9 @@ function highlight(value?: string) {
           v-html="renderInlineMarkdown(row.description || '')"
         />
         <svg class="api-chevron" viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M4.6 6.3a.7.7 0 0 1 .98-.02L8 8.86l2.42-2.58a.7.7 0 1 1 .96 1.04l-2.9 3.1a.7.7 0 0 1-.96 0l-2.9-3.1a.7.7 0 0 1-.02-.98Z" />
+          <path
+            d="M4.6 6.3a.7.7 0 0 1 .98-.02L8 8.86l2.42-2.58a.7.7 0 1 1 .96 1.04l-2.9 3.1a.7.7 0 0 1-.96 0l-2.9-3.1a.7.7 0 0 1-.02-.98Z"
+          />
         </svg>
       </summary>
 
@@ -107,20 +103,24 @@ function highlight(value?: string) {
           <div class="api-detail-desc" v-html="renderInlineMarkdown(row.description || '')" />
         </template>
         <template v-else>
-          <div v-if="row.description" class="api-detail-desc" v-html="renderInlineMarkdown(row.description)" />
-          <span v-else />
-          <pre
-            v-if="showExpandedType(row)"
-            class="api-type-block"
-            v-html="highlight(row.type)"
+          <div
+            v-if="row.description"
+            class="api-detail-desc"
+            v-html="renderInlineMarkdown(row.description)"
           />
+          <span v-else />
+          <pre v-if="showExpandedType(row)" class="api-type-block" v-html="highlight(row.type)" />
           <pre
             v-else-if="kind === 'css-vars' && (row.default || row.type)"
             class="api-type-block"
             v-html="highlight(row.default || row.type)"
           />
           <span v-else-if="showType" />
-          <span v-if="showDefault" class="api-code api-detail-default" v-html="highlight(displayDefault(row))" />
+          <span
+            v-if="showDefault"
+            class="api-code api-detail-default"
+            v-html="highlight(displayDefault(row))"
+          />
         </template>
         <span class="api-table-head-icon" />
       </div>

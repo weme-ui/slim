@@ -12,7 +12,8 @@ export const useToastStyle = createVariants({
     description: 'text-xs text-subtle h-5',
     actions: 'rounded-inherit flex gap-sm',
     action: 'rounded-inherit',
-    close: 'p-0.5 b rounded-inherit bg-base flex shrink-0 size-5 cursor-pointer transition-transform duration-150 ease-in-out flex-center absolute z-high active:scale-95 -right-2.5 -top-2.5',
+    close:
+      'p-0.5 b rounded-inherit bg-base flex shrink-0 size-5 cursor-pointer transition-transform duration-150 ease-in-out flex-center absolute z-high active:scale-95 -right-2.5 -top-2.5',
   },
 
   variants: {
@@ -84,5 +85,5 @@ export const useToastStyle = createVariants({
   },
 })
 
-export type ToastStyleSlots = typeof useToastStyle['slots']
+export type ToastStyleSlots = (typeof useToastStyle)['slots']
 export type ToastStyleProps = VariantProps<typeof useToastStyle>

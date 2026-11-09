@@ -11,8 +11,6 @@ const items: CheckboxGroupItem[] = [
 
 <template>
   <div class="max-w-sm w-full">
-    <CheckboxGroup
-      :items="items"
-    />
+    <CheckboxGroup :items="items" />
   </div>
 </template>

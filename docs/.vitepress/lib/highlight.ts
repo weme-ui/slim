@@ -1,11 +1,4 @@
-export type ApiTokenKind
-  = | 'string'
-    | 'number'
-    | 'literal'
-    | 'keyword'
-    | 'type'
-    | 'punct'
-    | 'text'
+export type ApiTokenKind = 'string' | 'number' | 'literal' | 'keyword' | 'type' | 'punct' | 'text'
 
 const LITERALS = new Set(['true', 'false'])
 const KEYWORDS = new Set([
@@ -45,17 +38,16 @@ export function isEmptyApiValue(value?: string): boolean {
   return !trimmed || trimmed === '—' || trimmed === '-' || trimmed === '–'
 }
 
-export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: string }[] {
-  const tokens: { kind: ApiTokenKind, value: string }[] = []
+export function tokenizeApiValue(source: string): { kind: ApiTokenKind; value: string }[] {
+  const tokens: { kind: ApiTokenKind; value: string }[] = []
   let i = 0
 
   while (i < source.length) {
-    const ch = source[i]!
+    const ch = source[i]
 
     if (/\s/.test(ch)) {
       let end = i + 1
-      while (end < source.length && /\s/.test(source[end]!))
-        end++
+      while (end < source.length && /\s/.test(source[end])) end++
       tokens.push({
         kind: 'text',
         value: source.slice(i, end),
@@ -64,7 +56,7 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
       continue
     }
 
-    if (ch === '\'' || ch === '"' || ch === '`') {
+    if (ch === "'" || ch === '"' || ch === '`') {
       const quote = ch
       let end = i + 1
       while (end < source.length) {
@@ -88,8 +80,7 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
 
     if (/\d/.test(ch)) {
       let end = i + 1
-      while (end < source.length && /[\d._]/.test(source[end]!))
-        end++
+      while (end < source.length && /[\d._]/.test(source[end])) end++
       tokens.push({
         kind: 'number',
         value: source.slice(i, end),
@@ -100,20 +91,19 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
 
     if (/[a-z_$]/i.test(ch)) {
       let end = i + 1
-      while (end < source.length && /[\w$]/.test(source[end]!))
+      while (end < source.length && /[\w$]/.test(source[end])) end++
+      while (source[end] === '.' && end + 1 < source.length && /[a-z_$]/i.test(source[end + 1])) {
         end++
-      while (source[end] === '.' && end + 1 < source.length && /[a-z_$]/i.test(source[end + 1]!)) {
-        end++
-        while (end < source.length && /[\w$]/.test(source[end]!))
-          end++
+        while (end < source.length && /[\w$]/.test(source[end])) end++
       }
       const value = source.slice(i, end)
       const leaf = value.split('.').pop() ?? value
-      const kind: ApiTokenKind = LITERALS.has(value) || LITERALS.has(leaf)
-        ? 'literal'
-        : KEYWORDS.has(value) || KEYWORDS.has(leaf)
-          ? 'keyword'
-          : 'type'
+      const kind: ApiTokenKind =
+        LITERALS.has(value) || LITERALS.has(leaf)
+          ? 'literal'
+          : KEYWORDS.has(value) || KEYWORDS.has(leaf)
+            ? 'keyword'
+            : 'type'
       tokens.push({ kind, value })
       i = end
       continue
@@ -141,13 +131,13 @@ export function tokenizeApiValue(source: string): { kind: ApiTokenKind, value: s
 }
 
 export function highlightApiValue(source = ''): string {
-  if (isEmptyApiValue(source))
-    return '<span class="tok tok-empty">-</span>'
+  if (isEmptyApiValue(source)) return '<span class="tok tok-empty">-</span>'
 
-  return tokenizeApiValue(source).map((token) => {
-    const text = escapeHtml(token.value)
-    if (token.kind === 'text')
-      return text
-    return `<span class="tok tok-${token.kind}">${text}</span>`
-  }).join('')
+  return tokenizeApiValue(source)
+    .map((token) => {
+      const text = escapeHtml(token.value)
+      if (token.kind === 'text') return text
+      return `<span class="tok tok-${token.kind}">${text}</span>`
+    })
+    .join('')
 }

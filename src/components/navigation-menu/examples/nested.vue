@@ -11,9 +11,7 @@ const items = [
       {
         label: 'Roles',
         to: '/roles',
-        children: [
-          { label: 'Add role', to: '/roles/add' },
-        ],
+        children: [{ label: 'Add role', to: '/roles/add' }],
       },
     ],
   },

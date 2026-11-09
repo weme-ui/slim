@@ -17,10 +17,12 @@ const props = withDefaults(defineProps<IconStackProps>(), {
   contentY: '58%',
 })
 
-const ui = computed(() => useIconStackStyle({
-  color: props.color,
-  size: props.size,
-}))
+const ui = computed(() =>
+  useIconStackStyle({
+    color: props.color,
+    size: props.size,
+  }),
+)
 
 const [DefineIconStackLayer, IconStackLayer] = createReusableTemplate()
 </script>
@@ -59,8 +61,21 @@ const [DefineIconStackLayer, IconStackLayer] = createReusableTemplate()
       '--icon-stack-content-y': contentY,
     }"
   >
-    <svg aria-hidden="true" viewBox="0 0 72 81" fill="none" :class="cn(ui.layerWrapper(), props.ui?.layerWrapper)">
-      <ellipse cx="36" cy="76" rx="30" ry="7" fill="currentColor" fill-opacity="0.055" :class="cn(ui.ellipse(), props.ui?.ellipse)" />
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 72 81"
+      fill="none"
+      :class="cn(ui.layerWrapper(), props.ui?.layerWrapper)"
+    >
+      <ellipse
+        cx="36"
+        cy="76"
+        rx="30"
+        ry="7"
+        fill="currentColor"
+        fill-opacity="0.055"
+        :class="cn(ui.ellipse(), props.ui?.ellipse)"
+      />
       <IconStackLayer :opacity="0.4" />
       <IconStackLayer :opacity="0.6" :x="13.65" :y="6.04" />
       <IconStackLayer :opacity="0.8" :x="27.3" :y="12.08" :active="true" />

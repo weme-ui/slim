@@ -62,7 +62,9 @@ describe('activity-bar', () => {
     expect(ui.footer()).toContain('flex-col')
     expect(ui.group()).toContain('py-2')
     expect(ui.group()).toContain('gap-2')
-    expect(ui.item()).toContain('aria-[current=true]:(text-activity-bar-active bg-activity-bar-active)')
+    expect(ui.item()).toContain(
+      'aria-[current=true]:(text-activity-bar-active bg-activity-bar-active)',
+    )
     expect(ui.item()).toContain('hover:not-[[aria-current=true]]:text-activity-bar-active')
     expect(ui.item()).toContain('rounded-lg')
     expect(ui.item()).toContain('disabled:is-disabled')
@@ -86,23 +88,23 @@ describe('activity-bar', () => {
       expect(bar.find('ul').exists()).toBe(false)
       const buttons = bar.findAll('button')
       expect(buttons).toHaveLength(3)
-      expect(buttons[0]!.attributes('aria-current')).toBe('true')
-      expect(buttons[0]!.attributes('aria-label')).toBe('Go home')
-      expect(buttons[0]!.attributes('data-orientation')).toBe('vertical')
-      expect(buttons[1]!.attributes('aria-label')).toBe('Open inbox')
-      expect(buttons[1]!.attributes('aria-current')).toBeUndefined()
-      expect(buttons[1]!.attributes('disabled')).toBe('')
+      expect(buttons[0].attributes('aria-current')).toBe('true')
+      expect(buttons[0].attributes('aria-label')).toBe('Go home')
+      expect(buttons[0].attributes('data-orientation')).toBe('vertical')
+      expect(buttons[1].attributes('aria-label')).toBe('Open inbox')
+      expect(buttons[1].attributes('aria-current')).toBeUndefined()
+      expect(buttons[1].attributes('disabled')).toBe('')
 
       const tooltips = bar.findAllComponents(Tooltip)
-      expect(tooltips[0]!.props('content')).toBe('Home')
-      expect(tooltips[0]!.props('side')).toBe('right')
-      expect(tooltips[1]!.props('content')).toBe('Open inbox')
+      expect(tooltips[0].props('content')).toBe('Home')
+      expect(tooltips[0].props('side')).toBe('right')
+      expect(tooltips[1].props('content')).toBe('Open inbox')
 
       const icons = bar.findAllComponents(AnimatedToggleIcon)
-      expect(icons[0]!.props('active')).toBe(true)
-      expect(icons[0]!.props('icon')).toBe('ri:home-4-line')
-      expect(icons[0]!.props('activeIcon')).toBe('ri:home-4-fill')
-      expect(icons[1]!.props('active')).toBe(false)
+      expect(icons[0].props('active')).toBe(true)
+      expect(icons[0].props('icon')).toBe('ri:home-4-line')
+      expect(icons[0].props('activeIcon')).toBe('ri:home-4-fill')
+      expect(icons[1].props('active')).toBe(false)
       wrapper.unmount()
     })
 
@@ -127,22 +129,22 @@ describe('activity-bar', () => {
       })
       const bar = wrapper.getComponent(ActivityBar)
 
-      await bar.findAll('button')[1]!.trigger('click')
+      await bar.findAll('button')[1].trigger('click')
 
       expect(onActive).toHaveBeenCalledOnce()
       expect(onActive).toHaveBeenCalledWith(expect.objectContaining({ id: 'inbox' }))
-      expect(bar.emitted('update:active')).toEqual([
-        ['inbox'],
-        ['inbox'],
-      ])
+      expect(bar.emitted('update:active')).toEqual([['inbox'], ['inbox']])
       wrapper.unmount()
     })
 
     it('waits for onActive before emitting update:active', async () => {
       let resolveActive = () => {}
-      const onActive = vi.fn(() => new Promise<void>((resolve) => {
-        resolveActive = resolve
-      }))
+      const onActive = vi.fn(
+        () =>
+          new Promise<void>((resolve) => {
+            resolveActive = resolve
+          }),
+      )
       const wrapper = mountBar({
         active: 'home',
         groups: [
@@ -161,7 +163,7 @@ describe('activity-bar', () => {
         ],
       })
       const bar = wrapper.getComponent(ActivityBar)
-      const pending = bar.findAll('button')[1]!.trigger('click')
+      const pending = bar.findAll('button')[1].trigger('click')
 
       await nextTick()
       expect(onActive).toHaveBeenCalledOnce()
@@ -169,10 +171,7 @@ describe('activity-bar', () => {
 
       resolveActive()
       await pending
-      expect(bar.emitted('update:active')).toEqual([
-        ['inbox'],
-        ['inbox'],
-      ])
+      expect(bar.emitted('update:active')).toEqual([['inbox'], ['inbox']])
       wrapper.unmount()
     })
 
@@ -181,14 +180,11 @@ describe('activity-bar', () => {
       const bar = wrapper.getComponent(ActivityBar)
       const buttons = bar.findAll('button')
 
-      expect(buttons[0]!.attributes('aria-current')).toBe('true')
-      await buttons[2]!.trigger('click')
-      expect(bar.emitted('update:active')).toEqual([
-        ['settings'],
-        ['settings'],
-      ])
-      expect(buttons[0]!.attributes('aria-current')).toBe('true')
-      expect(buttons[2]!.attributes('aria-current')).toBeUndefined()
+      expect(buttons[0].attributes('aria-current')).toBe('true')
+      await buttons[2].trigger('click')
+      expect(bar.emitted('update:active')).toEqual([['settings'], ['settings']])
+      expect(buttons[0].attributes('aria-current')).toBe('true')
+      expect(buttons[2].attributes('aria-current')).toBeUndefined()
       wrapper.unmount()
     })
 
@@ -214,7 +210,7 @@ describe('activity-bar', () => {
       })
       const bar = wrapper.getComponent(ActivityBar)
 
-      await bar.findAll('button')[1]!.trigger('click')
+      await bar.findAll('button')[1].trigger('click')
 
       expect(onActive).not.toHaveBeenCalled()
       expect(bar.emitted('update:active')).toBeUndefined()
@@ -254,27 +250,26 @@ describe('activity-bar', () => {
       const floats = bar.findAllComponents(Float)
 
       expect(floats).toHaveLength(2)
-      expect(floats[0]!.props('placement')).toBe('top-right')
-      expect(floats[0]!.props('offset')).toBe('1px')
-      expect(buttons[0]!.find('span').classes()).toEqual(expect.arrayContaining([
-        'rounded-full',
-        'bg-accent',
-        'size-1.5',
-      ]))
-      expect(buttons[1]!.find('span').classes()).toEqual(expect.arrayContaining([
-        'rounded-full',
-        'bg-accent',
-        'size-1.5',
-      ]))
+      expect(floats[0].props('placement')).toBe('top-right')
+      expect(floats[0].props('offset')).toBe('1px')
+      expect(buttons[0].find('span').classes()).toEqual(
+        expect.arrayContaining(['rounded-full', 'bg-accent', 'size-1.5']),
+      )
+      expect(buttons[1].find('span').classes()).toEqual(
+        expect.arrayContaining(['rounded-full', 'bg-accent', 'size-1.5']),
+      )
       wrapper.unmount()
     })
 
     it('renders content slots around the groups', () => {
-      const wrapper = mountBar({ active: 'home' }, {
-        'content-top': () => h('span', 'Top'),
-        'content-bottom': () => h('span', 'Bottom'),
-      })
-      const content = wrapper.getComponent(ActivityBar).get('nav').element.children[0]!
+      const wrapper = mountBar(
+        { active: 'home' },
+        {
+          'content-top': () => h('span', 'Top'),
+          'content-bottom': () => h('span', 'Bottom'),
+        },
+      )
+      const content = wrapper.getComponent(ActivityBar).get('nav').element.children[0]
 
       expect(content.firstElementChild?.textContent).toBe('Top')
       expect(content.lastElementChild?.textContent).toBe('Bottom')
@@ -282,9 +277,12 @@ describe('activity-bar', () => {
     })
 
     it('renders the header slot when provided', () => {
-      const wrapper = mountBar({ active: 'home' }, {
-        header: () => h('span', 'Logo'),
-      })
+      const wrapper = mountBar(
+        { active: 'home' },
+        {
+          header: () => h('span', 'Logo'),
+        },
+      )
       const bar = wrapper.getComponent(ActivityBar)
 
       expect(bar.get('header').text()).toBe('Logo')

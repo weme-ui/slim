@@ -15,20 +15,31 @@ const props = withDefaults(defineProps<ToggleButtonProps>(), {
 })
 
 const emits = defineEmits<ToggleButtonEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'defaultValue', 'disabled', 'modelValue', 'name', 'required')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'defaultValue',
+  'disabled',
+  'modelValue',
+  'name',
+  'required',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const pressed = ref(false)
 const hasLabel = computed(() => !!props.label)
 
-const ui = computed(() => useToggleButtonStyle({
-  variant: props.variant,
-  size: props.size,
-  scalable: toBoolValue(props.scalable),
-  unstyled: toBoolValue(props.unstyled),
-  disabled: toBoolValue(props.disabled),
-  hasLabel: hasLabel.value,
-}))
+const ui = computed(() =>
+  useToggleButtonStyle({
+    variant: props.variant,
+    size: props.size,
+    scalable: toBoolValue(props.scalable),
+    unstyled: toBoolValue(props.unstyled),
+    disabled: toBoolValue(props.disabled),
+    hasLabel: hasLabel.value,
+  }),
+)
 
 function handlePress(value: boolean) {
   pressed.value = value

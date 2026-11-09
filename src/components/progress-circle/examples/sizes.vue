@@ -6,11 +6,6 @@ const sizes = ['sm', 'md', 'lg'] as const
 
 <template>
   <div class="flex flex-wrap gap-3 items-center">
-    <ProgressCircle
-      v-for="size in sizes"
-      :key="size"
-      :model-value="64"
-      :size="size"
-    />
+    <ProgressCircle v-for="size in sizes" :key="size" :model-value="64" :size="size" />
   </div>
 </template>

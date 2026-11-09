@@ -17,10 +17,12 @@ const emits = defineEmits<AvatarEmits>()
 const delegated = reactivePick(props, 'crossOrigin', 'referrerPolicy')
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const ui = computed(() => useAvatarStyle({
-  color: props.color,
-  size: props.size,
-}))
+const ui = computed(() =>
+  useAvatarStyle({
+    color: props.color,
+    size: props.size,
+  }),
+)
 </script>
 
 <template>
@@ -29,7 +31,12 @@ const ui = computed(() => useAvatarStyle({
     :data-slot="$attrs['data-slot'] || 'avatar'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
   >
-    <AvatarImage v-if="src" v-bind="forwarded" :src="src" :class="cn(ui.image(), props.ui?.image)" />
+    <AvatarImage
+      v-if="src"
+      v-bind="forwarded"
+      :src="src"
+      :class="cn(ui.image(), props.ui?.image)"
+    />
     <AvatarFallback :delay-ms="delayMs" :class="cn(ui.fallback(), props.ui?.fallback)">
       <slot v-if="$slots.fallback || fallback" name="fallback">
         {{ fallback }}

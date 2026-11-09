@@ -16,7 +16,15 @@ const props = withDefaults(defineProps<ProgressBarProps>(), {
 })
 
 const emits = defineEmits<ProgressBarEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'getValueLabel', 'getValueText', 'max', 'modelValue')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'getValueLabel',
+  'getValueText',
+  'max',
+  'modelValue',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 const formatter = useNumberFormatter(props.formatOptions)
 
@@ -33,16 +41,17 @@ const range = computed(() => delegated.max ?? 100)
 const percentage = computed(() => (modelValue.value ?? 0) / range.value)
 
 const valueLabel = computed(() => {
-  const valueToFormat = formatOptions.value.style === 'percent'
-    ? percentage.value
-    : modelValue.value ?? 0
+  const valueToFormat =
+    formatOptions.value.style === 'percent' ? percentage.value : (modelValue.value ?? 0)
   return formatter.value.format(valueToFormat)
 })
 
-const ui = computed(() => useProgressBarStyle({
-  color: props.color,
-  size: props.size,
-}))
+const ui = computed(() =>
+  useProgressBarStyle({
+    color: props.color,
+    size: props.size,
+  }),
+)
 </script>
 
 <template>

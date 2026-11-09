@@ -11,23 +11,8 @@ const items: ToggleButtonGroupItem[] = [
 
 <template>
   <div class="flex flex-col gap-6 items-start">
-    <ToggleButtonGroup
-      type="single"
-      variant="soft"
-      :items="items"
-      default-value="left"
-    />
-    <ToggleButtonGroup
-      type="single"
-      variant="outline"
-      :items="items"
-      default-value="left"
-    />
-    <ToggleButtonGroup
-      type="single"
-      variant="ghost"
-      :items="items"
-      default-value="left"
-    />
+    <ToggleButtonGroup type="single" variant="soft" :items="items" default-value="left" />
+    <ToggleButtonGroup type="single" variant="outline" :items="items" default-value="left" />
+    <ToggleButtonGroup type="single" variant="ghost" :items="items" default-value="left" />
   </div>
 </template>

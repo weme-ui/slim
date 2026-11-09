@@ -15,18 +15,28 @@ function mountTagsInput(tagsInputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { tags: model.value },
-      }, () =>
-        h(FormField, { name: 'tags', label: 'Tags' }, {
-          default: () => h(TagsInput, {
-            ...tagsInputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: TagsInputValue[]) => {
-              model.value = value ?? []
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { tags: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'tags', label: 'Tags' },
+              {
+                default: () =>
+                  h(TagsInput, {
+                    ...tagsInputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: TagsInputValue[]) => {
+                      model.value = value ?? []
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -89,7 +99,9 @@ describe('tags-input', () => {
 
   it('applies invalid border for soft and outline', () => {
     expect(useTagsInputStyle({ variant: 'soft', invalid: true }).root()).toContain('b-error')
-    expect(useTagsInputStyle({ variant: 'soft', invalid: true }).root()).toContain('outline-error-4')
+    expect(useTagsInputStyle({ variant: 'soft', invalid: true }).root()).toContain(
+      'outline-error-4',
+    )
     expect(useTagsInputStyle({ variant: 'outline', invalid: true }).root()).toContain('b-error')
   })
 
@@ -131,13 +143,15 @@ describe('tags-input', () => {
         clearable: true,
         placeholder: 'Add a tag…',
       })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Item delete / clear controls are icon-only; Iconify SVG uses role="img" without alt.
-          'button-name': { enabled: false },
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Item delete / clear controls are icon-only; Iconify SVG uses role="img" without alt.
+            'button-name': { enabled: false },
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -163,9 +177,7 @@ describe('tags-input', () => {
 
       expect(model.value).toEqual(['design', 'vue'])
       const component = wrapper.findComponent(TagsInput)
-      expect(component.emitted('update:modelValue')?.at(-1)).toEqual([
-        ['design', 'vue'],
-      ])
+      expect(component.emitted('update:modelValue')?.at(-1)).toEqual([['design', 'vue']])
       expect(component.emitted('addTag')?.at(-1)).toEqual(['vue'])
       wrapper.unmount()
     })
@@ -177,7 +189,7 @@ describe('tags-input', () => {
       const deleteButtons = wrapper.findAll('button[type="button"]')
       expect(deleteButtons.length).toBeGreaterThanOrEqual(2)
 
-      await deleteButtons[0]!.trigger('click')
+      await deleteButtons[0].trigger('click')
       await nextTick()
 
       expect(model.value).toEqual(['vue'])

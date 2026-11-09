@@ -7,15 +7,8 @@ import Tooltip from '../tooltip.vue'
 <template>
   <TooltipProvider :delay-duration="0">
     <div class="flex items-center">
-      <Tooltip
-        content="Favorite"
-        icon="ri:heart-line"
-        as-child
-      >
-        <Button
-          icon="ri:heart-line"
-          aria-label="Favorite"
-        />
+      <Tooltip content="Favorite" icon="ri:heart-line" as-child>
+        <Button icon="ri:heart-line" aria-label="Favorite" />
       </Tooltip>
     </div>
   </TooltipProvider>

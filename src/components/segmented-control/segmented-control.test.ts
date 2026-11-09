@@ -21,14 +21,15 @@ function mountControl(controlProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(SegmentedControl, {
-        ...controlProps,
-        'items': (controlProps.items as SegmentedControlItem[] | undefined) ?? defaultItems,
-        'modelValue': model.value,
-        'onUpdate:modelValue': (value: SegmentedControlValue) => {
-          model.value = value
-        },
-      })
+      return () =>
+        h(SegmentedControl, {
+          ...controlProps,
+          items: (controlProps.items as SegmentedControlItem[] | undefined) ?? defaultItems,
+          modelValue: model.value,
+          'onUpdate:modelValue': (value: SegmentedControlValue) => {
+            model.value = value
+          },
+        })
     },
   })
 
@@ -81,7 +82,7 @@ describe('segmented-control', () => {
       expect(root.attributes('role')).toBe('radiogroup')
       const items = wrapper.findAll('[data-slot="segmented-control-item"]')
       expect(items).toHaveLength(3)
-      expect(items[0]!.element.tagName).toBe('SPAN')
+      expect(items[0].element.tagName).toBe('SPAN')
       expect(wrapper.findAll('[role="radio"]')).toHaveLength(3)
       expect(wrapper.text()).toContain('Day')
       expect(wrapper.text()).toContain('Week')
@@ -105,7 +106,7 @@ describe('segmented-control', () => {
 
     it('selects a value when an item is clicked', async () => {
       const { wrapper, model } = mountControl()
-      await wrapper.findAll('[role="radio"]')[1]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[1].trigger('click')
       await nextTick()
       expect(model.value).toBe('week')
       wrapper.unmount()
@@ -113,16 +114,19 @@ describe('segmented-control', () => {
 
     it('emits change when the value updates', async () => {
       const { wrapper } = mountControl()
-      await wrapper.findAll('[role="radio"]')[2]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[2].trigger('click')
       await nextTick()
-      const payloads = wrapper.findComponent(SegmentedControl).emitted('change')?.map(item => item[0])
+      const payloads = wrapper
+        .findComponent(SegmentedControl)
+        .emitted('change')
+        ?.map((item) => item[0])
       expect(payloads).toContain('month')
       wrapper.unmount()
     })
 
     it('does not select when the group is disabled', async () => {
       const { wrapper, model } = mountControl({ disabled: true })
-      await wrapper.findAll('[role="radio"]')[0]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[0].trigger('click')
       expect(model.value).toBeUndefined()
       expect(wrapper.findComponent(SegmentedControl).emitted('change')).toBeUndefined()
       wrapper.unmount()
@@ -144,7 +148,7 @@ describe('segmented-control', () => {
           { label: 'Month', value: 'month' },
         ] satisfies SegmentedControlItem[],
       })
-      await wrapper.findAll('[role="radio"]')[1]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[1].trigger('click')
       expect(model.value).toBeUndefined()
       expect(selected).toEqual([])
       wrapper.unmount()
@@ -164,7 +168,7 @@ describe('segmented-control', () => {
           },
         ] satisfies SegmentedControlItem[],
       })
-      await wrapper.findAll('[role="radio"]')[1]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[1].trigger('click')
       await nextTick()
       expect(selected).toEqual(['week'])
       expect(model.value).toBe('week')
@@ -177,22 +181,32 @@ describe('segmented-control', () => {
       const model = ref<SegmentedControlValue | undefined>('day')
       const Root = defineComponent({
         setup() {
-          return () => h(Form, {
-            defaultValues: { range: model.value },
-          }, () =>
-            h(FormField, {
-              name: 'range',
-              label: 'Range',
-              nativeLabel: false,
-            }, {
-              default: () => h(SegmentedControl, {
-                'items': defaultItems,
-                'modelValue': model.value,
-                'onUpdate:modelValue': (value: SegmentedControlValue) => {
-                  model.value = value
-                },
-              }),
-            }))
+          return () =>
+            h(
+              Form,
+              {
+                defaultValues: { range: model.value },
+              },
+              () =>
+                h(
+                  FormField,
+                  {
+                    name: 'range',
+                    label: 'Range',
+                    nativeLabel: false,
+                  },
+                  {
+                    default: () =>
+                      h(SegmentedControl, {
+                        items: defaultItems,
+                        modelValue: model.value,
+                        'onUpdate:modelValue': (value: SegmentedControlValue) => {
+                          model.value = value
+                        },
+                      }),
+                  },
+                ),
+            )
         },
       })
       const wrapper = mount(Root, { attachTo: document.body })

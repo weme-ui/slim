@@ -11,7 +11,15 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<ToastProviderProps>(), { side: 'bottom-right', gap: 16 })
-const delegated = reactivePick(props, 'disableSwipe', 'duration', 'label', 'limit', 'swipeThreshold', 'toastManager')
+const delegated = reactivePick(
+  props,
+  'disableSwipe',
+  'duration',
+  'label',
+  'limit',
+  'swipeThreshold',
+  'toastManager',
+)
 const forwarded = useForwardProps(delegated)
 
 const toasterRef = ref<{ height: number }>()
@@ -32,10 +40,12 @@ const swipeDirection = computed<ToastProviderProps['swipeDirection']>(() => {
   }
 })
 
-const ui = computed(() => useToastProviderStyle({
-  side: props.side,
-  swipe: swipeDirection.value,
-}))
+const ui = computed(() =>
+  useToastProviderStyle({
+    side: props.side,
+    swipe: swipeDirection.value,
+  }),
+)
 </script>
 
 <template>

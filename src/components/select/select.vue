@@ -1,7 +1,11 @@
-<script lang="ts" generic="M extends boolean = false, V = M extends false ? SelectValue : SelectValue[]" setup>
+<script
+  lang="ts"
+  generic="M extends boolean = false, V = M extends false ? SelectValue : SelectValue[]"
+  setup
+>
 import type { SelectContentProps } from 'reka-ui'
-import type { SelectEmits, SelectProps, SelectValue } from './select.props'
 import type { GroupItem } from '~/composables/use-group-items'
+import type { SelectEmits, SelectProps, SelectValue } from './select.props'
 import { reactiveOmit } from '@vueuse/core'
 import { defu } from 'defu'
 import { AnimatePresence, Motion } from 'motion-v'
@@ -44,47 +48,77 @@ const props = withDefaults(defineProps<SelectProps<M>>(), {
 })
 
 const emits = defineEmits<SelectEmits<M, V>>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'prefix', 'suffix', 'prefixIcon', 'suffixIcon', 'loading', 'loadingIcon', 'indicatorIcon', 'portalProps', 'contentProps', 'placeholder', 'emptyText', 'emptyIcon', 'reference', 'unstyled', 'class', 'ui', 'emptyText', 'emptyIcon')
+const delegated = reactiveOmit(
+  props,
+  'id',
+  'name',
+  'items',
+  'variant',
+  'size',
+  'prefix',
+  'suffix',
+  'prefixIcon',
+  'suffixIcon',
+  'loading',
+  'loadingIcon',
+  'indicatorIcon',
+  'portalProps',
+  'contentProps',
+  'placeholder',
+  'emptyText',
+  'emptyIcon',
+  'reference',
+  'unstyled',
+  'class',
+  'ui',
+  'emptyText',
+  'emptyIcon',
+)
 const forwarded = useForwardProps(delegated)
 
 const portalProps = toRef(() => props.portalProps)
-const contentProps = toRef(() => defu(props.contentProps, {
-  align: 'start',
-  side: 'bottom',
-  collisionPadding: 6,
-  position: 'popper',
-}) as SelectContentProps)
+const contentProps = toRef(
+  () =>
+    defu(props.contentProps, {
+      align: 'start',
+      side: 'bottom',
+      collisionPadding: 6,
+      position: 'popper',
+    }) as SelectContentProps,
+)
 
-const {
-  bindings,
-  id,
-  loading,
-  disabled,
-  invalid,
-  dataAttributes,
-  registerControl,
-} = useFormFieldControl(props)
+const { bindings, id, loading, disabled, invalid, dataAttributes, registerControl } =
+  useFormFieldControl(props)
 
 const computedValues = computed(() => props.modelValue)
-const computedValuesCount = computed(() => Array.isArray(computedValues.value)
-  ? computedValues.value.length
-  : computedValues.value !== ''
-    ? 1
-    : 0)
+const computedValuesCount = computed(() =>
+  Array.isArray(computedValues.value)
+    ? computedValues.value.length
+    : computedValues.value !== ''
+      ? 1
+      : 0,
+)
 const isMultiple = computed(() => toBoolValue(props.multiple))
 
 const { forwardRef, currentElement } = useForwardExpose()
-const { flattenedItems, groupedItems, selectedItem } = useGroupItems<SelectValue, M>(props.items ?? [], computedValues)
+const { flattenedItems, groupedItems, selectedItem } = useGroupItems<SelectValue, M>(
+  props.items ?? [],
+  computedValues,
+)
 
-const selectedIcon = selectItemProp(item => item.selectedIcon || item.icon)
-const selectedIconClass = selectItemProp(item => item.iconClass)
-const selectedLabel = selectItemProp(item => item.label)
+const selectedIcon = selectItemProp((item) => item.selectedIcon || item.icon)
+const selectedIconClass = selectItemProp((item) => item.iconClass)
+const selectedLabel = selectItemProp((item) => item.label)
 
 const slots = useSlots()
 
 const hasValues = computed(() => computedValuesCount.value > 0)
-const hasPrefix = computed(() => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix)
-const hasSuffix = computed(() => !!loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix)
+const hasPrefix = computed(
+  () => !!selectedIcon.value || !!props.prefix || !!props.prefixIcon || !!slots.prefix,
+)
+const hasSuffix = computed(
+  () => !!loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix,
+)
 
 const open = ref(false)
 
@@ -95,14 +129,16 @@ const morph = usePopoverContent({
   sideOffset: contentProps.value.sideOffset,
 })
 
-const ui = computed(() => useSelectStyle({
-  variant: props.variant,
-  size: props.size,
-  loading: loading.value,
-  disabled: disabled.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useSelectStyle({
+    variant: props.variant,
+    size: props.size,
+    loading: loading.value,
+    disabled: disabled.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 watch(open, (value) => {
   emits('update:open', value)
@@ -123,14 +159,13 @@ onUnmounted(() => {
 })
 
 function selectItem(value: SelectValue) {
-  return flattenedItems.value.find(item => item.value === value)
+  return flattenedItems.value.find((item) => item.value === value)
 }
 
 function selectItemProp<R>(selector: (item: GroupItem<SelectValue>) => R) {
   return computed(() => {
     const item = selectedItem.value
-    if (isMultiple.value || !item || Array.isArray(item))
-      return undefined
+    if (isMultiple.value || !item || Array.isArray(item)) return undefined
     return selector(item)
   })
 }
@@ -165,13 +200,22 @@ function handleUpdate(value: any) {
         </slot>
       </span>
 
-      <div :data-placeholder="toBoolDataAttrValue(!hasValues)" :class="cn(ui.value(), props.ui?.value)">
+      <div
+        :data-placeholder="toBoolDataAttrValue(!hasValues)"
+        :class="cn(ui.value(), props.ui?.value)"
+      >
         <template v-if="hasValues">
           <template v-if="isMultiple">
             <template v-for="(value, idx) in computedValues" :key="value">
               <span :class="cn(ui.valueWrapper(), props.ui?.valueWrapper)">
-                <Icon v-if="selectItem(value)?.icon" :name="selectItem(value)?.icon || ''" :class="cn(ui.valueIcon(), props.ui?.valueIcon, selectItem(value)?.iconClass)" />
-                <template v-if="idx === (Array.isArray(computedValues) ? computedValues.length : 1) - 1">
+                <Icon
+                  v-if="selectItem(value)?.icon"
+                  :name="selectItem(value)?.icon || ''"
+                  :class="cn(ui.valueIcon(), props.ui?.valueIcon, selectItem(value)?.iconClass)"
+                />
+                <template
+                  v-if="idx === (Array.isArray(computedValues) ? computedValues.length : 1) - 1"
+                >
                   {{ selectItem(value)?.label }}
                 </template>
               </span>
@@ -194,8 +238,16 @@ function handleUpdate(value: any) {
 
       <SelectIcon v-if="hasSuffix" :class="cn(ui.suffix(), props.ui?.suffix)" @click.stop.prevent>
         <slot name="suffix">
-          <Icon v-if="loading" :name="loadingIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
-          <Icon v-else-if="suffixIcon" :name="suffixIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
+          <Icon
+            v-if="loading"
+            :name="loadingIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
+          <Icon
+            v-else-if="suffixIcon"
+            :name="suffixIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
           <template v-else>
             {{ suffix }}
           </template>
@@ -224,11 +276,21 @@ function handleUpdate(value: any) {
               </template>
 
               <template v-else>
-                <SelectGroup v-for="(group, gIdx) in groupedItems" :key="`g-${gIdx}`" :class="cn(ui.group(), props.ui?.group)">
+                <SelectGroup
+                  v-for="(group, gIdx) in groupedItems"
+                  :key="`g-${gIdx}`"
+                  :class="cn(ui.group(), props.ui?.group)"
+                >
                   <template v-for="(item, idx) in group" :key="`${gIdx}-${idx}`">
-                    <SelectSeparator v-if="item.type === 'separator'" :class="cn(ui.separator(), props.ui?.separator)" />
+                    <SelectSeparator
+                      v-if="item.type === 'separator'"
+                      :class="cn(ui.separator(), props.ui?.separator)"
+                    />
 
-                    <SelectLabel v-else-if="item.type === 'label'" :class="cn(ui.groupLabel(), props.ui?.groupLabel)">
+                    <SelectLabel
+                      v-else-if="item.type === 'label'"
+                      :class="cn(ui.groupLabel(), props.ui?.groupLabel)"
+                    >
                       {{ item.label }}
                     </SelectLabel>
 
@@ -244,41 +306,59 @@ function handleUpdate(value: any) {
                           <Icon
                             v-if="selected && (item.selectedIcon || item.icon)"
                             :name="item.selectedIcon || item.icon || ''"
-                            :class="cn(
-                              ui.itemIcon({ hasDescription: !!item.description }),
-                              props.ui?.itemIcon,
-                              item.iconClass,
-                            )"
+                            :class="
+                              cn(
+                                ui.itemIcon({ hasDescription: !!item.description }),
+                                props.ui?.itemIcon,
+                                item.iconClass,
+                              )
+                            "
                           />
                           <Icon
                             v-else-if="item.icon"
                             :name="item.icon || ''"
-                            :class="cn(
-                              ui.itemIcon({ hasDescription: !!item.description }),
-                              props.ui?.itemIcon,
-                              item.iconClass,
-                            )"
+                            :class="
+                              cn(
+                                ui.itemIcon({ hasDescription: !!item.description }),
+                                props.ui?.itemIcon,
+                                item.iconClass,
+                              )
+                            "
                           />
                         </slot>
 
                         <div
                           v-if="item.label && item.description"
-                          :class="cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)"
+                          :class="
+                            cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)
+                          "
                         >
-                          <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
+                          <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{
+                            item.label
+                          }}</span>
                           <p :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                             {{ item.description }}
                           </p>
                         </div>
 
                         <template v-else>
-                          <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                          <p v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                          <span
+                            v-if="item.label"
+                            :class="cn(ui.itemLabel(), props.ui?.itemLabel)"
+                            >{{ item.label }}</span
+                          >
+                          <p
+                            v-if="item.description"
+                            :class="cn(ui.itemDescription(), props.ui?.itemDescription)"
+                          >
                             {{ item.description }}
                           </p>
                         </template>
 
-                        <SelectItemIndicator :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)" as-child>
+                        <SelectItemIndicator
+                          :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)"
+                          as-child
+                        >
                           <Icon :name="indicatorIcon" />
                         </SelectItemIndicator>
                       </slot>

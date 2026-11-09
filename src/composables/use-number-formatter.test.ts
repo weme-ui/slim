@@ -30,7 +30,7 @@ describe('useNumberFormatter', () => {
     const Consumer = defineComponent({
       setup() {
         const formatter = useNumberFormatter(options)
-        format = value => formatter.value.format(value)
+        format = (value) => formatter.value.format(value)
         return () => h('span', format!(64))
       },
     })

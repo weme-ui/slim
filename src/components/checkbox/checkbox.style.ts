@@ -57,13 +57,7 @@ export const useCheckboxStyle = createVariants({
 
   compoundSlots: [
     {
-      slots: [
-        'root',
-        'indicator',
-        'checkedIcon',
-        'indeterminateIcon',
-        'label',
-      ],
+      slots: ['root', 'indicator', 'checkedIcon', 'indeterminateIcon', 'label'],
       unstyled: false,
       class: 'transition-colors duration-200',
     },
@@ -116,7 +110,10 @@ export const useCheckboxStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { indicator: 'b b-base bg-base data-[state=checked]:b-accent hover:data-[state=unchecked]:b-elevated' },
+      class: {
+        indicator:
+          'b b-base bg-base data-[state=checked]:b-accent hover:data-[state=unchecked]:b-elevated',
+      },
     },
 
     {
@@ -161,5 +158,5 @@ export const useCheckboxStyle = createVariants({
   },
 })
 
-export type CheckboxStyleSlots = typeof useCheckboxStyle['slots']
+export type CheckboxStyleSlots = (typeof useCheckboxStyle)['slots']
 export type CheckboxStyleProps = VariantProps<typeof useCheckboxStyle>

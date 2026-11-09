@@ -59,11 +59,11 @@ const DEFAULT_PASSWORD_STRENGTH_OPTIONS: PasswordStrengthOptions = {
 export function usePasswordStrength(userOptions: UsePasswordStrengthOptions) {
   const options: PasswordStrengthOptions = {
     ...DEFAULT_PASSWORD_STRENGTH_OPTIONS,
-    ...userOptions.options ?? {},
+    ...userOptions.options,
   }
   const messages: PasswordStrengthMessages = {
     ...DEFAULT_PASSWORD_STRENGTH_MESSAGES,
-    ...userOptions.messages ?? {},
+    ...userOptions.messages,
   }
   const rules: PasswordStrengthRule[] = [
     { key: 'lowercase', regex: '[a-z]' },
@@ -85,15 +85,19 @@ export function usePasswordStrength(userOptions: UsePasswordStrengthOptions) {
     }
 
     strength.contains = rules
-      .filter(rule => new RegExp(rule.regex).test(password))
-      .map(rule => rule.key)
+      .filter((rule) => new RegExp(rule.regex).test(password))
+      .map((rule) => rule.key)
 
     strength.length = password.length
 
     const fulfilledOptions = Object.entries(options)
       .filter(([, option]) => strength.contains.length >= Number(option.minDiversity))
       .filter(([, option]) => strength.length >= option.minLength)
-      .map(([key], diversity) => ({ diversity, key, message: messages[key as PasswordStrengthKey] }))
+      .map(([key], diversity) => ({
+        diversity,
+        key,
+        message: messages[key as PasswordStrengthKey],
+      }))
 
     // Object.entries order is tooWeak → weak → medium → strong; take the strongest match.
     return Object.assign(strength, fulfilledOptions.at(-1))

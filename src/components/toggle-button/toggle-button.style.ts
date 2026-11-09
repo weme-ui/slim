@@ -50,7 +50,9 @@ export const useToggleButtonStyle = createVariants({
     {
       variant: ['soft', 'outline', 'ghost'],
       unstyled: false,
-      class: { root: 'data-[state=on]:(bg-elevated text-highlighted) text-foreground hover:data-[state=off]:(bg-elevated text-highlighted) focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'data-[state=on]:(bg-elevated text-highlighted) text-foreground hover:data-[state=off]:(bg-elevated text-highlighted) focus-visible:(outline-accent-7 z-high)',
+      },
     },
 
     {
@@ -98,5 +100,5 @@ export const useToggleButtonStyle = createVariants({
   },
 })
 
-export type ToggleButtonStyleSlots = typeof useToggleButtonStyle['slots']
+export type ToggleButtonStyleSlots = (typeof useToggleButtonStyle)['slots']
 export type ToggleButtonStyleProps = VariantProps<typeof useToggleButtonStyle>

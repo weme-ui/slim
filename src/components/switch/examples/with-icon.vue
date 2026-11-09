@@ -4,9 +4,6 @@ import Switch from '../switch.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Switch
-      checked-icon="ri:moon-line"
-      unchecked-icon="ri:sun-line"
-    />
+    <Switch checked-icon="ri:moon-line" unchecked-icon="ri:sun-line" />
   </div>
 </template>

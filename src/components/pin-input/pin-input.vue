@@ -17,7 +17,20 @@ const props = withDefaults(defineProps<PinInputProps>(), {
 })
 
 const emits = defineEmits<PinInputEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'invalid', 'variant', 'size', 'length', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'id',
+  'name',
+  'required',
+  'disabled',
+  'invalid',
+  'variant',
+  'size',
+  'length',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -35,13 +48,15 @@ const { forwardRef, currentElement } = useForwardExpose()
 
 const modelValue = computed(() => props.modelValue)
 
-const ui = computed(() => usePinInputStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  usePinInputStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -58,15 +73,13 @@ onUnmounted(() => {
 })
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }

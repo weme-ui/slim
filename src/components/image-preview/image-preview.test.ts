@@ -75,12 +75,14 @@ describe('image-preview', () => {
       await wrapper.get('img').trigger('click')
       await nextTick()
       const thumbs = document.querySelectorAll('[aria-label="Image Preview"] li')
-      thumbs[1]!.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      thumbs[1].dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await nextTick()
 
       const images = document.querySelectorAll('[aria-label="Image Preview"] img')
-      expect([...images].some(img => img.getAttribute('src') === 'https://example.com/b.png')).toBe(true)
-      expect(thumbs[1]!.hasAttribute('data-highlighted')).toBe(true)
+      expect(
+        [...images].some((img) => img.getAttribute('src') === 'https://example.com/b.png'),
+      ).toBe(true)
+      expect(thumbs[1].hasAttribute('data-highlighted')).toBe(true)
       wrapper.unmount()
     })
 
@@ -99,7 +101,8 @@ describe('image-preview', () => {
 
       await wrapper.get('img').trigger('click')
       await nextTick()
-      const overlay = document.querySelector('[aria-label="Image Preview"]')?.nextElementSibling as HTMLElement | null
+      const overlay = document.querySelector('[aria-label="Image Preview"]')
+        ?.nextElementSibling as HTMLElement | null
       overlay?.dispatchEvent(new MouseEvent('click', { bubbles: true }))
       await nextTick()
       expect(wrapper.attributes('data-state')).toBe('closed')
@@ -128,11 +131,13 @@ describe('image-preview', () => {
       })
       expect(wrapper.get('img').attributes('alt')).toBeUndefined()
       // Trigger `Image` declares `alt` but does not bind it onto the img.
-      expect(await axe(wrapper.element, {
-        rules: {
-          'image-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'image-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

@@ -13,11 +13,21 @@ const props = withDefaults(defineProps<ImageProps>(), {
 })
 
 const emits = defineEmits<ImageEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'width', 'height', 'referrerPolicy', 'loading')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'width',
+  'height',
+  'referrerPolicy',
+  'loading',
+)
 
-const ui = computed(() => useImageStyle({
-  fit: props.fit,
-}))
+const ui = computed(() =>
+  useImageStyle({
+    fit: props.fit,
+  }),
+)
 
 const isMounted = ref(false)
 const imageRef = ref<HTMLImageElement | null>(null)
@@ -73,10 +83,8 @@ onMounted(() => {
     img.addEventListener('load', handleLoad)
     img.addEventListener('error', handleError)
 
-    if (referrerPolicy?.value)
-      img.referrerPolicy = referrerPolicy.value
-    if (typeof crossOrigin?.value === 'string')
-      img.crossOrigin = crossOrigin.value
+    if (referrerPolicy?.value) img.referrerPolicy = referrerPolicy.value
+    if (typeof crossOrigin?.value === 'string') img.crossOrigin = crossOrigin.value
 
     onCleanup(() => {
       img.removeEventListener('load', handleLoad)
@@ -91,24 +99,18 @@ onUnmounted(() => {
 
 function updateLoadingStatus(status: ImageLoadingStatus) {
   return () => {
-    if (isMounted.value)
-      loadingStatus.value = status
+    if (isMounted.value) loadingStatus.value = status
   }
 }
 
 function resolveLoadingStatus(image: HTMLImageElement | null, src?: string): ImageLoadingStatus {
-  if (!image)
-    return 'idle'
+  if (!image) return 'idle'
 
-  if (!src)
-    return 'error'
+  if (!src) return 'error'
 
-  if (image.src !== src)
-    image.src = src
+  if (image.src !== src) image.src = src
 
-  return image.complete && image.naturalWidth > 0
-    ? 'loaded'
-    : 'loading'
+  return image.complete && image.naturalWidth > 0 ? 'loaded' : 'loading'
 }
 </script>
 

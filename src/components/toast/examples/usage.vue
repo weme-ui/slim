@@ -58,24 +58,45 @@ const ToastButtons = defineComponent({
       )
     }
 
-    return () => h('div', { class: 'flex flex-wrap gap-6 items-center' }, [
-      h(Button, {
-        onClick: () => showToast(),
-      }, () => 'Default'),
-      h(Button, {
-        onClick: () => showToast('info'),
-      }, () => 'Info'),
-      h(Button, {
-        onClick: () => showToast('success'),
-      }, () => 'Success'),
-      h(Button, {
-        onClick: () => showToast('warning'),
-      }, () => 'Warning'),
-      h(Button, {
-        onClick: () => showToast('error'),
-      }, () => 'Error'),
-      h(Button, { onClick: showLoadingToast }, () => 'Promise'),
-    ])
+    return () =>
+      h('div', { class: 'flex flex-wrap gap-6 items-center' }, [
+        h(
+          Button,
+          {
+            onClick: () => showToast(),
+          },
+          () => 'Default',
+        ),
+        h(
+          Button,
+          {
+            onClick: () => showToast('info'),
+          },
+          () => 'Info',
+        ),
+        h(
+          Button,
+          {
+            onClick: () => showToast('success'),
+          },
+          () => 'Success',
+        ),
+        h(
+          Button,
+          {
+            onClick: () => showToast('warning'),
+          },
+          () => 'Warning',
+        ),
+        h(
+          Button,
+          {
+            onClick: () => showToast('error'),
+          },
+          () => 'Error',
+        ),
+        h(Button, { onClick: showLoadingToast }, () => 'Promise'),
+      ])
   },
 })
 </script>

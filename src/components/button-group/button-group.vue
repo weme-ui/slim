@@ -7,9 +7,22 @@ import { getChildrenSlots, toBoolAriaValue, toBoolValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
 import { useButtonGroupStyle } from './button-group.style'
 
-const props = withDefaults(defineProps<ButtonGroupProps>(), { orientation: 'horizontal', gap: 'md', variant: 'outline' })
+const props = withDefaults(defineProps<ButtonGroupProps>(), {
+  orientation: 'horizontal',
+  gap: 'md',
+  variant: 'outline',
+})
 const emits = defineEmits<ButtonGroupEmits>()
-const delegated = reactivePick(props, 'as', 'currentTabStopId', 'defaultCurrentTabStopId', 'dir', 'loop', 'orientation', 'defaultCurrentTabStopId')
+const delegated = reactivePick(
+  props,
+  'as',
+  'currentTabStopId',
+  'defaultCurrentTabStopId',
+  'dir',
+  'loop',
+  'orientation',
+  'defaultCurrentTabStopId',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const slots = useSlots()
@@ -17,12 +30,14 @@ const children = computed(() => {
   return getChildrenSlots(slots.default?.())
 })
 
-const ui = computed(() => useButtonGroupStyle({
-  orientation: props.orientation,
-  gap: props.gap,
-  separator: toBoolValue(props.separator),
-  disabled: toBoolValue(props.disabled),
-}))
+const ui = computed(() =>
+  useButtonGroupStyle({
+    orientation: props.orientation,
+    gap: props.gap,
+    separator: toBoolValue(props.separator),
+    disabled: toBoolValue(props.disabled),
+  }),
+)
 </script>
 
 <template>

@@ -40,7 +40,8 @@ export const usePinInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        input: 'bg-muted focus:(bg-base b-accent outline-2 outline-accent-4) hover:not-focus:bg-elevated',
+        input:
+          'bg-muted focus:(bg-base b-accent outline-2 outline-accent-4) hover:not-focus:bg-elevated',
       },
     },
     {
@@ -66,5 +67,5 @@ export const usePinInputStyle = createVariants({
   },
 })
 
-export type PinInputStyleSlots = typeof usePinInputStyle['slots']
+export type PinInputStyleSlots = (typeof usePinInputStyle)['slots']
 export type PinInputStyleProps = VariantProps<typeof usePinInputStyle>

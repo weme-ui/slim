@@ -10,11 +10,6 @@ const items: ListboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Listbox
-      unstyled
-      :items="items"
-      placeholder="Fully custom…"
-      class="text-sm w-full"
-    />
+    <Listbox unstyled :items="items" placeholder="Fully custom…" class="text-sm w-full" />
   </div>
 </template>

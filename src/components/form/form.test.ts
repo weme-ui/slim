@@ -18,27 +18,37 @@ function mountEmailForm(mode: FormValidationMode) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { email: '' },
-        schema,
-        validationMode: mode,
-        onSubmit,
-        onFormSubmit,
-      }, () => [
-        h(FormField, { name: 'email', label: 'Email' }, {
-          default: ({ field }: { field: any }) => h('input', {
-            'aria-label': 'Email',
-            'value': field.state.value,
-            'onInput': (event: Event) => {
-              field.api.handleChange((event.target as HTMLInputElement).value)
-            },
-            'onBlur': () => {
-              field.api.handleBlur()
-            },
-          }),
-        }),
-        h('button', { type: 'submit' }, 'Save'),
-      ])
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { email: '' },
+            schema,
+            validationMode: mode,
+            onSubmit,
+            onFormSubmit,
+          },
+          () => [
+            h(
+              FormField,
+              { name: 'email', label: 'Email' },
+              {
+                default: ({ field }: { field: any }) =>
+                  h('input', {
+                    'aria-label': 'Email',
+                    value: field.state.value,
+                    onInput: (event: Event) => {
+                      field.api.handleChange((event.target as HTMLInputElement).value)
+                    },
+                    onBlur: () => {
+                      field.api.handleBlur()
+                    },
+                  }),
+              },
+            ),
+            h('button', { type: 'submit' }, 'Save'),
+          ],
+        )
     },
   })
 

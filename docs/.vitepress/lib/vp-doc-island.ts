@@ -16,10 +16,8 @@ export function vpDocExampleIslandPlugin(): Plugin {
     enforce: 'pre',
     transform(code, id) {
       const file = id.split('?')[0]?.replace(/\\/g, '/')
-      if (!file)
-        return
-      if (file.endsWith('/theme-default/styles/components/vp-doc.css'))
-        return guardVpDocCss(code)
+      if (!file) return
+      if (file.endsWith('/theme-default/styles/components/vp-doc.css')) return guardVpDocCss(code)
       if (file.endsWith('/.vitepress/theme/style.css'))
         return guardVpDocCss(code, { onlyVpDoc: true })
     },
@@ -31,8 +29,7 @@ export function guardVpDocCss(css: string, options?: { onlyVpDoc?: boolean }) {
   const root = postcss.parse(css)
   root.walkRules((rule) => {
     const parent = rule.parent
-    if (parent?.type === 'atrule' && parent.name.toLowerCase().endsWith('keyframes'))
-      return
+    if (parent?.type === 'atrule' && parent.name.toLowerCase().endsWith('keyframes')) return
     rule.selector = guardSelectorList(rule.selector, onlyVpDoc)
   })
   return root.toString()
@@ -47,25 +44,22 @@ function guardSelectorList(list: string, onlyVpDoc: boolean) {
   let i = 0
 
   const push = (chunk: string) => {
-    if (onlyVpDoc && !chunk.includes('.vp-doc'))
-      out += chunk
-    else
-      out += guardSelector(chunk)
+    if (onlyVpDoc && !chunk.includes('.vp-doc')) out += chunk
+    else out += guardSelector(chunk)
   }
 
   while (i < masked.length) {
-    const ch = masked[i]!
+    const ch = masked[i]
     if (quote) {
       if (ch === '\\') {
         i += 2
         continue
       }
-      if (ch === quote)
-        quote = ''
+      if (ch === quote) quote = ''
       i++
       continue
     }
-    if (ch === '"' || ch === '\'') {
+    if (ch === '"' || ch === "'") {
       quote = ch
       i++
       continue
@@ -93,8 +87,7 @@ function guardSelectorList(list: string, onlyVpDoc: boolean) {
 }
 
 function guardSelector(selector: string) {
-  if (!selector.trim())
-    return selector
+  if (!selector.trim()) return selector
 
   let depth = 0
   let quote = ''
@@ -106,18 +99,17 @@ function guardSelector(selector: string) {
       i = skipPlaceholder(selector, i)
       continue
     }
-    const ch = selector[i]!
+    const ch = selector[i]
     if (quote) {
       if (ch === '\\') {
         i += 2
         continue
       }
-      if (ch === quote)
-        quote = ''
+      if (ch === quote) quote = ''
       i++
       continue
     }
-    if (ch === '"' || ch === '\'') {
+    if (ch === '"' || ch === "'") {
       quote = ch
       i++
       continue
@@ -140,22 +132,18 @@ function guardSelector(selector: string) {
     }
     if (depth === 0 && isSpace(ch)) {
       const before = i
-      while (i < selector.length && isSpace(selector[i]!))
-        i++
-      if (hasTokenBefore(selector, before) && hasTokenAfter(selector, i))
-        subjectStart = i
+      while (i < selector.length && isSpace(selector[i])) i++
+      if (hasTokenBefore(selector, before) && hasTokenAfter(selector, i)) subjectStart = i
       continue
     }
     i++
   }
 
   let end = findPseudoElement(selector, subjectStart)
-  while (end > subjectStart && isSpace(selector[end - 1]!))
-    end--
+  while (end > subjectStart && isSpace(selector[end - 1])) end--
 
   const subject = selector.slice(subjectStart, end)
-  if (!subject.trim() || subject.includes(GUARD))
-    return selector
+  if (!subject.trim() || subject.includes(GUARD)) return selector
   return selector.slice(0, end) + GUARD + selector.slice(end)
 }
 
@@ -168,18 +156,17 @@ function findPseudoElement(selector: string, from: number) {
       i = skipPlaceholder(selector, i)
       continue
     }
-    const ch = selector[i]!
+    const ch = selector[i]
     if (quote) {
       if (ch === '\\') {
         i += 2
         continue
       }
-      if (ch === quote)
-        quote = ''
+      if (ch === quote) quote = ''
       i++
       continue
     }
-    if (ch === '"' || ch === '\'') {
+    if (ch === '"' || ch === "'") {
       quote = ch
       i++
       continue
@@ -194,8 +181,7 @@ function findPseudoElement(selector: string, from: number) {
       i++
       continue
     }
-    if (depth === 0 && selector.startsWith('::', i))
-      return i
+    if (depth === 0 && selector.startsWith('::', i)) return i
     i++
   }
   return selector.length
@@ -208,8 +194,7 @@ function skipAfterCombinator(selector: string, index: number) {
       i = skipPlaceholder(selector, i)
       continue
     }
-    if (!isSpace(selector[i]!))
-      break
+    if (!isSpace(selector[i])) break
     i++
   }
   return i
@@ -217,24 +202,21 @@ function skipAfterCombinator(selector: string, index: number) {
 
 function hasTokenBefore(selector: string, index: number) {
   for (let i = 0; i < index; i++) {
-    if (!isSpace(selector[i]!))
-      return true
+    if (!isSpace(selector[i])) return true
   }
   return false
 }
 
 function hasTokenAfter(selector: string, index: number) {
   for (let i = index; i < selector.length; i++) {
-    if (!isSpace(selector[i]!))
-      return true
+    if (!isSpace(selector[i])) return true
   }
   return false
 }
 
 function skipPlaceholder(selector: string, index: number) {
   const end = selector.indexOf('\0', index + 1)
-  if (end === -1)
-    return selector.length
+  if (end === -1) return selector.length
   return end + 1
 }
 

@@ -3,45 +3,48 @@ import type { ActivityBarGroup } from '~/components/activity-bar/activity-bar.pr
 
 const active = ref<string | undefined>(undefined)
 const chipped = ref(true)
-const groups = computed(() => [
-  {
-    slot: 'content',
-    items: [
+const groups = computed(
+  () =>
+    [
       {
-        id: 'home',
-        label: 'Home',
-        tooltip: 'Go to home',
-        icon: 'mingcute:home-1-line',
-        activeIcon: 'mingcute:home-1-fill',
-        class: 'data-[active]:text-clay',
+        slot: 'content',
+        items: [
+          {
+            id: 'home',
+            label: 'Home',
+            tooltip: 'Go to home',
+            icon: 'mingcute:home-1-line',
+            activeIcon: 'mingcute:home-1-fill',
+            class: 'data-[active]:text-clay',
+          },
+          {
+            id: 'content',
+            label: 'Content',
+            icon: 'mingcute:layout-5-line',
+            activeIcon: 'mingcute:layout-5-fill',
+            class: 'data-[active]:text-accent',
+            chipped: chipped.value,
+            onActive: () => {
+              setTimeout(() => {
+                chipped.value = false
+              }, 2000)
+            },
+          },
+        ],
       },
       {
-        id: 'content',
-        label: 'Content',
-        icon: 'mingcute:layout-5-line',
-        activeIcon: 'mingcute:layout-5-fill',
-        class: 'data-[active]:text-accent',
-        chipped: chipped.value,
-        onActive: () => {
-          setTimeout(() => {
-            chipped.value = false
-          }, 2000)
-        },
+        slot: 'footer',
+        items: [
+          {
+            id: 'settings',
+            label: 'Settings',
+            icon: 'mingcute:settings-1-line',
+            activeIcon: 'mingcute:settings-1-fill',
+          },
+        ],
       },
-    ],
-  },
-  {
-    slot: 'footer',
-    items: [
-      {
-        id: 'settings',
-        label: 'Settings',
-        icon: 'mingcute:settings-1-line',
-        activeIcon: 'mingcute:settings-1-fill',
-      },
-    ],
-  },
-] satisfies ActivityBarGroup[])
+    ] satisfies ActivityBarGroup[],
+)
 </script>
 
 <template>

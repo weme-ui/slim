@@ -20,24 +20,39 @@ const props = withDefaults(defineProps<SwitchProps<T>>(), {
 })
 
 const emits = defineEmits<SwitchEmits<T>>()
-const delegated = reactiveOmit(props, 'variant', 'size', 'inverted', 'indicatorIcon', 'loadingIcon', 'checkedIcon', 'uncheckedIcon', 'unstyled', 'loading', 'invalid', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'variant',
+  'size',
+  'inverted',
+  'indicatorIcon',
+  'loadingIcon',
+  'checkedIcon',
+  'uncheckedIcon',
+  'unstyled',
+  'loading',
+  'invalid',
+  'class',
+  'ui',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const {
-  bindings,
-  id,
-  loading,
-  disabled,
-  dataAttributes,
-  registerControl,
-} = useFormFieldControl(props)
+const { bindings, id, loading, disabled, dataAttributes, registerControl } =
+  useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 
 const slots = useSlots()
 
 const hasCheckedIcon = computed(() => !!props.checkedIcon || !!slots.checkedIcon)
 const hasUncheckedIcon = computed(() => !!props.uncheckedIcon || !!slots.uncheckedIcon)
-const hasIndicator = computed(() => loading.value || !!props.indicatorIcon || !!slots.indicator || hasCheckedIcon.value || hasUncheckedIcon.value)
+const hasIndicator = computed(
+  () =>
+    loading.value ||
+    !!props.indicatorIcon ||
+    !!slots.indicator ||
+    hasCheckedIcon.value ||
+    hasUncheckedIcon.value,
+)
 
 const pressed = ref(false)
 
@@ -55,14 +70,16 @@ onUnmounted(() => {
   unregister?.()
 })
 
-const ui = computed(() => useSwitchStyle({
-  variant: props.variant,
-  size: props.size,
-  inverted: toBoolValue(props.inverted),
-  unstyled: toBoolValue(props.unstyled),
-  loading: loading.value,
-  disabled: disabled.value,
-}))
+const ui = computed(() =>
+  useSwitchStyle({
+    variant: props.variant,
+    size: props.size,
+    inverted: toBoolValue(props.inverted),
+    unstyled: toBoolValue(props.unstyled),
+    loading: loading.value,
+    disabled: disabled.value,
+  }),
+)
 
 function handlePress(value: boolean) {
   nextTick(() => {
@@ -97,7 +114,9 @@ function handleUpdate(value: boolean) {
           <Icon
             v-if="checkedIcon"
             :name="checkedIcon"
-            :class="cn(ui.indicator(), props.ui?.indicator, ui.checkedIcon(), props.ui?.checkedIcon)"
+            :class="
+              cn(ui.indicator(), props.ui?.indicator, ui.checkedIcon(), props.ui?.checkedIcon)
+            "
           />
         </slot>
 
@@ -105,11 +124,17 @@ function handleUpdate(value: boolean) {
           <Icon
             v-if="uncheckedIcon"
             :name="uncheckedIcon"
-            :class="cn(ui.indicator(), props.ui?.indicator, ui.uncheckedIcon(), props.ui?.uncheckedIcon)"
+            :class="
+              cn(ui.indicator(), props.ui?.indicator, ui.uncheckedIcon(), props.ui?.uncheckedIcon)
+            "
           />
         </slot>
 
-        <Icon v-else-if="indicatorIcon" :name="indicatorIcon" :class="cn(ui.indicator(), props.ui?.indicator)" />
+        <Icon
+          v-else-if="indicatorIcon"
+          :name="indicatorIcon"
+          :class="cn(ui.indicator(), props.ui?.indicator)"
+        />
       </slot>
     </SwitchThumb>
   </SwitchRoot>

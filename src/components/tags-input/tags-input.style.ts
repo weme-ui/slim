@@ -50,7 +50,8 @@ export const useTagsInputStyle = createVariants({
         input: 'placeholder:text-subtle',
         item: 'font-medium group-data-[focused]:(text-accent bg-accent-3) group-not-[[data-focused]]:bg-elevated group-not-[[data-focused]]:group-hover:bg-muted',
         itemDelete: 'rounded-inherit hover:(text-highlighted b-elevated bg-accent-5)',
-        clear: 'op-0 transition-[opacity,background-color] duration-200 hover:bg-accent-3 group-data-[focused]:op-100',
+        clear:
+          'op-0 transition-[opacity,background-color] duration-200 hover:bg-accent-3 group-data-[focused]:op-100',
       },
     },
   },
@@ -61,23 +62,18 @@ export const useTagsInputStyle = createVariants({
       class: 'shrink-0',
     },
     {
-      slots: [
-        'root',
-        'prefix',
-        'item',
-        'itemDelete',
-        'clear',
-      ],
+      slots: ['root', 'prefix', 'item', 'itemDelete', 'clear'],
       unstyled: false,
       class: 'transition-colors duration-200',
     },
-
   ],
 
   compoundVariants: [
     {
       invalid: false,
-      class: { prefix: 'group-data-[focused]:text-highlighted group-not-[[data-focused]]:text-subtle' },
+      class: {
+        prefix: 'group-data-[focused]:text-highlighted group-not-[[data-focused]]:text-subtle',
+      },
     },
 
     {
@@ -143,5 +139,5 @@ export const useTagsInputStyle = createVariants({
   },
 })
 
-export type TagsInputStyleSlots = typeof useTagsInputStyle['slots']
+export type TagsInputStyleSlots = (typeof useTagsInputStyle)['slots']
 export type TagsInputStyleProps = VariantProps<typeof useTagsInputStyle>

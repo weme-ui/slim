@@ -1,5 +1,10 @@
 import type { IconifyIconProps } from '@iconify/vue'
-import type { AvatarFallbackProps, AvatarImageEmits, AvatarImageProps, AvatarRootProps } from 'reka-ui'
+import type {
+  AvatarFallbackProps,
+  AvatarImageEmits,
+  AvatarImageProps,
+  AvatarRootProps,
+} from 'reka-ui'
 import type { AvatarStyleProps, AvatarStyleSlots } from './avatar.style'
 
 export interface AvatarProps extends AvatarRootProps {

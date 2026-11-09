@@ -8,10 +8,7 @@ import RangeInput from '../range-input.vue'
 
 const schema = v.object({
   price: v.pipe(
-    v.tuple([
-      v.number(),
-      v.number(),
-    ]),
+    v.tuple([v.number(), v.number()]),
     v.check(([from, to]) => from <= to, '最低价不能高于最高价'),
   ),
 })
@@ -33,12 +30,7 @@ function onFormSubmit(values: { price: RangeInputValue }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="price"
-      label="Price"
-      required
-    >
+    <FormField v-slot="{ field }" name="price" label="Price" required>
       <RangeInput
         :model-value="field.state.value"
         from-placeholder="Min"
@@ -47,8 +39,6 @@ function onFormSubmit(values: { price: RangeInputValue }) {
         @change="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

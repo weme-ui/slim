@@ -22,7 +22,9 @@ describe('progress-circle', () => {
   })
 
   it('applies color variants', () => {
-    expect(useProgressCircleStyle({ color: 'default' }).indicator()).toContain('stroke-foreground-highlighted')
+    expect(useProgressCircleStyle({ color: 'default' }).indicator()).toContain(
+      'stroke-foreground-highlighted',
+    )
     expect(useProgressCircleStyle({ color: 'accent' }).indicator()).toContain('stroke-accent')
     expect(useProgressCircleStyle({ color: 'info' }).indicator()).toContain('stroke-info')
     expect(useProgressCircleStyle({ color: 'success' }).indicator()).toContain('stroke-success')
@@ -68,7 +70,9 @@ describe('progress-circle', () => {
         props: { modelValue: 50, max: 200 },
       })
       expect(wrapper.text()).toContain('25%')
-      expect(wrapper.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset')).toBe(String(CIRCUMFERENCE * 0.75))
+      expect(
+        wrapper.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset'),
+      ).toBe(String(CIRCUMFERENCE * 0.75))
       wrapper.unmount()
     })
 
@@ -96,7 +100,9 @@ describe('progress-circle', () => {
       const omitted = mount(ProgressCircle, {})
       expect(omitted.attributes('data-state')).toBe('indeterminate')
       expect(omitted.text()).toContain('0%')
-      expect(omitted.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset')).toBe(String(CIRCUMFERENCE))
+      expect(
+        omitted.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset'),
+      ).toBe(String(CIRCUMFERENCE))
       omitted.unmount()
 
       const pending = mount(ProgressCircle, {
@@ -104,8 +110,12 @@ describe('progress-circle', () => {
       })
       expect(pending.attributes('data-state')).toBe('indeterminate')
       expect(pending.text()).not.toContain('%')
-      expect(pending.find('svg').classes()).toContain('group-data-[state=indeterminate]:animate-spin')
-      expect(pending.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset')).toBe(String(CIRCUMFERENCE * 0.75))
+      expect(pending.find('svg').classes()).toContain(
+        'group-data-[state=indeterminate]:animate-spin',
+      )
+      expect(
+        pending.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset'),
+      ).toBe(String(CIRCUMFERENCE * 0.75))
       pending.unmount()
     })
 
@@ -113,7 +123,7 @@ describe('progress-circle', () => {
       const wrapper = mount(ProgressCircle, {
         props: { modelValue: 64 },
         slots: {
-          value: (slotProps: { modelValue?: number | null, value: string }) =>
+          value: (slotProps: { modelValue?: number | null; value: string }) =>
             h('span', `${slotProps.modelValue} ${slotProps.value}`),
         },
       })
@@ -134,7 +144,9 @@ describe('progress-circle', () => {
         props: { modelValue: 100 },
       })
       expect(wrapper.attributes('data-state')).toBe('complete')
-      expect(wrapper.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset')).toBe('0')
+      expect(
+        wrapper.find('[data-slot="progress-circle-indicator"]').attributes('stroke-dashoffset'),
+      ).toBe('0')
       wrapper.unmount()
     })
   })

@@ -21,7 +21,12 @@ const props = withDefaults(defineProps<RangeInputProps>(), {
 
 const emits = defineEmits<RangeInputEmits>()
 
-const modelValue = useVModel<RangeInputProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
+const modelValue = useVModel<RangeInputProps, 'modelValue', 'update:modelValue'>(
+  props,
+  'modelValue',
+  emits,
+  { defaultValue: props.defaultValue },
+)
 
 const {
   bindings,
@@ -46,13 +51,15 @@ const slots = useSlots()
 const hasFromIcon = computed(() => !!slots.fromIcon || !!props.fromIcon)
 const hasToIcon = computed(() => !!slots.toIcon || !!props.toIcon)
 
-const ui = computed(() => useRangeInputStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useRangeInputStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -68,18 +75,17 @@ onUnmounted(() => {
   unregister?.()
 })
 
-function transformValue(range: 'from' | 'to', value: string | number | null | undefined): RangeInputValue {
+function transformValue(
+  range: 'from' | 'to',
+  value: string | number | null | undefined,
+): RangeInputValue {
   const n = Number.parseFloat(value as any)
-  value = Number.isNaN(n)
-    ? null
-    : n
+  value = Number.isNaN(n) ? null : n
 
   if (value !== null) {
-    if (props.min !== undefined)
-      value = Math.max(props.min, value)
+    if (props.min !== undefined) value = Math.max(props.min, value)
 
-    if (props.max !== undefined)
-      value = Math.min(props.max, value)
+    if (props.max !== undefined) value = Math.min(props.max, value)
   }
 
   return range === 'from'
@@ -103,15 +109,13 @@ function handleChange(range: 'from' | 'to', e: Event) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }
@@ -144,7 +148,7 @@ function handleBlur(e: FocusEvent) {
         @change="handleChange('from', $event)"
         @focus="handleFocus"
         @blur="handleBlur"
-      >
+      />
     </div>
 
     <div :class="cn(ui.separator(), props.ui?.separator)">
@@ -170,7 +174,7 @@ function handleBlur(e: FocusEvent) {
         @change="handleChange('to', $event)"
         @focus="handleFocus"
         @blur="handleBlur"
-      >
+      />
 
       <span v-if="hasToIcon" :class="cn(ui.toIcon(), props.ui?.toIcon)">
         <slot name="to-icon">

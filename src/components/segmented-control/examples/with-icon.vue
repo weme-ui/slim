@@ -28,8 +28,5 @@ const value = ref<SegmentedControlValue>('home')
 </script>
 
 <template>
-  <SegmentedControl
-    v-model="value"
-    :items="items"
-  />
+  <SegmentedControl v-model="value" :items="items" />
 </template>

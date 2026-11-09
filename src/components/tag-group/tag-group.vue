@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import type { TagGroupEmits, TagGroupItemValue, TagGroupProps } from './tag-group.props'
 import { reactiveOmit } from '@vueuse/core'
-import { TagGroupItem, TagGroupItemDelete, TagGroupItemText, TagGroupRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
+import {
+  TagGroupItem,
+  TagGroupItemDelete,
+  TagGroupItemText,
+  TagGroupRoot,
+  useForwardExpose,
+  useForwardPropsEmits,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolAriaValue } from '~/utils/props'
@@ -17,26 +24,35 @@ const props = withDefaults(defineProps<TagGroupProps>(), {
 })
 
 const emits = defineEmits<TagGroupEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'deleteIcon', 'closable', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'id',
+  'name',
+  'items',
+  'variant',
+  'size',
+  'deleteIcon',
+  'closable',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const {
-  id,
-  name,
-  disabled,
-  registerControl,
-} = useFormFieldControl(props)
+const { id, name, disabled, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 
 const pressedItem = ref<TagGroupItemValue | null>(null)
 
-const ui = computed(() => useTagGroupStyle({
-  variant: props.variant,
-  size: props.size,
-  unstyled: props.unstyled,
-  disabled: disabled.value,
-  selectable: props.selectionMode && props.selectionMode !== 'none',
-}))
+const ui = computed(() =>
+  useTagGroupStyle({
+    variant: props.variant,
+    size: props.size,
+    unstyled: props.unstyled,
+    disabled: disabled.value,
+    selectable: props.selectionMode && props.selectionMode !== 'none',
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -99,7 +115,10 @@ function handleUpdate(value: TagGroupItemValue | TagGroupItemValue[] | undefined
           </slot>
         </TagGroupItemText>
 
-        <TagGroupItemDelete v-if="closable && !item.disabled" :class="cn(ui.itemDelete(), props.ui?.itemDelete)">
+        <TagGroupItemDelete
+          v-if="closable && !item.disabled"
+          :class="cn(ui.itemDelete(), props.ui?.itemDelete)"
+        >
           <slot name="tag-delete" :item="item" :selected="selected">
             <Icon :name="deleteIcon" :class="cn(ui.itemDeleteIcon(), props.ui?.itemDeleteIcon)" />
           </slot>
@@ -111,6 +130,6 @@ function handleUpdate(value: TagGroupItemValue | TagGroupItemValue[] | undefined
       <slot name="empty" />
     </template>
 
-    <input :id="id" :name="name" class="sr-only">
+    <input :id="id" :name="name" class="sr-only" />
   </TagGroupRoot>
 </template>

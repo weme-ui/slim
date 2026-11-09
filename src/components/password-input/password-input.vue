@@ -15,18 +15,27 @@ const props = withDefaults(defineProps<PasswordInputProps>(), {
 })
 
 const emits = defineEmits<PasswordInputEmits>()
-const delegated = reactiveOmit(props, 'visibleIcon', 'invisibleIcon', 'toggleVisibility', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'visibleIcon',
+  'invisibleIcon',
+  'toggleVisibility',
+  'class',
+  'ui',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const visible = defineModel<boolean>('visible', { default: false })
 
-const type = computed(() => visible.value ? 'text' : 'password')
+const type = computed(() => (visible.value ? 'text' : 'password'))
 
-const ui = computed(() => usePasswordInputStyle({
-  variant: props.variant,
-  size: props.size,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  usePasswordInputStyle({
+    variant: props.variant,
+    size: props.size,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 function handleToggleVisibility() {
   visible.value = !visible.value

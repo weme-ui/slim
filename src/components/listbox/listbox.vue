@@ -1,4 +1,8 @@
-<script lang="ts" generic="M extends boolean = false, V = M extends false ? ListboxValue : ListboxValue[]" setup>
+<script
+  lang="ts"
+  generic="M extends boolean = false, V = M extends false ? ListboxValue : ListboxValue[]"
+  setup
+>
 import type { ListboxEmits, ListboxProps, ListboxValue } from './listbox.props'
 import { reactiveOmit } from '@vueuse/core'
 import {
@@ -37,7 +41,22 @@ const props = withDefaults(defineProps<ListboxProps<M>>(), {
 })
 
 const emits = defineEmits<ListboxEmits<M, V>>()
-const delegated = reactiveOmit(props, 'id', 'name', 'items', 'variant', 'size', 'filter', 'placeholder', 'emptyText', 'emptyIcon', 'itemIndicatorIcon', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'id',
+  'name',
+  'items',
+  'variant',
+  'size',
+  'filter',
+  'placeholder',
+  'emptyText',
+  'emptyIcon',
+  'itemIndicatorIcon',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -60,36 +79,32 @@ const { groupedItems } = useGroupItems<ListboxValue, M>(props.items ?? [], compu
 
 const filteredItems = computed(() => {
   const term = filterTerm.value
-  if (!term)
-    return groupedItems.value
+  if (!term) return groupedItems.value
 
   return groupedItems.value
     .map((group) => {
       const matched = group.filter((item) => {
-        if (item.type === 'label' || item.type === 'separator')
-          return false
-        const text = [item.label, item.description].filter(Boolean).join(' ')
-          || String(item.value)
+        if (item.type === 'label' || item.type === 'separator') return false
+        const text = [item.label, item.description].filter(Boolean).join(' ') || String(item.value)
         return contains(text, term)
       })
-      if (!matched.length)
-        return []
-      const groupLabel = group.find(i => i.type === 'label')
-      return groupLabel
-        ? [groupLabel, ...matched]
-        : matched
+      if (!matched.length) return []
+      const groupLabel = group.find((i) => i.type === 'label')
+      return groupLabel ? [groupLabel, ...matched] : matched
     })
-    .filter(group => group.length > 0)
+    .filter((group) => group.length > 0)
 })
 
-const ui = computed(() => useListboxStyle({
-  variant: props.variant,
-  size: props.size,
-  orientation: props.orientation,
-  unstyled: toBoolValue(props.unstyled),
-  disabled: disabled.value,
-  invalid: invalid.value,
-}))
+const ui = computed(() =>
+  useListboxStyle({
+    variant: props.variant,
+    size: props.size,
+    orientation: props.orientation,
+    unstyled: toBoolValue(props.unstyled),
+    disabled: disabled.value,
+    invalid: invalid.value,
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -115,15 +130,13 @@ function handleFilterUpdate(value: string) {
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }
@@ -157,21 +170,33 @@ function handleBlur(e: FocusEvent) {
       </template>
 
       <template v-else>
-        <ListboxGroup v-for="(group, gIdx) in filteredItems" :key="`g-${gIdx}`" :class="cn(ui.group(), props.ui?.group)">
+        <ListboxGroup
+          v-for="(group, gIdx) in filteredItems"
+          :key="`g-${gIdx}`"
+          :class="cn(ui.group(), props.ui?.group)"
+        >
           <template v-for="(item, idx) in group" :key="`g-${gIdx}-${idx}`">
-            <ListboxGroupLabel v-if="item.type === 'label'" :class="cn(ui.groupLabel(), props.ui?.groupLabel)">
+            <ListboxGroupLabel
+              v-if="item.type === 'label'"
+              :class="cn(ui.groupLabel(), props.ui?.groupLabel)"
+            >
               <slot name="group-label">
                 {{ item.label }}
               </slot>
             </ListboxGroupLabel>
 
-            <div v-else-if="item.type === 'separator'" :class="cn(ui.separator(), props.ui?.separator)" />
+            <div
+              v-else-if="item.type === 'separator'"
+              :class="cn(ui.separator(), props.ui?.separator)"
+            />
 
             <ListboxItem
               v-else
               v-slot="{ selected }"
               :value="item.value"
-              :class="cn(ui.item({ hasDescription: !!item.description }), props.ui?.item, item.class)"
+              :class="
+                cn(ui.item({ hasDescription: !!item.description }), props.ui?.item, item.class)
+              "
               @select="item.onSelect?.(item.value)"
             >
               <slot name="item" :item="item" :selected="selected">
@@ -179,25 +204,32 @@ function handleBlur(e: FocusEvent) {
                   <Icon
                     v-if="selected && (item.selectedIcon || item.icon)"
                     :name="item.selectedIcon || item.icon || ''"
-                    :class="cn(
-                      ui.itemIcon({ hasDescription: !!item.description }),
-                      props.ui?.itemIcon,
-                      item.iconClass,
-                    )"
+                    :class="
+                      cn(
+                        ui.itemIcon({ hasDescription: !!item.description }),
+                        props.ui?.itemIcon,
+                        item.iconClass,
+                      )
+                    "
                   />
                   <Icon
                     v-else-if="item.icon"
                     :name="item.icon"
-                    :class="cn(
-                      ui.itemIcon({ hasDescription: !!item.description }),
-                      props.ui?.itemIcon,
-                      item.iconClass,
-                    )"
+                    :class="
+                      cn(
+                        ui.itemIcon({ hasDescription: !!item.description }),
+                        props.ui?.itemIcon,
+                        item.iconClass,
+                      )
+                    "
                   />
                 </slot>
 
                 <slot name="item-content" :item="item" :selected="selected">
-                  <div v-if="item.label && item.description" :class="cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)">
+                  <div
+                    v-if="item.label && item.description"
+                    :class="cn(ui.itemContent({ hasDescription: true }), props.ui?.itemContent)"
+                  >
                     <span :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
                     <p :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
                       {{ item.description }}
@@ -205,15 +237,23 @@ function handleBlur(e: FocusEvent) {
                   </div>
 
                   <template v-else>
-                    <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{ item.label }}</span>
-                    <p v-if="item.description" :class="cn(ui.itemDescription(), props.ui?.itemDescription)">
+                    <span v-if="item.label" :class="cn(ui.itemLabel(), props.ui?.itemLabel)">{{
+                      item.label
+                    }}</span>
+                    <p
+                      v-if="item.description"
+                      :class="cn(ui.itemDescription(), props.ui?.itemDescription)"
+                    >
                       {{ item.description }}
                     </p>
                   </template>
                 </slot>
               </slot>
 
-              <ListboxItemIndicator :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)" as-child>
+              <ListboxItemIndicator
+                :class="cn(ui.itemIndicator(), props.ui?.itemIndicator)"
+                as-child
+              >
                 <Icon :name="itemIndicatorIcon" />
               </ListboxItemIndicator>
             </ListboxItem>

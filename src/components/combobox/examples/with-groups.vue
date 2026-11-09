@@ -19,9 +19,6 @@ const items: ComboboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Combobox
-      :items="items"
-      placeholder="Search food…"
-    />
+    <Combobox :items="items" placeholder="Search food…" />
   </div>
 </template>

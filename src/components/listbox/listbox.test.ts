@@ -22,28 +22,38 @@ function mountListbox(inputProps: Record<string, unknown> = {}) {
   const isMultiple = inputProps.multiple === true || inputProps.multiple === ''
   const model = ref<ListboxModel>(
     inputProps.modelValue !== undefined
-      ? inputProps.modelValue as ListboxModel
-      : (isMultiple
-          ? []
-          : ''),
+      ? (inputProps.modelValue as ListboxModel)
+      : isMultiple
+        ? []
+        : '',
   )
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { fruit: model.value },
-      }, () =>
-        h(FormField, { name: 'fruit', label: 'Fruit' }, {
-          // Generic SFC props are not fully inferred under `h()`.
-          default: () => h(Listbox as any, {
-            'items': fruitItems,
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: ListboxModel) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { fruit: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'fruit', label: 'Fruit' },
+              {
+                // Generic SFC props are not fully inferred under `h()`.
+                default: () =>
+                  h(Listbox as any, {
+                    items: fruitItems,
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: ListboxModel) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -119,7 +129,9 @@ describe('listbox', () => {
     expect(soft.item()).toContain('data-[state=checked]:bg-elevated')
 
     const outline = useListboxStyle({ variant: 'outline', invalid: false })
-    expect(outline.filter()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.filter()).toContain(
+      'data-[focused]:(bg-base b-accent outline-2 outline-accent-4)',
+    )
   })
 
   it('applies invalid and disabled states', () => {
@@ -144,7 +156,9 @@ describe('listbox', () => {
     expect(unstyled.filter()).not.toContain('rounded')
     expect(unstyled.content()).not.toContain('bg-muted')
     expect(unstyled.content()).not.toContain('rounded')
-    expect(unstyled.item()).not.toContain('data-[highlighted]:not-[[data-state=checked]]:b-elevated')
+    expect(unstyled.item()).not.toContain(
+      'data-[highlighted]:not-[[data-state=checked]]:b-elevated',
+    )
     expect(unstyled.filterInput()).not.toContain('placeholder:text-subtle')
     expect(unstyled.groupLabel() ?? '').not.toContain('text-muted')
   })
@@ -152,14 +166,16 @@ describe('listbox', () => {
   describe('given a listbox inside a labeled form field', () => {
     it('has no accessibility violations', async () => {
       const { wrapper } = mountListbox({ placeholder: 'Search fruit…' })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify stub SVGs use role="img" without alt.
-          'svg-img-alt': { enabled: false },
-          // Reka ListboxContent is role="listbox"; FormField label binds to the filter input.
-          'aria-input-field-name': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify stub SVGs use role="img" without alt.
+            'svg-img-alt': { enabled: false },
+            // Reka ListboxContent is role="listbox"; FormField label binds to the filter input.
+            'aria-input-field-name': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -190,8 +206,7 @@ describe('listbox', () => {
       const { wrapper, model } = mountListbox({ modelValue: '' })
       await nextTick()
 
-      const apple = wrapper.findAll('[role="option"]')
-        .find(el => el.text().includes('Apple'))
+      const apple = wrapper.findAll('[role="option"]').find((el) => el.text().includes('Apple'))
       expect(apple).toBeTruthy()
       apple!.element.dispatchEvent(new PointerEvent('click', { bubbles: true }))
       await nextTick()
@@ -210,8 +225,7 @@ describe('listbox', () => {
       })
       await nextTick()
 
-      const apple = wrapper.findAll('[role="option"]')
-        .find(el => el.text().includes('Apple'))
+      const apple = wrapper.findAll('[role="option"]').find((el) => el.text().includes('Apple'))
       expect(apple).toBeTruthy()
       apple!.element.dispatchEvent(new PointerEvent('click', { bubbles: true }))
       await nextTick()
@@ -230,7 +244,7 @@ describe('listbox', () => {
 
       const options = wrapper.findAll('[role="option"]')
       expect(options.length).toBe(1)
-      expect(options[0]!.text()).toContain('Banana')
+      expect(options[0].text()).toContain('Banana')
       expect(wrapper.text()).not.toContain('Apple')
       wrapper.unmount()
     })

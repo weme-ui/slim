@@ -1,9 +1,15 @@
 import type { IconifyIconProps } from '@iconify/vue'
-import type { ToastActionProps as PrimitiveToastActionProps, ToastRootEmits, ToastRootProps, ToastStatus } from 'reka-ui'
+import type {
+  ToastActionProps as PrimitiveToastActionProps,
+  ToastRootEmits,
+  ToastRootProps,
+  ToastStatus,
+} from 'reka-ui'
 import type { ButtonProps } from '../button/button.props'
 import type { ToastStyleProps, ToastStyleSlots } from './toast.style'
 
-export type ToastActionProps = Omit<ButtonProps, 'as' | 'asChild' | 'variant'> & Omit<PrimitiveToastActionProps, 'as' | 'asChild'>
+export type ToastActionProps = Omit<ButtonProps, 'as' | 'asChild' | 'variant'> &
+  Omit<PrimitiveToastActionProps, 'as' | 'asChild'>
 
 export interface ToastData {
   icon?: IconifyIconProps['icon']

@@ -12,20 +12,33 @@ import Slider from './slider.vue'
 let wrapper: VueWrapper | undefined
 
 function mountSlider(sliderProps: Record<string, unknown> = {}) {
-  const model = (sliderProps.modelValue as number[] | undefined)
-    ?? (sliderProps.defaultValue as number[] | undefined)
-    ?? [40]
+  const model = (sliderProps.modelValue as number[] | undefined) ??
+    (sliderProps.defaultValue as number[] | undefined) ?? [40]
 
   const Root = defineComponent({
     setup() {
-      return () => h(TooltipProvider, { delayDuration: 0 }, {
-        default: () => h(Form, {
-          defaultValues: { volume: model },
-        }, () =>
-          h(FormField, { name: 'volume', label: 'Volume' }, {
-            default: () => h(Slider, sliderProps),
-          })),
-      })
+      return () =>
+        h(
+          TooltipProvider,
+          { delayDuration: 0 },
+          {
+            default: () =>
+              h(
+                Form,
+                {
+                  defaultValues: { volume: model },
+                },
+                () =>
+                  h(
+                    FormField,
+                    { name: 'volume', label: 'Volume' },
+                    {
+                      default: () => h(Slider, sliderProps),
+                    },
+                  ),
+              ),
+          },
+        )
     },
   })
 
@@ -90,11 +103,13 @@ describe('slider', () => {
       })
       expect(root.get('[data-slot="slider"]').attributes('data-slot')).toBe('slider')
       // 单拇指 Reka 不设 aria-label；FormField 的 label 也没有绑到拇指上。
-      expect(await axe(root.element, {
-        rules: {
-          'aria-input-field-name': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(root.element, {
+          rules: {
+            'aria-input-field-name': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
     })
 
     it('renders one thumb per value', () => {

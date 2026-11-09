@@ -43,5 +43,5 @@ export const useEmptyStyle = createVariants({
   },
 })
 
-export type EmptyStyleSlots = typeof useEmptyStyle['slots']
+export type EmptyStyleSlots = (typeof useEmptyStyle)['slots']
 export type EmptyStyleProps = VariantProps<typeof useEmptyStyle>

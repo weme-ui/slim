@@ -10,19 +10,10 @@ const items: RadioGroupItem[] = [
 
 <template>
   <div class="flex flex-col gap-6 max-w-sm w-full">
-    <RadioGroup
-      indicator="start"
-      :items="items"
-    />
+    <RadioGroup indicator="start" :items="items" />
 
-    <RadioGroup
-      indicator="end"
-      :items="items"
-    />
+    <RadioGroup indicator="end" :items="items" />
 
-    <RadioGroup
-      indicator="none"
-      :items="items"
-    />
+    <RadioGroup indicator="none" :items="items" />
   </div>
 </template>

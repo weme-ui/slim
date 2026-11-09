@@ -4,17 +4,8 @@ import type { ExampleRef, RegistryItem } from './registry.ts'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { getGuidePages, GUIDE_BASE } from './guide.ts'
-import {
-  extractLead,
-  splitMarkdownH2,
-  splitReadmeFrontmatter,
-  stripLeadingH1,
-} from './markdown.ts'
-import {
-  getComponentSidebar,
-  getDocItems,
-  resolveExamples,
-} from './registry.ts'
+import { extractLead, splitMarkdownH2, splitReadmeFrontmatter, stripLeadingH1 } from './markdown.ts'
+import { getComponentSidebar, getDocItems, resolveExamples } from './registry.ts'
 
 export interface LlmsPage {
   path: string
@@ -33,12 +24,10 @@ export interface LlmsPluginOptions {
 }
 
 function readRepoFile(repoRoot: string, path?: string) {
-  if (!path)
-    return ''
+  if (!path) return ''
   try {
     return readFileSync(resolve(repoRoot, path), 'utf8')
-  }
-  catch {
+  } catch {
     return ''
   }
 }
@@ -53,32 +42,29 @@ function fence(lang: string, source: string) {
 }
 
 function guideFileFromLink(link: string) {
-  if (link === GUIDE_BASE)
-    return 'get-started/index.md'
+  if (link === GUIDE_BASE) return 'get-started/index.md'
   return `${link.replace(/^\//, '').replace(/\/$/, '')}.md`
 }
 
 function itemFilePath(item: RegistryItem) {
-  return item.type === 'composable'
-    ? `composables/${item.name}.md`
-    : `components/${item.name}.md`
+  return item.type === 'composable' ? `composables/${item.name}.md` : `components/${item.name}.md`
 }
 
 function fillReadmeExamples(body: string, examples: ExampleRef[], repoRoot: string) {
-  const usage = examples.find(example => example.name === 'usage')
-  const features = examples.filter(example => example.name !== 'usage')
+  const usage = examples.find((example) => example.name === 'usage')
+  const features = examples.filter((example) => example.name !== 'usage')
   const sections = splitMarkdownH2(stripLeadingH1(body))
   let result = body
 
   if (usage) {
-    const usageSection = sections.find(section => section.title.toLowerCase() === 'usage')
+    const usageSection = sections.find((section) => section.title.toLowerCase() === 'usage')
     if (usageSection && !usageSection.body.trim()) {
       const code = fence('vue', readRepoFile(repoRoot, usage.path))
       result = result.replace(/^## Usage[ \t]*$/m, `## Usage\n\n${code}`)
     }
   }
 
-  const hasExamples = sections.some(section => section.title.toLowerCase() === 'examples')
+  const hasExamples = sections.some((section) => section.title.toLowerCase() === 'examples')
   if (features.length && !hasExamples) {
     const blocks = features.map((example) => {
       const code = fence('vue', readRepoFile(repoRoot, example.path))
@@ -91,7 +77,7 @@ function fillReadmeExamples(body: string, examples: ExampleRef[], repoRoot: stri
 }
 
 export function buildLlmsMarkdown(item: RegistryItem, repoRoot: string) {
-  const docFile = item.files.find(file => file.kind === 'doc')
+  const docFile = item.files.find((file) => file.kind === 'doc')
   const { body } = splitReadmeFrontmatter(readRepoFile(repoRoot, docFile?.path))
   return fillReadmeExamples(body, resolveExamples(item), repoRoot).trim()
 }
@@ -105,8 +91,7 @@ export function collectLlmsPages(repoRoot: string, docsDir: string): LlmsPage[] 
   const pages: LlmsPage[] = []
 
   for (const item of getGuidePages(docsDir)) {
-    if (!item.link || !item.text)
-      continue
+    if (!item.link || !item.text) continue
     const path = guideFileFromLink(item.link)
     const markdown = readRepoFile(docsDir, path)
     const { body } = splitReadmeFrontmatter(markdown)
@@ -131,9 +116,7 @@ export function collectLlmsPages(repoRoot: string, docsDir: string): LlmsPage[] 
 }
 
 function joinUrl(domain: string | undefined, base: string, filePath: string) {
-  const prefix = domain
-    ? `${domain}${base}`
-    : base
+  const prefix = domain ? `${domain}${base}` : base
   return `${prefix}${filePath}`.replace(/([^:/])\/{2,}/g, '$1/')
 }
 
@@ -142,37 +125,30 @@ function pageMarkdown(page: LlmsPage, options: Pick<LlmsPluginOptions, 'base' | 
   const lines = [
     '---',
     `title: ${yamlQuote(page.title)}`,
-    page.description
-      ? `description: ${yamlQuote(page.description)}`
-      : '',
+    page.description ? `description: ${yamlQuote(page.description)}` : '',
     `url: ${url}`,
     '---',
     '',
     page.body,
     '',
   ]
-  return lines.filter(line => line !== '').join('\n')
+  return lines.filter((line) => line !== '').join('\n')
 }
 
 function tocEntry(page: LlmsPage, options: Pick<LlmsPluginOptions, 'base' | 'domain'>) {
   const href = joinUrl(options.domain, options.base, page.path)
-  const description = page.description
-    ? `: ${page.description}`
-    : ''
+  const description = page.description ? `: ${page.description}` : ''
   return `- [${page.title}](${href})${description}`
 }
 
 function matchPage(link: string | undefined, pages: Map<string, LlmsPage>) {
-  if (!link)
-    return
+  if (!link) return
   const file = link.endsWith('.txt')
     ? undefined
     : link === GUIDE_BASE
       ? 'get-started/index.md'
       : `${link.replace(/^\//, '').replace(/\/$/, '')}.md`
-  return file
-    ? pages.get(file)
-    : undefined
+  return file ? pages.get(file) : undefined
 }
 
 function renderToc(
@@ -185,20 +161,17 @@ function renderToc(
   for (const group of sidebar) {
     if (group.items?.length) {
       const entries = group.items
-        .map(item => matchPage(item.link, pages))
+        .map((item) => matchPage(item.link, pages))
         .filter((page): page is LlmsPage => Boolean(page))
-        .map(page => tocEntry(page, options))
-      if (!entries.length)
-        continue
-      if (group.text)
-        lines.push(`### ${group.text}`, '')
+        .map((page) => tocEntry(page, options))
+      if (!entries.length) continue
+      if (group.text) lines.push(`### ${group.text}`, '')
       lines.push(...entries, '')
       continue
     }
 
     const page = matchPage(group.link, pages)
-    if (page)
-      lines.push(tocEntry(page, options), '')
+    if (page) lines.push(tocEntry(page, options), '')
   }
 
   return lines.join('\n').trim()
@@ -207,20 +180,20 @@ function renderToc(
 export function llmsSidebar(docsDir: string): DefaultTheme.SidebarItem[] {
   const guidePages = getGuidePages(docsDir)
   return [
-    ...guidePages.length
+    ...(guidePages.length
       ? [
           {
             text: 'Get started',
             items: guidePages,
           },
         ]
-      : [],
-    ...getComponentSidebar().filter(item => item.link !== '/components/'),
+      : []),
+    ...getComponentSidebar().filter((item) => item.link !== '/components/'),
   ]
 }
 
 export function renderLlmsTxt(pages: LlmsPage[], options: LlmsPluginOptions) {
-  const byPath = new Map(pages.map(page => [page.path, page]))
+  const byPath = new Map(pages.map((page) => [page.path, page]))
   const toc = renderToc(llmsSidebar(options.docsDir), byPath, options)
   return [
     `# ${options.title}`,
@@ -234,16 +207,16 @@ export function renderLlmsTxt(pages: LlmsPage[], options: LlmsPluginOptions) {
   ].join('\n')
 }
 
-export function renderLlmsFullTxt(pages: LlmsPage[], options: Pick<LlmsPluginOptions, 'base' | 'domain'>) {
-  return pages
-    .map(page => pageMarkdown(page, options))
-    .join('\n---\n\n')
+export function renderLlmsFullTxt(
+  pages: LlmsPage[],
+  options: Pick<LlmsPluginOptions, 'base' | 'domain'>,
+) {
+  return pages.map((page) => pageMarkdown(page, options)).join('\n---\n\n')
 }
 
 function pageAliases(page: LlmsPage) {
   const aliases = [page.path]
-  if (page.path.endsWith('/index.md'))
-    aliases.push(page.path.replace(/\/index\.md$/, '.md'))
+  if (page.path.endsWith('/index.md')) aliases.push(page.path.replace(/\/index\.md$/, '.md'))
   return aliases
 }
 
@@ -269,18 +242,15 @@ function watchLlmsSources(server: ViteDevServer, options: LlmsPluginOptions) {
     join(options.repoRoot, 'src/composables'),
     join(options.repoRoot, 'registry.json'),
   ]
-  for (const root of roots)
-    server.watcher.add(root)
+  for (const root of roots) server.watcher.add(root)
 }
 
 function isViteModuleRequest(req: Connect.IncomingMessage) {
   const url = req.url ?? ''
   const query = url.split('?')[1] ?? ''
-  if (/(?:^|&)(?:import|direct|vue|t=)/.test(query))
-    return true
+  if (/(?:^|&)(?:import|direct|vue|t=)/.test(query)) return true
   const accept = req.headers.accept ?? ''
-  if (accept.includes('javascript'))
-    return true
+  if (accept.includes('javascript')) return true
   return req.headers['sec-fetch-dest'] === 'script'
 }
 
@@ -296,9 +266,7 @@ function serveLlmsMiddleware(options: LlmsPluginOptions): Plugin['configureServe
         }
 
         const url = req.url?.split('?')[0] ?? ''
-        const base = options.base.endsWith('/')
-          ? options.base
-          : `${options.base}/`
+        const base = options.base.endsWith('/') ? options.base : `${options.base}/`
         if (!url.startsWith(base) || (!url.endsWith('.md') && !url.endsWith('.txt'))) {
           next()
           return
@@ -318,7 +286,7 @@ function serveLlmsMiddleware(options: LlmsPluginOptions): Plugin['configureServe
           return
         }
 
-        const page = pages.find(item => pageAliases(item).includes(relative))
+        const page = pages.find((item) => pageAliases(item).includes(relative))
         if (!page) {
           next()
           return
@@ -344,8 +312,7 @@ export function docsLlmsPlugin(options: LlmsPluginOptions): Plugin {
     },
     configureServer: serveLlmsMiddleware(options),
     closeBundle() {
-      if (isSsrBuild || !outDir)
-        return
+      if (isSsrBuild || !outDir) return
       writeLlmsOutput(outDir, collectLlmsPages(options.repoRoot, options.docsDir), options)
     },
   }

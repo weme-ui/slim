@@ -4,10 +4,6 @@ import RangeInput from '../range-input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <RangeInput
-      disabled
-      from-placeholder="Min"
-      to-placeholder="Max"
-    />
+    <RangeInput disabled from-placeholder="Min" to-placeholder="Max" />
   </div>
 </template>

@@ -56,9 +56,10 @@ function mountWithFieldContext(
 
   return mount({
     setup() {
-      return () => h(Provider, null, {
-        default: () => h(consumer, attrs),
-      })
+      return () =>
+        h(Provider, null, {
+          default: () => h(consumer, attrs),
+        })
     },
   })
 }
@@ -84,11 +85,10 @@ describe('useFormFieldContext', () => {
       const Consumer = defineComponent({
         setup() {
           const context = useFormFieldContext()
-          return () => h('div', {
-            'data-missing': context == null
-              ? 'true'
-              : 'false',
-          })
+          return () =>
+            h('div', {
+              'data-missing': context == null ? 'true' : 'false',
+            })
         },
       })
 
@@ -133,10 +133,13 @@ describe('useFormFieldContext', () => {
         },
       })
 
-      const wrapper = mountWithFieldContext(makeContext({
-        disabled: computed(() => true),
-        invalid: computed(() => true),
-      }), Consumer)
+      const wrapper = mountWithFieldContext(
+        makeContext({
+          disabled: computed(() => true),
+          invalid: computed(() => true),
+        }),
+        Consumer,
+      )
       const input = wrapper.get('input')
 
       expect(input.attributes('disabled')).toBeDefined()
@@ -169,11 +172,12 @@ describe('useFormFieldContext', () => {
             id: 'qty',
             invalid: true,
           })
-          return () => h('input', {
-            ...bindings.value,
-            ...dataAttributes.value,
-            id: id.value,
-          })
+          return () =>
+            h('input', {
+              ...bindings.value,
+              ...dataAttributes.value,
+              id: id.value,
+            })
         },
       })
 
@@ -190,11 +194,12 @@ describe('useFormFieldContext', () => {
       const Consumer = defineComponent({
         setup() {
           const { dataAttributes, handleControlFocus, handleControlBlur } = useFormFieldControl({})
-          return () => h('input', {
-            ...dataAttributes.value,
-            onFocus: () => handleControlFocus(),
-            onBlur: () => handleControlBlur(),
-          })
+          return () =>
+            h('input', {
+              ...dataAttributes.value,
+              onFocus: () => handleControlFocus(),
+              onBlur: () => handleControlBlur(),
+            })
         },
       })
 

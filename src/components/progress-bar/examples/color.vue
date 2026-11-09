@@ -1,14 +1,7 @@
 <script lang="ts" setup>
 import ProgressBar from '../progress-bar.vue'
 
-const colors = [
-  'default',
-  'accent',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+const colors = ['default', 'accent', 'info', 'success', 'warning', 'error'] as const
 </script>
 
 <template>

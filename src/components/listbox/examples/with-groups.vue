@@ -19,9 +19,6 @@ const items: ListboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Listbox
-      :items="items"
-      placeholder="Search food…"
-    />
+    <Listbox :items="items" placeholder="Search food…" />
   </div>
 </template>

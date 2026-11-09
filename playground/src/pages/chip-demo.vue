@@ -1,13 +1,5 @@
 <script lang="ts" setup>
-const variants = [
-  'default',
-  'accent',
-  'neutral',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const
+const variants = ['default', 'accent', 'neutral', 'info', 'success', 'warning', 'error'] as const
 const sizes = ['sm', 'md', 'lg'] as const
 </script>
 

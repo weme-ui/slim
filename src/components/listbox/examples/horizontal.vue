@@ -44,10 +44,6 @@ const items: ListboxItems = [
 
 <template>
   <div class="w-full">
-    <Listbox
-      orientation="horizontal"
-      :items="items"
-      placeholder="Search drinks…"
-    />
+    <Listbox orientation="horizontal" :items="items" placeholder="Search drinks…" />
   </div>
 </template>

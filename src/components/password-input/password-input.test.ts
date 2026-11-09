@@ -13,25 +13,33 @@ function mountPasswordInput(inputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { password: model.value },
-      }, () =>
-        h(FormField, { name: 'password', label: 'Password' }, {
-          default: () => h(PasswordInput, {
-            'toggleVisibility': true,
-            ...inputProps,
-            'modelValue': model.value,
-            'visible': visible.value,
-            'onUpdate:modelValue': (value: string | number | null | undefined) => {
-              model.value = value == null
-                ? ''
-                : String(value)
-            },
-            'onUpdate:visible': (value: boolean) => {
-              visible.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { password: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'password', label: 'Password' },
+              {
+                default: () =>
+                  h(PasswordInput, {
+                    toggleVisibility: true,
+                    ...inputProps,
+                    modelValue: model.value,
+                    visible: visible.value,
+                    'onUpdate:modelValue': (value: string | number | null | undefined) => {
+                      model.value = value == null ? '' : String(value)
+                    },
+                    'onUpdate:visible': (value: boolean) => {
+                      visible.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -86,11 +94,13 @@ describe('password-input', () => {
     it('has no accessibility violations', async () => {
       // Iconify stub SVGs use role="img" without alt.
       const { wrapper } = mountPasswordInput({ placeholder: 'Password' })
-      expect(await axe(wrapper.element, {
-        rules: {
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 

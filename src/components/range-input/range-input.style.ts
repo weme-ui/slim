@@ -39,12 +39,7 @@ export const useRangeInputStyle = createVariants({
       class: 'flex flex-y-center',
     },
     {
-      slots: [
-        'root',
-        'fromIcon',
-        'toIcon',
-        'separator',
-      ],
+      slots: ['root', 'fromIcon', 'toIcon', 'separator'],
       unstyled: false,
       class: 'transition-colors duration-200',
     },
@@ -122,5 +117,5 @@ export const useRangeInputStyle = createVariants({
   },
 })
 
-export type RangeInputStyleSlots = typeof useRangeInputStyle['slots']
+export type RangeInputStyleSlots = (typeof useRangeInputStyle)['slots']
 export type RangeInputStyleProps = VariantProps<typeof useRangeInputStyle>

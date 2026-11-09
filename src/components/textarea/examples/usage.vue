@@ -6,10 +6,7 @@ import Form from '../../form/form.vue'
 import Textarea from '../textarea.vue'
 
 const schema = v.object({
-  bio: v.pipe(
-    v.string('简介不能为空'),
-    v.minLength(10, '至少写 10 个字'),
-  ),
+  bio: v.pipe(v.string('简介不能为空'), v.minLength(10, '至少写 10 个字')),
 })
 
 const defaultValues = {
@@ -29,12 +26,7 @@ function onFormSubmit(values: { bio: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="bio"
-      label="Bio"
-      required
-    >
+    <FormField v-slot="{ field }" name="bio" label="Bio" required>
       <Textarea
         :model-value="field.state.value"
         :max-length="100"
@@ -44,8 +36,6 @@ function onFormSubmit(values: { bio: string }) {
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

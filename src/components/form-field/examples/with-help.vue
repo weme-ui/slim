@@ -10,12 +10,7 @@ const defaultValues = {
 
 <template>
   <Form :default-values="defaultValues" class="max-w-sm w-full">
-    <FormField
-      v-slot="{ field }"
-      name="bio"
-      label="Bio"
-      help="Keep it under 160 characters."
-    >
+    <FormField v-slot="{ field }" name="bio" label="Bio" help="Keep it under 160 characters.">
       <Input
         :model-value="field.state.value"
         placeholder="Short bio"

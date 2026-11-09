@@ -16,10 +16,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/use-form-context
 ## Usage
 
 ```ts
-import {
-  useFormContext,
-  useFormField,
-} from '~/composables/use-form-context'
+import { useFormContext, useFormField } from '~/composables/use-form-context'
 
 const { form, loading, disabled, validationMode, serverErrors } = useFormContext()
 const field = useFormField({ name: 'email', form })

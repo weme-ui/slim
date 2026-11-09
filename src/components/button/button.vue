@@ -25,27 +25,26 @@ const loadingState = ref(false)
 const isLoading = toRef(() => !!props.loading || loadingState.value)
 const isDisabled = toRef(() => !!props.disabled || isLoading.value)
 
-const ui = computed(() => useButtonStyle({
-  variant: props.variant,
-  color: props.color,
-  size: props.size,
-  disabled: isDisabled.value,
-  loading: isLoading.value,
-  scalable: toBoolValue(props.scalable),
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useButtonStyle({
+    variant: props.variant,
+    color: props.color,
+    size: props.size,
+    disabled: isDisabled.value,
+    loading: isLoading.value,
+    scalable: toBoolValue(props.scalable),
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 async function handleClick(event: MouseEvent) {
   loadingState.value = true
 
-  const callbacks = Array.isArray(props.onClick)
-    ? props.onClick
-    : [props.onClick]
+  const callbacks = Array.isArray(props.onClick) ? props.onClick : [props.onClick]
 
   try {
-    await Promise.all(callbacks.map(fn => fn?.(event)))
-  }
-  finally {
+    await Promise.all(callbacks.map((fn) => fn?.(event)))
+  } finally {
     loadingState.value = false
   }
 }

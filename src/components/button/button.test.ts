@@ -24,10 +24,14 @@ describe('button', () => {
   it('applies appearance variants', () => {
     expect(useButtonStyle({ variant: 'solid' }).root()).toContain('bg-foreground-highlighted')
     expect(useButtonStyle({ variant: 'soft' }).root()).toContain('bg-muted')
-    expect(useButtonStyle({ variant: 'outline' }).root()).toContain('hover:(bg-elevated b-elevated)')
+    expect(useButtonStyle({ variant: 'outline' }).root()).toContain(
+      'hover:(bg-elevated b-elevated)',
+    )
     expect(useButtonStyle({ variant: 'ghost' }).root()).toContain('hover:bg-elevated')
     expect(useButtonStyle({ variant: 'plain' }).root()).toContain('text-foreground')
-    expect(useButtonStyle({ variant: 'inverse' }).root()).toContain('hover:(text-highlighted bg-elevated)')
+    expect(useButtonStyle({ variant: 'inverse' }).root()).toContain(
+      'hover:(text-highlighted bg-elevated)',
+    )
   })
 
   it('applies color variants', () => {

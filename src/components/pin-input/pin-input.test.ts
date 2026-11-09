@@ -12,18 +12,28 @@ function mountPinInput(inputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { code: model.value },
-      }, () =>
-        h(FormField, { name: 'code', label: 'Verification code' }, {
-          default: () => h(PinInput, {
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: string[]) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { code: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'code', label: 'Verification code' },
+              {
+                default: () =>
+                  h(PinInput, {
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: string[]) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -87,7 +97,9 @@ describe('pin-input', () => {
 
   it('applies invalid border for soft and outline', () => {
     expect(usePinInputStyle({ variant: 'soft', invalid: true }).input()).toContain('b-error')
-    expect(usePinInputStyle({ variant: 'soft', invalid: true }).input()).toContain('outline-error-4')
+    expect(usePinInputStyle({ variant: 'soft', invalid: true }).input()).toContain(
+      'outline-error-4',
+    )
     expect(usePinInputStyle({ variant: 'outline', invalid: true }).input()).toContain('b-error')
   })
 
@@ -140,7 +152,9 @@ describe('pin-input', () => {
       const inputs = pinInputs(wrapper)
 
       for (let i = 0; i < 4; i++) {
+        // oxlint-disable-next-line no-await-in-loop
         await inputs[i].setValue(String(i + 1))
+        // oxlint-disable-next-line no-await-in-loop
         await nextTick()
       }
 
@@ -168,6 +182,7 @@ describe('pin-input', () => {
         otp: false,
       })
       const inputs = pinInputs(wrapper)
+      // oxlint-disable-next-line typescript/await-thenable
       await (inputs[1].element as HTMLInputElement).focus()
       await inputs[1].trigger('keydown', { key: 'Backspace' })
       await nextTick()
@@ -178,8 +193,7 @@ describe('pin-input', () => {
     it('applies disabled styles and disables cells', () => {
       const { wrapper } = mountPinInput({ disabled: true })
       expect(wrapper.get('[data-slot="pin-input"]').classes()).toContain('is-disabled')
-      for (const input of pinInputs(wrapper))
-        expect(input.attributes('disabled')).toBeDefined()
+      for (const input of pinInputs(wrapper)) expect(input.attributes('disabled')).toBeDefined()
       wrapper.unmount()
     })
 

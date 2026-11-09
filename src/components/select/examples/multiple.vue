@@ -12,11 +12,6 @@ const items: SelectItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Select
-      multiple
-      :items="items"
-      prefix-icon="ri:apple-line"
-      placeholder="Pick fruits…"
-    />
+    <Select multiple :items="items" prefix-icon="ri:apple-line" placeholder="Pick fruits…" />
   </div>
 </template>

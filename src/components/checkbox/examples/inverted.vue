@@ -4,13 +4,8 @@ import Checkbox from '../checkbox.vue'
 
 <template>
   <div class="flex flex-col gap-3 max-w-sm w-full">
-    <Checkbox
-      label="Default"
-    />
+    <Checkbox label="Default" />
 
-    <Checkbox
-      inverted
-      label="Inverted"
-    />
+    <Checkbox inverted label="Inverted" />
   </div>
 </template>

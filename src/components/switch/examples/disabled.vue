@@ -4,8 +4,6 @@ import Switch from '../switch.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Switch
-      disabled
-    />
+    <Switch disabled />
   </div>
 </template>

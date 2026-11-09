@@ -18,12 +18,6 @@ const items: AutocompleteItems = [
       open-on-focus
     />
 
-    <Autocomplete
-      prefix="@"
-      suffix=".com"
-      :items="items"
-      placeholder="handle"
-      open-on-focus
-    />
+    <Autocomplete prefix="@" suffix=".com" :items="items" placeholder="handle" open-on-focus />
   </div>
 </template>

@@ -6,10 +6,7 @@ import Input from '../../input/input.vue'
 import Form from '../form.vue'
 
 const schema = v.object({
-  email: v.pipe(
-    v.string('邮箱不能为空'),
-    v.email('邮箱格式不正确'),
-  ),
+  email: v.pipe(v.string('邮箱不能为空'), v.email('邮箱格式不正确')),
 })
 
 const defaultValues = {
@@ -47,8 +44,6 @@ function onFormSubmit(values: { email: string }) {
       />
     </FormField>
 
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

@@ -19,30 +19,38 @@ function mountRadioGroup(
   groupProps: Record<string, unknown> = {},
   fieldProps: Record<string, unknown> = {},
 ) {
-  const model = ref<AcceptableValue>(
-    (groupProps.modelValue as AcceptableValue | undefined) ?? '',
-  )
+  const model = ref<AcceptableValue>((groupProps.modelValue as AcceptableValue | undefined) ?? '')
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { plan: model.value },
-      }, () =>
-        h(FormField, {
-          name: 'plan',
-          label: 'Plan',
-          nativeLabel: false,
-          ...fieldProps,
-        }, {
-          default: () => h(RadioGroup, {
-            ...groupProps,
-            'items': (groupProps.items as RadioGroupItem[] | undefined) ?? defaultItems,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: AcceptableValue) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { plan: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              {
+                name: 'plan',
+                label: 'Plan',
+                nativeLabel: false,
+                ...fieldProps,
+              },
+              {
+                default: () =>
+                  h(RadioGroup, {
+                    ...groupProps,
+                    items: (groupProps.items as RadioGroupItem[] | undefined) ?? defaultItems,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: AcceptableValue) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -72,7 +80,9 @@ describe('radio-group', () => {
   it('applies soft, outline, and card appearance compounds', () => {
     expect(useRadioGroupStyle({ variant: 'soft' }).indicator()).toContain('bg-muted')
     expect(useRadioGroupStyle({ variant: 'outline' }).indicator()).toContain('b-base')
-    expect(useRadioGroupStyle({ variant: 'outline' }).indicator()).toContain('data-[state=checked]:b-accent')
+    expect(useRadioGroupStyle({ variant: 'outline' }).indicator()).toContain(
+      'data-[state=checked]:b-accent',
+    )
 
     const card = useRadioGroupStyle({ variant: 'card' })
     expect(card.item()).toContain('b-base')
@@ -132,7 +142,7 @@ describe('radio-group', () => {
 
     it('selects a value when an item is clicked', async () => {
       const { wrapper, model } = mountRadioGroup()
-      await wrapper.findAll('[role="radio"]')[0]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[0].trigger('click')
       await nextTick()
       expect(model.value).toBe('design')
       wrapper.unmount()
@@ -140,16 +150,19 @@ describe('radio-group', () => {
 
     it('emits change when the value updates', async () => {
       const { wrapper } = mountRadioGroup()
-      await wrapper.findAll('[role="radio"]')[1]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[1].trigger('click')
       await nextTick()
-      const payloads = wrapper.findComponent(RadioGroup).emitted('change')?.map(item => item[0])
+      const payloads = wrapper
+        .findComponent(RadioGroup)
+        .emitted('change')
+        ?.map((item) => item[0])
       expect(payloads).toContain('engineering')
       wrapper.unmount()
     })
 
     it('does not select when the group is disabled', async () => {
       const { wrapper, model } = mountRadioGroup({ disabled: true })
-      await wrapper.findAll('[role="radio"]')[0]!.trigger('click')
+      await wrapper.findAll('[role="radio"]')[0].trigger('click')
       expect(model.value).toBe('')
       wrapper.unmount()
     })

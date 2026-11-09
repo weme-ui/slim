@@ -11,14 +11,8 @@ const items: RadioGroupItem[] = [
 
 <template>
   <div class="flex flex-col gap-6 max-w-md w-full">
-    <RadioGroup
-      orientation="vertical"
-      :items="items"
-    />
+    <RadioGroup orientation="vertical" :items="items" />
 
-    <RadioGroup
-      orientation="horizontal"
-      :items="items"
-    />
+    <RadioGroup orientation="horizontal" :items="items" />
   </div>
 </template>

@@ -102,5 +102,5 @@ export const useNumberInputStyle = createVariants({
   },
 })
 
-export type NumberInputStyleSlots = typeof useNumberInputStyle['slots']
+export type NumberInputStyleSlots = (typeof useNumberInputStyle)['slots']
 export type NumberInputStyleProps = VariantProps<typeof useNumberInputStyle>

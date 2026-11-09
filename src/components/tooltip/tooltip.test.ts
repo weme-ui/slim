@@ -15,12 +15,18 @@ function mountTooltip(
 ) {
   const Root = defineComponent({
     setup() {
-      return () => h(TooltipProvider, { delayDuration: 0 }, {
-        default: () => h(Tooltip, props, {
-          default: () => 'Hover',
-          ...slots,
-        }),
-      })
+      return () =>
+        h(
+          TooltipProvider,
+          { delayDuration: 0 },
+          {
+            default: () =>
+              h(Tooltip, props, {
+                default: () => 'Hover',
+                ...slots,
+              }),
+          },
+        )
     },
   })
 

@@ -31,14 +31,10 @@ const sidebar: DefaultTheme.Sidebar = {}
 
 if (guideSidebar.length) {
   sidebar[GUIDE_BASE] = guideSidebar.map((group) => {
-    if (!group.items)
-      return group
+    if (!group.items) return group
     return {
       ...group,
-      items: [
-        ...group.items,
-        { text: 'llms.txt', link: '/llms.txt' },
-      ],
+      items: [...group.items, { text: 'llms.txt', link: '/llms.txt' }],
     }
   })
 }
@@ -49,12 +45,10 @@ if (componentSidebar.length) {
 }
 
 function readReadme(path?: string) {
-  if (!path)
-    return ''
+  if (!path) return ''
   try {
     return readFileSync(resolve(repoRoot, path), 'utf8')
-  }
-  catch {
+  } catch {
     return ''
   }
 }
@@ -63,8 +57,8 @@ const umamiHead: HeadConfig[] = [
   [
     'script',
     {
-      'defer': '',
-      'src': 'https://cloud.umami.is/script.js',
+      defer: '',
+      src: 'https://cloud.umami.is/script.js',
       'data-website-id': '882f9828-d18f-4775-bcf3-f5cdb13d5c90',
     },
   ],
@@ -98,12 +92,10 @@ export default defineConfig<ThemeConfig>({
   },
   transformPageData(pageData) {
     const name = pageData.params?.name
-    if (!name)
-      return
+    if (!name) return
     const item = getRegistryItem(name)
-    if (!item)
-      return
-    const docFile = item.files.find(file => file.kind === 'doc')
+    if (!item) return
+    const docFile = item.files.find((file) => file.kind === 'doc')
     const page = buildComponentPage(item, readReadme(docFile?.path))
     pageData.title = page.title
     pageData.description = page.description
@@ -119,9 +111,7 @@ export default defineConfig<ThemeConfig>({
       { text: 'Components', link: '/components/', activeMatch: '/components/' },
     ],
     sidebar,
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/weme-ui/slim' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/weme-ui/slim' }],
     llms: {
       copyText: '复制页面',
       copiedText: '已复制',
@@ -145,9 +135,7 @@ export default defineConfig<ThemeConfig>({
         'tailwind-merge',
         'tailwind-variants/config',
       ],
-      exclude: [
-        'vitepress',
-      ],
+      exclude: ['vitepress'],
     },
     plugins: [
       UnoCSS(),
@@ -156,16 +144,14 @@ export default defineConfig<ThemeConfig>({
         name: 'weme-icon-stub',
         enforce: 'pre',
         resolveId(id) {
-          if (id.endsWith('icon/icon.vue'))
-            return resolve(configDir, 'theme/stubs/icon.vue')
+          if (id.endsWith('icon/icon.vue')) return resolve(configDir, 'theme/stubs/icon.vue')
         },
       },
       {
         name: 'weme-vue-router-stub',
         enforce: 'pre',
         resolveId(id, importer) {
-          if (id !== 'vue-router' || !importer)
-            return
+          if (id !== 'vue-router' || !importer) return
           const from = importer.replace(/\\/g, '/')
           if (from.includes('/src/components/link/'))
             return resolve(configDir, 'theme/stubs/vue-router.ts')
@@ -174,11 +160,7 @@ export default defineConfig<ThemeConfig>({
       vpDocExampleIslandPlugin(),
       llmstxt({
         domain: siteOrigin,
-        ignoreFiles: [
-          'components/index.md',
-          'components/[[]name].md',
-          'composables/[[]name].md',
-        ],
+        ignoreFiles: ['components/index.md', 'components/[[]name].md', 'composables/[[]name].md'],
         sidebar: guideSidebar,
       }),
       docsLlmsPlugin({

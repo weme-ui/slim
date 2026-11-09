@@ -7,11 +7,7 @@ import Tooltip from '../tooltip.vue'
 <template>
   <TooltipProvider :delay-duration="0">
     <div class="flex items-center">
-      <Tooltip
-        content="Unavailable"
-        disabled
-        as-child
-      >
+      <Tooltip content="Unavailable" disabled as-child>
         <Button label="Hover" />
       </Tooltip>
     </div>

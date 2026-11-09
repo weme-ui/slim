@@ -1,12 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { computed, defineComponent, h, ref } from 'vue'
-import {
-  provideFormContext,
-  useForm,
-  useFormContext,
-  useFormField,
-} from './use-form-context'
+import { provideFormContext, useForm, useFormContext, useFormField } from './use-form-context'
 
 describe('useFormContext', () => {
   it('re-exports TanStack Vue Form helpers', () => {
@@ -38,18 +33,20 @@ describe('useFormContext', () => {
       const Consumer = defineComponent({
         setup() {
           const context = useFormContext()
-          return () => h('div', {
-            'data-loading': String(context.loading.value),
-            'data-mode': context.validationMode.value,
-          })
+          return () =>
+            h('div', {
+              'data-loading': String(context.loading.value),
+              'data-mode': context.validationMode.value,
+            })
         },
       })
 
       const wrapper = mount({
         setup() {
-          return () => h(Provider, null, {
-            default: () => h(Consumer),
-          })
+          return () =>
+            h(Provider, null, {
+              default: () => h(Consumer),
+            })
         },
       })
       const root = wrapper.get('[data-loading]')

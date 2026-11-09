@@ -8,10 +8,7 @@ import Form from '../../form/form.vue'
 import TagGroup from '../tag-group.vue'
 
 const schema = v.object({
-  tags: v.pipe(
-    v.string('请选择一个标签'),
-    v.minLength(1, '请选择一个标签'),
-  ),
+  tags: v.pipe(v.string('请选择一个标签'), v.minLength(1, '请选择一个标签')),
 })
 
 const defaultValues = {
@@ -25,7 +22,7 @@ const items = ref<TagGroupItem[]>([
 ])
 
 function onRemove(values: TagGroupItemValue[]) {
-  items.value = items.value.filter(item => !values.includes(item.value))
+  items.value = items.value.filter((item) => !values.includes(item.value))
 }
 
 function onFormSubmit(values: { tags: string }) {
@@ -41,12 +38,7 @@ function onFormSubmit(values: { tags: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="tags"
-      label="Tags"
-      required
-    >
+    <FormField v-slot="{ field }" name="tags" label="Tags" required>
       <TagGroup
         :model-value="field.state.value"
         :items="items"
@@ -56,8 +48,6 @@ function onFormSubmit(values: { tags: string }) {
         @remove="onRemove"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

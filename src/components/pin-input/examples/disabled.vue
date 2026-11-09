@@ -4,8 +4,6 @@ import PinInput from '../pin-input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <PinInput
-      disabled
-    />
+    <PinInput disabled />
   </div>
 </template>

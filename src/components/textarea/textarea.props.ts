@@ -1,6 +1,6 @@
 import type { IconifyIconProps } from '@iconify/vue'
-import type { TextareaStyleProps, TextareaStyleSlots } from './textarea.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { TextareaStyleProps, TextareaStyleSlots } from './textarea.style'
 
 export type TextareaValue = string | null | undefined
 
@@ -32,7 +32,7 @@ export interface TextareaProps extends FormFieldSharedProps {
 
 export interface TextareaEmits {
   'update:modelValue': [value: TextareaValue]
-  'change': [value: TextareaValue]
-  'focus': [event: FocusEvent]
-  'blur': [event: FocusEvent]
+  change: [value: TextareaValue]
+  focus: [event: FocusEvent]
+  blur: [event: FocusEvent]
 }

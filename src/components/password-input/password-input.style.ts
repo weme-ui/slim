@@ -25,5 +25,8 @@ export const usePasswordInputStyle = createVariants({
   ],
 })
 
-export type PasswordInputStyleSlots = Omit<typeof usePasswordInputStyle['slots'], 'suffix' | 'suffixIcon' | 'counter' | 'cleanBtn'>
+export type PasswordInputStyleSlots = Omit<
+  (typeof usePasswordInputStyle)['slots'],
+  'suffix' | 'suffixIcon' | 'counter' | 'cleanBtn'
+>
 export type PasswordInputStyleProps = VariantProps<typeof usePasswordInputStyle>

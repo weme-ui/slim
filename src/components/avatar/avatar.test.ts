@@ -120,10 +120,14 @@ describe('avatar', () => {
       expect(image.attributes('crossorigin')).toBe('anonymous')
       expect(image.attributes('referrerpolicy')).toBe('no-referrer')
       expect(image.attributes('role')).toBe('img')
-      await new Promise(resolve => setTimeout(resolve, 0))
-      const statuses = wrapper.emitted('loadingStatusChange')?.map(item => item[0])
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      const statuses = wrapper.emitted('loadingStatusChange')?.map((item) => item[0])
       expect(statuses?.length).toBeGreaterThan(0)
-      expect(statuses?.every(status => ['idle', 'loading', 'loaded', 'error'].includes(status as string))).toBe(true)
+      expect(
+        statuses?.every((status) =>
+          ['idle', 'loading', 'loaded', 'error'].includes(status as string),
+        ),
+      ).toBe(true)
       wrapper.unmount()
     })
   })

@@ -17,11 +17,6 @@ const items: ComboboxItems = [
       placeholder="Search…"
     />
 
-    <Combobox
-      prefix="@"
-      suffix=".com"
-      :items="items"
-      placeholder="handle"
-    />
+    <Combobox prefix="@" suffix=".com" :items="items" placeholder="handle" />
   </div>
 </template>

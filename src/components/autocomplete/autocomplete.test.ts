@@ -19,20 +19,30 @@ function mountAutocomplete(inputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { fruit: model.value },
-      }, () =>
-        h(FormField, { name: 'fruit', label: 'Fruit' }, {
-          default: () => h(Autocomplete, {
-            'items': fruitItems,
-            'openOnFocus': true,
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: string) => {
-              model.value = value ?? ''
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { fruit: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'fruit', label: 'Fruit' },
+              {
+                default: () =>
+                  h(Autocomplete, {
+                    items: fruitItems,
+                    openOnFocus: true,
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: string) => {
+                      model.value = value ?? ''
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -130,12 +140,14 @@ describe('autocomplete', () => {
   describe('given an autocomplete inside a labeled form field', () => {
     it('has no accessibility violations', async () => {
       const { wrapper } = mountAutocomplete({ placeholder: 'Search fruit…' })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify stub SVGs use role="img" without alt.
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify stub SVGs use role="img" without alt.
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -201,8 +213,9 @@ describe('autocomplete', () => {
       await nextTick()
       await nextTick()
 
-      const apple = Array.from(document.body.querySelectorAll('[role="option"]'))
-        .find(el => el.textContent?.includes('Apple'))
+      const apple = Array.from(document.body.querySelectorAll('[role="option"]')).find((el) =>
+        el.textContent?.includes('Apple'),
+      )
       expect(apple).toBeTruthy()
       apple!.dispatchEvent(new PointerEvent('click', { bubbles: true }))
       await nextTick()

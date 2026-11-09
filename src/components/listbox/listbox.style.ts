@@ -62,7 +62,8 @@ export const useListboxStyle = createVariants({
       false: {
         filter: 'group/filter b',
         filterInput: 'placeholder:text-subtle',
-        filterIcon: 'group-data-[focused]/filter:text-highlighted group-not-[[data-focused]]/filter:text-subtle',
+        filterIcon:
+          'group-data-[focused]/filter:text-highlighted group-not-[[data-focused]]/filter:text-subtle',
         content: 'b',
         groupLabel: 'text-xs text-muted py-sm',
         item: 'b b-transparent data-[highlighted]:not-[[data-state=checked]]:b-elevated',
@@ -84,21 +85,12 @@ export const useListboxStyle = createVariants({
 
   compoundSlots: [
     {
-      slots: [
-        'filter',
-        'content',
-        'item',
-      ],
+      slots: ['filter', 'content', 'item'],
       unstyled: false,
       class: 'rounded',
     },
     {
-      slots: [
-        'filter',
-        'filterIcon',
-        'item',
-        'itemIcon',
-      ],
+      slots: ['filter', 'filterIcon', 'item', 'itemIcon'],
       unstyled: false,
       class: 'transition-colors duration-200',
     },
@@ -121,7 +113,8 @@ export const useListboxStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        filter: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        filter:
+          'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
         item: 'data-[state=checked]:bg-elevated',
       },
     },
@@ -130,7 +123,8 @@ export const useListboxStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        filter: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        filter:
+          'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
         item: 'data-[state=checked]:b-base data-[state=checked]:bg-muted ',
       },
     },
@@ -183,5 +177,5 @@ export const useListboxStyle = createVariants({
   },
 })
 
-export type ListboxStyleSlots = typeof useListboxStyle['slots']
+export type ListboxStyleSlots = (typeof useListboxStyle)['slots']
 export type ListboxStyleProps = VariantProps<typeof useListboxStyle>

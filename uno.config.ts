@@ -15,17 +15,17 @@ export default defineConfig<Theme>({
           'medium-color': 'success.7',
           'strong-color': 'success.9',
         },
-        'scrollbar': {
-          'color': 'neutral.3',
+        scrollbar: {
+          color: 'neutral.3',
           'thumb-color': 'neutral.8',
           'thumb-hover-color': 'neutral.9',
         },
-        'tooltip': {
+        tooltip: {
           bg: 'neutral.11',
           color: 'neutral.1',
         },
         'activity-bar': {
-          'width': '3.5rem',
+          width: '3.5rem',
           'active-bg': 'neutral.3',
           'active-color': 'neutral.12',
         },
@@ -35,9 +35,7 @@ export default defineConfig<Theme>({
 
   content: {
     pipeline: {
-      include: [
-        /\.(vue|[jt]sx|style\.[jt]s|vine\.[jt]s|mdx?|astro|elm|php|phtml|html)($|\?)/,
-      ],
+      include: [/\.(vue|[jt]sx|style\.[jt]s|vine\.[jt]s|mdx?|astro|elm|php|phtml|html)($|\?)/],
     },
   },
 })

@@ -44,15 +44,13 @@ const cacheHeader = [
 ].join('\n')
 
 // eslint-disable-next-line regexp/no-super-linear-backtracking
-const entryPattern = /^- \[([^\]]+)\]\((\/docs\/(components|utilities)\/([a-z0-9-]+)\.md)\)(?::\s*(.*))?$/
+const entryPattern =
+  /^- \[([^\]]+)\]\((\/docs\/(components|utilities)\/([a-z0-9-]+)\.md)\)(?::\s*(.*))?$/
 
 const args = process.argv.slice(2)
-if (args.length === 1 && args[0] === '--refresh')
-  refreshIndex()
-else if (args.length === 1 && !args[0].startsWith('-'))
-  queryIndex(args[0])
-else
-  usage()
+if (args.length === 1 && args[0] === '--refresh') refreshIndex()
+else if (args.length === 1 && !args[0].startsWith('-')) queryIndex(args[0])
+else usage()
 
 function usage(): never {
   console.error('usage: bun skills/create-docs/scripts/reka.ts <name>')
@@ -68,154 +66,162 @@ function finish(payload: unknown, code: number): never {
 function refreshIndex(): never {
   const result = curl(indexUrl)
   if (!result.ok || isHtml(result.body) || parseIndex(result.body).length === 0) {
-    finish({
-      ok: false,
-      error: 'refresh failed',
-      hint: '旧缓存未改。不要改用浏览器或 WebFetch，也不要在查询路径请求索引。',
-      ...(result.error
-        ? {
-            detail: clip(result.error),
-          }
-        : {}),
-    }, 1)
+    finish(
+      {
+        ok: false,
+        error: 'refresh failed',
+        hint: '旧缓存未改。不要改用浏览器或 WebFetch，也不要在查询路径请求索引。',
+        ...(result.error
+          ? {
+              detail: clip(result.error),
+            }
+          : {}),
+      },
+      1,
+    )
   }
 
-  const body = result.body.endsWith('\n')
-    ? result.body
-    : `${result.body}\n`
+  const body = result.body.endsWith('\n') ? result.body : `${result.body}\n`
   const next = `${cacheHeader}${body}`
   const tmp = `${cachePath}.${process.pid}.tmp`
   try {
     writeFileSync(tmp, next)
     renameSync(tmp, cachePath)
-  }
-  catch (error) {
+  } catch (error) {
     rmSync(tmp, { force: true })
-    const message = error instanceof Error
-      ? error.message
-      : 'write failed'
-    finish({
-      ok: false,
-      error: 'refresh failed',
-      hint: '旧缓存未改。不要改用浏览器或 WebFetch，也不要在查询路径请求索引。',
-      detail: message,
-    }, 1)
+    const message = error instanceof Error ? error.message : 'write failed'
+    finish(
+      {
+        ok: false,
+        error: 'refresh failed',
+        hint: '旧缓存未改。不要改用浏览器或 WebFetch，也不要在查询路径请求索引。',
+        detail: message,
+      },
+      1,
+    )
   }
 
-  finish({
-    ok: true,
-    refreshed: true,
-    entries: parseIndex(next).length,
-    path: posix(relative(root, cachePath)),
-  }, 0)
+  finish(
+    {
+      ok: true,
+      refreshed: true,
+      entries: parseIndex(next).length,
+      path: posix(relative(root, cachePath)),
+    },
+    0,
+  )
 }
 
 function queryIndex(name: string): never {
   if (!existsSync(cachePath)) {
-    finish({
-      ok: false,
-      error: 'cache missing',
-      hint: '跑 bun skills/create-docs/scripts/reka.ts --refresh。查询不会请求索引。',
-    }, 1)
+    finish(
+      {
+        ok: false,
+        error: 'cache missing',
+        hint: '跑 bun skills/create-docs/scripts/reka.ts --refresh。查询不会请求索引。',
+      },
+      1,
+    )
   }
 
   const entries = parseIndex(readFileSync(cachePath, 'utf8'))
   if (entries.length === 0) {
-    finish({
-      ok: false,
-      error: 'cache missing',
-      hint: '跑 bun skills/create-docs/scripts/reka.ts --refresh。查询不会请求索引。',
-    }, 1)
+    finish(
+      {
+        ok: false,
+        error: 'cache missing',
+        hint: '跑 bun skills/create-docs/scripts/reka.ts --refresh。查询不会请求索引。',
+      },
+      1,
+    )
   }
 
   const selected = selectEntry(name, entries)
   if (!selected.match) {
     const ambiguous = selected.matches.length > 0
-    finish({
-      ok: false,
-      error: ambiguous ? 'ambiguous' : 'not found',
-      query: name,
-      matches: selected.matches.map(publish),
-      ...(ambiguous
-        ? {}
-        : {
-            slugs: entries.map(entry => entry.slug).sort(),
-          }),
-      hint: ambiguous
-        ? '本地索引命中多个 slug。不要自己抓单页；改读源码，或 Shell 读 node_modules 里的 *Props。'
-        : '本地索引没有这个 slug。不要改用浏览器或 WebFetch。',
-    }, 1)
+    finish(
+      {
+        ok: false,
+        error: ambiguous ? 'ambiguous' : 'not found',
+        query: name,
+        matches: selected.matches.map(publish),
+        ...(ambiguous
+          ? {}
+          : {
+              slugs: entries.map((entry) => entry.slug).toSorted(),
+            }),
+        hint: ambiguous
+          ? '本地索引命中多个 slug。不要自己抓单页；改读源码，或 Shell 读 node_modules 里的 *Props。'
+          : '本地索引没有这个 slug。不要改用浏览器或 WebFetch。',
+      },
+      1,
+    )
   }
 
   const match = selected.match
   const page = curl(`${origin}${match.path}`)
   if (!page.ok || isHtml(page.body)) {
-    finish({
-      ok: false,
-      error: 'fetch failed',
-      query: name,
-      match: publish(match),
-      hint: '单页超时或非 2xx。改走 node_modules 里的 *Props。禁止改用浏览器或 WebFetch。',
-      detail: clip(page.error || (isHtml(page.body)
-        ? 'html body'
-        : 'empty body')),
-    }, 1)
+    finish(
+      {
+        ok: false,
+        error: 'fetch failed',
+        query: name,
+        match: publish(match),
+        hint: '单页超时或非 2xx。改走 node_modules 里的 *Props。禁止改用浏览器或 WebFetch。',
+        detail: clip(page.error || (isHtml(page.body) ? 'html body' : 'empty body')),
+      },
+      1,
+    )
   }
 
-  finish({
-    ok: true,
-    query: name,
-    match: publish(match),
-    body: page.body,
-  }, 0)
+  finish(
+    {
+      ok: true,
+      query: name,
+      match: publish(match),
+      body: page.body,
+    },
+    0,
+  )
 }
 
 function selectEntry(name: string, entries: Entry[]): Selection {
   const query = normalizeName(name)
-  if (!query)
-    return { match: null, matches: [] }
+  if (!query) return { match: null, matches: [] }
 
-  const direct = entries.filter(entry => entry.leaf === query).sort(bySlug)
-  if (direct.length === 1)
-    return { match: direct[0] ?? null, matches: direct }
-  if (direct.length > 1)
-    return { match: null, matches: direct }
+  const direct = entries.filter((entry) => entry.leaf === query).toSorted(bySlug)
+  if (direct.length === 1) return { match: direct[0] ?? null, matches: direct }
+  if (direct.length > 1) return { match: null, matches: direct }
 
   const aliases = new Set(derivedKeys(query))
-  const aliasHits = entries.filter(entry => aliases.has(entry.leaf)).sort(bySlug)
-  if (aliasHits.length === 1)
-    return { match: aliasHits[0] ?? null, matches: aliasHits }
-  if (aliasHits.length > 1)
-    return { match: null, matches: aliasHits }
+  const aliasHits = entries.filter((entry) => aliases.has(entry.leaf)).toSorted(bySlug)
+  if (aliasHits.length === 1) return { match: aliasHits[0] ?? null, matches: aliasHits }
+  if (aliasHits.length > 1) return { match: null, matches: aliasHits }
 
-  const fuzzy = entries.filter(entry =>
-    query.startsWith(`${entry.leaf}-`) || entry.leaf.startsWith(`${query}-`),
-  ).sort(bySlug)
-  if (fuzzy.length === 0)
-    return { match: null, matches: [] }
+  const fuzzy = entries
+    .filter((entry) => query.startsWith(`${entry.leaf}-`) || entry.leaf.startsWith(`${query}-`))
+    .toSorted(bySlug)
+  if (fuzzy.length === 0) return { match: null, matches: [] }
 
-  const longest = Math.max(...fuzzy.map(entry => entry.leaf.length))
-  const best = fuzzy.filter(entry => entry.leaf.length === longest)
-  if (best.length === 1)
-    return { match: best[0] ?? null, matches: best }
+  const longest = Math.max(...fuzzy.map((entry) => entry.leaf.length))
+  const best = fuzzy.filter((entry) => entry.leaf.length === longest)
+  if (best.length === 1) return { match: best[0] ?? null, matches: best }
   return { match: null, matches: best }
 }
 
 function derivedKeys(query: string): string[] {
   const tokens = query.split('-').filter(Boolean)
   const keys = new Set<string>()
-  const withoutButton = tokens.filter(token => token !== 'button')
+  const withoutButton = tokens.filter((token) => token !== 'button')
   if (withoutButton.length > 0 && withoutButton.length < tokens.length)
     keys.add(withoutButton.join('-'))
 
   const swapped = tokens.map(swapInputField).join('-')
-  if (swapped && swapped !== query)
-    keys.add(swapped)
+  if (swapped && swapped !== query) keys.add(swapped)
 
   if (withoutButton.length > 0 && withoutButton.length < tokens.length) {
     const swappedWithoutButton = withoutButton.map(swapInputField).join('-')
-    if (swappedWithoutButton && swappedWithoutButton !== query)
-      keys.add(swappedWithoutButton)
+    if (swappedWithoutButton && swappedWithoutButton !== query) keys.add(swappedWithoutButton)
   }
 
   keys.delete(query)
@@ -223,10 +229,8 @@ function derivedKeys(query: string): string[] {
 }
 
 function swapInputField(token: string): string {
-  if (token === 'input')
-    return 'field'
-  if (token === 'field')
-    return 'input'
+  if (token === 'input') return 'field'
+  if (token === 'field') return 'input'
   return token
 }
 
@@ -245,14 +249,12 @@ function parseIndex(text: string): Entry[] {
   const entries: Entry[] = []
   for (const line of stripHeader(text).split(/\r?\n/)) {
     const matched = entryPattern.exec(line)
-    if (!matched)
-      continue
+    if (!matched) continue
     const title = matched[1]
     const path = matched[2]
     const area = matched[3]
     const leaf = matched[4]
-    if (!title || !path || !area || !leaf)
-      continue
+    if (!title || !path || !area || !leaf) continue
     entries.push({
       title,
       path,
@@ -267,10 +269,9 @@ function parseIndex(text: string): Entry[] {
 function stripHeader(text: string): string {
   const lines = text.split(/\r?\n/)
   let index = 0
-  while (index < lines.length && lines[index]?.startsWith(headerMark))
-    index++
-  if (index > 0 && lines[index] === '')
-    index++
+  // oxlint-disable-next-line no-unmodified-loop-condition
+  while (index < lines.length && lines[index]?.startsWith(headerMark)) index++
+  if (index > 0 && lines[index] === '') index++
   return lines.slice(index).join('\n')
 }
 
@@ -284,20 +285,15 @@ function publish(entry: Entry): Pick<Entry, 'title' | 'slug' | 'path' | 'descrip
 }
 
 function curl(url: string): CurlResult {
-  const result = spawnSync('curl', [
-    '--fail',
-    '--max-time',
-    '20',
-    '--silent',
-    '--show-error',
-    '--location',
-    '--url',
-    url,
-  ], {
-    encoding: 'utf8',
-    timeout: 25_000,
-    maxBuffer: 2 * 1024 * 1024,
-  })
+  const result = spawnSync(
+    'curl',
+    ['--fail', '--max-time', '20', '--silent', '--show-error', '--location', '--url', url],
+    {
+      encoding: 'utf8',
+      timeout: 25_000,
+      maxBuffer: 2 * 1024 * 1024,
+    },
+  )
 
   if (result.error) {
     return {
@@ -332,11 +328,8 @@ function curl(url: string): CurlResult {
 }
 
 function asText(value: string | Buffer | null | undefined): string {
-  if (value === null || value === undefined)
-    return ''
-  return typeof value === 'string'
-    ? value
-    : value.toString('utf8')
+  if (value === null || value === undefined) return ''
+  return typeof value === 'string' ? value : value.toString('utf8')
 }
 
 function isHtml(body: string): boolean {
@@ -346,8 +339,7 @@ function isHtml(body: string): boolean {
 
 function clip(value: string): string {
   const trimmed = value.trim()
-  if (trimmed.length <= 500)
-    return trimmed
+  if (trimmed.length <= 500) return trimmed
   return `${trimmed.slice(0, 500)}…`
 }
 

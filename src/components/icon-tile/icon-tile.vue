@@ -14,12 +14,14 @@ const props = withDefaults(defineProps<IconTileProps>(), {
   size: 'md',
 })
 
-const ui = computed(() => useIconTileStyle({
-  color: props.color,
-  variant: props.variant,
-  size: props.size,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useIconTileStyle({
+    color: props.color,
+    variant: props.variant,
+    size: props.size,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 </script>
 
 <template>

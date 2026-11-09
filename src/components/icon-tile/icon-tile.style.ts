@@ -267,5 +267,5 @@ export const useIconTileStyle = createVariants({
   },
 })
 
-export type IconTileStyleSlots = typeof useIconTileStyle['slots']
+export type IconTileStyleSlots = (typeof useIconTileStyle)['slots']
 export type IconTileStyleProps = VariantProps<typeof useIconTileStyle>

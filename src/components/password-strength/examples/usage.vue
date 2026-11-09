@@ -7,10 +7,7 @@ import PasswordInput from '../../password-input/password-input.vue'
 import PasswordStrength from '../password-strength.vue'
 
 const schema = v.object({
-  password: v.pipe(
-    v.string('密码不能为空'),
-    v.minLength(8, '至少 8 位'),
-  ),
+  password: v.pipe(v.string('密码不能为空'), v.minLength(8, '至少 8 位')),
 })
 
 const defaultValues = {
@@ -30,16 +27,8 @@ function onFormSubmit(values: { password: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="password"
-      label="Password"
-      required
-    >
-      <PasswordStrength
-        :password="String(field.state.value ?? '')"
-        show-message
-      >
+    <FormField v-slot="{ field }" name="password" label="Password" required>
+      <PasswordStrength :password="String(field.state.value ?? '')" show-message>
         <PasswordInput
           :model-value="field.state.value"
           placeholder="Enter password"
@@ -49,8 +38,6 @@ function onFormSubmit(values: { password: string }) {
         />
       </PasswordStrength>
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

@@ -17,7 +17,7 @@ import {
   useFormFieldControl,
 } from '~/composables/use-form-field-context'
 
-provideFormFieldContext({ /* FormFieldContextValue */ })
+provideFormFieldContext({/* FormFieldContextValue */})
 
 const field = useFormFieldContext()
 const control = useFormFieldControl(props)

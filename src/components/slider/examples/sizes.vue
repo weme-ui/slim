@@ -6,18 +6,9 @@ import Slider from '../slider.vue'
 <template>
   <TooltipProvider>
     <div class="flex flex-col gap-8 max-w-sm w-full">
-      <Slider
-        size="sm"
-        :default-value="[40]"
-      />
-      <Slider
-        size="md"
-        :default-value="[40]"
-      />
-      <Slider
-        size="lg"
-        :default-value="[40]"
-      />
+      <Slider size="sm" :default-value="[40]" />
+      <Slider size="md" :default-value="[40]" />
+      <Slider size="lg" :default-value="[40]" />
     </div>
   </TooltipProvider>
 </template>

@@ -18,13 +18,7 @@ const sides = [
 <template>
   <TooltipProvider :delay-duration="0">
     <div class="flex flex-wrap gap-3 items-center justify-center">
-      <Tooltip
-        v-for="side in sides"
-        :key="side"
-        :content="side"
-        :side="side"
-        as-child
-      >
+      <Tooltip v-for="side in sides" :key="side" :content="side" :side="side" as-child>
         <Button :label="side" />
       </Tooltip>
     </div>

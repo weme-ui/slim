@@ -20,14 +20,15 @@ function mountGroup(groupProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(ToggleButtonGroup, {
-        ...groupProps,
-        'items': (groupProps.items as ToggleButtonGroupItem[] | undefined) ?? defaultItems,
-        'modelValue': model.value,
-        'onUpdate:modelValue': (value: AcceptableValue | AcceptableValue[]) => {
-          model.value = value
-        },
-      })
+      return () =>
+        h(ToggleButtonGroup, {
+          ...groupProps,
+          items: (groupProps.items as ToggleButtonGroupItem[] | undefined) ?? defaultItems,
+          modelValue: model.value,
+          'onUpdate:modelValue': (value: AcceptableValue | AcceptableValue[]) => {
+            model.value = value
+          },
+        })
     },
   })
 
@@ -46,7 +47,9 @@ describe('toggle-button-group', () => {
   it('applies vertical orientation', () => {
     const ui = useToggleButtonGroupStyle({ orientation: 'vertical' })
     expect(ui.root()).toContain('flex-col')
-    expect(useToggleButtonGroupStyle({ orientation: 'horizontal' }).root()).not.toContain('flex-col')
+    expect(useToggleButtonGroupStyle({ orientation: 'horizontal' }).root()).not.toContain(
+      'flex-col',
+    )
   })
 
   describe('given a labeled toggle button group', () => {
@@ -56,11 +59,13 @@ describe('toggle-button-group', () => {
       expect(root.attributes('data-slot')).toBe('toggle-button-group')
       expect(root.attributes('role')).toBe('group')
       // role="group" + roving focus attrs come from Reka ToggleGroupRoot; axe flags aria-allowed-attr.
-      expect(await axe(wrapper.element, {
-        rules: {
-          'aria-allowed-attr': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'aria-allowed-attr': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -75,7 +80,7 @@ describe('toggle-button-group', () => {
 
     it('selects a value when an item is clicked', async () => {
       const { wrapper, model } = mountGroup({ type: 'single' })
-      await wrapper.findAll('[data-slot="toggle-button"]')[1]!.trigger('click')
+      await wrapper.findAll('[data-slot="toggle-button"]')[1].trigger('click')
       await nextTick()
       expect(model.value).toBe('center')
       wrapper.unmount()
@@ -85,8 +90,8 @@ describe('toggle-button-group', () => {
       const { wrapper } = mountGroup({ type: 'single', modelValue: 'left' })
       await nextTick()
       const items = wrapper.findAll('[data-slot="toggle-button"]')
-      expect(items[0]!.attributes('data-state')).toBe('on')
-      expect(items[1]!.attributes('data-state')).toBe('off')
+      expect(items[0].attributes('data-state')).toBe('on')
+      expect(items[1].attributes('data-state')).toBe('off')
       wrapper.unmount()
     })
   })
@@ -94,7 +99,7 @@ describe('toggle-button-group', () => {
   describe('given a disabled group', () => {
     it('does not select when an item is clicked', async () => {
       const { wrapper, model } = mountGroup({ type: 'single', disabled: true })
-      await wrapper.findAll('[data-slot="toggle-button"]')[0]!.trigger('click')
+      await wrapper.findAll('[data-slot="toggle-button"]')[0].trigger('click')
       await nextTick()
       expect(model.value).toBeUndefined()
       wrapper.unmount()
@@ -107,9 +112,9 @@ describe('toggle-button-group', () => {
         type: 'multiple',
         modelValue: [],
       })
-      await wrapper.findAll('[data-slot="toggle-button"]')[0]!.trigger('click')
+      await wrapper.findAll('[data-slot="toggle-button"]')[0].trigger('click')
       await nextTick()
-      await wrapper.findAll('[data-slot="toggle-button"]')[2]!.trigger('click')
+      await wrapper.findAll('[data-slot="toggle-button"]')[2].trigger('click')
       await nextTick()
       expect(model.value).toEqual(['left', 'right'])
       wrapper.unmount()

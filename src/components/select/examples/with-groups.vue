@@ -19,9 +19,6 @@ const items: SelectItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Select
-      :items="items"
-      placeholder="Select food…"
-    />
+    <Select :items="items" placeholder="Select food…" />
   </div>
 </template>

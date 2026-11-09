@@ -14,7 +14,7 @@ const refs = ref<{ height: number }[]>([])
 
 const height = computed(() => refs.value.reduce((acc, { height }) => acc + height + props.gap, 0))
 const expanded = computed(() => providerContext.expanded.value)
-const visibleToasts = computed(() => toasts.value.filter(toast => toast.open))
+const visibleToasts = computed(() => toasts.value.filter((toast) => toast.open))
 
 function getOffset(index: number) {
   return refs.value.slice(index + 1).reduce((acc, { height }) => acc + height + props.gap, 0)
@@ -50,7 +50,9 @@ defineExpose({
         '--scale': expanded ? '1' : 'calc(1 - var(--before) * var(--scale-factor))',
         '--before': visibleToasts.length - 1 - index,
         '--offset': getOffset(index),
-        '--translate': expanded ? 'calc(var(--offset) * var(--translate-factor))' : 'calc(var(--before) * var(--gap))',
+        '--translate': expanded
+          ? 'calc(var(--offset) * var(--translate-factor))'
+          : 'calc(var(--before) * var(--gap))',
         '--transform': 'translateY(var(--translate)) scale(var(--scale))',
       }"
       :class="cn(props.class, toast.data?.class)"

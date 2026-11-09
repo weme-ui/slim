@@ -1,4 +1,5 @@
 import type { Theme } from 'vitepress'
+import 'uno.css'
 import CopyOrDownloadAsMarkdownButtons from 'vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue'
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
@@ -7,7 +8,6 @@ import ComponentDoc from './components/ComponentDoc.vue'
 import ComponentIndex from './components/ComponentIndex.vue'
 import ExamplePreview from './components/ExamplePreview.vue'
 import HomePage from './components/HomePage.vue'
-import 'uno.css'
 import './style.css'
 
 export default {

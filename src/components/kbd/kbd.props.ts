@@ -1,6 +1,6 @@
 import type { PrimitiveProps } from 'reka-ui'
-import type { KbdStyleProps } from './kbd.style'
 import type { KbdKey } from '~/composables/use-kbd'
+import type { KbdStyleProps } from './kbd.style'
 
 type KbdValue = KbdKey | KbdKey[] | string | string[]
 

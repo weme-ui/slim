@@ -16,7 +16,15 @@ const props = withDefaults(defineProps<ProgressCircleProps>(), {
 })
 
 const emits = defineEmits<ProgressCircleEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'getValueLabel', 'getValueText', 'max', 'modelValue')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'getValueLabel',
+  'getValueText',
+  'max',
+  'modelValue',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 const formatter = useNumberFormatter(props.formatOptions)
 
@@ -34,16 +42,17 @@ const percentage = computed(() => (modelValue.value ?? 0) / range.value)
 const strokeDashoffset = computed(() => CIRCUMFERENCE - percentage.value * CIRCUMFERENCE)
 
 const valueLabel = computed(() => {
-  const valueToFormat = formatOptions.value.style === 'percent'
-    ? percentage.value
-    : modelValue.value ?? 0
+  const valueToFormat =
+    formatOptions.value.style === 'percent' ? percentage.value : (modelValue.value ?? 0)
   return formatter.value.format(valueToFormat)
 })
 
-const ui = computed(() => useProgressCircleStyle({
-  color: props.color,
-  size: props.size,
-}))
+const ui = computed(() =>
+  useProgressCircleStyle({
+    color: props.color,
+    size: props.size,
+  }),
+)
 </script>
 
 <template>

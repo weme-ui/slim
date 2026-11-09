@@ -19,16 +19,14 @@ const iconProps = computed(() => {
   return props.icon as IconTileProps
 })
 
-const iconSize = computed(() => props.size === 'sm'
-  ? 'xs'
-  : props.size === 'md'
-    ? 'sm'
-    : 'md')
+const iconSize = computed(() => (props.size === 'sm' ? 'xs' : props.size === 'md' ? 'sm' : 'md'))
 
-const ui = computed(() => useEmptyStyle({
-  size: props.size,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useEmptyStyle({
+    size: props.size,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 </script>
 
 <template>
@@ -45,7 +43,10 @@ const ui = computed(() => useEmptyStyle({
             {{ title }}
           </slot>
         </div>
-        <p v-if="!!$slots.description || !!description" :class="cn(ui.description(), props.ui?.description)">
+        <p
+          v-if="!!$slots.description || !!description"
+          :class="cn(ui.description(), props.ui?.description)"
+        >
           <slot name="description">
             {{ description }}
           </slot>

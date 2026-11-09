@@ -20,16 +20,18 @@ const keys = computed(() => {
   }
 
   if (Array.isArray(props.value)) {
-    return props.value.map(getKbdKey).flat()
+    return props.value.flatMap(getKbdKey)
   }
 
   return []
 })
 
-const ui = computed(() => useKbdStyle({
-  variant: props.variant,
-  size: props.size,
-}))
+const ui = computed(() =>
+  useKbdStyle({
+    variant: props.variant,
+    size: props.size,
+  }),
+)
 </script>
 
 <template>

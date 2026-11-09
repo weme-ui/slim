@@ -33,7 +33,9 @@ export const useButtonGroupStyle = createVariants({
     {
       orientation: 'horizontal',
       gap: 'none',
-      class: { item: 'data-[order=first]:rounded-r-none data-[order=last]:rounded-l-none data-[order=between]:rounded-none' },
+      class: {
+        item: 'data-[order=first]:rounded-r-none data-[order=last]:rounded-l-none data-[order=between]:rounded-none',
+      },
     },
     {
       orientation: 'horizontal',
@@ -45,7 +47,9 @@ export const useButtonGroupStyle = createVariants({
     {
       orientation: 'vertical',
       gap: 'none',
-      class: { item: 'data-[order=first]:rounded-b-none data-[order=last]:rounded-t-none data-[order=between]:rounded-none' },
+      class: {
+        item: 'data-[order=first]:rounded-b-none data-[order=last]:rounded-t-none data-[order=between]:rounded-none',
+      },
     },
     {
       orientation: 'vertical',
@@ -61,5 +65,5 @@ export const useButtonGroupStyle = createVariants({
   },
 })
 
-export type ButtonGroupStyleSlots = typeof useButtonGroupStyle['slots']
+export type ButtonGroupStyleSlots = (typeof useButtonGroupStyle)['slots']
 export type ButtonGroupStyleProps = VariantProps<typeof useButtonGroupStyle>

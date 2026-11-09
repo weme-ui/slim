@@ -28,12 +28,7 @@ describe('usePasswordStrength', () => {
       expect(checkPassword('A').contains).toEqual(['uppercase'])
       expect(checkPassword('1').contains).toEqual(['number'])
       expect(checkPassword('!').contains).toEqual(['symbol'])
-      expect(checkPassword('aA1!').contains).toEqual([
-        'lowercase',
-        'uppercase',
-        'number',
-        'symbol',
-      ])
+      expect(checkPassword('aA1!').contains).toEqual(['lowercase', 'uppercase', 'number', 'symbol'])
     })
 
     it('rates short single-class passwords as tooWeak', () => {
@@ -69,12 +64,7 @@ describe('usePasswordStrength', () => {
       expect(checkPassword('abcdefgA12!@')).toEqual({
         diversity: 3,
         key: 'strong',
-        contains: [
-          'lowercase',
-          'uppercase',
-          'number',
-          'symbol',
-        ],
+        contains: ['lowercase', 'uppercase', 'number', 'symbol'],
         message: 'Strong',
         length: 12,
       })
@@ -95,12 +85,7 @@ describe('usePasswordStrength', () => {
       expect(checkPassword('aA1!')).toMatchObject({
         diversity: 0,
         key: 'tooWeak',
-        contains: [
-          'lowercase',
-          'uppercase',
-          'number',
-          'symbol',
-        ],
+        contains: ['lowercase', 'uppercase', 'number', 'symbol'],
         length: 4,
       })
     })

@@ -21,28 +21,38 @@ function mountCombobox(inputProps: Record<string, unknown> = {}) {
   const isMultiple = inputProps.multiple === true || inputProps.multiple === ''
   const model = ref<ComboboxModel>(
     inputProps.modelValue !== undefined
-      ? inputProps.modelValue as ComboboxModel
-      : (isMultiple
-          ? []
-          : ''),
+      ? (inputProps.modelValue as ComboboxModel)
+      : isMultiple
+        ? []
+        : '',
   )
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { fruit: model.value },
-      }, () =>
-        h(FormField, { name: 'fruit', label: 'Fruit' }, {
-          // Generic SFC props are not fully inferred under `h()`.
-          default: () => h(Combobox as any, {
-            'items': fruitItems,
-            ...inputProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: ComboboxModel) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { fruit: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'fruit', label: 'Fruit' },
+              {
+                // Generic SFC props are not fully inferred under `h()`.
+                default: () =>
+                  h(Combobox as any, {
+                    items: fruitItems,
+                    ...inputProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: ComboboxModel) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -171,12 +181,14 @@ describe('combobox', () => {
   describe('given a combobox inside a labeled form field', () => {
     it('has no accessibility violations', async () => {
       const { wrapper } = mountCombobox({ placeholder: 'Pick fruit…' })
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify stub SVGs use role="img" without alt.
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify stub SVGs use role="img" without alt.
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -237,8 +249,9 @@ describe('combobox', () => {
       const { wrapper, model } = mountCombobox({ modelValue: '' })
       await openList(wrapper)
 
-      const apple = Array.from(document.body.querySelectorAll('[role="option"]'))
-        .find(el => el.textContent?.includes('Apple'))
+      const apple = Array.from(document.body.querySelectorAll('[role="option"]')).find((el) =>
+        el.textContent?.includes('Apple'),
+      )
       expect(apple).toBeTruthy()
       apple!.dispatchEvent(new PointerEvent('click', { bubbles: true }))
       await nextTick()
@@ -257,8 +270,9 @@ describe('combobox', () => {
       })
       await openList(wrapper)
 
-      const apple = Array.from(document.body.querySelectorAll('[role="option"]'))
-        .find(el => el.textContent?.includes('Apple'))
+      const apple = Array.from(document.body.querySelectorAll('[role="option"]')).find((el) =>
+        el.textContent?.includes('Apple'),
+      )
       expect(apple).toBeTruthy()
       apple!.dispatchEvent(new PointerEvent('click', { bubbles: true }))
       await nextTick()

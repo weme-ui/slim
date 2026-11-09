@@ -35,7 +35,8 @@ export const useInputStyle = createVariants({
         root: 'b rounded',
         input: 'placeholder:text-subtle',
         counter: 'text-(xs subtle nowrap)',
-        cleanBtn: 'op-0 transition-[opacity,background-color] duration-200 hover:bg-accent-3 group-data-[focused]:op-100',
+        cleanBtn:
+          'op-0 transition-[opacity,background-color] duration-200 hover:bg-accent-3 group-data-[focused]:op-100',
       },
     },
   },
@@ -111,5 +112,5 @@ export const useInputStyle = createVariants({
   },
 })
 
-export type InputStyleSlots = typeof useInputStyle['slots']
+export type InputStyleSlots = (typeof useInputStyle)['slots']
 export type InputStyleProps = VariantProps<typeof useInputStyle>

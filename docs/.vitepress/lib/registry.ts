@@ -101,41 +101,45 @@ const RESERVED_DOC_H2 = new Set([
 ])
 
 function exportTableKind(body: string): 'parameters' | 'fields' {
-  const line = body.split('\n').find(item => item.trim().startsWith('|'))
-  if (!line)
-    return 'fields'
-  const header = line.trim().slice(1).split('|')[0]?.replace(/[`*_]/g, '').trim().toLowerCase() ?? ''
-  if (header === '参数' || header === 'parameter' || header === 'parameters')
-    return 'parameters'
+  const line = body.split('\n').find((item) => item.trim().startsWith('|'))
+  if (!line) return 'fields'
+  const header =
+    line.trim().slice(1).split('|')[0]?.replace(/[`*_]/g, '').trim().toLowerCase() ?? ''
+  if (header === '参数' || header === 'parameter' || header === 'parameters') return 'parameters'
   return 'fields'
 }
 
 export const registry = registryJson as RegistryConfig
 
 export function getComponentItems(config: RegistryConfig = registry): RegistryItem[] {
-  return config.items.filter(item => item.type === 'component')
+  return config.items.filter((item) => item.type === 'component')
 }
 
 export function getComposableItems(config: RegistryConfig = registry): RegistryItem[] {
-  return config.items.filter(item => item.type === 'composable')
+  return config.items.filter((item) => item.type === 'composable')
 }
 
 export function getDocItems(config: RegistryConfig = registry): RegistryItem[] {
-  return config.items.filter(item => item.type === 'component' || item.type === 'composable')
+  return config.items.filter((item) => item.type === 'component' || item.type === 'composable')
 }
 
-export function getRegistryItem(name: string, config: RegistryConfig = registry): RegistryItem | undefined {
-  return getDocItems(config).find(item => item.name === name)
+export function getRegistryItem(
+  name: string,
+  config: RegistryConfig = registry,
+): RegistryItem | undefined {
+  return getDocItems(config).find((item) => item.name === name)
 }
 
-export function findRegistryItem(name: string, config: RegistryConfig = registry): RegistryItem | undefined {
-  return config.items.find(item => item.name === name)
+export function findRegistryItem(
+  name: string,
+  config: RegistryConfig = registry,
+): RegistryItem | undefined {
+  return config.items.find((item) => item.name === name)
 }
 
 function pushUnique(list: string[], seen: Set<string>, values: string[] = []) {
   for (const value of values) {
-    if (!value || seen.has(value))
-      continue
+    if (!value || seen.has(value)) continue
     seen.add(value)
     list.push(value)
   }
@@ -155,16 +159,14 @@ export function resolvePageDependencies(
   const seenItems = new Set<string>()
 
   function walk(current: RegistryItem) {
-    if (seenItems.has(current.name))
-      return
+    if (seenItems.has(current.name)) return
     seenItems.add(current.name)
 
     pushUnique(packages, seenPackages, current.dependencies)
 
     for (const depName of current.registryDependencies ?? []) {
       const dep = findRegistryItem(depName, config)
-      if (dep)
-        walk(dep)
+      if (dep) walk(dep)
     }
   }
 
@@ -182,30 +184,23 @@ export function composableHref(name: string): string {
 }
 
 export function itemHref(item: RegistryItem): string {
-  return item.type === 'composable'
-    ? composableHref(item.name)
-    : componentHref(item.name)
+  return item.type === 'composable' ? composableHref(item.name) : componentHref(item.name)
 }
 
 export function firstComponentLink(config: RegistryConfig = registry): string {
   const first = getComponentItems(config)[0]
-  return first
-    ? componentHref(first.name)
-    : '/components/'
+  return first ? componentHref(first.name) : '/components/'
 }
 
 function docsGroupRank(id: string) {
-  if (id === 'general')
-    return 0
-  if (id === 'utilities')
-    return 2
-  if (id === 'composables')
-    return 3
+  if (id === 'general') return 0
+  if (id === 'utilities') return 2
+  if (id === 'composables') return 3
   return 1
 }
 
 export function getComponentSidebar(config: RegistryConfig = registry): DefaultTheme.SidebarItem[] {
-  const groups = new Map<string, { id: string, label: string, items: DefaultTheme.SidebarItem[] }>()
+  const groups = new Map<string, { id: string; label: string; items: DefaultTheme.SidebarItem[] }>()
 
   for (const item of getComponentItems(config)) {
     const id = item.meta?.['docs.category'] || 'uncategorized'
@@ -228,19 +223,16 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
     groups.set('composables', {
       id: 'composables',
       label: composables[0]?.meta?.['docs.categoryLabel'] || 'Composables',
-      items: composables.map(item => ({
+      items: composables.map((item) => ({
         text: item.title || item.name,
         link: itemHref(item),
       })),
     })
   }
 
-  const ordered = [
-    ...groups.values(),
-  ].sort((a, b) => {
+  const ordered = [...groups.values()].toSorted((a, b) => {
     const rank = docsGroupRank(a.id) - docsGroupRank(b.id)
-    if (rank !== 0)
-      return rank
+    if (rank !== 0) return rank
     return a.label.localeCompare(b.label, 'en')
   })
 
@@ -249,7 +241,7 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
       text: 'All components',
       link: '/components/',
     },
-    ...ordered.map(group => ({
+    ...ordered.map((group) => ({
       text: group.label,
       items: group.items,
       collapsed: false,
@@ -259,14 +251,12 @@ export function getComponentSidebar(config: RegistryConfig = registry): DefaultT
 
 export function fileBasename(path: string, ext = ''): string {
   const name = path.split('/').pop() || path
-  return ext && name.endsWith(ext)
-    ? name.slice(0, -ext.length)
-    : name
+  return ext && name.endsWith(ext) ? name.slice(0, -ext.length) : name
 }
 
 export function resolveExamples(item: RegistryItem): ExampleRef[] {
   return item.files
-    .filter(file => file.kind === 'example')
+    .filter((file) => file.kind === 'example')
     .map((file) => {
       const name = fileBasename(file.path, '.vue')
       return {
@@ -278,16 +268,15 @@ export function resolveExamples(item: RegistryItem): ExampleRef[] {
 }
 
 function hasCssVars(cssVars?: Record<string, Record<string, string>>): boolean {
-  if (!cssVars)
-    return false
-  return Object.values(cssVars).some(group => Object.keys(group).length > 0)
+  if (!cssVars) return false
+  return Object.values(cssVars).some((group) => Object.keys(group).length > 0)
 }
 
 export function cssVarsToRows(cssVars: Record<string, Record<string, string>> = {}): ApiRow[] {
   const rows: ApiRow[] = []
-  for (const theme of Object.keys(cssVars).sort()) {
+  for (const theme of Object.keys(cssVars).toSorted()) {
     const group = cssVars[theme] || {}
-    for (const name of Object.keys(group).sort()) {
+    for (const name of Object.keys(group).toSorted()) {
       rows.push({
         name: `--${theme}-${name}`,
         type: group[name],
@@ -298,13 +287,13 @@ export function cssVarsToRows(cssVars: Record<string, Record<string, string>> = 
   return rows
 }
 
-export function cssVarsExampleClass(cssVars: Record<string, Record<string, string>> = {}): string | undefined {
-  const theme = Object.keys(cssVars).sort()[0]
-  if (!theme)
-    return undefined
-  const name = Object.keys(cssVars[theme] || {}).sort()[0]
-  if (!name)
-    return undefined
+export function cssVarsExampleClass(
+  cssVars: Record<string, Record<string, string>> = {},
+): string | undefined {
+  const theme = Object.keys(cssVars).toSorted()[0]
+  if (!theme) return undefined
+  const name = Object.keys(cssVars[theme] || {}).toSorted()[0]
+  if (!name) return undefined
   const stem = name.replace(/-(?:color|bg|background)$/, '')
   return `bg-${theme}-${stem}`
 }
@@ -316,7 +305,13 @@ function sectionMap(readme: string): Map<string, string> {
   return map
 }
 
-function pushHeader(outline: Header[], used: Map<string, number>, title: string, level: number, parent?: Header) {
+function pushHeader(
+  outline: Header[],
+  used: Map<string, number>,
+  title: string,
+  level: number,
+  parent?: Header,
+) {
   const slug = slugifyHeading(title, used)
   const header: Header = {
     level,
@@ -325,10 +320,8 @@ function pushHeader(outline: Header[], used: Map<string, number>, title: string,
     link: `#${slug}`,
     children: [],
   }
-  if (parent)
-    parent.children.push(header)
-  else
-    outline.push(header)
+  if (parent) parent.children.push(header)
+  else outline.push(header)
   return header
 }
 
@@ -343,9 +336,9 @@ export function buildComponentPage(
   const lead = extractLead(stripped)
   const sections = sectionMap(body)
   const examples = resolveExamples(item)
-  const usageExample = examples.find(example => example.name === 'usage')
-  const featureExamples = examples.filter(example => example.name !== 'usage')
-  const sourceFiles = item.files.filter(file => !file.kind || file.kind === 'file')
+  const usageExample = examples.find((example) => example.name === 'usage')
+  const featureExamples = examples.filter((example) => example.name !== 'usage')
+  const sourceFiles = item.files.filter((file) => !file.kind || file.kind === 'file')
 
   let installationMarkdown = sections.get('installation')?.trim() || ''
   if (!installationMarkdown) {
@@ -365,7 +358,7 @@ export function buildComponentPage(
   const returnsMarkdown = markdownWithoutTables(returnsSegments)
   const returnsRows = firstTableRows(returnsSegments)
   const exportSections = splitMarkdownH2(stripped)
-    .filter(section => !RESERVED_DOC_H2.has(section.title.trim().toLowerCase()))
+    .filter((section) => !RESERVED_DOC_H2.has(section.title.trim().toLowerCase()))
     .map((section) => {
       const segments = splitBodySegments(section.body)
       return {
@@ -375,31 +368,29 @@ export function buildComponentPage(
         tableKind: exportTableKind(section.body),
       }
     })
-    .filter(section => section.title && (section.markdown || section.rows.length))
+    .filter((section) => section.title && (section.markdown || section.rows.length))
   const typeParts = splitMarkdownH3(sections.get('types') || '')
-  const typeSections = typeParts.sections.map((section) => {
-    const segments = splitBodySegments(section.body)
-    return {
-      title: unwrapInlineCode(section.title.trim()),
-      markdown: markdownWithoutTables(segments),
-      rows: firstTableRows(segments),
-    }
-  }).filter(section => section.title && (section.markdown || section.rows.length))
+  const typeSections = typeParts.sections
+    .map((section) => {
+      const segments = splitBodySegments(section.body)
+      return {
+        title: unwrapInlineCode(section.title.trim()),
+        markdown: markdownWithoutTables(segments),
+        rows: firstTableRows(segments),
+      }
+    })
+    .filter((section) => section.title && (section.markdown || section.rows.length))
 
   const accessibilityRaw = sections.get('accessibility') || ''
   const accessibilityParts = splitMarkdownH3(accessibilityRaw)
-  const keyboardSection = accessibilityParts.sections.find(section =>
-    section.title.trim().toLowerCase() === 'keyboard interactions',
+  const keyboardSection = accessibilityParts.sections.find(
+    (section) => section.title.trim().toLowerCase() === 'keyboard interactions',
   )
   const keyboardRows = firstTableRows(splitBodySegments(keyboardSection?.body || ''))
   const accessibilityMarkdown = markdownWithoutTables(splitBodySegments(accessibilityParts.lead))
 
-  const cssVarRows = hasCssVars(item.cssVars)
-    ? cssVarsToRows(item.cssVars)
-    : []
-  const exampleClass = cssVarRows.length
-    ? cssVarsExampleClass(item.cssVars)
-    : undefined
+  const cssVarRows = hasCssVars(item.cssVars) ? cssVarsToRows(item.cssVars) : []
+  const exampleClass = cssVarRows.length ? cssVarsExampleClass(item.cssVars) : undefined
   const cssVarIntro = exampleClass
     ? `可在 \`*.style.ts\` 或 \`class\` 中使用，例如 \`${exampleClass}\`。`
     : ''
@@ -411,39 +402,29 @@ export function buildComponentPage(
   const used = new Map<string, number>()
 
   pushHeader(outline, used, 'Installation', 2)
-  if (usageExample || usageMarkdown)
-    pushHeader(outline, used, 'Usage', 2)
+  if (usageExample || usageMarkdown) pushHeader(outline, used, 'Usage', 2)
   if (featureExamples.length) {
     const examplesHeader = pushHeader(outline, used, 'Examples', 2)
     for (const example of featureExamples)
       pushHeader(outline, used, example.title, 3, examplesHeader)
   }
-  if (propsRows.length)
-    pushHeader(outline, used, 'Props', 2)
-  if (eventsRows.length)
-    pushHeader(outline, used, 'Events', 2)
-  if (slotsRows.length)
-    pushHeader(outline, used, 'Slots', 2)
-  if (parametersRows.length)
-    pushHeader(outline, used, 'Parameters', 2)
-  if (returnsMarkdown || returnsRows.length)
-    pushHeader(outline, used, 'Returns', 2)
-  for (const section of exportSections)
-    pushHeader(outline, used, section.title, 2)
+  if (propsRows.length) pushHeader(outline, used, 'Props', 2)
+  if (eventsRows.length) pushHeader(outline, used, 'Events', 2)
+  if (slotsRows.length) pushHeader(outline, used, 'Slots', 2)
+  if (parametersRows.length) pushHeader(outline, used, 'Parameters', 2)
+  if (returnsMarkdown || returnsRows.length) pushHeader(outline, used, 'Returns', 2)
+  for (const section of exportSections) pushHeader(outline, used, section.title, 2)
   if (typeSections.length) {
     const typesHeader = pushHeader(outline, used, 'Types', 2)
-    for (const section of typeSections)
-      pushHeader(outline, used, section.title, 3, typesHeader)
+    for (const section of typeSections) pushHeader(outline, used, section.title, 3, typesHeader)
   }
-  if (cssVarRows.length)
-    pushHeader(outline, used, 'CSS Variables', 2)
+  if (cssVarRows.length) pushHeader(outline, used, 'CSS Variables', 2)
   if (accessibilityMarkdown || keyboardRows.length) {
     const accessibilityHeader = pushHeader(outline, used, 'Accessibility', 2)
     if (keyboardRows.length)
       pushHeader(outline, used, 'Keyboard Interactions', 3, accessibilityHeader)
   }
-  if (sourceFiles.length)
-    pushHeader(outline, used, 'Files', 2)
+  if (sourceFiles.length) pushHeader(outline, used, 'Files', 2)
 
   return {
     name: item.name,
@@ -477,8 +458,7 @@ export function flattenOutline(headers: Header[]): Header[] {
   const list: Header[] = []
   for (const header of headers) {
     list.push(header)
-    if (header.children.length)
-      list.push(...flattenOutline(header.children))
+    if (header.children.length) list.push(...flattenOutline(header.children))
   }
   return list
 }

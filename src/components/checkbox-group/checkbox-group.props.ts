@@ -1,18 +1,14 @@
 import type { IconifyIconProps } from '@iconify/vue'
 import type { CheckboxGroupRootEmits, CheckboxGroupRootProps } from 'reka-ui'
-import type { CheckboxGroupStyleProps, CheckboxGroupStyleSlots } from './checkbox-group.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
 import type { GroupItem } from '~/composables/use-group-items'
+import type { CheckboxGroupStyleProps, CheckboxGroupStyleSlots } from './checkbox-group.style'
 
 export type CheckboxGroupValue = string | number
 
 export type CheckboxGroupItem = Omit<
   GroupItem<CheckboxGroupValue>,
-  | 'type'
-  | 'onSelect'
-  | 'icon'
-  | 'selectedIcon'
-  | 'iconClass'
+  'type' | 'onSelect' | 'icon' | 'selectedIcon' | 'iconClass'
 > & {
   indeterminateIcon?: IconifyIconProps['icon']
   indeterminateIconClass?: any
@@ -20,10 +16,10 @@ export type CheckboxGroupItem = Omit<
   checkedIconClass?: any
 }
 
-export interface CheckboxGroupProps extends
-  Omit<CheckboxGroupRootProps<CheckboxGroupValue>, 'asChild'>,
-  Omit<FormFieldSharedProps, 'readonly' | 'loading'>
-{
+export interface CheckboxGroupProps
+  extends
+    Omit<CheckboxGroupRootProps<CheckboxGroupValue>, 'asChild'>,
+    Omit<FormFieldSharedProps, 'readonly' | 'loading'> {
   items: CheckboxGroupItem[]
   variant?: CheckboxGroupStyleProps['variant']
   size?: CheckboxGroupStyleProps['size']

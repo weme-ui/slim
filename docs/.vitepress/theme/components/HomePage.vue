@@ -15,8 +15,7 @@ async function copyCommand() {
     window.setTimeout(() => {
       copied.value = false
     }, 1400)
-  }
-  catch {
+  } catch {
     copied.value = false
   }
 }
@@ -60,9 +59,7 @@ const features = [
     <div class="home-shell">
       <header class="hero">
         <h1>Weme UI</h1>
-        <p class="lede">
-          一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。
-        </p>
+        <p class="lede">一套 Vue 组件，用 Reka UI 和 UnoCSS 做的。源码会写进你的项目。</p>
         <div class="actions">
           <a class="cta" :href="withBase('/get-started/')">开始使用</a>
           <a class="ghost" :href="withBase('/components/')">浏览组件</a>
@@ -79,12 +76,8 @@ const features = [
 
       <section class="features" aria-labelledby="features-title">
         <header class="features-head">
-          <h2 id="features-title">
-            组件为什么要进项目
-          </h2>
-          <p>
-            改现成的库太累了。文件在你这儿，事情会简单一点。
-          </p>
+          <h2 id="features-title">组件为什么要进项目</h2>
+          <p>改现成的库太累了。文件在你这儿，事情会简单一点。</p>
         </header>
         <div class="feature-grid">
           <article
@@ -95,12 +88,7 @@ const features = [
             :style="{ '--i': String(index) }"
           >
             <span class="feature-mesh" aria-hidden="true" />
-            <svg
-              class="feature-icon"
-              viewBox="0 0 32 32"
-              fill="none"
-              aria-hidden="true"
-            >
+            <svg class="feature-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
               <g
                 v-if="feature.icon === 'layers'"
                 stroke="currentColor"
@@ -142,12 +130,7 @@ const features = [
                 <circle cx="16" cy="22.5" r="3" />
                 <path d="m11 12.2 3.2 7.2M21 12.2l-3.2 7.2" />
               </g>
-              <g
-                v-else
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-              >
+              <g v-else stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
                 <circle cx="16" cy="16" r="10" />
                 <path d="M16 11v6" />
                 <circle cx="16" cy="21.2" r="1.15" fill="currentColor" stroke="none" />
@@ -163,9 +146,7 @@ const features = [
 
       <section class="specimens" aria-labelledby="specimens-title">
         <header class="specimens-head">
-          <h2 id="specimens-title">
-            {{ items.length }} 个组件
-          </h2>
+          <h2 id="specimens-title">{{ items.length }} 个组件</h2>
           <a class="ghost" :href="withBase('/components/')">查看全部</a>
         </header>
         <div class="specimen-grid">

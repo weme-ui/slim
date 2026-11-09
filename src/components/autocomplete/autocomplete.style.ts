@@ -11,7 +11,8 @@ export const useAutocompleteStyle = createVariants({
     suffix: 'ml-auto',
     suffixIcon: '',
     clearBtn: '',
-    content: 'outline-none will-change-[height,transform,opacity] h-$reka-combobox-content-available-height w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',
+    content:
+      'outline-none will-change-[height,transform,opacity] h-$reka-combobox-content-available-height w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',
     viewport: '',
     empty: '',
     emptyIcon: '',
@@ -43,7 +44,8 @@ export const useAutocompleteStyle = createVariants({
         itemLabel: 'group-data-[highlighted]/item:font-medium',
         itemIcon: 'text-subtle group-data-[highlighted]/item:text-highlighted',
         itemIndicator: 'text-accent',
-        clearBtn: 'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
+        clearBtn:
+          'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
         separator: 'my-1 b-b b-base',
       },
     },
@@ -51,13 +53,7 @@ export const useAutocompleteStyle = createVariants({
 
   compoundSlots: [
     {
-      slots: [
-        'root',
-        'prefix',
-        'suffix',
-        'item',
-        'itemIcon',
-      ],
+      slots: ['root', 'prefix', 'suffix', 'item', 'itemIcon'],
       unstyled: false,
       class: 'transition-colors duration-200',
     },
@@ -68,14 +64,7 @@ export const useAutocompleteStyle = createVariants({
     },
 
     {
-      slots: [
-        'prefixIcon',
-        'suffixIcon',
-        'emptyIcon',
-        'itemIcon',
-        'itemIndicator',
-        'clearBtn',
-      ],
+      slots: ['prefixIcon', 'suffixIcon', 'emptyIcon', 'itemIcon', 'itemIndicator', 'clearBtn'],
       class: 'shrink-0',
     },
 
@@ -178,5 +167,5 @@ export const useAutocompleteStyle = createVariants({
   },
 })
 
-export type AutocompleteStyleSlots = typeof useAutocompleteStyle['slots']
+export type AutocompleteStyleSlots = (typeof useAutocompleteStyle)['slots']
 export type AutocompleteStyleProps = VariantProps<typeof useAutocompleteStyle>

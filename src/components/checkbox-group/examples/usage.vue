@@ -7,10 +7,7 @@ import Form from '../../form/form.vue'
 import CheckboxGroup from '../checkbox-group.vue'
 
 const schema = v.object({
-  interests: v.pipe(
-    v.array(v.string()),
-    v.minLength(1, '至少选一项'),
-  ),
+  interests: v.pipe(v.array(v.string()), v.minLength(1, '至少选一项')),
 })
 
 const defaultValues = {
@@ -36,21 +33,13 @@ function onFormSubmit(values: { interests: string[] }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="interests"
-      label="Interests"
-      :native-label="false"
-      required
-    >
+    <FormField v-slot="{ field }" name="interests" label="Interests" :native-label="false" required>
       <CheckboxGroup
         :model-value="field.state.value"
         :items="items"
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

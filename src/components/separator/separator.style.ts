@@ -151,5 +151,5 @@ export const useSeparatorStyle = createVariants({
   },
 })
 
-export type SeparatorStyleSlots = typeof useSeparatorStyle['slots']
+export type SeparatorStyleSlots = (typeof useSeparatorStyle)['slots']
 export type SeparatorStyleProps = VariantProps<typeof useSeparatorStyle>

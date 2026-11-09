@@ -27,9 +27,6 @@ const items = ref<TagGroupItem[]>([
 
 <template>
   <div class="max-w-sm w-full">
-    <TagGroup
-      selection-mode="multiple"
-      :items="items"
-    />
+    <TagGroup selection-mode="multiple" :items="items" />
   </div>
 </template>

@@ -28,11 +28,7 @@ function onFormSubmit(values: { volume: number[] }) {
       :schema="schema"
       @form-submit="onFormSubmit"
     >
-      <FormField
-        v-slot="{ field }"
-        name="volume"
-        label="Volume"
-      >
+      <FormField v-slot="{ field }" name="volume" label="Volume">
         <Slider
           :model-value="field.state.value"
           show-steps
@@ -40,9 +36,7 @@ function onFormSubmit(values: { volume: number[] }) {
           @update:model-value="field.api.handleChange"
         />
       </FormField>
-      <Button type="submit">
-        Submit
-      </Button>
+      <Button type="submit"> Submit </Button>
     </Form>
   </TooltipProvider>
 </template>

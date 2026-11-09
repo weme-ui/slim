@@ -1,6 +1,6 @@
 import type { IconifyIconProps } from '@iconify/vue'
-import type { InputStyleProps, InputStyleSlots } from './input.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { InputStyleProps, InputStyleSlots } from './input.style'
 
 type InputValue = string | number | null | undefined
 
@@ -40,8 +40,8 @@ export interface InputProps extends FormFieldSharedProps {
 
 export interface InputEmits {
   'update:modelValue': [value: InputValue]
-  'enter': [value: InputValue]
-  'change': [value: InputValue]
-  'focus': [event: FocusEvent]
-  'blur': [event: FocusEvent]
+  enter: [value: InputValue]
+  change: [value: InputValue]
+  focus: [event: FocusEvent]
+  blur: [event: FocusEvent]
 }

@@ -6,8 +6,6 @@ import Switch from '../switch.vue'
   <div class="flex flex-col gap-3 max-w-sm w-full">
     <Switch />
 
-    <Switch
-      inverted
-    />
+    <Switch inverted />
   </div>
 </template>

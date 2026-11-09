@@ -83,9 +83,7 @@ defineProps<{
 
     <div v-else-if="name === 'number-input'" class="g-input g-number">
       <i class="g-bar is-md" />
-      <span class="g-stepper">
-        <span /><span />
-      </span>
+      <span class="g-stepper"> <span /><span /> </span>
     </div>
 
     <div v-else-if="name === 'password-input'" class="g-input g-password">
@@ -254,9 +252,7 @@ defineProps<{
       <div class="g-row">
         <i class="g-bar is-md" />
       </div>
-      <div class="g-row g-cells">
-        <span /><span /><span />
-      </div>
+      <div class="g-row g-cells"><span /><span /><span /></div>
     </div>
 
     <div v-else-if="name === 'avatar'" class="g-root g-avatar">
@@ -281,9 +277,7 @@ defineProps<{
         <i class="g-preview-sun" />
         <i class="g-preview-hill" />
       </span>
-      <span class="g-preview-thumbs">
-        <i /><i class="is-on" /><i />
-      </span>
+      <span class="g-preview-thumbs"> <i /><i class="is-on" /><i /> </span>
     </div>
 
     <div v-else-if="name === 'icon'" class="g-icon">

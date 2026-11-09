@@ -9,8 +9,5 @@ const ui = computed(() => useSkeletonStyle({ variant: props.variant }))
 </script>
 
 <template>
-  <div
-    :data-slot="$attrs['data-slot'] || `skeleton-${variant}`"
-    :class="cn(ui, props.class)"
-  />
+  <div :data-slot="$attrs['data-slot'] || `skeleton-${variant}`" :class="cn(ui, props.class)" />
 </template>

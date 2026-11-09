@@ -87,5 +87,5 @@ export const useTextareaStyle = createVariants({
   },
 })
 
-export type TextareaStyleSlots = typeof useTextareaStyle['slots']
+export type TextareaStyleSlots = (typeof useTextareaStyle)['slots']
 export type TextareaStyleProps = VariantProps<typeof useTextareaStyle>

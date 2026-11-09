@@ -5,7 +5,7 @@ import { computed } from 'vue'
 import { cn } from '~/utils/styles'
 
 const props = withDefaults(defineProps<NavigationMenuListProps>(), { as: 'ul' })
-const classNames = computed(() => props.isSubmenu ? 'pl-6' : 'py-1')
+const classNames = computed(() => (props.isSubmenu ? 'pl-6' : 'py-1'))
 </script>
 
 <template>

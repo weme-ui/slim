@@ -12,10 +12,6 @@ const items: ListboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Listbox
-      multiple
-      :items="items"
-      placeholder="Pick fruits…"
-    />
+    <Listbox multiple :items="items" placeholder="Pick fruits…" />
   </div>
 </template>

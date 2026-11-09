@@ -7,10 +7,7 @@ import Form from '../../form/form.vue'
 import TagsInput from '../tags-input.vue'
 
 const schema = v.object({
-  tags: v.pipe(
-    v.array(v.string()),
-    v.minLength(1, '至少加一个标签'),
-  ),
+  tags: v.pipe(v.array(v.string()), v.minLength(1, '至少加一个标签')),
 })
 
 const defaultValues = {
@@ -30,12 +27,7 @@ function onFormSubmit(values: { tags: TagsInputValue[] }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="tags"
-      label="Tags"
-      required
-    >
+    <FormField v-slot="{ field }" name="tags" label="Tags" required>
       <TagsInput
         :model-value="field.state.value"
         placeholder="Add a tag…"
@@ -45,8 +37,6 @@ function onFormSubmit(values: { tags: TagsInputValue[] }) {
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

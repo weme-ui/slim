@@ -1,11 +1,12 @@
 import type { IconifyIconProps } from '@iconify/vue'
 import type { TagsInputRootEmits, TagsInputRootProps } from 'reka-ui'
-import type { TagsInputStyleProps, TagsInputStyleSlots } from './tags-input.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { TagsInputStyleProps, TagsInputStyleSlots } from './tags-input.style'
 
 export type TagsInputValue = string
 
-export interface TagsInputProps extends TagsInputRootProps<TagsInputValue>, Omit<FormFieldSharedProps, 'loading'> {
+export interface TagsInputProps
+  extends TagsInputRootProps<TagsInputValue>, Omit<FormFieldSharedProps, 'loading'> {
   variant?: TagsInputStyleProps['variant']
   size?: TagsInputStyleProps['size']
   prefix?: string

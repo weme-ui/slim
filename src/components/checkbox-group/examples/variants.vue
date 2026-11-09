@@ -10,19 +10,10 @@ const items: CheckboxGroupItem[] = [
 
 <template>
   <div class="flex flex-col gap-6 max-w-sm w-full">
-    <CheckboxGroup
-      variant="soft"
-      :items="items"
-    />
+    <CheckboxGroup variant="soft" :items="items" />
 
-    <CheckboxGroup
-      variant="outline"
-      :items="items"
-    />
+    <CheckboxGroup variant="outline" :items="items" />
 
-    <CheckboxGroup
-      variant="card"
-      :items="items"
-    />
+    <CheckboxGroup variant="card" :items="items" />
   </div>
 </template>

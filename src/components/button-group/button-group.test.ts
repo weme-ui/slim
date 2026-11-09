@@ -61,20 +61,19 @@ describe('button-group', () => {
       const wrapper = mount(ButtonGroup, {
         attachTo: document.body,
         slots: {
-          default: () => [
-            h(Button, { label: 'One' }),
-            h(Button, { label: 'Two' }),
-          ],
+          default: () => [h(Button, { label: 'One' }), h(Button, { label: 'Two' })],
         },
       })
       expect(wrapper.attributes('role')).toBe('group')
       expect(wrapper.attributes('data-slot')).toBe('button-group')
       // role="group" + aria-orientation comes from RovingFocusGroup; axe flags aria-allowed-attr.
-      expect(await axe(wrapper.element, {
-        rules: {
-          'aria-allowed-attr': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'aria-allowed-attr': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })
@@ -85,10 +84,7 @@ describe('button-group', () => {
         attachTo: document.body,
         props: { disabled: true },
         slots: {
-          default: () => [
-            h(Button, { label: 'One' }),
-            h(Button, { label: 'Two' }),
-          ],
+          default: () => [h(Button, { label: 'One' }), h(Button, { label: 'Two' })],
         },
       })
       expect(wrapper.attributes('aria-disabled')).toBe('true')

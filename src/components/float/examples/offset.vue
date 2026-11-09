@@ -16,7 +16,11 @@ import Float from '../float.vue'
     <div class="flex relative">
       <Avatar src="https://github.com/moujinet.png" />
       <Float placement="top-right" offset="-2px">
-        <Icon name="ri:ghost-3-fill" class="text-accent animate-bounce" aria-label="Ghost behind the avatar" />
+        <Icon
+          name="ri:ghost-3-fill"
+          class="text-accent animate-bounce"
+          aria-label="Ghost behind the avatar"
+        />
       </Float>
     </div>
   </div>

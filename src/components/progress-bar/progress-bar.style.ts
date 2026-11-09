@@ -5,7 +5,8 @@ export const useProgressBarStyle = createVariants({
   slots: {
     root: 'flex flex-col relative',
     track: 'rounded-full bg-muted relative overflow-hidden',
-    indicator: 'rounded-inherit h-full transition-[transform,colors] duration-300 ease-out data-[state=indeterminate]:animate-carousel',
+    indicator:
+      'rounded-inherit h-full transition-[transform,colors] duration-300 ease-out data-[state=indeterminate]:animate-carousel',
     caption: 'text-highlighted leading-none font-medium flex flex-y-center justify-between',
     label: '',
     description: 'text-muted',
@@ -64,5 +65,5 @@ export const useProgressBarStyle = createVariants({
   },
 })
 
-export type ProgressBarStyleSlots = typeof useProgressBarStyle['slots']
+export type ProgressBarStyleSlots = (typeof useProgressBarStyle)['slots']
 export type ProgressBarStyleProps = VariantProps<typeof useProgressBarStyle>

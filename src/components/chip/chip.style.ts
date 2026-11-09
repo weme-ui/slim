@@ -26,7 +26,8 @@ export const useChipStyle = createVariants({
     },
     animate: {
       true: {
-        indicatorWrapper: 'relative before:(rounded-full block content-[""] inset-0 abs animate-ping)',
+        indicatorWrapper:
+          'relative before:(rounded-full block content-[""] inset-0 abs animate-ping)',
       },
     },
   },
@@ -37,5 +38,5 @@ export const useChipStyle = createVariants({
   },
 })
 
-export type ChipStyleSlots = typeof useChipStyle['slots']
+export type ChipStyleSlots = (typeof useChipStyle)['slots']
 export type ChipStyleProps = VariantProps<typeof useChipStyle>

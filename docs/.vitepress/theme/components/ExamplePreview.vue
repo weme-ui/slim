@@ -10,10 +10,11 @@ const exampleModules = import.meta.glob<{ default: Component }>(
   '../../../../src/components/**/examples/*.vue',
 )
 
-const exampleSources = import.meta.glob<string>(
-  '../../../../src/components/**/examples/*.vue',
-  { eager: true, query: '?raw', import: 'default' },
-)
+const exampleSources = import.meta.glob<string>('../../../../src/components/**/examples/*.vue', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+})
 
 const highlightedSources = import.meta.glob<string>(
   '../../../../src/components/**/examples/*.vue',
@@ -31,39 +32,31 @@ function resolveKey(modules: Record<string, unknown>) {
 const Example = computed(() => {
   const key = resolveKey(exampleModules)
   const loader = key ? exampleModules[key] : null
-  return loader
-    ? defineAsyncComponent(loader)
-    : null
+  return loader ? defineAsyncComponent(loader) : null
 })
 
 const source = computed(() => {
   const key = resolveKey(exampleSources)
-  return key
-    ? exampleSources[key] || ''
-    : ''
+  return key ? exampleSources[key] || '' : ''
 })
 
 const highlighted = computed(() => {
   const key = resolveKey(highlightedSources)
-  return key
-    ? highlightedSources[key] || ''
-    : ''
+  return key ? highlightedSources[key] || '' : ''
 })
 
 const shortPath = computed(() => props.path.split('/').slice(-2).join('/'))
 const copied = ref(false)
 
 async function copySource() {
-  if (!source.value)
-    return
+  if (!source.value) return
   try {
     await navigator.clipboard.writeText(source.value)
     copied.value = true
     window.setTimeout(() => {
       copied.value = false
     }, 1400)
-  }
-  catch {
+  } catch {
     copied.value = false
   }
 }
@@ -74,9 +67,7 @@ async function copySource() {
     <div class="example-stage">
       <div class="example-stage-body">
         <component :is="Example" v-if="Example" />
-        <p v-else class="example-missing">
-          Example not found: {{ path }}
-        </p>
+        <p v-else class="example-missing">Example not found: {{ path }}</p>
       </div>
     </div>
 

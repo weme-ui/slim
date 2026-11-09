@@ -4,10 +4,6 @@ import Checkbox from '../checkbox.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Checkbox
-      unstyled
-      label="Custom styled"
-      class="inline-flex gap-2 items-center"
-    />
+    <Checkbox unstyled label="Custom styled" class="inline-flex gap-2 items-center" />
   </div>
 </template>

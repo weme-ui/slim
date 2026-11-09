@@ -1,12 +1,7 @@
 <script lang="ts" setup>
 import AvatarGroup from '../avatar-group.vue'
 
-const items = [
-  { fallback: 'A' },
-  { fallback: 'B' },
-  { fallback: 'C' },
-  { fallback: 'D' },
-]
+const items = [{ fallback: 'A' }, { fallback: 'B' }, { fallback: 'C' }, { fallback: 'D' }]
 </script>
 
 <template>

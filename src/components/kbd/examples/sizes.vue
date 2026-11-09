@@ -6,11 +6,6 @@ const sizes = ['sm', 'md', 'lg'] as const
 
 <template>
   <div class="flex gap-3 items-center">
-    <Kbd
-      v-for="size in sizes"
-      :key="size"
-      :size="size"
-      value="shift"
-    />
+    <Kbd v-for="size in sizes" :key="size" :size="size" value="shift" />
   </div>
 </template>

@@ -26,10 +26,18 @@ describe('icon-tile', () => {
   it('applies color and variant compound classes', () => {
     expect(useIconTileStyle({ color: 'accent', variant: 'solid' }).root()).toContain('plain-accent')
     expect(useIconTileStyle({ color: 'info', variant: 'soft' }).root()).toContain('plain-info-soft')
-    expect(useIconTileStyle({ color: 'success', variant: 'elevated' }).root()).toContain('plain-success-elevated')
-    expect(useIconTileStyle({ color: 'warning', variant: 'outline' }).root()).toContain('plain-warning-outline')
-    expect(useIconTileStyle({ color: 'error', variant: 'frame' }).root()).toContain('plain-error-frame')
-    expect(useIconTileStyle({ color: 'neutral', variant: 'inverse' }).root()).toContain('plain-neutral-inverse')
+    expect(useIconTileStyle({ color: 'success', variant: 'elevated' }).root()).toContain(
+      'plain-success-elevated',
+    )
+    expect(useIconTileStyle({ color: 'warning', variant: 'outline' }).root()).toContain(
+      'plain-warning-outline',
+    )
+    expect(useIconTileStyle({ color: 'error', variant: 'frame' }).root()).toContain(
+      'plain-error-frame',
+    )
+    expect(useIconTileStyle({ color: 'neutral', variant: 'inverse' }).root()).toContain(
+      'plain-neutral-inverse',
+    )
   })
 
   it('skips surface classes when unstyled is true', () => {

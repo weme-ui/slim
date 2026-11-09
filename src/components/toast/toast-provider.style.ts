@@ -16,10 +16,10 @@ export const useToastProviderStyle = createVariants({
   variants: {
     side: {
       'top-left': {},
-      'top': {},
+      top: {},
       'top-right': {},
       'bottom-right': {},
-      'bottom': {},
+      bottom: {},
       'bottom-left': {},
     },
     swipe: {
@@ -46,20 +46,32 @@ export const useToastProviderStyle = createVariants({
 
     {
       side: ['top', 'top-left', 'top-right'],
-      class: { root: 'top-4', toast: 'top-0 data-[state=open]:animate-(slide-in-down duration-150 ease-in-out)' },
+      class: {
+        root: 'top-4',
+        toast: 'top-0 data-[state=open]:animate-(slide-in-down duration-150 ease-in-out)',
+      },
     },
     {
       side: ['bottom', 'bottom-left', 'bottom-right'],
-      class: { root: 'bottom-4', toast: 'bottom-0 data-[state=open]:animate-(slide-in-up duration-150 ease-in-out)' },
+      class: {
+        root: 'bottom-4',
+        toast: 'bottom-0 data-[state=open]:animate-(slide-in-up duration-150 ease-in-out)',
+      },
     },
 
     {
       swipe: ['left', 'right'],
-      class: { toast: 'data-[swipe=move]:translate-x-$reka-toast-swipe-move-x data-[swipe=end]:translate-x-$reka-toast-swipe-end-x data-[swipe=cancel]:translate-x-0' },
+      class: {
+        toast:
+          'data-[swipe=move]:translate-x-$reka-toast-swipe-move-x data-[swipe=end]:translate-x-$reka-toast-swipe-end-x data-[swipe=cancel]:translate-x-0',
+      },
     },
     {
       swipe: ['up', 'down'],
-      class: { toast: 'data-[swipe=move]:translate-y-$reka-toast-swipe-move-y data-[swipe=end]:translate-y-$reka-toast-swipe-end-y data-[swipe=cancel]:translate-y-0' },
+      class: {
+        toast:
+          'data-[swipe=move]:translate-y-$reka-toast-swipe-move-y data-[swipe=end]:translate-y-$reka-toast-swipe-end-y data-[swipe=cancel]:translate-y-0',
+      },
     },
   ],
 
@@ -68,5 +80,5 @@ export const useToastProviderStyle = createVariants({
   },
 })
 
-export type ToastProviderStyleSlots = typeof useToastProviderStyle['slots']
+export type ToastProviderStyleSlots = (typeof useToastProviderStyle)['slots']
 export type ToastProviderStyleProps = VariantProps<typeof useToastProviderStyle>

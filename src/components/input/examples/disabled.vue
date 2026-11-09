@@ -4,9 +4,6 @@ import Input from '../input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Input
-      disabled
-      placeholder="Disabled"
-    />
+    <Input disabled placeholder="Disabled" />
   </div>
 </template>

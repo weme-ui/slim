@@ -55,8 +55,10 @@ export const useRadioGroupStyle = createVariants({
     inverted: { true: {} },
     unstyled: {
       false: {
-        indicator: 'rounded-full data-[state=checked]:bg-accent data-[state=unchecked]:bg-muted hover:data-[state=unchecked]:bg-elevated',
-        indicatorIcon: 'rounded-inherit shadow-xs origin-center scale-0 data-[state=checked]:scale-100',
+        indicator:
+          'rounded-full data-[state=checked]:bg-accent data-[state=unchecked]:bg-muted hover:data-[state=unchecked]:bg-elevated',
+        indicatorIcon:
+          'rounded-inherit shadow-xs origin-center scale-0 data-[state=checked]:scale-100',
         content: 'text-foreground data-[state=checked]:text-highlighted',
         description: 'text-subtle',
       },
@@ -65,12 +67,7 @@ export const useRadioGroupStyle = createVariants({
 
   compoundSlots: [
     {
-      slots: [
-        'root',
-        'indicator',
-        'indicatorIcon',
-        'label',
-      ],
+      slots: ['root', 'indicator', 'indicatorIcon', 'label'],
       unstyled: false,
       class: 'transition duration-200',
     },
@@ -131,5 +128,5 @@ export const useRadioGroupStyle = createVariants({
   },
 })
 
-export type RadioGroupStyleSlots = typeof useRadioGroupStyle['slots']
+export type RadioGroupStyleSlots = (typeof useRadioGroupStyle)['slots']
 export type RadioGroupStyleProps = VariantProps<typeof useRadioGroupStyle>

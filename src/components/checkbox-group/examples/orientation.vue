@@ -11,14 +11,8 @@ const items: CheckboxGroupItem[] = [
 
 <template>
   <div class="flex flex-col gap-6 max-w-md w-full">
-    <CheckboxGroup
-      orientation="vertical"
-      :items="items"
-    />
+    <CheckboxGroup orientation="vertical" :items="items" />
 
-    <CheckboxGroup
-      orientation="horizontal"
-      :items="items"
-    />
+    <CheckboxGroup orientation="horizontal" :items="items" />
   </div>
 </template>

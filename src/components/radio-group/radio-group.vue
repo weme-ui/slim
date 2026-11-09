@@ -2,7 +2,14 @@
 import type { AcceptableValue } from 'reka-ui'
 import type { RadioGroupEmits, RadioGroupProps } from './radio-group.props'
 import { reactivePick } from '@vueuse/core'
-import { RadioGroupIndicator, RadioGroupItem, RadioGroupRoot, useForwardExpose, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
+import {
+  RadioGroupIndicator,
+  RadioGroupItem,
+  RadioGroupRoot,
+  useForwardExpose,
+  useForwardPropsEmits,
+  VisuallyHidden,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -17,17 +24,18 @@ const props = withDefaults(defineProps<RadioGroupProps>(), {
 })
 
 const emits = defineEmits<RadioGroupEmits>()
-const delegated = reactivePick(props, 'as', 'defaultValue', 'dir', 'loop', 'modelValue', 'orientation')
+const delegated = reactivePick(
+  props,
+  'as',
+  'defaultValue',
+  'dir',
+  'loop',
+  'modelValue',
+  'orientation',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const {
-  id,
-  name,
-  bindings,
-  disabled,
-  dataAttributes,
-  registerControl,
-} = useFormFieldControl(props)
+const { id, name, bindings, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 const modelValue = computed(() => props.modelValue)
 
@@ -51,19 +59,19 @@ onUnmounted(() => {
   unregister?.()
 })
 
-const ui = computed(() => useRadioGroupStyle({
-  variant: props.variant,
-  size: props.size,
-  orientation: props.orientation,
-  disabled: disabled.value,
-  inverted: toBoolValue(props.inverted),
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useRadioGroupStyle({
+    variant: props.variant,
+    size: props.size,
+    orientation: props.orientation,
+    disabled: disabled.value,
+    inverted: toBoolValue(props.inverted),
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 function getState(checked: boolean) {
-  return checked
-    ? 'checked'
-    : 'unchecked'
+  return checked ? 'checked' : 'unchecked'
 }
 
 function handleUpdate(value: AcceptableValue) {
@@ -94,27 +102,43 @@ function handleUpdate(value: AcceptableValue) {
         :disabled="item.disabled"
         :class="cn(ui.item(), props.ui?.item, item.class)"
       >
-        <div v-if="indicator === 'start'" :data-state="getState(checked)" :class="cn(ui.indicator(), props.ui?.indicator)">
+        <div
+          v-if="indicator === 'start'"
+          :data-state="getState(checked)"
+          :class="cn(ui.indicator(), props.ui?.indicator)"
+        >
           <RadioGroupIndicator force-mount :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)">
             <slot name="indicator" :state="getState(checked)" />
           </RadioGroupIndicator>
         </div>
 
-        <div v-if="hasContent || item.label || item.description" :data-state="getState(checked)" :class="cn(ui.content(), props.ui?.content)">
+        <div
+          v-if="hasContent || item.label || item.description"
+          :data-state="getState(checked)"
+          :class="cn(ui.content(), props.ui?.content)"
+        >
           <slot v-if="hasLabel || item.label" name="label" :state="getState(checked)">
             <span :class="cn(ui.label(), props.ui?.label)">
               {{ item.label }}
             </span>
           </slot>
 
-          <slot v-if="hasDescription || item.description" name="description" :state="getState(checked)">
+          <slot
+            v-if="hasDescription || item.description"
+            name="description"
+            :state="getState(checked)"
+          >
             <p :class="cn(ui.description(), props.ui?.description)">
               {{ item.description }}
             </p>
           </slot>
         </div>
 
-        <div v-if="indicator === 'end'" :data-state="getState(checked)" :class="cn(ui.indicator(), props.ui?.indicator)">
+        <div
+          v-if="indicator === 'end'"
+          :data-state="getState(checked)"
+          :class="cn(ui.indicator(), props.ui?.indicator)"
+        >
           <RadioGroupIndicator force-mount :class="cn(ui.indicatorIcon(), props.ui?.indicatorIcon)">
             <slot name="indicator" :state="getState(checked)" />
           </RadioGroupIndicator>

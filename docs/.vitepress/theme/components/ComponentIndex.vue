@@ -9,9 +9,7 @@ const items = getComponentItems()
 <template>
   <div class="component-index">
     <header class="index-hero">
-      <p class="index-kicker">
-        Slim
-      </p>
+      <p class="index-kicker">Slim</p>
       <h1>Re-usable UI components with Reka UI and UnoCSS.</h1>
       <p class="index-lead">
         A compact catalog of primitives. Each sketch is CSS — click through for usage and API.

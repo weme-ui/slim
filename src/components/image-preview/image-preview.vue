@@ -18,7 +18,16 @@ const props = withDefaults(defineProps<ImagePreviewProps>(), {
 })
 
 const emits = defineEmits<ImagePreviewEmits>()
-const imageProps = reactivePick(props, 'fit', 'fallbackSrc', 'fallbackDelayMs', 'alt', 'loading', 'referrerPolicy', 'crossOrigin')
+const imageProps = reactivePick(
+  props,
+  'fit',
+  'fallbackSrc',
+  'fallbackDelayMs',
+  'alt',
+  'loading',
+  'referrerPolicy',
+  'crossOrigin',
+)
 
 const open = ref(false)
 
@@ -44,9 +53,7 @@ watch(
     scrollLocked.value = value
 
     if (value && previewImage.value === null) {
-      previewImage.value = previews.value.length > 0
-        ? previews.value[0].src
-        : props.src
+      previewImage.value = previews.value.length > 0 ? previews.value[0].src : props.src
     }
   },
   { immediate: true },
@@ -61,8 +68,7 @@ function handlePreviewImageLoad(state: ImageLoadingStatus) {
 }
 
 function handleOpenChange(value: boolean) {
-  if (props.disabled)
-    return
+  if (props.disabled) return
 
   open.value = value
   emits('update:open', value)

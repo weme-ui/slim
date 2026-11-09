@@ -1,7 +1,16 @@
 <script lang="ts" setup>
 import type { TagsInputEmits, TagsInputProps } from './tags-input.props'
 import { reactiveOmit } from '@vueuse/core'
-import { TagsInputClear, TagsInputInput, TagsInputItem, TagsInputItemDelete, TagsInputItemText, TagsInputRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
+import {
+  TagsInputClear,
+  TagsInputInput,
+  TagsInputItem,
+  TagsInputItemDelete,
+  TagsInputItemText,
+  TagsInputRoot,
+  useForwardExpose,
+  useForwardPropsEmits,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -16,7 +25,21 @@ const props = withDefaults(defineProps<TagsInputProps>(), {
 })
 
 const emits = defineEmits<TagsInputEmits>()
-const delegated = reactiveOmit(props, 'variant', 'size', 'prefix', 'prefixIcon', 'clearIcon', 'clearable', 'unstyled', 'class', 'ui', 'required', 'disabled', 'invalid')
+const delegated = reactiveOmit(
+  props,
+  'variant',
+  'size',
+  'prefix',
+  'prefixIcon',
+  'clearIcon',
+  'clearable',
+  'unstyled',
+  'class',
+  'ui',
+  'required',
+  'disabled',
+  'invalid',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const {
@@ -38,14 +61,16 @@ const slots = useSlots()
 const hasPrefix = computed(() => !!props.prefix || !!props.prefixIcon || !!slots.prefix)
 const hasClean = computed(() => !disabled.value && props.clearable && inputValue.value.length > 0)
 
-const ui = computed(() => useTagsInputStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-  hasPrefix: hasPrefix.value,
-}))
+const ui = computed(() =>
+  useTagsInputStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+    hasPrefix: hasPrefix.value,
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -62,15 +87,13 @@ onUnmounted(() => {
 })
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }
@@ -85,7 +108,11 @@ function handleBlur(e: FocusEvent) {
   >
     <span v-if="hasPrefix" :class="cn(ui.prefix(), props.ui?.prefix)">
       <slot name="prefix">
-        <Icon v-if="prefixIcon" :name="prefixIcon" :class="cn(ui.prefixIcon(), props.ui?.prefixIcon)" />
+        <Icon
+          v-if="prefixIcon"
+          :name="prefixIcon"
+          :class="cn(ui.prefixIcon(), props.ui?.prefixIcon)"
+        />
         <template v-else>{{ prefix }}</template>
       </slot>
     </span>

@@ -1,7 +1,14 @@
 <script lang="ts" generic="T extends boolean = boolean" setup>
 import type { CheckboxEmits, CheckboxProps } from './checkbox.props'
 import { reactiveOmit } from '@vueuse/core'
-import { CheckboxIndicator, CheckboxRoot, Label, useForwardExpose, useForwardPropsEmits, VisuallyHidden } from 'reka-ui'
+import {
+  CheckboxIndicator,
+  CheckboxRoot,
+  Label,
+  useForwardExpose,
+  useForwardPropsEmits,
+  VisuallyHidden,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -23,16 +30,25 @@ const props = withDefaults(defineProps<CheckboxProps<T>>(), {
 })
 
 const emits = defineEmits<CheckboxEmits<T>>()
-const delegated = reactiveOmit(props, 'variant', 'size', 'align', 'indicator', 'checkedIcon', 'indeterminateIcon', 'checkedIconClass', 'indeterminateIconClass', 'label', 'description', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'variant',
+  'size',
+  'align',
+  'indicator',
+  'checkedIcon',
+  'indeterminateIcon',
+  'checkedIconClass',
+  'indeterminateIconClass',
+  'label',
+  'description',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const {
-  bindings,
-  id,
-  disabled,
-  dataAttributes,
-  registerControl,
-} = useFormFieldControl(props)
+const { bindings, id, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 const modelValue = computed(() => props.modelValue)
 
@@ -45,8 +61,7 @@ const hasContent = computed(() => hasLabel.value || hasDescription.value)
 let unregister: (() => void) | undefined
 
 onMounted(() => {
-  if (props.inGroup)
-    return
+  if (props.inGroup) return
 
   unregister = registerControl({
     id: () => id.value,
@@ -59,21 +74,19 @@ onUnmounted(() => {
   unregister?.()
 })
 
-const ui = computed(() => useCheckboxStyle({
-  variant: props.variant,
-  size: props.size,
-  align: props.align,
-  disabled: disabled.value,
-  unstyled: toBoolValue(props.unstyled),
-  inverted: toBoolValue(props.inverted),
-}))
+const ui = computed(() =>
+  useCheckboxStyle({
+    variant: props.variant,
+    size: props.size,
+    align: props.align,
+    disabled: disabled.value,
+    unstyled: toBoolValue(props.unstyled),
+    inverted: toBoolValue(props.inverted),
+  }),
+)
 
 function getState(checked: boolean | 'indeterminate') {
-  return checked === 'indeterminate'
-    ? 'indeterminate'
-    : checked
-      ? 'checked'
-      : 'unchecked'
+  return checked === 'indeterminate' ? 'indeterminate' : checked ? 'checked' : 'unchecked'
 }
 
 function handleUpdate(value: boolean | 'indeterminate') {
@@ -104,17 +117,23 @@ function handleUpdate(value: boolean | 'indeterminate') {
         <slot name="indicator" :state="getState(state)">
           <Icon
             :name="state === 'indeterminate' ? indeterminateIcon : checkedIcon"
-            :class="cn(
-              state === 'indeterminate' ? ui.indeterminateIcon() : ui.checkedIcon(),
-              state === 'indeterminate' ? props.ui?.indeterminateIcon : props.ui?.checkedIcon,
-              state === 'indeterminate' ? props.indeterminateIconClass : props.checkedIconClass,
-            )"
+            :class="
+              cn(
+                state === 'indeterminate' ? ui.indeterminateIcon() : ui.checkedIcon(),
+                state === 'indeterminate' ? props.ui?.indeterminateIcon : props.ui?.checkedIcon,
+                state === 'indeterminate' ? props.indeterminateIconClass : props.checkedIconClass,
+              )
+            "
           />
         </slot>
       </CheckboxIndicator>
     </div>
 
-    <div v-if="hasContent" :data-state="getState(state)" :class="cn(ui.content(), props.ui?.content)">
+    <div
+      v-if="hasContent"
+      :data-state="getState(state)"
+      :class="cn(ui.content(), props.ui?.content)"
+    >
       <slot v-if="hasLabel" name="label" :state="getState(state)">
         <Label
           :as="inGroup !== false ? 'span' : 'label'"
@@ -141,11 +160,13 @@ function handleUpdate(value: boolean | 'indeterminate') {
         <slot name="indicator" :state="getState(state)">
           <Icon
             :name="state === 'indeterminate' ? indeterminateIcon : checkedIcon"
-            :class="cn(
-              state === 'indeterminate' ? ui.indeterminateIcon() : ui.checkedIcon(),
-              state === 'indeterminate' ? props.ui?.indeterminateIcon : props.ui?.checkedIcon,
-              state === 'indeterminate' ? props.indeterminateIconClass : props.checkedIconClass,
-            )"
+            :class="
+              cn(
+                state === 'indeterminate' ? ui.indeterminateIcon() : ui.checkedIcon(),
+                state === 'indeterminate' ? props.ui?.indeterminateIcon : props.ui?.checkedIcon,
+                state === 'indeterminate' ? props.indeterminateIconClass : props.checkedIconClass,
+              )
+            "
           />
         </slot>
       </CheckboxIndicator>

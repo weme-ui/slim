@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ComputedRef } from 'vue'
-import type { FormFieldProps } from './form-field.props'
 import type { FormFieldContextValue } from '~/composables/use-form-field-context'
+import type { FormFieldProps } from './form-field.props'
 import { Label, Presence, Primitive, useForwardExpose, useId } from 'reka-ui'
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, toRefs, useSlots } from 'vue'
 import { useFormContext, useFormField } from '~/composables/use-form-context'
@@ -12,7 +12,8 @@ import { useFormFieldStyle } from './form-field.style'
 
 type FormFieldControlRegistration = Parameters<FormFieldContextValue['registryControl']>[0]
 type FormFieldControlDetail = Parameters<FormFieldContextValue['handleControlBlur']>[0]
-type FormFieldDataAttributes = FormFieldContextValue['dataAttributes'] extends ComputedRef<infer T> ? T : never
+type FormFieldDataAttributes =
+  FormFieldContextValue['dataAttributes'] extends ComputedRef<infer T> ? T : never
 
 const props = withDefaults(defineProps<FormFieldProps>(), {
   orientation: 'vertical',
@@ -34,21 +35,10 @@ const hasHelp = computed(() => !!props.help || !!slots.help)
 
 const fallbackId = useId(undefined, 'field')
 const fieldId = computed(() => fallbackId)
-const labelId = computed(() => hasLabel.value
-  ? `${fieldId.value}-label`
-  : undefined)
-const descriptionId = computed(() => hasDescription.value
-  ? `${fieldId.value}-desc`
-  : undefined)
+const labelId = computed(() => (hasLabel.value ? `${fieldId.value}-label` : undefined))
+const descriptionId = computed(() => (hasDescription.value ? `${fieldId.value}-desc` : undefined))
 
-const {
-  name,
-  disabled,
-  required,
-  invalid,
-  loading,
-  orientation,
-} = toRefs(props)
+const { name, disabled, required, invalid, loading, orientation } = toRefs(props)
 
 const field = useFormField({
   name: name.value,
@@ -74,21 +64,20 @@ const dataAttributes = computed<FormFieldDataAttributes>(() => ({
   'data-focused': toBoolDataAttrValue(isFocused.value),
 }))
 
-const ui = computed(() => useFormFieldStyle({
-  orientation: props.orientation,
-  loading: isLoading.value,
-  disabled: isDisabled.value,
-}))
+const ui = computed(() =>
+  useFormFieldStyle({
+    orientation: props.orientation,
+    loading: isLoading.value,
+    disabled: isDisabled.value,
+  }),
+)
 
 const control = shallowRef<FormFieldControlRegistration>()
 const lastReportedValue = ref<unknown>(undefined)
 
 function resolveValue(detail?: FormFieldControlDetail) {
-  if (detail)
-    return detail.value
-  return control.value
-    ? control.value.getValue()
-    : lastReportedValue.value
+  if (detail) return detail.value
+  return control.value ? control.value.getValue() : lastReportedValue.value
 }
 
 function isFilledValue(value: unknown): boolean {
@@ -99,19 +88,15 @@ function isFilledValue(value: unknown): boolean {
 }
 
 function setFocused(value: boolean) {
-  if (isDisabled.value || isLoading.value)
-    return
+  if (isDisabled.value || isLoading.value) return
 
-  if (value !== isFocused.value)
-    isFocused.value = value
+  if (value !== isFocused.value) isFocused.value = value
 }
 
 function handleLabelClick(event: MouseEvent) {
-  if (props.nativeLabel)
-    return
+  if (props.nativeLabel) return
 
-  if ((event.target as HTMLElement | null)?.closest('button,input,select,textarea'))
-    return
+  if ((event.target as HTMLElement | null)?.closest('button,input,select,textarea')) return
 
   focusControl()
 }
@@ -121,8 +106,7 @@ function handleControlFocus() {
 }
 
 function handleControlBlur(detail?: FormFieldControlDetail) {
-  if (detail)
-    lastReportedValue.value = detail.value
+  if (detail) lastReportedValue.value = detail.value
 
   setFocused(false)
 }
@@ -131,8 +115,7 @@ function registryControl(registration: FormFieldControlRegistration) {
   control.value = registration
 
   return () => {
-    if (control.value === registration)
-      control.value = undefined
+    if (control.value === registration) control.value = undefined
   }
 }
 
@@ -211,7 +194,11 @@ useForwardExpose()
           :for="nativeLabel ? getControlId() : undefined"
           :class="cn(ui.label(), props.ui?.label)"
           @click="handleLabelClick"
-          @pointerdown="(event: PointerEvent) => { if (!nativeLabel) event.preventDefault() }"
+          @pointerdown="
+            (event: PointerEvent) => {
+              if (!nativeLabel) event.preventDefault()
+            }
+          "
         >
           <slot name="label">
             {{ label }}
@@ -225,7 +212,11 @@ useForwardExpose()
         </span>
       </div>
 
-      <p v-if="hasDescription" :id="descriptionId" :class="cn(ui.description(), props.ui?.description)">
+      <p
+        v-if="hasDescription"
+        :id="descriptionId"
+        :class="cn(ui.description(), props.ui?.description)"
+      >
         <slot name="description">
           {{ description }}
         </slot>

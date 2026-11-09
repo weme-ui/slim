@@ -40,9 +40,7 @@ const multi = useGroupItems<string, true>(
       { type: 'label', label: 'Fruit', value: 'fruit-label' },
       { label: 'Apple', value: 'apple' },
     ],
-    [
-      { label: 'Carrot', value: 'carrot' },
-    ],
+    [{ label: 'Carrot', value: 'carrot' }],
   ],
   selectedMany,
 )

@@ -12,10 +12,6 @@ const items: ComboboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Combobox
-      multiple
-      :items="items"
-      placeholder="Pick fruits…"
-    />
+    <Combobox multiple :items="items" placeholder="Pick fruits…" />
   </div>
 </template>

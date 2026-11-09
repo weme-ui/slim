@@ -6,10 +6,7 @@ import Slider from '../slider.vue'
 <template>
   <TooltipProvider>
     <div class="max-w-sm w-full">
-      <Slider
-        show-marks
-        :default-value="[40]"
-      />
+      <Slider show-marks :default-value="[40]" />
     </div>
   </TooltipProvider>
 </template>

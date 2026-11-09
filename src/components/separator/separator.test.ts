@@ -37,8 +37,12 @@ describe('separator', () => {
 
   it('applies color compound classes for border variants', () => {
     expect(useSeparatorStyle({ color: 'base', variant: 'solid' }).line()).toContain('b-base')
-    expect(useSeparatorStyle({ color: 'elevated', variant: 'dashed' }).line()).toContain('b-elevated')
-    expect(useSeparatorStyle({ color: 'inverted', variant: 'dotted' }).line()).toContain('b-inverted')
+    expect(useSeparatorStyle({ color: 'elevated', variant: 'dashed' }).line()).toContain(
+      'b-elevated',
+    )
+    expect(useSeparatorStyle({ color: 'inverted', variant: 'dotted' }).line()).toContain(
+      'b-inverted',
+    )
   })
 
   it('applies gradient variant classes', () => {
@@ -48,28 +52,36 @@ describe('separator', () => {
     expect(none.line()).toContain('via-border-base')
     expect(none.line()).toContain('bg-linear-to-r')
 
-    expect(useSeparatorStyle({
-      color: 'elevated',
-      variant: 'gradient',
-      labelPosition: 'none',
-    }).line()).toContain('via-border-elevated')
+    expect(
+      useSeparatorStyle({
+        color: 'elevated',
+        variant: 'gradient',
+        labelPosition: 'none',
+      }).line(),
+    ).toContain('via-border-elevated')
 
-    expect(useSeparatorStyle({
-      color: 'base',
-      variant: 'gradient',
-      labelPosition: 'start',
-    }).line()).toContain('from-border-base')
+    expect(
+      useSeparatorStyle({
+        color: 'base',
+        variant: 'gradient',
+        labelPosition: 'start',
+      }).line(),
+    ).toContain('from-border-base')
 
-    expect(useSeparatorStyle({
-      color: 'inverted',
-      variant: 'gradient',
-      labelPosition: 'end',
-    }).line()).toContain('to-border-inverted')
+    expect(
+      useSeparatorStyle({
+        color: 'inverted',
+        variant: 'gradient',
+        labelPosition: 'end',
+      }).line(),
+    ).toContain('to-border-inverted')
 
-    expect(useSeparatorStyle({
-      orientation: 'vertical',
-      variant: 'gradient',
-    }).line()).toContain('bg-linear-to-b')
+    expect(
+      useSeparatorStyle({
+        orientation: 'vertical',
+        variant: 'gradient',
+      }).line(),
+    ).toContain('bg-linear-to-b')
   })
 
   it('applies label position layout classes', () => {

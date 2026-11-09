@@ -2,7 +2,9 @@ import type { StandardSchemaV1 } from '@tanstack/vue-form'
 import type { PrimitiveProps } from 'reka-ui'
 import type { FormValidationMode } from '~/composables/use-form-context'
 
-export interface FormProps<TData extends Record<string, any> = Record<string, any>> extends PrimitiveProps {
+export interface FormProps<
+  TData extends Record<string, any> = Record<string, any>,
+> extends PrimitiveProps {
   defaultValues: TData
   schema?: StandardSchemaV1<TData, TData>
   validationMode?: FormValidationMode
@@ -21,8 +23,7 @@ export function formValidators<TData>(
   schema: StandardSchemaV1<TData, TData> | undefined,
   mode: FormValidationMode,
 ) {
-  if (!schema)
-    return undefined
+  if (!schema) return undefined
 
   switch (mode) {
     case 'onChange':

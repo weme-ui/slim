@@ -1,7 +1,14 @@
 <script lang="ts" setup>
 import type { NumberInputEmits, NumberInputProps } from './number-input.props'
 import { reactiveOmit } from '@vueuse/core'
-import { NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput, NumberFieldRoot, useForwardExpose, useForwardProps } from 'reka-ui'
+import {
+  NumberFieldDecrement,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldRoot,
+  useForwardExpose,
+  useForwardProps,
+} from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { toBoolValue } from '~/utils/props'
@@ -21,7 +28,23 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
 })
 
 const emits = defineEmits<NumberInputEmits>()
-const delegated = reactiveOmit(props, 'id', 'name', 'required', 'disabled', 'readonly', 'invalid', 'variant', 'size', 'decrementIcon', 'incrementIcon', 'placeholder', 'unstyled', 'class', 'ui')
+const delegated = reactiveOmit(
+  props,
+  'id',
+  'name',
+  'required',
+  'disabled',
+  'readonly',
+  'invalid',
+  'variant',
+  'size',
+  'decrementIcon',
+  'incrementIcon',
+  'placeholder',
+  'unstyled',
+  'class',
+  'ui',
+)
 const forwarded = useForwardProps(delegated)
 
 const {
@@ -41,13 +64,15 @@ const { forwardRef, currentElement } = useForwardExpose()
 
 const modelValue = computed(() => props.modelValue)
 
-const ui = computed(() => useNumberInputStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  invalid: invalid.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useNumberInputStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    invalid: invalid.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 let unregister: (() => void) | undefined
 
@@ -66,22 +91,19 @@ onUnmounted(() => {
 function handleUpdate(value: number | undefined) {
   emits('update:modelValue', value)
 
-  if (value === undefined)
-    return
+  if (value === undefined) return
 
   emits('change', value)
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }

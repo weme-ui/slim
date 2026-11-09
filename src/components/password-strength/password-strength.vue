@@ -21,10 +21,12 @@ const { options, checkPassword } = usePasswordStrength({
 
 const strength = computed(() => checkPassword(props.password ?? ''))
 
-const ui = computed(() => usePasswordStrengthStyle({
-  size: props.size,
-  unstyled: props.unstyled,
-}))
+const ui = computed(() =>
+  usePasswordStrengthStyle({
+    size: props.size,
+    unstyled: props.unstyled,
+  }),
+)
 </script>
 
 <template>
@@ -43,14 +45,23 @@ const ui = computed(() => usePasswordStrengthStyle({
           :key="`${key}`"
           role="presentation"
           :aria-valuenow="key"
-          :class="cn(
-            ui.indicator({ strength: strength && strength.diversity >= index ? strength.key : undefined }),
-            props.ui?.indicator,
-          )"
+          :class="
+            cn(
+              ui.indicator({
+                strength: strength && strength.diversity >= index ? strength.key : undefined,
+              }),
+              props.ui?.indicator,
+            )
+          "
         />
       </div>
 
-      <div v-if="showMessage" role="status" :aria-label="strength.message" :class="cn(ui.message(), props.ui?.message)">
+      <div
+        v-if="showMessage"
+        role="status"
+        :aria-label="strength.message"
+        :class="cn(ui.message(), props.ui?.message)"
+      >
         <slot name="message" :message="strength.message" :length="strength.length">
           {{ strength.message }}
         </slot>

@@ -6,10 +6,7 @@ import Form from '../../form/form.vue'
 import PasswordInput from '../password-input.vue'
 
 const schema = v.object({
-  password: v.pipe(
-    v.string('密码不能为空'),
-    v.minLength(8, '至少 8 位'),
-  ),
+  password: v.pipe(v.string('密码不能为空'), v.minLength(8, '至少 8 位')),
 })
 
 const defaultValues = {
@@ -29,12 +26,7 @@ function onFormSubmit(values: { password: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="password"
-      label="Password"
-      required
-    >
+    <FormField v-slot="{ field }" name="password" label="Password" required>
       <PasswordInput
         :model-value="field.state.value"
         placeholder="Enter password"
@@ -43,8 +35,6 @@ function onFormSubmit(values: { password: string }) {
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

@@ -1,6 +1,6 @@
 import type { PrimitiveProps } from 'reka-ui'
-import type { FormFieldStyleProps, FormFieldStyleSlots } from './form-field.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { FormFieldStyleProps, FormFieldStyleSlots } from './form-field.style'
 
 export interface FormFieldProps extends PrimitiveProps, Omit<FormFieldSharedProps, 'name'> {
   name: string

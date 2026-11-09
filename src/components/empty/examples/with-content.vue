@@ -5,12 +5,8 @@ import Empty from '../empty.vue'
 
 <template>
   <Empty icon="ri:file-add-line">
-    <template #title>
-      No files yet
-    </template>
-    <template #description>
-      Upload a file or create a new one to get started.
-    </template>
+    <template #title> No files yet </template>
+    <template #description> Upload a file or create a new one to get started. </template>
     <template #content>
       <Button label="Create file" size="sm" />
     </template>

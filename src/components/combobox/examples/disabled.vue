@@ -10,10 +10,6 @@ const items: ComboboxItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Combobox
-      disabled
-      :items="items"
-      placeholder="Disabled"
-    />
+    <Combobox disabled :items="items" placeholder="Disabled" />
   </div>
 </template>

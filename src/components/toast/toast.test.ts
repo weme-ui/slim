@@ -9,7 +9,10 @@ import ToastProvider from './toast-provider.vue'
 import { useToastStyle } from './toast.style'
 import Toast from './toast.vue'
 
-function mountToast(props: Record<string, unknown> = {}, providerProps: Record<string, unknown> = {}) {
+function mountToast(
+  props: Record<string, unknown> = {},
+  providerProps: Record<string, unknown> = {},
+) {
   return mount(ToastProvider, {
     attachTo: document.body,
     props: providerProps,
@@ -143,9 +146,7 @@ describe('toast', () => {
         title: 'Update',
         description: 'A new version is ready.',
         status: 'success',
-        actions: [
-          { label: 'Undo' },
-        ],
+        actions: [{ label: 'Undo' }],
       })
       await flush()
       const button = wrapper.getComponent(Button)

@@ -6,10 +6,7 @@ import Form from '../../form/form.vue'
 import PinInput from '../pin-input.vue'
 
 const schema = v.object({
-  code: v.pipe(
-    v.array(v.string()),
-    v.length(4, '请输入 4 位验证码'),
-  ),
+  code: v.pipe(v.array(v.string()), v.length(4, '请输入 4 位验证码')),
 })
 
 const defaultValues = {
@@ -29,20 +26,13 @@ function onFormSubmit(values: { code: string[] }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="code"
-      label="Verification code"
-      required
-    >
+    <FormField v-slot="{ field }" name="code" label="Verification code" required>
       <PinInput
         :model-value="field.state.value"
         @blur="field.api.handleBlur"
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

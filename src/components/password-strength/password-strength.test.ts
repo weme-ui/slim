@@ -31,10 +31,18 @@ describe('password-strength', () => {
   })
 
   it('applies strength indicator colors when styled', () => {
-    expect(usePasswordStrengthStyle({ strength: 'tooWeak' }).indicator()).toContain('bg-password-strength-too-weak')
-    expect(usePasswordStrengthStyle({ strength: 'weak' }).indicator()).toContain('bg-password-strength-weak')
-    expect(usePasswordStrengthStyle({ strength: 'medium' }).indicator()).toContain('bg-password-strength-medium')
-    expect(usePasswordStrengthStyle({ strength: 'strong' }).indicator()).toContain('bg-password-strength-strong')
+    expect(usePasswordStrengthStyle({ strength: 'tooWeak' }).indicator()).toContain(
+      'bg-password-strength-too-weak',
+    )
+    expect(usePasswordStrengthStyle({ strength: 'weak' }).indicator()).toContain(
+      'bg-password-strength-weak',
+    )
+    expect(usePasswordStrengthStyle({ strength: 'medium' }).indicator()).toContain(
+      'bg-password-strength-medium',
+    )
+    expect(usePasswordStrengthStyle({ strength: 'strong' }).indicator()).toContain(
+      'bg-password-strength-strong',
+    )
     expect(usePasswordStrengthStyle({}).indicator()).toContain('bg-muted')
     expect(usePasswordStrengthStyle({}).indicator()).toContain('transition-colors')
     expect(usePasswordStrengthStyle({}).message()).toContain('text-muted')
@@ -61,13 +69,15 @@ describe('password-strength', () => {
       })
       // Current markup puts aria-valuenow (string keys) on role=presentation segments
       // and leaves the progressbar unnamed; disable until the a11y contract is fixed.
-      expect(await axe(wrapper.element, {
-        rules: {
-          'aria-allowed-attr': { enabled: false },
-          'aria-valid-attr-value': { enabled: false },
-          'aria-progressbar-name': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'aria-allowed-attr': { enabled: false },
+            'aria-valid-attr-value': { enabled: false },
+            'aria-progressbar-name': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
@@ -142,7 +152,8 @@ describe('password-strength', () => {
           showMessage: true,
         },
         slots: {
-          message: (props: { message: string, length: number }) => `${props.message} (${props.length})`,
+          message: (props: { message: string; length: number }) =>
+            `${props.message} (${props.length})`,
         },
       })
       expect(wrapper.get('[role="status"]').text()).toContain('Weak (8)')

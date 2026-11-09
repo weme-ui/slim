@@ -31,7 +31,12 @@ const resolvedIcon = computed(() => {
   }
 })
 
-const isExternal = computed(() => props.href?.startsWith('http') && props.target === '_blank' && props.rel === 'noopener noreferrer')
+const isExternal = computed(
+  () =>
+    props.href?.startsWith('http') &&
+    props.target === '_blank' &&
+    props.rel === 'noopener noreferrer',
+)
 
 const hasIcon = computed(() => !!slots.icon || resolvedIcon.value !== undefined)
 const hasTitle = computed(() => !!slots.title || !!props.title)
@@ -42,20 +47,18 @@ const hasActions = computed(() => !!slots.actions || isExternal.value)
 const attrs = useAttrs()
 
 const id = computed(() => useId(attrs.id as string | undefined, 'alert'))
-const titleId = computed(() => hasTitle.value
-  ? `${id.value}-title`
-  : undefined)
-const descriptionId = computed(() => hasDescription.value
-  ? `${id.value}-desc`
-  : undefined)
+const titleId = computed(() => (hasTitle.value ? `${id.value}-title` : undefined))
+const descriptionId = computed(() => (hasDescription.value ? `${id.value}-desc` : undefined))
 
-const ui = computed(() => useAlertStyle({
-  variant: props.variant,
-  status: props.status,
-  inline: !hasTitle.value || !hasDescription.value,
-  clickable: !!props.href,
-  withIcon: hasIcon.value,
-}))
+const ui = computed(() =>
+  useAlertStyle({
+    variant: props.variant,
+    status: props.status,
+    inline: !hasTitle.value || !hasDescription.value,
+    clickable: !!props.href,
+    withIcon: hasIcon.value,
+  }),
+)
 
 function handleClose() {
   visible.value = false
@@ -84,7 +87,11 @@ function handleClose() {
           </slot>
         </h2>
 
-        <p v-if="hasDescription" :id="descriptionId" :class="cn(ui.description(), props.ui?.description)">
+        <p
+          v-if="hasDescription"
+          :id="descriptionId"
+          :class="cn(ui.description(), props.ui?.description)"
+        >
           <slot name="description">
             {{ description }}
           </slot>
@@ -97,13 +104,24 @@ function handleClose() {
         </slot>
       </div>
 
-      <button v-if="closable" type="button" :class="cn(ui.close(), props.ui?.close)" @click="handleClose">
+      <button
+        v-if="closable"
+        type="button"
+        :class="cn(ui.close(), props.ui?.close)"
+        @click="handleClose"
+      >
         <slot name="close">
           <Icon :name="closeIcon" />
         </slot>
       </button>
 
-      <LinkOverlay v-if="href" :href="href" :target="target" :rel="rel" :as-child="!!$slots['link-overlay']">
+      <LinkOverlay
+        v-if="href"
+        :href="href"
+        :target="target"
+        :rel="rel"
+        :as-child="!!$slots['link-overlay']"
+      >
         <slot name="link-overlay" />
       </LinkOverlay>
     </Primitive>

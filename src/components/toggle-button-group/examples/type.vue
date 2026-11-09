@@ -11,15 +11,7 @@ const items: ToggleButtonGroupItem[] = [
 
 <template>
   <div class="flex flex-col gap-6 items-start">
-    <ToggleButtonGroup
-      type="single"
-      :items="items"
-      default-value="left"
-    />
-    <ToggleButtonGroup
-      type="multiple"
-      :items="items"
-      :default-value="['left']"
-    />
+    <ToggleButtonGroup type="single" :items="items" default-value="left" />
+    <ToggleButtonGroup type="multiple" :items="items" :default-value="['left']" />
   </div>
 </template>

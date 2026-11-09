@@ -4,9 +4,6 @@ import Input from '../input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Input
-      clearable
-      placeholder="Clearable"
-    />
+    <Input clearable placeholder="Clearable" />
   </div>
 </template>

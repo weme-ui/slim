@@ -6,10 +6,7 @@ import Form from '../../form/form.vue'
 import Input from '../input.vue'
 
 const schema = v.object({
-  email: v.pipe(
-    v.string('邮箱不能为空'),
-    v.email('邮箱格式不正确'),
-  ),
+  email: v.pipe(v.string('邮箱不能为空'), v.email('邮箱格式不正确')),
 })
 
 const defaultValues = {
@@ -29,12 +26,7 @@ function onFormSubmit(values: { email: string }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="email"
-      label="Email"
-      required
-    >
+    <FormField v-slot="{ field }" name="email" label="Email" required>
       <Input
         :model-value="field.state.value"
         type="email"
@@ -43,8 +35,6 @@ function onFormSubmit(values: { email: string }) {
         @update:model-value="field.api.handleChange"
       />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

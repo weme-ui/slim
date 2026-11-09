@@ -1,6 +1,9 @@
 import type { PrimitiveProps } from 'reka-ui'
-import type { PasswordStrengthStyleProps, PasswordStrengthStyleSlots } from './password-strength.style'
 import type { UsePasswordStrengthOptions } from '~/composables/use-password-strength'
+import type {
+  PasswordStrengthStyleProps,
+  PasswordStrengthStyleSlots,
+} from './password-strength.style'
 
 export interface PasswordStrengthProps extends PrimitiveProps {
   options?: UsePasswordStrengthOptions['options']

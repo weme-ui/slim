@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import type { CheckboxGroupEmits, CheckboxGroupProps, CheckboxGroupValue } from './checkbox-group.props'
+import type {
+  CheckboxGroupEmits,
+  CheckboxGroupProps,
+  CheckboxGroupValue,
+} from './checkbox-group.props'
 import { reactivePick } from '@vueuse/core'
 import { CheckboxGroupRoot, useForwardExpose, useForwardPropsEmits } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
@@ -17,19 +21,33 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
 })
 
 const emits = defineEmits<CheckboxGroupEmits>()
-const delegated = reactivePick(props, 'as', 'defaultValue', 'disabled', 'dir', 'loop', 'max', 'modelValue', 'name', 'required', 'orientation', 'rovingFocus')
+const delegated = reactivePick(
+  props,
+  'as',
+  'defaultValue',
+  'disabled',
+  'dir',
+  'loop',
+  'max',
+  'modelValue',
+  'name',
+  'required',
+  'orientation',
+  'rovingFocus',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
-const checkboxProps = reactivePick(props, 'variant', 'size', 'align', 'indicator', 'inverted', 'unstyled')
+const checkboxProps = reactivePick(
+  props,
+  'variant',
+  'size',
+  'align',
+  'indicator',
+  'inverted',
+  'unstyled',
+)
 
-const {
-  bindings,
-  id,
-  name,
-  disabled,
-  dataAttributes,
-  registerControl,
-} = useFormFieldControl(props)
+const { bindings, id, name, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 const modelValue = computed(() => props.modelValue)
 
@@ -47,15 +65,17 @@ onUnmounted(() => {
   unregister?.()
 })
 
-const ui = computed(() => useCheckboxGroupStyle({
-  variant: props.variant,
-  size: props.size,
-  orientation: props.orientation,
-  align: props.align,
-  disabled: disabled.value,
-  inverted: toBoolValue(props.inverted),
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useCheckboxGroupStyle({
+    variant: props.variant,
+    size: props.size,
+    orientation: props.orientation,
+    align: props.align,
+    disabled: disabled.value,
+    inverted: toBoolValue(props.inverted),
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 function handleUpdate(value: CheckboxGroupValue[]) {
   emits('change', value)

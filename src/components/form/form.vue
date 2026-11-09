@@ -1,6 +1,6 @@
 <script lang="ts" generic="TData extends Record<string, any>" setup>
-import type { FormEmits, FormProps } from './form.props'
 import type { FormApi, FormRegisteredField } from '~/composables/use-form-context'
+import type { FormEmits, FormProps } from './form.props'
 import { Primitive, useForwardExpose } from 'reka-ui'
 import { computed, getCurrentInstance, nextTick, toRefs, watch } from 'vue'
 import { provideFormContext, useForm } from '~/composables/use-form-context'
@@ -14,11 +14,7 @@ const props = withDefaults(defineProps<FormProps<TData>>(), {
 
 const emits = defineEmits<FormEmits<TData>>()
 
-const {
-  loading,
-  disabled,
-  validationMode,
-} = toRefs(props)
+const { loading, disabled, validationMode } = toRefs(props)
 
 const instance = getCurrentInstance()
 const fields = new Set<FormRegisteredField>()
@@ -39,8 +35,7 @@ function registerField(field: FormRegisteredField) {
 function getValues() {
   const values: Record<string, unknown> = {}
   fields.forEach((field) => {
-    if (field.name.value)
-      values[field.name.value] = field.getValue()
+    if (field.name.value) values[field.name.value] = field.getValue()
   })
   return values
 }
@@ -49,18 +44,19 @@ function focusFirstInvalid() {
   let hasInvalid = false
   let first: HTMLElement | undefined
   fields.forEach((field) => {
-    if (!field.invalid.value)
-      return
+    if (!field.invalid.value) return
     hasInvalid = true
     const element = field.getControlElement()
-    if (element && (!first || first.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING))
+    if (
+      element &&
+      (!first || first.compareDocumentPosition(element) & Node.DOCUMENT_POSITION_PRECEDING)
+    )
       first = element
   })
 
   if (first) {
     first.focus()
-    if (first instanceof HTMLInputElement)
-      first.select()
+    if (first instanceof HTMLInputElement) first.select()
   }
   return hasInvalid
 }
@@ -70,8 +66,7 @@ let awaitingServerErrors = false
 async function handleSubmit(event: Event) {
   await form.handleSubmit()
 
-  if (focusFirstInvalid())
-    return
+  if (focusFirstInvalid()) return
 
   awaitingServerErrors = true
   emits('submit', event as SubmitEvent)
@@ -81,12 +76,11 @@ async function handleSubmit(event: Event) {
 }
 
 function handleReset() {
-  fields.forEach(field => field.resetField())
+  fields.forEach((field) => field.resetField())
 }
 
 watch(serverErrors, async () => {
-  if (!awaitingServerErrors)
-    return
+  if (!awaitingServerErrors) return
   awaitingServerErrors = false
   await nextTick()
   focusFirstInvalid()

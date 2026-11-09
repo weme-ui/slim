@@ -44,7 +44,10 @@ const items = [
   },
 ] satisfies NavigationMenuItem[]
 
-function mountMenu(props: Record<string, unknown> = {}, slots?: Record<string, (...args: any[]) => unknown>) {
+function mountMenu(
+  props: Record<string, unknown> = {},
+  slots?: Record<string, (...args: any[]) => unknown>,
+) {
   return mount(NavigationMenu, {
     attachTo: document.body,
     props: { items, ...props },
@@ -97,19 +100,19 @@ describe('navigation-menu', () => {
 
       const rows = wrapper.findAll('[data-slot="navigation-menu-item"]')
       expect(rows).toHaveLength(4)
-      expect(rows[0]!.attributes('data-type')).toBe('label')
-      expect(rows[0]!.text()).toContain('General')
-      expect(rows[0]!.findComponent(Icon).props('name')).toBe('ri:list-check')
-      expect(rows[1]!.attributes('data-type')).toBe('link')
-      expect(rows[1]!.get('a').text()).toContain('Home')
-      expect(rows[1]!.get('a').attributes('data-active')).toBe('')
-      expect(rows[1]!.findComponent(AnimatedToggleIcon).props('active')).toBe(true)
-      expect(rows[1]!.get('a').attributes('href')).toBe('/home')
-      expect(rows[2]!.attributes('data-type')).toBe('separator')
-      expect(rows[2]!.find('a').exists()).toBe(false)
-      expect(rows[3]!.classes()).toContain('is-disabled')
-      expect(rows[3]!.get('a').attributes('disabled')).toBeUndefined()
-      await rows[1]!.get('a').trigger('click')
+      expect(rows[0].attributes('data-type')).toBe('label')
+      expect(rows[0].text()).toContain('General')
+      expect(rows[0].findComponent(Icon).props('name')).toBe('ri:list-check')
+      expect(rows[1].attributes('data-type')).toBe('link')
+      expect(rows[1].get('a').text()).toContain('Home')
+      expect(rows[1].get('a').attributes('data-active')).toBe('')
+      expect(rows[1].findComponent(AnimatedToggleIcon).props('active')).toBe(true)
+      expect(rows[1].get('a').attributes('href')).toBe('/home')
+      expect(rows[2].attributes('data-type')).toBe('separator')
+      expect(rows[2].find('a').exists()).toBe(false)
+      expect(rows[3].classes()).toContain('is-disabled')
+      expect(rows[3].get('a').attributes('disabled')).toBeUndefined()
+      await rows[1].get('a').trigger('click')
       expect(wrapper.emitted('update:active')).toBeUndefined()
       wrapper.unmount()
     })
@@ -117,12 +120,8 @@ describe('navigation-menu', () => {
     it('splits an array of groups into lists', () => {
       const wrapper = mountMenu({
         items: [
-          [
-            { label: 'Home', to: '/home' },
-          ],
-          [
-            { label: 'Inbox', to: '/inbox' },
-          ],
+          [{ label: 'Home', to: '/home' }],
+          [{ label: 'Inbox', to: '/inbox' }],
         ] satisfies NavigationMenuItem[][],
       })
 
@@ -132,9 +131,7 @@ describe('navigation-menu', () => {
 
     it('opens external links in a new tab and shows the external icon', () => {
       const wrapper = mountMenu({
-        items: [
-          { label: 'Docs', to: 'https://example.com' },
-        ] satisfies NavigationMenuItem[],
+        items: [{ label: 'Docs', to: 'https://example.com' }] satisfies NavigationMenuItem[],
       })
       const link = wrapper.get('a')
 
@@ -162,9 +159,7 @@ describe('navigation-menu', () => {
 
       const badge = mountMenu({
         defaultActive: '/inbox',
-        items: [
-          { label: 'Inbox', to: '/inbox', badge: '4' },
-        ] satisfies NavigationMenuItem[],
+        items: [{ label: 'Inbox', to: '/inbox', badge: '4' }] satisfies NavigationMenuItem[],
       })
       expect(badge.findComponent(Badge).props('label')).toBe('4')
       expect(badge.findComponent(Badge).props('size')).toBe('sm')
@@ -181,9 +176,7 @@ describe('navigation-menu', () => {
             {
               label: 'Roles',
               to: '/roles',
-              children: [
-                { label: 'Add role', to: '/roles/add' },
-              ],
+              children: [{ label: 'Add role', to: '/roles/add' }],
             },
           ],
         },
@@ -191,48 +184,62 @@ describe('navigation-menu', () => {
       const matched = mountMenu({ items: nested, defaultActive: '/roles' })
       const matchedLinks = matched.findAll('a')
 
-      expect(matchedLinks[1]!.attributes('data-active')).toBe('')
-      expect(matchedLinks[2]!.attributes('data-active')).toBe('')
-      expect(matched.findAll('ul')[2]!.classes()).toContain('pl-6')
+      expect(matchedLinks[1].attributes('data-active')).toBe('')
+      expect(matchedLinks[2].attributes('data-active')).toBe('')
+      expect(matched.findAll('ul')[2].classes()).toContain('pl-6')
       matched.unmount()
 
       const missed = mountMenu({ items: nested, defaultActive: '/roles/add' })
-      expect(missed.findAll('a')[2]!.attributes('data-active')).toBeUndefined()
+      expect(missed.findAll('a')[2].attributes('data-active')).toBeUndefined()
       missed.unmount()
     })
 
     it('shares append when items have no id', () => {
-      const wrapper = mountMenu({
-        items: [
-          { label: 'Home', to: '/home' },
-          { label: 'Inbox', to: '/inbox' },
-        ] satisfies NavigationMenuItem[],
-      }, {
-        append: () => h('span', { class: 'shared' }, 'Shared'),
-      })
+      const wrapper = mountMenu(
+        {
+          items: [
+            { label: 'Home', to: '/home' },
+            { label: 'Inbox', to: '/inbox' },
+          ] satisfies NavigationMenuItem[],
+        },
+        {
+          append: () => h('span', { class: 'shared' }, 'Shared'),
+        },
+      )
 
       expect(wrapper.findAll('.shared')).toHaveLength(2)
       wrapper.unmount()
     })
 
     it('renders an append slot for the matching id', () => {
-      const wrapper = mountMenu({
-        items: [
-          { id: 'inbox', label: 'Inbox', to: '/inbox' },
-        ] satisfies NavigationMenuItem[],
-      }, {
-        'append-inbox': () => h('span', 'Extra'),
-      })
+      const wrapper = mountMenu(
+        {
+          items: [{ id: 'inbox', label: 'Inbox', to: '/inbox' }] satisfies NavigationMenuItem[],
+        },
+        {
+          'append-inbox': () => h('span', 'Extra'),
+        },
+      )
 
       expect(wrapper.text()).toContain('Extra')
       wrapper.unmount()
     })
 
     it('replaces generated lists and passes slot props', () => {
-      const wrapper = mountMenu({ defaultActive: '/home' }, {
-        default: (slotProps: { groups: unknown[][], active?: string, isActive: (item: { to?: string }) => boolean }) =>
-          h('p', `${slotProps.groups.length}:${slotProps.active}:${slotProps.isActive({ to: '/home' })}`),
-      })
+      const wrapper = mountMenu(
+        { defaultActive: '/home' },
+        {
+          default: (slotProps: {
+            groups: unknown[][]
+            active?: string
+            isActive: (item: { to?: string }) => boolean
+          }) =>
+            h(
+              'p',
+              `${slotProps.groups.length}:${slotProps.active}:${slotProps.isActive({ to: '/home' })}`,
+            ),
+        },
+      )
 
       expect(wrapper.find('ul').exists()).toBe(false)
       expect(wrapper.text()).toBe('1:/home:true')

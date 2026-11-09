@@ -22,7 +22,10 @@ interface FormFieldControlRegistration {
   getValue: () => unknown
 }
 
-type FormFieldDataAttributes = Record<`data-${'disabled' | 'valid' | 'invalid' | 'dirty' | 'touched' | 'filled' | 'focused'}`, '' | undefined>
+type FormFieldDataAttributes = Record<
+  `data-${'disabled' | 'valid' | 'invalid' | 'dirty' | 'touched' | 'filled' | 'focused'}`,
+  '' | undefined
+>
 
 export interface FormFieldContextValue {
   fieldId: ComputedRef<string | undefined>
@@ -47,10 +50,8 @@ export interface FormFieldContextValue {
   handleControlBlur: (detail?: FormFieldControlDetail) => void
 }
 
-const [
-  injectFormFieldContext,
-  provideFormFieldContext,
-] = createContext<FormFieldContextValue>('FormField')
+const [injectFormFieldContext, provideFormFieldContext] =
+  createContext<FormFieldContextValue>('FormField')
 
 export { provideFormFieldContext }
 
@@ -82,15 +83,13 @@ function useFormFieldBindings() {
     if (!fieldContext) {
       return {
         ...rest,
-        'id': id as string | undefined,
-        'name': name as string | undefined,
-        'disabled': isBoolDataAttrValue(disabled) || undefined,
-        'required': isBoolDataAttrValue(required) || undefined,
+        id: id as string | undefined,
+        name: name as string | undefined,
+        disabled: isBoolDataAttrValue(disabled) || undefined,
+        required: isBoolDataAttrValue(required) || undefined,
         'aria-labelledby': labelledBy as string | undefined,
         'aria-describedby': describedBy as string | undefined,
-        'aria-invalid': ariaInvalid
-          ? toBoolAriaValue(ariaInvalid)
-          : undefined,
+        'aria-invalid': ariaInvalid ? toBoolAriaValue(ariaInvalid) : undefined,
       }
     }
 
@@ -99,15 +98,15 @@ function useFormFieldBindings() {
     return {
       ...rest,
       ...fieldContext.dataAttributes.value,
-      'id': fieldContext.fieldId.value ?? id as string | undefined,
-      'name': fieldContext.name.value ?? name as string | undefined,
-      'disabled': isDisabled || undefined,
-      'required': (fieldContext.required.value || isBoolDataAttrValue(required)) || undefined,
+      id: fieldContext.fieldId.value ?? (id as string | undefined),
+      name: fieldContext.name.value ?? (name as string | undefined),
+      disabled: isDisabled || undefined,
+      required: fieldContext.required.value || isBoolDataAttrValue(required) || undefined,
       'aria-labelledby': mergeIds(labelledBy, fieldContext.labelId.value),
       'aria-describedby': mergeIds(describedBy, fieldContext.descriptionId.value),
       'aria-invalid': ariaInvalid
         ? toBoolAriaValue(ariaInvalid)
-        : ((fieldContext.invalid.value && !isDisabled) || undefined),
+        : (fieldContext.invalid.value && !isDisabled) || undefined,
     }
   })
 }
@@ -125,8 +124,7 @@ export function useFormFieldControl(props: FormFieldSharedProps) {
   const invalid = computed(() => props.invalid ?? context?.invalid.value)
   const focused = computed(() => context?.focused.value ?? localFocused.value)
   const dataAttributes = computed<FormFieldDataAttributes>(() => {
-    if (context)
-      return context.dataAttributes.value
+    if (context) return context.dataAttributes.value
 
     return {
       'data-disabled': toBoolDataAttrValue(disabled.value),
@@ -141,8 +139,8 @@ export function useFormFieldControl(props: FormFieldSharedProps) {
 
   const bindings = computed(() => ({
     ...fieldBindings.value,
-    'aria-invalid': fieldBindings.value['aria-invalid']
-      ?? ((invalid.value && !disabled.value) || undefined),
+    'aria-invalid':
+      fieldBindings.value['aria-invalid'] ?? ((invalid.value && !disabled.value) || undefined),
   }))
 
   function registerControl(registration: FormFieldControlRegistration) {
@@ -150,13 +148,11 @@ export function useFormFieldControl(props: FormFieldSharedProps) {
   }
 
   function handleControlFocus() {
-    if (focused.value)
-      return false
+    if (focused.value) return false
 
     if (context) {
       context.handleControlFocus()
-    }
-    else if (!disabled.value && !loading.value) {
+    } else if (!disabled.value && !loading.value) {
       localFocused.value = true
     }
 
@@ -164,13 +160,10 @@ export function useFormFieldControl(props: FormFieldSharedProps) {
   }
 
   function handleControlBlur(detail?: FormFieldControlDetail) {
-    if (!focused.value)
-      return false
+    if (!focused.value) return false
 
-    if (context)
-      context.handleControlBlur(detail)
-    else
-      localFocused.value = false
+    if (context) context.handleControlBlur(detail)
+    else localFocused.value = false
 
     return true
   }

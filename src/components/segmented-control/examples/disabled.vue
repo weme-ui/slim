@@ -21,14 +21,7 @@ const value = ref<SegmentedControlValue>('day')
 
 <template>
   <div class="flex flex-col gap-6 items-start">
-    <SegmentedControl
-      v-model="disabledValue"
-      disabled
-      :items="items"
-    />
-    <SegmentedControl
-      v-model="value"
-      :items="withDisabledItem"
-    />
+    <SegmentedControl v-model="disabledValue" disabled :items="items" />
+    <SegmentedControl v-model="value" :items="withDisabledItem" />
   </div>
 </template>

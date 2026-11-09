@@ -48,19 +48,25 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'default',
       unstyled: false,
-      class: { root: 'bg-foreground-highlighted text-foreground-inverted hover:bg-foreground-highlighted/90 focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'bg-foreground-highlighted text-foreground-inverted hover:bg-foreground-highlighted/90 focus-visible:(outline-accent-7 z-high)',
+      },
     },
     {
       variant: 'soft',
       color: 'default',
       unstyled: false,
-      class: { root: 'bg-muted text-highlighted hover:bg-elevated focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'bg-muted text-highlighted hover:bg-elevated focus-visible:(outline-accent-7 z-high)',
+      },
     },
     {
       variant: 'outline',
       color: 'default',
       unstyled: false,
-      class: { root: 'b b-base text-highlighted hover:(bg-elevated b-elevated) focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'b b-base text-highlighted hover:(bg-elevated b-elevated) focus-visible:(outline-accent-7 z-high)',
+      },
     },
     {
       variant: 'ghost',
@@ -72,13 +78,17 @@ export const useButtonStyle = createVariants({
       variant: 'plain',
       color: 'default',
       unstyled: false,
-      class: { root: 'text-foreground hover:text-highlighted focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'text-foreground hover:text-highlighted focus-visible:(outline-accent-7 z-high)',
+      },
     },
     {
       variant: 'inverse',
       color: 'default',
       unstyled: false,
-      class: { root: 'text-foreground bg-base hover:(text-highlighted bg-elevated) focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'text-foreground bg-base hover:(text-highlighted bg-elevated) focus-visible:(outline-accent-7 z-high)',
+      },
     },
     // #endregion default
 
@@ -334,5 +344,5 @@ export const useButtonStyle = createVariants({
   },
 })
 
-export type ButtonStyleSlots = typeof useButtonStyle['slots']
+export type ButtonStyleSlots = (typeof useButtonStyle)['slots']
 export type ButtonStyleProps = VariantProps<typeof useButtonStyle>

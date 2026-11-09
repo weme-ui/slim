@@ -9,7 +9,8 @@ export const useAlertStyle = createVariants({
     title: 'tracking-tight',
     description: 'text-xs',
     actions: '[&>svg]:size-4',
-    close: 'ml-md p-0.5 rounded-inherit size-5 cursor-pointer transition-colors z-high hover:bg-current/15',
+    close:
+      'ml-md p-0.5 rounded-inherit size-5 cursor-pointer transition-colors z-high hover:bg-current/15',
   },
 
   variants: {
@@ -290,5 +291,5 @@ export const useAlertStyle = createVariants({
   },
 })
 
-export type AlertStyleSlots = typeof useAlertStyle['slots']
+export type AlertStyleSlots = (typeof useAlertStyle)['slots']
 export type AlertStyleProps = VariantProps<typeof useAlertStyle>

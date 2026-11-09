@@ -8,12 +8,12 @@ import { useAvatarGroupStyle } from './avatar-group.style'
 
 const props = withDefaults(defineProps<AvatarGroupProps>(), { size: 'md' })
 
-const availableItems = computed(() => props.items
-  ? props.items.slice(0, props.max || props.items.length)
-  : [])
-const remaining = computed(() => props.items
-  ? props.items.length - availableItems.value.length
-  : 0)
+const availableItems = computed(() =>
+  props.items ? props.items.slice(0, props.max || props.items.length) : [],
+)
+const remaining = computed(() =>
+  props.items ? props.items.length - availableItems.value.length : 0,
+)
 
 const ui = computed(() => useAvatarGroupStyle({ size: props.size }))
 </script>
@@ -26,12 +26,7 @@ const ui = computed(() => useAvatarGroupStyle({ size: props.size }))
   >
     <slot>
       <template v-if="remaining > 0">
-        <Avatar
-          :size="size"
-          :color="color"
-        >
-          +{{ remaining }}
-        </Avatar>
+        <Avatar :size="size" :color="color"> +{{ remaining }} </Avatar>
       </template>
       <template v-for="(item, index) in availableItems" :key="index">
         <Avatar

@@ -6,9 +6,7 @@
   "homepage": "https://github.com/weme-ui/slim",
   "repository": "https://github.com/weme-ui/slim.git",
   "issues": "https://github.com/weme-ui/slim/issues",
-  "contributors": [
-    "Luo Yi <luoyi@mouji.com>"
-  ],
+  "contributors": ["Luo Yi <luoyi@mouji.com>"],
   "access": "public",
   "devDependencies": [
     "@vueuse/core",
@@ -61,9 +59,7 @@
         "docs.category": "composables",
         "docs.categoryLabel": "Composables"
       },
-      "dependencies": [
-        "@tanstack/vue-form"
-      ],
+      "dependencies": ["@tanstack/vue-form"],
       "files": [
         {
           "type": "composable",
@@ -168,9 +164,7 @@
         "docs.category": "composables",
         "docs.categoryLabel": "Composables"
       },
-      "dependencies": [
-        "@internationalized/number"
-      ],
+      "dependencies": ["@internationalized/number"],
       "files": [
         {
           "type": "composable",
@@ -239,9 +233,7 @@
           "path": "src/composables/use-password-strength.test.ts"
         }
       ],
-      "dependencies": [
-        "escape-string-regexp"
-      ]
+      "dependencies": ["escape-string-regexp"]
     },
     {
       "name": "button",
@@ -252,9 +244,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "icon"
-      ],
+      "registryDependencies": ["icon"],
       "files": [
         {
           "type": "component",
@@ -329,9 +319,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "button"
-      ],
+      "registryDependencies": ["button"],
       "files": [
         {
           "type": "component",
@@ -401,9 +389,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "animated-toggle-icon"
-      ],
+      "registryDependencies": ["animated-toggle-icon"],
       "files": [
         {
           "type": "component",
@@ -468,9 +454,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "toggle-button"
-      ],
+      "registryDependencies": ["toggle-button"],
       "files": [
         {
           "type": "component",
@@ -575,9 +559,7 @@
           "path": "src/components/form/form.test.ts"
         }
       ],
-      "registryDependencies": [
-        "use-form-context"
-      ]
+      "registryDependencies": ["use-form-context"]
     },
     {
       "name": "form-field",
@@ -588,10 +570,7 @@
         "docs.category": "form",
         "docs.categoryLabel": "Form"
       },
-      "registryDependencies": [
-        "use-form-context",
-        "use-form-field-context"
-      ],
+      "registryDependencies": ["use-form-context", "use-form-field-context"],
       "files": [
         {
           "type": "component",
@@ -671,10 +650,7 @@
         "docs.category": "form",
         "docs.categoryLabel": "Form"
       },
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
       "files": [
         {
           "type": "component",
@@ -823,10 +799,7 @@
           "path": "src/components/textarea/textarea.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["icon", "use-form-field-context"]
     },
     {
       "name": "number-input",
@@ -901,10 +874,7 @@
           "path": "src/components/number-input/number-input.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["icon", "use-form-field-context"]
     },
     {
       "name": "password-input",
@@ -984,10 +954,7 @@
           "path": "src/components/password-input/password-input.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "input"
-      ]
+      "registryDependencies": ["icon", "input"]
     },
     {
       "name": "password-strength",
@@ -1052,9 +1019,7 @@
           "path": "src/components/password-strength/password-strength.test.ts"
         }
       ],
-      "registryDependencies": [
-        "use-password-strength"
-      ],
+      "registryDependencies": ["use-password-strength"],
       "cssVars": {
         "password-strength": {
           "too-weak-color": "error.9",
@@ -1137,9 +1102,7 @@
           "path": "src/components/pin-input/pin-input.test.ts"
         }
       ],
-      "registryDependencies": [
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["use-form-field-context"]
     },
     {
       "name": "range-input",
@@ -1214,10 +1177,7 @@
           "path": "src/components/range-input/range-input.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["icon", "use-form-field-context"]
     },
     {
       "name": "slider",
@@ -1292,10 +1252,7 @@
           "path": "src/components/slider/slider.test.ts"
         }
       ],
-      "registryDependencies": [
-        "tooltip",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["tooltip", "use-form-field-context"]
     },
     {
       "name": "tags-input",
@@ -1370,10 +1327,7 @@
           "path": "src/components/tags-input/tags-input.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["icon", "use-form-field-context"]
     },
     {
       "name": "autocomplete",
@@ -1459,9 +1413,7 @@
         "use-group-items",
         "use-popover-content"
       ],
-      "dependencies": [
-        "motion-v"
-      ]
+      "dependencies": ["motion-v"]
     },
     {
       "name": "combobox",
@@ -1552,9 +1504,7 @@
         "use-group-items",
         "use-popover-content"
       ],
-      "dependencies": [
-        "motion-v"
-      ]
+      "dependencies": ["motion-v"]
     },
     {
       "name": "select",
@@ -1646,9 +1596,7 @@
         "use-group-items",
         "use-popover-content"
       ],
-      "dependencies": [
-        "motion-v"
-      ]
+      "dependencies": ["motion-v"]
     },
     {
       "name": "listbox",
@@ -1728,12 +1676,7 @@
           "path": "src/components/listbox/listbox.test.ts"
         }
       ],
-      "registryDependencies": [
-        "empty",
-        "icon",
-        "use-form-field-context",
-        "use-group-items"
-      ]
+      "registryDependencies": ["empty", "icon", "use-form-field-context", "use-group-items"]
     },
     {
       "name": "checkbox",
@@ -1818,10 +1761,7 @@
           "path": "src/components/checkbox/checkbox.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["icon", "use-form-field-context"]
     },
     {
       "name": "checkbox-group",
@@ -1901,11 +1841,7 @@
           "path": "src/components/checkbox-group/checkbox-group.test.ts"
         }
       ],
-      "registryDependencies": [
-        "checkbox",
-        "use-form-field-context",
-        "use-group-items"
-      ]
+      "registryDependencies": ["checkbox", "use-form-field-context", "use-group-items"]
     },
     {
       "name": "radio-group",
@@ -1990,10 +1926,7 @@
           "path": "src/components/radio-group/radio-group.test.ts"
         }
       ],
-      "registryDependencies": [
-        "use-form-field-context",
-        "use-group-items"
-      ]
+      "registryDependencies": ["use-form-field-context", "use-group-items"]
     },
     {
       "name": "segmented-control",
@@ -2053,11 +1986,7 @@
           "path": "src/components/segmented-control/segmented-control.test.ts"
         }
       ],
-      "registryDependencies": [
-        "animated-toggle-icon",
-        "use-form-field-context",
-        "use-group-items"
-      ]
+      "registryDependencies": ["animated-toggle-icon", "use-form-field-context", "use-group-items"]
     },
     {
       "name": "switch",
@@ -2137,10 +2066,7 @@
           "path": "src/components/switch/switch.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context"
-      ]
+      "registryDependencies": ["icon", "use-form-field-context"]
     },
     {
       "name": "tag-group",
@@ -2409,9 +2335,7 @@
         "docs.category": "data",
         "docs.categoryLabel": "Data Display"
       },
-      "registryDependencies": [
-        "icon"
-      ],
+      "registryDependencies": ["icon"],
       "files": [
         {
           "type": "component",
@@ -2471,9 +2395,7 @@
         "docs.category": "data",
         "docs.categoryLabel": "Data Display"
       },
-      "registryDependencies": [
-        "avatar"
-      ],
+      "registryDependencies": ["avatar"],
       "files": [
         {
           "type": "component",
@@ -2572,13 +2494,8 @@
         "docs.category": "data",
         "docs.categoryLabel": "Data Display"
       },
-      "registryDependencies": [
-        "icon",
-        "image"
-      ],
-      "dependencies": [
-        "motion-v"
-      ],
+      "registryDependencies": ["icon", "image"],
+      "dependencies": ["motion-v"],
       "files": [
         {
           "type": "component",
@@ -2623,9 +2540,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "dependencies": [
-        "@iconify/vue"
-      ],
+      "dependencies": ["@iconify/vue"],
       "files": [
         {
           "type": "component",
@@ -2671,9 +2586,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "icon"
-      ],
+      "registryDependencies": ["icon"],
       "files": [
         {
           "type": "component",
@@ -2723,9 +2636,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "icon"
-      ],
+      "registryDependencies": ["icon"],
       "files": [
         {
           "type": "component",
@@ -2785,10 +2696,7 @@
         "docs.category": "data",
         "docs.categoryLabel": "Data Display"
       },
-      "registryDependencies": [
-        "icon",
-        "link-overlay"
-      ],
+      "registryDependencies": ["icon", "link-overlay"],
       "files": [
         {
           "type": "component",
@@ -2956,9 +2864,7 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "registryDependencies": [
-        "use-kbd"
-      ],
+      "registryDependencies": ["use-kbd"],
       "files": [
         {
           "type": "component",
@@ -3008,10 +2914,7 @@
         "docs.category": "feedback",
         "docs.categoryLabel": "Feedback"
       },
-      "registryDependencies": [
-        "icon",
-        "link-overlay"
-      ],
+      "registryDependencies": ["icon", "link-overlay"],
       "files": [
         {
           "type": "component",
@@ -3081,9 +2984,7 @@
         "docs.category": "feedback",
         "docs.categoryLabel": "Feedback"
       },
-      "registryDependencies": [
-        "icon-tile"
-      ],
+      "registryDependencies": ["icon-tile"],
       "files": [
         {
           "type": "component",
@@ -3143,9 +3044,7 @@
         "docs.category": "feedback",
         "docs.categoryLabel": "Feedback"
       },
-      "registryDependencies": [
-        "use-number-formatter"
-      ],
+      "registryDependencies": ["use-number-formatter"],
       "files": [
         {
           "type": "component",
@@ -3215,9 +3114,7 @@
         "docs.category": "feedback",
         "docs.categoryLabel": "Feedback"
       },
-      "registryDependencies": [
-        "use-number-formatter"
-      ],
+      "registryDependencies": ["use-number-formatter"],
       "files": [
         {
           "type": "component",
@@ -3326,10 +3223,7 @@
         "docs.category": "feedback",
         "docs.categoryLabel": "Feedback"
       },
-      "registryDependencies": [
-        "button",
-        "icon"
-      ],
+      "registryDependencies": ["button", "icon"],
       "files": [
         {
           "type": "component",
@@ -3438,9 +3332,7 @@
           "path": "src/components/tooltip/tooltip.test.ts"
         }
       ],
-      "registryDependencies": [
-        "icon"
-      ],
+      "registryDependencies": ["icon"],
       "cssVars": {
         "tooltip": {
           "background": "neutral.11",
@@ -3457,12 +3349,8 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "dependencies": [
-        "motion-v"
-      ],
-      "registryDependencies": [
-        "icon"
-      ],
+      "dependencies": ["motion-v"],
+      "registryDependencies": ["icon"],
       "files": [
         {
           "type": "component",
@@ -3508,11 +3396,7 @@
         "docs.category": "navigation",
         "docs.categoryLabel": "Navigation"
       },
-      "registryDependencies": [
-        "animated-toggle-icon",
-        "float",
-        "tooltip"
-      ],
+      "registryDependencies": ["animated-toggle-icon", "float", "tooltip"],
       "cssVars": {
         "activity-bar": {
           "width": "3.5rem",
@@ -3569,12 +3453,8 @@
         "docs.category": "general",
         "docs.categoryLabel": "General"
       },
-      "dependencies": [
-        "vue-router"
-      ],
-      "registryDependencies": [
-        "icon"
-      ],
+      "dependencies": ["vue-router"],
+      "registryDependencies": ["icon"],
       "files": [
         {
           "type": "component",
@@ -3678,13 +3558,7 @@
         "docs.category": "navigation",
         "docs.categoryLabel": "Navigation"
       },
-      "registryDependencies": [
-        "animated-toggle-icon",
-        "badge",
-        "chip",
-        "icon",
-        "link"
-      ],
+      "registryDependencies": ["animated-toggle-icon", "badge", "chip", "icon", "link"],
       "files": [
         {
           "type": "component",

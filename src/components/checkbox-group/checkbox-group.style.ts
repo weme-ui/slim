@@ -40,5 +40,5 @@ export const useCheckboxGroupStyle = createVariants({
   },
 })
 
-export type CheckboxGroupStyleSlots = typeof useCheckboxGroupStyle['slots']
+export type CheckboxGroupStyleSlots = (typeof useCheckboxGroupStyle)['slots']
 export type CheckboxGroupStyleProps = VariantProps<typeof useCheckboxGroupStyle>

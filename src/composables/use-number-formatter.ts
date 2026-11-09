@@ -9,10 +9,7 @@ export function useNumberFormatter(options?: NumberFormatOptions) {
   const optionsRef = toRef(options)
 
   return computedWithControl<NumberFormatter>(
-    [
-      locale,
-      optionsRef,
-    ],
+    [locale, optionsRef],
     () => new NumberFormatter(locale.value, optionsRef.value),
   )
 }

@@ -15,14 +15,30 @@ const props = withDefaults(defineProps<ToggleButtonGroupProps>(), {
 })
 
 const emits = defineEmits<ToggleButtonGroupEmits>()
-const delegated = reactivePick(props, 'as', 'asChild', 'defaultValue', 'dir', 'disabled', 'loop', 'modelValue', 'name', 'orientation', 'required', 'rovingFocus', 'type')
+const delegated = reactivePick(
+  props,
+  'as',
+  'asChild',
+  'defaultValue',
+  'dir',
+  'disabled',
+  'loop',
+  'modelValue',
+  'name',
+  'orientation',
+  'required',
+  'rovingFocus',
+  'type',
+)
 const forwarded = useForwardPropsEmits(delegated, emits)
 
 const itemProps = reactivePick(props, 'variant', 'size', 'scalable', 'unstyled')
 
-const ui = computed(() => useToggleButtonGroupStyle({
-  orientation: props.orientation,
-}))
+const ui = computed(() =>
+  useToggleButtonGroupStyle({
+    orientation: props.orientation,
+  }),
+)
 </script>
 
 <template>

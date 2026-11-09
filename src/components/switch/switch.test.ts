@@ -15,18 +15,28 @@ function mountSwitch(
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { notifications: model.value },
-      }, () =>
-        h(FormField, { name: 'notifications', label: 'Notifications', ...fieldProps }, {
-          default: () => h(Switch, {
-            ...switchProps,
-            'modelValue': model.value,
-            'onUpdate:modelValue': (value: boolean) => {
-              model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { notifications: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'notifications', label: 'Notifications', ...fieldProps },
+              {
+                default: () =>
+                  h(Switch, {
+                    ...switchProps,
+                    modelValue: model.value,
+                    'onUpdate:modelValue': (value: boolean) => {
+                      model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -126,10 +136,7 @@ describe('switch', () => {
     })
 
     it('does not toggle when FormField is disabled', async () => {
-      const { wrapper, model } = mountSwitch(
-        { modelValue: false },
-        { disabled: true },
-      )
+      const { wrapper, model } = mountSwitch({ modelValue: false }, { disabled: true })
       await wrapper.get('[data-slot="switch"]').trigger('click')
       expect(model.value).toBe(false)
       wrapper.unmount()
@@ -181,11 +188,13 @@ describe('switch', () => {
         loading: true,
       })
       await nextTick()
-      expect(await axe(wrapper.element, {
-        rules: {
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

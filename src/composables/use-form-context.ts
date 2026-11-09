@@ -2,13 +2,10 @@ import type { FormApi as CoreFormApi, VueFormApi } from '@tanstack/vue-form'
 import type { ComputedRef, Ref } from 'vue'
 import { createContext } from 'reka-ui'
 
-export {
-  useForm,
-  useField as useFormField,
-} from '@tanstack/vue-form'
+export { useForm, useField as useFormField } from '@tanstack/vue-form'
 
-export type FormApi = CoreFormApi<any, any, any, any, any, any, any, any, any, any, any, any>
-  & VueFormApi<any, any, any, any, any, any, any, any, any, any, any, any>
+export type FormApi = CoreFormApi<any, any, any, any, any, any, any, any, any, any, any, any> &
+  VueFormApi<any, any, any, any, any, any, any, any, any, any, any, any>
 
 export type FormValidationMode = 'onSubmit' | 'onBlur' | 'onChange'
 
@@ -30,7 +27,4 @@ export interface FormContextValue {
   registerField: (field: FormRegisteredField) => () => void
 }
 
-export const [
-  useFormContext,
-  provideFormContext,
-] = createContext<FormContextValue>('Form')
+export const [useFormContext, provideFormContext] = createContext<FormContextValue>('Form')

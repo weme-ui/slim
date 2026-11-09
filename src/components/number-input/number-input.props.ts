@@ -1,9 +1,10 @@
 import type { IconifyIconProps } from '@iconify/vue'
 import type { NumberFieldRootEmits, NumberFieldRootProps } from 'reka-ui'
-import type { NumberInputStyleProps, NumberInputStyleSlots } from './number-input.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { NumberInputStyleProps, NumberInputStyleSlots } from './number-input.style'
 
-export interface NumberInputProps extends NumberFieldRootProps, Omit<FormFieldSharedProps, 'loading'> {
+export interface NumberInputProps
+  extends NumberFieldRootProps, Omit<FormFieldSharedProps, 'loading'> {
   variant?: NumberInputStyleProps['variant']
   size?: NumberInputStyleProps['size']
   decrementIcon?: IconifyIconProps['icon']

@@ -1,3 +1,4 @@
+// oxlint-disable no-await-in-loop
 import type { Plugin } from 'vite'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -9,20 +10,17 @@ const RESOLVED_VIRTUAL_ID = `\0${VIRTUAL_ID}`
 const SHIKI_PREFIX = '\0shiki:'
 
 function readRepoFile(repoRoot: string, path?: string) {
-  if (!path)
-    return ''
+  if (!path) return ''
   try {
     return readFileSync(resolve(repoRoot, path), 'utf8')
-  }
-  catch {
+  } catch {
     return ''
   }
 }
 
 function parseIdQuery(id: string) {
   const queryIndex = id.indexOf('?')
-  if (queryIndex === -1)
-    return { filename: id, query: '' }
+  if (queryIndex === -1) return { filename: id, query: '' }
   return {
     filename: id.slice(0, queryIndex),
     query: id.slice(queryIndex + 1),
@@ -34,17 +32,14 @@ export function docsShikiPlugin(repoRoot: string): Plugin {
     name: 'docs-shiki',
     enforce: 'pre',
     async resolveId(id, importer) {
-      if (id === VIRTUAL_ID)
-        return RESOLVED_VIRTUAL_ID
-      if (id.startsWith('\0'))
-        return
+      if (id === VIRTUAL_ID) return RESOLVED_VIRTUAL_ID
+      if (id.startsWith('\0')) return
 
       const { filename, query } = parseIdQuery(id)
-      if (!new URLSearchParams(query).has('shiki'))
-        return
+      if (!new URLSearchParams(query).has('shiki')) return
 
       const resolved = await this.resolve(filename, importer, { skipSelf: true })
-      const file = (resolved?.id || filename).split('?')[0]!
+      const file = (resolved?.id || filename).split('?')[0]
       return `${SHIKI_PREFIX}${file}?${query}`
     },
     async load(id) {
@@ -52,9 +47,8 @@ export function docsShikiPlugin(repoRoot: string): Plugin {
         const installationHtml: Record<string, string> = {}
         const usageHtml: Record<string, string> = {}
         for (const item of getDocItems()) {
-          const docFile = item.files.find(file => file.kind === 'doc')
-          if (docFile?.path)
-            this.addWatchFile(resolve(repoRoot, docFile.path))
+          const docFile = item.files.find((file) => file.kind === 'doc')
+          if (docFile?.path) this.addWatchFile(resolve(repoRoot, docFile.path))
           const page = buildComponentPage(item, readRepoFile(repoRoot, docFile?.path))
           installationHtml[item.name] = await renderHighlightedMarkdown(page.installationMarkdown)
           if (page.usageMarkdown)
@@ -67,8 +61,7 @@ export function docsShikiPlugin(repoRoot: string): Plugin {
         ].join('\n')
       }
 
-      if (!id.startsWith(SHIKI_PREFIX))
-        return
+      if (!id.startsWith(SHIKI_PREFIX)) return
 
       const original = id.slice(SHIKI_PREFIX.length)
       const { filename, query } = parseIdQuery(original)

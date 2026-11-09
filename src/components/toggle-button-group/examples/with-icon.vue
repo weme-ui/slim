@@ -10,9 +10,5 @@ const items: ToggleButtonGroupItem[] = [
 </script>
 
 <template>
-  <ToggleButtonGroup
-    type="single"
-    :items="items"
-    default-value="list"
-  />
+  <ToggleButtonGroup type="single" :items="items" default-value="list" />
 </template>

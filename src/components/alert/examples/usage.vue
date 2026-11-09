@@ -4,6 +4,11 @@ import Alert from '../alert.vue'
 
 <template>
   <div class="flex items-center">
-    <Alert icon="ri:information-line" title="Heads up" description="You can change this later." class="min-w-sm" />
+    <Alert
+      icon="ri:information-line"
+      title="Heads up"
+      description="You can change this later."
+      class="min-w-sm"
+    />
   </div>
 </template>

@@ -1,9 +1,10 @@
 import type { IconifyIconProps } from '@iconify/vue'
 import type { SwitchRootEmits, SwitchRootProps } from 'reka-ui'
-import type { SwitchStyleProps, SwitchStyleSlots } from './switch.style'
 import type { FormFieldSharedProps } from '~/composables/use-form-field-context'
+import type { SwitchStyleProps, SwitchStyleSlots } from './switch.style'
 
-export interface SwitchProps<T extends boolean> extends SwitchRootProps<T>, Omit<FormFieldSharedProps, 'readonly'> {
+export interface SwitchProps<T extends boolean>
+  extends SwitchRootProps<T>, Omit<FormFieldSharedProps, 'readonly'> {
   variant?: SwitchStyleProps['variant']
   size?: SwitchStyleProps['size']
   indicatorIcon?: IconifyIconProps['icon']

@@ -24,7 +24,9 @@ describe('progress-bar', () => {
   })
 
   it('applies color variants', () => {
-    expect(useProgressBarStyle({ color: 'default' }).indicator()).toContain('bg-foreground-highlighted')
+    expect(useProgressBarStyle({ color: 'default' }).indicator()).toContain(
+      'bg-foreground-highlighted',
+    )
     expect(useProgressBarStyle({ color: 'accent' }).indicator()).toContain('bg-accent')
     expect(useProgressBarStyle({ color: 'info' }).indicator()).toContain('bg-info')
     expect(useProgressBarStyle({ color: 'success' }).indicator()).toContain('bg-success')
@@ -134,7 +136,7 @@ describe('progress-bar', () => {
       const wrapper = mount(ProgressBar, {
         props: { label: 'Uploading', modelValue: 64 },
         slots: {
-          value: (slotProps: { modelValue?: number | null, value: string }) =>
+          value: (slotProps: { modelValue?: number | null; value: string }) =>
             h('span', `${slotProps.modelValue} ${slotProps.value}`),
         },
       })

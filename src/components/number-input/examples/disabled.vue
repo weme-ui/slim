@@ -4,9 +4,6 @@ import NumberInput from '../number-input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <NumberInput
-      disabled
-      placeholder="Disabled"
-    />
+    <NumberInput disabled placeholder="Disabled" />
   </div>
 </template>

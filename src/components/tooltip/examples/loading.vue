@@ -7,11 +7,7 @@ import Tooltip from '../tooltip.vue'
 <template>
   <TooltipProvider :delay-duration="0">
     <div class="flex items-center">
-      <Tooltip
-        content="Saving"
-        loading
-        as-child
-      >
+      <Tooltip content="Saving" loading as-child>
         <Button label="Save" />
       </Tooltip>
     </div>

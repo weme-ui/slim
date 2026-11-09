@@ -1,9 +1,9 @@
 import { defineComponent } from 'vue'
 
 function toHref(to: unknown) {
-  if (typeof to === 'string')
-    return to
+  if (typeof to === 'string') return to
   if (to && typeof to === 'object' && 'path' in to)
+    // oxlint-disable-next-line typescript/no-base-to-string
     return String((to as { path?: unknown }).path || '#')
   return '#'
 }

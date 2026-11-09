@@ -4,10 +4,6 @@ import PasswordInput from '../password-input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <PasswordInput
-      toggle-visibility
-      disabled
-      placeholder="Disabled"
-    />
+    <PasswordInput toggle-visibility disabled placeholder="Disabled" />
   </div>
 </template>

@@ -18,5 +18,7 @@ export interface ButtonProps extends PrimitiveProps {
   unstyled?: boolean
   class?: any
   ui?: Partial<ButtonStyleSlots>
-  onClick?: ((event: MouseEvent) => void | Promise<void>) | Array<((event: MouseEvent) => void | Promise<void>)>
+  onClick?:
+    | ((event: MouseEvent) => void | Promise<void>)
+    | Array<(event: MouseEvent) => void | Promise<void>>
 }

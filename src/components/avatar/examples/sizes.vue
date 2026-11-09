@@ -1,16 +1,7 @@
 <script lang="ts" setup>
 import Avatar from '../avatar.vue'
 
-const sizes = [
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl',
-  '4xl',
-] as const
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'] as const
 </script>
 
 <template>

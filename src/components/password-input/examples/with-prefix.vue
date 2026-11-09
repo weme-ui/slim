@@ -4,10 +4,6 @@ import PasswordInput from '../password-input.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <PasswordInput
-      toggle-visibility
-      prefix-icon="ri:lock-line"
-      placeholder="Enter password"
-    />
+    <PasswordInput toggle-visibility prefix-icon="ri:lock-line" placeholder="Enter password" />
   </div>
 </template>

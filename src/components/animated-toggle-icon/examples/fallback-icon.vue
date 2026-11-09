@@ -12,10 +12,6 @@ const active = ref(true)
     aria-label="Toggle"
     @click="active = !active"
   >
-    <AnimatedToggleIcon
-      icon="ri:star-line"
-      :active="active"
-      class="text-lg text-warning"
-    />
+    <AnimatedToggleIcon icon="ri:star-line" :active="active" class="text-lg text-warning" />
   </button>
 </template>

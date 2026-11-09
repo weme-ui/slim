@@ -4,12 +4,7 @@ import { axe } from 'vitest-axe'
 import { useAvatarGroupStyle } from './avatar-group.style'
 import AvatarGroup from './avatar-group.vue'
 
-const items = [
-  { fallback: 'A' },
-  { fallback: 'B' },
-  { fallback: 'C' },
-  { fallback: 'D' },
-]
+const items = [{ fallback: 'A' }, { fallback: 'B' }, { fallback: 'C' }, { fallback: 'D' }]
 
 describe('avatar-group', () => {
   it('applies default size classes', () => {
@@ -61,10 +56,7 @@ describe('avatar-group', () => {
         props: {
           color: 'accent',
           size: 'sm',
-          items: [
-            { fallback: 'A', color: 'success', size: 'lg' },
-            { fallback: 'B' },
-          ],
+          items: [{ fallback: 'A', color: 'success', size: 'lg' }, { fallback: 'B' }],
         },
       })
       const avatars = wrapper.findAll('[data-slot="avatar"]')

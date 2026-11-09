@@ -35,5 +35,5 @@ export const useFormFieldStyle = createVariants({
   },
 })
 
-export type FormFieldStyleSlots = typeof useFormFieldStyle['slots']
+export type FormFieldStyleSlots = (typeof useFormFieldStyle)['slots']
 export type FormFieldStyleProps = VariantProps<typeof useFormFieldStyle>

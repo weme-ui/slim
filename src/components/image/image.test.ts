@@ -58,7 +58,7 @@ describe('image', () => {
         },
       })
 
-      await new Promise(resolve => setTimeout(resolve, 0))
+      await new Promise((resolve) => setTimeout(resolve, 0))
       await nextTick()
       expect(wrapper.attributes('src')).toBe('https://example.com/fallback.png')
       wrapper.unmount()
@@ -73,11 +73,13 @@ describe('image', () => {
         },
       })
       // `alt` is declared but not bound onto the img.
-      expect(await axe(wrapper.element, {
-        rules: {
-          'image-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'image-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

@@ -16,20 +16,8 @@ const lg = ref<SegmentedControlValue>('week')
 
 <template>
   <div class="flex flex-col gap-6 items-start">
-    <SegmentedControl
-      v-model="sm"
-      size="sm"
-      :items="items"
-    />
-    <SegmentedControl
-      v-model="md"
-      size="md"
-      :items="items"
-    />
-    <SegmentedControl
-      v-model="lg"
-      size="lg"
-      :items="items"
-    />
+    <SegmentedControl v-model="sm" size="sm" :items="items" />
+    <SegmentedControl v-model="md" size="md" :items="items" />
+    <SegmentedControl v-model="lg" size="lg" :items="items" />
   </div>
 </template>

@@ -56,5 +56,5 @@ export const useProgressCircleStyle = createVariants({
   },
 })
 
-export type ProgressCircleStyleSlots = typeof useProgressCircleStyle['slots']
+export type ProgressCircleStyleSlots = (typeof useProgressCircleStyle)['slots']
 export type ProgressCircleStyleProps = VariantProps<typeof useProgressCircleStyle>

@@ -12,11 +12,7 @@ const colors = [
   'inverse',
 ] as const
 
-const items = [
-  { fallback: 'A' },
-  { fallback: 'B' },
-  { fallback: 'C' },
-]
+const items = [{ fallback: 'A' }, { fallback: 'B' }, { fallback: 'C' }]
 </script>
 
 <template>

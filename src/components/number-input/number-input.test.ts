@@ -12,20 +12,29 @@ function mountNumberInput(inputProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(Form, {
-        defaultValues: { quantity: model.value },
-      }, () =>
-        h(FormField, { name: 'quantity', label: 'Quantity' }, {
-          default: () => h(NumberInput, {
-            ...inputProps,
-            'modelValue': model.value,
-            // Prefer update:modelValue — onChange also catches bubbled native input change Events.
-            'onUpdate:modelValue': (value: number | undefined) => {
-              if (typeof value === 'number')
-                model.value = value
-            },
-          }),
-        }))
+      return () =>
+        h(
+          Form,
+          {
+            defaultValues: { quantity: model.value },
+          },
+          () =>
+            h(
+              FormField,
+              { name: 'quantity', label: 'Quantity' },
+              {
+                default: () =>
+                  h(NumberInput, {
+                    ...inputProps,
+                    modelValue: model.value,
+                    // Prefer update:modelValue — onChange also catches bubbled native input change Events.
+                    'onUpdate:modelValue': (value: number | undefined) => {
+                      if (typeof value === 'number') model.value = value
+                    },
+                  }),
+              },
+            ),
+        )
     },
   })
 
@@ -88,7 +97,9 @@ describe('number-input', () => {
 
   it('applies invalid border for soft and outline', () => {
     expect(useNumberInputStyle({ variant: 'soft', invalid: true }).root()).toContain('b-error')
-    expect(useNumberInputStyle({ variant: 'soft', invalid: true }).root()).toContain('outline-error-4')
+    expect(useNumberInputStyle({ variant: 'soft', invalid: true }).root()).toContain(
+      'outline-error-4',
+    )
     expect(useNumberInputStyle({ variant: 'outline', invalid: true }).root()).toContain('b-error')
   })
 
@@ -102,18 +113,22 @@ describe('number-input', () => {
     it('has no accessibility violations', async () => {
       // Iconify stub SVGs use role="img" without alt.
       const { wrapper } = mountNumberInput({ placeholder: '0' })
-      expect(await axe(wrapper.element, {
-        rules: {
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
 
     it('renders spinbutton controls with data-slot on the root', () => {
       const { wrapper } = mountNumberInput()
       expect(wrapper.find('[data-slot="number-input"]').exists()).toBe(true)
-      expect(wrapper.get('[role="spinbutton"]').attributes('aria-roledescription')).toBe('Number field')
+      expect(wrapper.get('[role="spinbutton"]').attributes('aria-roledescription')).toBe(
+        'Number field',
+      )
       expect(wrapper.find('button[aria-label="Increase"]').exists()).toBe(true)
       expect(wrapper.find('button[aria-label="Decrease"]').exists()).toBe(true)
       wrapper.unmount()
@@ -126,7 +141,7 @@ describe('number-input', () => {
       expect(model.value).toBe(2)
       // Filter numbers: VisuallyHiddenInput also bubbles a native `change` Event through the component.
       const changes = (wrapper.findComponent(NumberInput).emitted('change') ?? [])
-        .map(args => args[0])
+        .map((args) => args[0])
         .filter((value): value is number => typeof value === 'number')
       expect(changes.at(-1)).toBe(2)
       wrapper.unmount()
@@ -138,7 +153,7 @@ describe('number-input', () => {
       await nextTick()
       expect(model.value).toBe(2)
       const changes = (wrapper.findComponent(NumberInput).emitted('change') ?? [])
-        .map(args => args[0])
+        .map((args) => args[0])
         .filter((value): value is number => typeof value === 'number')
       expect(changes.at(-1)).toBe(2)
       wrapper.unmount()

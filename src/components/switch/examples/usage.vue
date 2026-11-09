@@ -26,19 +26,9 @@ function onFormSubmit(values: { notifications: boolean }) {
     :schema="schema"
     @form-submit="onFormSubmit"
   >
-    <FormField
-      v-slot="{ field }"
-      name="notifications"
-      label="Notifications"
-      required
-    >
-      <Switch
-        :model-value="field.state.value"
-        @update:model-value="field.api.handleChange"
-      />
+    <FormField v-slot="{ field }" name="notifications" label="Notifications" required>
+      <Switch :model-value="field.state.value" @update:model-value="field.api.handleChange" />
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>

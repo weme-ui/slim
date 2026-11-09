@@ -7,11 +7,7 @@ import Tooltip from '../tooltip.vue'
 <template>
   <TooltipProvider :delay-duration="0">
     <div class="flex items-center">
-      <Tooltip
-        content="Add to library"
-        default-open
-        as-child
-      >
+      <Tooltip content="Add to library" default-open as-child>
         <Button label="Hover" />
       </Tooltip>
     </div>

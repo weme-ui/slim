@@ -6,10 +6,7 @@ import Input from '../../input/input.vue'
 import Form from '../form.vue'
 
 const schema = v.object({
-  email: v.pipe(
-    v.string('Email is required'),
-    v.email('Enter a valid email'),
-  ),
+  email: v.pipe(v.string('Email is required'), v.email('Enter a valid email')),
 })
 
 const submitDefaults = {
@@ -23,11 +20,7 @@ const changeDefaults = {
 
 <template>
   <div class="flex flex-col gap-8 max-w-sm w-full">
-    <Form
-      :default-values="submitDefaults"
-      :schema="schema"
-      validation-mode="onSubmit"
-    >
+    <Form :default-values="submitDefaults" :schema="schema" validation-mode="onSubmit">
       <FormField
         v-slot="{ field }"
         name="email"
@@ -42,16 +35,10 @@ const changeDefaults = {
           @update:model-value="field.api.handleChange"
         />
       </FormField>
-      <Button type="submit">
-        Submit
-      </Button>
+      <Button type="submit"> Submit </Button>
     </Form>
 
-    <Form
-      :default-values="changeDefaults"
-      :schema="schema"
-      validation-mode="onChange"
-    >
+    <Form :default-values="changeDefaults" :schema="schema" validation-mode="onChange">
       <FormField
         v-slot="{ field }"
         name="email"
@@ -66,9 +53,7 @@ const changeDefaults = {
           @update:model-value="field.api.handleChange"
         />
       </FormField>
-      <Button type="submit">
-        Submit
-      </Button>
+      <Button type="submit"> Submit </Button>
     </Form>
   </div>
 </template>

@@ -24,18 +24,20 @@ describe('animated-toggle-icon', () => {
       const wrapper = mount(AnimatedToggleIcon, {
         attachTo: document.body,
         props: {
-          'icon': 'ri:checkbox-blank-line',
-          'active': false,
+          icon: 'ri:checkbox-blank-line',
+          active: false,
           'aria-hidden': true,
         },
       })
       await nextTick()
-      expect(await axe(wrapper.element, {
-        rules: {
-          // Iconify SVG uses role="img" without alt.
-          'svg-img-alt': { enabled: false },
-        },
-      })).toHaveNoViolations()
+      expect(
+        await axe(wrapper.element, {
+          rules: {
+            // Iconify SVG uses role="img" without alt.
+            'svg-img-alt': { enabled: false },
+          },
+        }),
+      ).toHaveNoViolations()
       wrapper.unmount()
     })
   })

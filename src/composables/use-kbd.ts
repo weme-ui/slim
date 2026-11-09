@@ -36,10 +36,8 @@ export type KbdKey = keyof typeof kbdKeysMap
 export type KbdKeySpecific = keyof KbdKeysSpecificMap
 
 function _useKbd() {
-  const macOS = computed(() =>
-    navigator
-    && navigator.userAgent
-    && navigator.userAgent.match(/Macintosh;/),
+  const macOS = computed(
+    () => navigator && navigator.userAgent && navigator.userAgent.match(/Macintosh;/),
   )
 
   const specificMap = reactive({
@@ -60,7 +58,7 @@ function _useKbd() {
     }
 
     if (typeof value === 'string' && value.includes('_')) {
-      return value.split('_').map(getKbdKey).flat()
+      return value.split('_').flatMap(getKbdKey)
     }
 
     if (['meta', 'alt', 'ctrl'].includes(value)) {

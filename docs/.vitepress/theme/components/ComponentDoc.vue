@@ -12,39 +12,37 @@ const props = defineProps<{
 }>()
 
 const readmeModules = {
-  ...import.meta.glob<string>(
-    '../../../../src/components/**/README.md',
-    { eager: true, query: '?raw', import: 'default' },
-  ),
-  ...import.meta.glob<string>(
-    '../../../../src/composables/*.md',
-    { eager: true, query: '?raw', import: 'default' },
-  ),
+  ...import.meta.glob<string>('../../../../src/components/**/README.md', {
+    eager: true,
+    query: '?raw',
+    import: 'default',
+  }),
+  ...import.meta.glob<string>('../../../../src/composables/*.md', {
+    eager: true,
+    query: '?raw',
+    import: 'default',
+  }),
 }
 
 function resolveReadme(path?: string) {
-  if (!path)
-    return ''
-  const key = Object.keys(readmeModules).find(modulePath =>
-    modulePath.endsWith(`/${path}`) || modulePath.endsWith(path) || modulePath.includes(path),
+  if (!path) return ''
+  const key = Object.keys(readmeModules).find(
+    (modulePath) =>
+      modulePath.endsWith(`/${path}`) || modulePath.endsWith(path) || modulePath.includes(path),
   )
-  return key
-    ? readmeModules[key] || ''
-    : ''
+  return key ? readmeModules[key] || '' : ''
 }
 
 const page = computed(() => {
   const item = getRegistryItem(props.name, registry)
-  if (!item)
-    return null
-  const docFile = item.files.find(file => file.kind === 'doc')
+  if (!item) return null
+  const docFile = item.files.find((file) => file.kind === 'doc')
   return buildComponentPage(item, resolveReadme(docFile?.path), registry)
 })
 
 const outlineIds = computed(() => {
-  if (!page.value)
-    return new Map<string, string>()
-  return new Map(flattenOutline(page.value.outline).map(header => [header.title, header.slug]))
+  if (!page.value) return new Map<string, string>()
+  return new Map(flattenOutline(page.value.outline).map((header) => [header.title, header.slug]))
 })
 
 function headingId(title: string) {
@@ -76,32 +74,28 @@ function html(source: string) {
           :href="`https://www.npmjs.com/package/${dependency}`"
           target="_blank"
           rel="noreferrer"
-        >{{ dependency }}</a>
+          >{{ dependency }}</a
+        >
       </div>
     </header>
 
-    <h2 :id="headingId('Installation')">
-      Installation
-    </h2>
-    <div class="doc-install" v-html="installationHtml[page.name] || html(page.installationMarkdown)" />
+    <h2 :id="headingId('Installation')">Installation</h2>
+    <div
+      class="doc-install"
+      v-html="installationHtml[page.name] || html(page.installationMarkdown)"
+    />
 
     <template v-if="page.usageExample">
-      <h2 :id="headingId('Usage')">
-        Usage
-      </h2>
+      <h2 :id="headingId('Usage')">Usage</h2>
       <ExamplePreview :path="page.usageExample.path" />
     </template>
     <template v-else-if="page.usageMarkdown">
-      <h2 :id="headingId('Usage')">
-        Usage
-      </h2>
+      <h2 :id="headingId('Usage')">Usage</h2>
       <div class="doc-install" v-html="usageHtml[page.name] || html(page.usageMarkdown)" />
     </template>
 
     <template v-if="page.featureExamples.length">
-      <h2 :id="headingId('Examples')">
-        Examples
-      </h2>
+      <h2 :id="headingId('Examples')">Examples</h2>
       <template v-for="example in page.featureExamples" :key="example.path">
         <h3 :id="headingId(example.title)">
           {{ example.title }}
@@ -111,37 +105,27 @@ function html(source: string) {
     </template>
 
     <template v-if="page.propsRows.length">
-      <h2 :id="headingId('Props')">
-        Props
-      </h2>
+      <h2 :id="headingId('Props')">Props</h2>
       <ApiTable kind="props" :items="page.propsRows" />
     </template>
 
     <template v-if="page.eventsRows.length">
-      <h2 :id="headingId('Events')">
-        Events
-      </h2>
+      <h2 :id="headingId('Events')">Events</h2>
       <ApiTable kind="events" :items="page.eventsRows" />
     </template>
 
     <template v-if="page.slotsRows.length">
-      <h2 :id="headingId('Slots')">
-        Slots
-      </h2>
+      <h2 :id="headingId('Slots')">Slots</h2>
       <ApiTable kind="slots" :items="page.slotsRows" />
     </template>
 
     <template v-if="page.parametersRows.length">
-      <h2 :id="headingId('Parameters')">
-        Parameters
-      </h2>
+      <h2 :id="headingId('Parameters')">Parameters</h2>
       <ApiTable kind="parameters" :items="page.parametersRows" />
     </template>
 
     <template v-if="page.returnsMarkdown || page.returnsRows.length">
-      <h2 :id="headingId('Returns')">
-        Returns
-      </h2>
+      <h2 :id="headingId('Returns')">Returns</h2>
       <div v-if="page.returnsMarkdown" v-html="html(page.returnsMarkdown)" />
       <ApiTable v-if="page.returnsRows.length" kind="fields" :items="page.returnsRows" />
     </template>
@@ -151,17 +135,11 @@ function html(source: string) {
         {{ section.title }}
       </h2>
       <div v-if="section.markdown" v-html="html(section.markdown)" />
-      <ApiTable
-        v-if="section.rows.length"
-        :kind="section.tableKind"
-        :items="section.rows"
-      />
+      <ApiTable v-if="section.rows.length" :kind="section.tableKind" :items="section.rows" />
     </template>
 
     <template v-if="page.typeSections.length">
-      <h2 :id="headingId('Types')">
-        Types
-      </h2>
+      <h2 :id="headingId('Types')">Types</h2>
       <template v-for="section in page.typeSections" :key="section.title">
         <h3 :id="headingId(section.title)">
           {{ section.title }}
@@ -172,31 +150,23 @@ function html(source: string) {
     </template>
 
     <template v-if="page.cssVarRows.length">
-      <h2 :id="headingId('CSS Variables')">
-        CSS Variables
-      </h2>
+      <h2 :id="headingId('CSS Variables')">CSS Variables</h2>
       <div v-if="page.cssVarIntro" v-html="html(page.cssVarIntro)" />
       <ApiTable kind="css-vars" :items="page.cssVarRows" />
       <div v-if="page.cssVarNote" v-html="html(page.cssVarNote)" />
     </template>
 
     <template v-if="page.accessibilityMarkdown || page.keyboardRows.length">
-      <h2 :id="headingId('Accessibility')">
-        Accessibility
-      </h2>
+      <h2 :id="headingId('Accessibility')">Accessibility</h2>
       <div v-if="page.accessibilityMarkdown" v-html="html(page.accessibilityMarkdown)" />
       <template v-if="page.keyboardRows.length">
-        <h3 :id="headingId('Keyboard Interactions')">
-          Keyboard Interactions
-        </h3>
+        <h3 :id="headingId('Keyboard Interactions')">Keyboard Interactions</h3>
         <ApiTable kind="keyboard" :items="page.keyboardRows" />
       </template>
     </template>
 
     <template v-if="page.sourceFiles.length">
-      <h2 :id="headingId('Files')">
-        Files
-      </h2>
+      <h2 :id="headingId('Files')">Files</h2>
       <ul class="doc-files">
         <li v-for="file in page.sourceFiles" :key="file.path">
           <code>{{ file.path }}</code>
@@ -205,9 +175,7 @@ function html(source: string) {
     </template>
   </div>
 
-  <p v-else>
-    Unknown component: {{ name }}
-  </p>
+  <p v-else>Unknown component: {{ name }}</p>
 </template>
 
 <style scoped>

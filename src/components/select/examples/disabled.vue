@@ -10,10 +10,6 @@ const items: SelectItems = [
 
 <template>
   <div class="max-w-sm w-full">
-    <Select
-      disabled
-      :items="items"
-      placeholder="Disabled"
-    />
+    <Select disabled :items="items" placeholder="Disabled" />
   </div>
 </template>

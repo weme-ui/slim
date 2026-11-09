@@ -10,13 +10,14 @@ function mountToggle(toggleProps: Record<string, unknown> = {}) {
 
   const Root = defineComponent({
     setup() {
-      return () => h(ToggleButton, {
-        ...toggleProps,
-        'modelValue': model.value,
-        'onUpdate:modelValue': (value: boolean) => {
-          model.value = value
-        },
-      })
+      return () =>
+        h(ToggleButton, {
+          ...toggleProps,
+          modelValue: model.value,
+          'onUpdate:modelValue': (value: boolean) => {
+            model.value = value
+          },
+        })
     },
   })
 
@@ -46,14 +47,18 @@ describe('toggle-button', () => {
   })
 
   it('applies pressed scale when scalable', () => {
-    expect(useToggleButtonStyle({ scalable: true }).root()).toContain('aria-[pressed=true]:scale-97')
+    expect(useToggleButtonStyle({ scalable: true }).root()).toContain(
+      'aria-[pressed=true]:scale-97',
+    )
     expect(useToggleButtonStyle({ scalable: true }).root()).toContain('transition-all')
   })
 
   it('applies appearance variants', () => {
     expect(useToggleButtonStyle({ variant: 'soft' }).root()).toContain('bg-muted')
     expect(useToggleButtonStyle({ variant: 'outline' }).root()).toContain('b-base')
-    expect(useToggleButtonStyle({ variant: 'outline' }).root()).toContain('data-[state=on]:b-elevated')
+    expect(useToggleButtonStyle({ variant: 'outline' }).root()).toContain(
+      'data-[state=on]:b-elevated',
+    )
 
     const ghost = useToggleButtonStyle({ variant: 'ghost' })
     expect(ghost.root()).toContain('bg-transparent')
@@ -66,7 +71,9 @@ describe('toggle-button', () => {
     expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.root()).not.toContain('aria-[pressed=true]:scale-97')
 
-    expect(useToggleButtonStyle({ scalable: false }).root()).not.toContain('aria-[pressed=true]:scale-97')
+    expect(useToggleButtonStyle({ scalable: false }).root()).not.toContain(
+      'aria-[pressed=true]:scale-97',
+    )
   })
 
   it('applies labeled size variants', () => {
@@ -137,8 +144,8 @@ describe('toggle-button', () => {
   describe('given a toggle button with an icon', () => {
     it('renders AnimatedToggleIcon', async () => {
       const { wrapper } = mountToggle({
-        'icon': 'ri:heart-line',
-        'activeIcon': 'ri:heart-fill',
+        icon: 'ri:heart-line',
+        activeIcon: 'ri:heart-fill',
         'aria-label': 'Favorite',
       })
       await nextTick()

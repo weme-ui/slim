@@ -6,10 +6,7 @@ import Slider from '../slider.vue'
 <template>
   <TooltipProvider>
     <div class="flex items-center">
-      <Slider
-        orientation="vertical"
-        :default-value="[40]"
-      />
+      <Slider orientation="vertical" :default-value="[40]" />
     </div>
   </TooltipProvider>
 </template>

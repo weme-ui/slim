@@ -15,7 +15,7 @@ describe('useGroupItems', () => {
 
     expect(groupedItems.value).toHaveLength(1)
     expect(groupedItems.value[0]).toHaveLength(2)
-    expect(flattenedItems.value.map(item => item.value)).toEqual(['apple', 'banana'])
+    expect(flattenedItems.value.map((item) => item.value)).toEqual(['apple', 'banana'])
     expect(selectedItem.value).toBeUndefined()
   })
 
@@ -36,7 +36,7 @@ describe('useGroupItems', () => {
     )
 
     expect(groupedItems.value).toHaveLength(2)
-    expect(flattenedItems.value.map(item => item.value)).toEqual(['apple', 'carrot'])
+    expect(flattenedItems.value.map((item) => item.value)).toEqual(['apple', 'carrot'])
   })
 
   it('returns an empty grouping for an empty list', () => {
@@ -72,7 +72,7 @@ describe('useGroupItems', () => {
         selected,
       )
 
-      expect(selectedItem.value?.map(item => item.value)).toEqual(['apple', 'carrot'])
+      expect(selectedItem.value?.map((item) => item.value)).toEqual(['apple', 'carrot'])
     })
   })
 })

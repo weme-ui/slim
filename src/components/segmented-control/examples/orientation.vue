@@ -15,15 +15,7 @@ const vertical = ref<SegmentedControlValue>('week')
 
 <template>
   <div class="flex flex-wrap gap-6 items-start">
-    <SegmentedControl
-      v-model="horizontal"
-      orientation="horizontal"
-      :items="items"
-    />
-    <SegmentedControl
-      v-model="vertical"
-      orientation="vertical"
-      :items="items"
-    />
+    <SegmentedControl v-model="horizontal" orientation="horizontal" :items="items" />
+    <SegmentedControl v-model="vertical" orientation="vertical" :items="items" />
   </div>
 </template>

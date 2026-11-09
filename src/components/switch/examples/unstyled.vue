@@ -4,9 +4,6 @@ import Switch from '../switch.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <Switch
-      unstyled
-      class="inline-flex"
-    />
+    <Switch unstyled class="inline-flex" />
   </div>
 </template>

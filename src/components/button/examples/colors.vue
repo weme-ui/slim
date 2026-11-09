@@ -1,24 +1,9 @@
 <script lang="ts" setup>
 import Button from '../button.vue'
 
-const variants = [
-  'solid',
-  'soft',
-  'outline',
-  'ghost',
-  'plain',
-  'inverse',
-] as const
+const variants = ['solid', 'soft', 'outline', 'ghost', 'plain', 'inverse'] as const
 
-const colors = [
-  'default',
-  'accent',
-  'neutral',
-  'info',
-  'error',
-  'success',
-  'warning',
-] as const
+const colors = ['default', 'accent', 'neutral', 'info', 'error', 'success', 'warning'] as const
 </script>
 
 <template>

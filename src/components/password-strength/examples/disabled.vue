@@ -4,10 +4,6 @@ import PasswordStrength from '../password-strength.vue'
 
 <template>
   <div class="max-w-sm w-full">
-    <PasswordStrength
-      disabled
-      password="Abcdefgh1!"
-      show-message
-    />
+    <PasswordStrength disabled password="Abcdefgh1!" show-message />
   </div>
 </template>

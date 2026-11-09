@@ -1,7 +1,7 @@
 import type { IconifyIconProps } from '@iconify/vue'
 import type { TagGroupRootEmits, TagGroupRootProps } from 'reka-ui'
-import type { TagGroupStyleProps, TagGroupStyleSlots } from './tag-group.style'
 import type { GroupItem } from '~/composables/use-group-items'
+import type { TagGroupStyleProps, TagGroupStyleSlots } from './tag-group.style'
 
 export type TagGroupItem = Omit<GroupItem<string>, 'type' | 'onSelect'>
 export type TagGroupItemValue = TagGroupItem['value']

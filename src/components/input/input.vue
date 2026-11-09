@@ -24,7 +24,12 @@ const props = withDefaults(defineProps<InputProps>(), {
 })
 
 const emits = defineEmits<InputEmits>()
-const modelValue = useVModel<InputProps, 'modelValue', 'update:modelValue'>(props, 'modelValue', emits, { defaultValue: props.defaultValue })
+const modelValue = useVModel<InputProps, 'modelValue', 'update:modelValue'>(
+  props,
+  'modelValue',
+  emits,
+  { defaultValue: props.defaultValue },
+)
 
 const {
   bindings,
@@ -40,16 +45,20 @@ const {
 
 const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
 
-const countLength = computed(() => modelValue.value
-  ? modelValue.value.toString().length
-  : 0)
-const overcount = computed(() => props.maxLength !== undefined && countLength.value > props.maxLength)
+const countLength = computed(() => (modelValue.value ? modelValue.value.toString().length : 0))
+const overcount = computed(
+  () => props.maxLength !== undefined && countLength.value > props.maxLength,
+)
 
 const slots = useSlots()
 
 const hasPrefix = computed(() => !!props.prefix || !!props.prefixIcon || !!slots.prefix)
-const hasSuffix = computed(() => loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix)
-const hasCounter = computed(() => !disabled.value && props.countable && (props.maxLength !== undefined && props.maxLength > 0))
+const hasSuffix = computed(
+  () => loading.value || !!props.suffix || !!props.suffixIcon || !!slots.suffix,
+)
+const hasCounter = computed(
+  () => !disabled.value && props.countable && props.maxLength !== undefined && props.maxLength > 0,
+)
 const hasClean = computed(() => !disabled.value && props.clearable && modelValue.value)
 
 let unregister: (() => void) | undefined
@@ -73,29 +82,31 @@ onMounted(() => {
   }
 })
 
-const ui = computed(() => useInputStyle({
-  variant: props.variant,
-  size: props.size,
-  disabled: disabled.value,
-  loading: loading.value,
-  invalid: invalid.value,
-  overcount: overcount.value,
-  unstyled: toBoolValue(props.unstyled),
-}))
+const ui = computed(() =>
+  useInputStyle({
+    variant: props.variant,
+    size: props.size,
+    disabled: disabled.value,
+    loading: loading.value,
+    invalid: invalid.value,
+    overcount: overcount.value,
+    unstyled: toBoolValue(props.unstyled),
+  }),
+)
 
 function updateValue(value: string | null | undefined) {
-  if (props.modelModifiers?.trim && (typeof value === 'string' || value === null || value === undefined))
+  if (
+    props.modelModifiers?.trim &&
+    (typeof value === 'string' || value === null || value === undefined)
+  )
     value = value?.toString().trim() ?? null
 
   if (props.modelModifiers?.number || props.type === 'number') {
     const n = Number.parseFloat(value as any)
-    value = Number.isNaN(n)
-      ? value
-      : n as any
+    value = Number.isNaN(n) ? value : (n as any)
   }
 
-  if (props.modelModifiers?.nullable)
-    value ||= null
+  if (props.modelModifiers?.nullable) value ||= null
 
   if (props.modelModifiers?.optional && !props.modelModifiers?.nullable && value !== null)
     value ||= undefined
@@ -113,11 +124,9 @@ function handleInput(e: Event) {
 function handleChange(e: Event) {
   const value = (e.target as HTMLInputElement).value
 
-  if (props.modelModifiers?.lazy)
-    updateValue(value)
+  if (props.modelModifiers?.lazy) updateValue(value)
 
-  if (props.modelModifiers?.trim)
-    (e.target as HTMLInputElement).value = value.trim()
+  if (props.modelModifiers?.trim) (e.target as HTMLInputElement).value = value.trim()
 
   emits('change', (e.target as HTMLInputElement).value)
 }
@@ -125,11 +134,9 @@ function handleChange(e: Event) {
 function handleEnter(e: KeyboardEvent) {
   const value = (e.target as HTMLInputElement).value
 
-  if (props.modelModifiers?.lazy)
-    updateValue(value)
+  if (props.modelModifiers?.lazy) updateValue(value)
 
-  if (props.modelModifiers?.trim)
-    (e.target as HTMLInputElement).value = value.trim()
+  if (props.modelModifiers?.trim) (e.target as HTMLInputElement).value = value.trim()
 
   emits('enter', (e.target as HTMLInputElement).value)
 }
@@ -143,23 +150,20 @@ function handleClean() {
 
     if (inputRef.value) {
       !inputRef.value.focus && inputRef.value.focus()
-    }
-    else {
+    } else {
       handleControlFocus()
     }
   }
 }
 
 function handleFocus(e: FocusEvent) {
-  if (!handleControlFocus())
-    return
+  if (!handleControlFocus()) return
 
   emits('focus', e)
 }
 
 function handleBlur(e: FocusEvent) {
-  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value }))
-    return
+  if (!handleControlBlur({ value: (e.target as HTMLInputElement).value })) return
 
   emits('blur', e)
 }
@@ -178,7 +182,11 @@ defineExpose({
   >
     <span v-if="hasPrefix" :class="cn(ui.prefix(), props.ui?.prefix)">
       <slot name="prefix">
-        <Icon v-if="prefixIcon" :name="prefixIcon" :class="cn(ui.prefixIcon(), props.ui?.prefixIcon)" />
+        <Icon
+          v-if="prefixIcon"
+          :name="prefixIcon"
+          :class="cn(ui.prefixIcon(), props.ui?.prefixIcon)"
+        />
         <template v-else>{{ prefix }}</template>
       </slot>
     </span>
@@ -196,11 +204,16 @@ defineExpose({
       @focus="handleFocus"
       @blur="handleBlur"
       @keyup.enter="handleEnter"
-    >
+    />
 
     <slot />
 
-    <button v-if="hasClean" type="button" :class="cn(ui.cleanBtn(), props.ui?.cleanBtn)" @click="handleClean">
+    <button
+      v-if="hasClean"
+      type="button"
+      :class="cn(ui.cleanBtn(), props.ui?.cleanBtn)"
+      @click="handleClean"
+    >
       <slot name="cleanIcon">
         <Icon :name="clearIcon" />
       </slot>
@@ -213,8 +226,16 @@ defineExpose({
     <span v-if="hasSuffix" :class="cn(ui.suffix(), props.ui?.suffix)">
       <slot name="suffix">
         <template v-if="loading || suffixIcon">
-          <Icon v-if="loading" :name="loadingIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
-          <Icon v-else-if="suffixIcon" :name="suffixIcon" :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)" />
+          <Icon
+            v-if="loading"
+            :name="loadingIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
+          <Icon
+            v-else-if="suffixIcon"
+            :name="suffixIcon"
+            :class="cn(ui.suffixIcon(), props.ui?.suffixIcon)"
+          />
         </template>
         <template v-else>{{ suffix }}</template>
       </slot>
