@@ -16,7 +16,8 @@ export const useRadioGroupStyle = createVariants({
     variant: {
       soft: {},
       outline: {
-        indicator: 'b b-base data-[state=checked]:b-accent hover:data-[state=unchecked]:b-elevated',
+        indicator:
+          'b b-default data-[state=checked]:b-accent hover:data-[state=unchecked]:b-elevated',
       },
       card: {},
     },
@@ -59,7 +60,7 @@ export const useRadioGroupStyle = createVariants({
           'rounded-full data-[state=checked]:bg-accent data-[state=unchecked]:bg-muted hover:data-[state=unchecked]:bg-elevated',
         indicatorIcon:
           'rounded-inherit shadow-xs origin-center scale-0 data-[state=checked]:scale-100',
-        content: 'text-foreground data-[state=checked]:text-highlighted',
+        content: 'text-default data-[state=checked]:text-highlighted',
         description: 'text-subtle',
       },
     },
@@ -78,7 +79,7 @@ export const useRadioGroupStyle = createVariants({
       variant: 'card',
       unstyled: false,
       class: {
-        item: 'b b-base bg-base data-[state=checked]:b-accent data-[state=checked]:outline-2 data-[state=checked]:outline-accent-4 hover:data-[state=unchecked]:b-elevated',
+        item: 'b b-default bg-default data-[state=checked]:b-accent data-[state=checked]:outline-2 data-[state=checked]:outline-accent-4 hover:data-[state=unchecked]:b-elevated',
       },
     },
 

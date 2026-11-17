@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/radio-group
+pnpm dlx @weme-ui/weme-ui add radio-group
 ```
 
 ## Usage
