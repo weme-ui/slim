@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/scroll-area
+pnpm dlx @weme-ui/weme-ui add scroll-area
 ```
 
 ## Usage
