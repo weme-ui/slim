@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/listbox
+pnpm dlx @weme-ui/weme-ui add listbox
 ```
 
 ## Usage

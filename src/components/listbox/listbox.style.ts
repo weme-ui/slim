@@ -105,7 +105,7 @@ export const useListboxStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { filter: 'b-base bg-base', content: 'b-base bg-base' },
+      class: { filter: 'b-default bg-default', content: 'b-default bg-default' },
     },
 
     {
@@ -114,7 +114,7 @@ export const useListboxStyle = createVariants({
       unstyled: false,
       class: {
         filter:
-          'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+          'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
         item: 'data-[state=checked]:bg-elevated',
       },
     },
@@ -124,7 +124,7 @@ export const useListboxStyle = createVariants({
       unstyled: false,
       class: {
         filter:
-          'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+          'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
         item: 'data-[state=checked]:b-base data-[state=checked]:bg-muted ',
       },
     },
