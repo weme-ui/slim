@@ -40,7 +40,7 @@ export const useSeparatorStyle = createVariants({
       color: 'base',
       variant: 'gradient',
       labelPosition: 'none',
-      class: { line: 'via-border-base' },
+      class: { line: 'via-border' },
     },
     {
       color: 'elevated',
@@ -59,7 +59,7 @@ export const useSeparatorStyle = createVariants({
       color: 'base',
       variant: 'gradient',
       labelPosition: 'start',
-      class: { line: 'from-border-base' },
+      class: { line: 'from-border' },
     },
     {
       color: 'elevated',
@@ -78,7 +78,7 @@ export const useSeparatorStyle = createVariants({
       color: 'base',
       variant: 'gradient',
       labelPosition: 'end',
-      class: { line: 'to-border-base' },
+      class: { line: 'to-border' },
     },
     {
       color: 'elevated',
@@ -96,7 +96,7 @@ export const useSeparatorStyle = createVariants({
     {
       color: 'base',
       variant: ['solid', 'dashed', 'dotted', 'double'],
-      class: { line: 'b-base' },
+      class: { line: 'b-default' },
     },
     {
       color: 'elevated',
