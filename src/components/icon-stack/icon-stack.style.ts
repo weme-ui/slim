@@ -3,12 +3,12 @@ import { createVariants } from '~/utils/styles'
 
 export const useIconStackStyle = createVariants({
   slots: {
-    root: 'text-foreground relative **:data-[slot=icon-stack-layer]:fill-background-base',
+    root: 'text-default relative **:data-[slot=icon-stack-layer]:fill-bg',
     layerWrapper: 'size-full overflow-visible',
     layer: '',
     ellipse: 'blur-xs',
     iconWrapper:
-      'flex pointer-events-none skew-y--26 scale-x-90 flex-center left-$icon-stack-content-x top-$icon-stack-content-y abs -translate-x-1/2 -translate-y-1/2',
+      'flex pointer-events-none skew-y--26 scale-x-90 flex-center left-$icon-stack-content-x top-$icon-stack-content-y absolute -translate-x-1/2 -translate-y-1/2',
     icon: '',
   },
 
