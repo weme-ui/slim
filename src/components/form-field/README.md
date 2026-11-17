@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/form-field
+pnpm dlx @weme-ui/weme-ui add form-field
 ```
 
 ## Usage
