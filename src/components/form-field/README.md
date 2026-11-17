@@ -17,6 +17,7 @@ pnpm dlx @weme-ui/weme-ui add form-field
 | `as`          | 渲染为的元素或组件（Reka UI `Primitive`）                                                                                             | `AsTag \| Component`           | —            |
 | `asChild`     | 合并到子元素上渲染（Reka UI composition）                                                                                             | `boolean`                      | —            |
 | `name`        | TanStack Form 字段名                                                                                                                  | `string`                       | —            |
+| `id`          | 字段 id。实现用 `useId` 生成，传入的值不会覆盖                                                                                        | `string`                       | —            |
 | `label`       | 标签文案                                                                                                                              | `string`                       | —            |
 | `description` | 标签下方的说明                                                                                                                        | `string`                       | —            |
 | `hint`        | 标签旁的提示                                                                                                                          | `string`                       | —            |

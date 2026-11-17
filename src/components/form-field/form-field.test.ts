@@ -128,5 +128,13 @@ describe('form-field', () => {
       expect(root.attributes('data-disabled')).toBe('')
       wrapper.unmount()
     })
+
+    it('generates the label id instead of using the id prop', () => {
+      const wrapper = mountFormField({ id: 'custom-field' })
+      const label = wrapper.get('label')
+      expect(label.attributes('id')).not.toBe('custom-field-label')
+      expect(label.attributes('id')).toMatch(/-label$/)
+      wrapper.unmount()
+    })
   })
 })
