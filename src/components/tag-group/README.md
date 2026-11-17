@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
+pnpm dlx @weme-ui/weme-ui add tag-group
 ```
 
 ## Usage
