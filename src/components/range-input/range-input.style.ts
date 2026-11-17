@@ -26,8 +26,8 @@ export const useRangeInputStyle = createVariants({
     invalid: { true: {} },
     unstyled: {
       false: {
-        root: 'text-foreground b rounded',
-        separator: 'text-muted group-data-[focused]:text-foreground',
+        root: 'text-default b rounded',
+        separator: 'text-muted group-data-[focused]:text-default',
       },
     },
   },
@@ -84,7 +84,7 @@ export const useRangeInputStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b-base bg-base' },
+      class: { root: 'b-default bg-default' },
     },
 
     {
@@ -92,7 +92,7 @@ export const useRangeInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'bg-muted data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'bg-muted data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {
@@ -100,7 +100,7 @@ export const useRangeInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 
