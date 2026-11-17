@@ -82,7 +82,7 @@ Task Progress:
 H1 与 item `title` 一致。H2 只用对应契约列出的英文名（解析时大小写不敏感）。只输出有内容的章节。Installation 正文：
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/<name>
+pnpm dlx @weme-ui/weme-ui add <name>
 ```
 
 说明列用中文。Vue、TypeScript、UnoCSS、Reka UI、WAI-ARIA、Iconify、TanStack Form、CSS 变量名保持英文。类型、默认值、属性名、参数名、字段名、按键名用行内代码。联合类型的 `|` 写成 `\|`。字符串默认值加引号：`'md'`。布尔和数字不加：`true`、`0`。没有默认值写 `—`。透传但未逐项列出的成员，要点写进简介或某一行说明。
