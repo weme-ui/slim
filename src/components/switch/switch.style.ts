@@ -57,14 +57,14 @@ export const useSwitchStyle = createVariants({
     {
       inverted: false,
       unstyled: false,
-      class: { thumb: 'bg-base' },
+      class: { thumb: 'bg-default' },
     },
 
     {
       variant: 'outline',
       unstyled: false,
       class: {
-        root: 'b-transparent data-[state=unchecked]:b data-[state=unchecked]:b-base hover:data-[state=unchecked]:b-elevated',
+        root: 'b-transparent data-[state=unchecked]:b data-[state=unchecked]:b-default hover:data-[state=unchecked]:b-elevated',
       },
     },
   ],
