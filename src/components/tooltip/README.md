@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tooltip
+pnpm dlx @weme-ui/weme-ui add tooltip
 ```
 
 ## Usage
