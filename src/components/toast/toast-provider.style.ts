@@ -3,9 +3,9 @@ import { createVariants } from '~/utils/styles'
 
 export const useToastProviderStyle = createVariants({
   slots: {
-    root: 'flex flex-col w-[calc(100%-2rem)] fixed z-highest focus:outline-hidden data-[expanded]:h-$height mobile:w-80',
+    root: 'flex flex-col w-[calc(100%-2rem)] fixed z-toast focus:outline-hidden data-[expanded]:h-$height mobile:w-toast',
     toast: [
-      'abs pointer-events-auto transform duration-200 ease-out inset-x-0 property-[transform,height] will-change-[transform,height]',
+      'absolute pointer-events-auto transform duration-200 ease-out inset-x-0 property-[transform,height] will-change-[transform,height]',
       'z-$reka-toast-index [transform:var(--transform)]',
       '[&:not([data-expanded])]:h-$reka-toast-frontmost-height',
       'data-[state=closed]:[&:not([data-expanded])]:animate-toast-collapse',

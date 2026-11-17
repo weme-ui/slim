@@ -3,7 +3,7 @@ import { createVariants } from '~/utils/styles'
 
 export const useToastStyle = createVariants({
   slots: {
-    root: 'outline-3 b rounded-lg bg-base shadow-lg transition-colors',
+    root: 'outline-3 b rounded-lg bg-default shadow-lg transition-colors',
     container: 'px-lg py-md rounded-inherit flex',
     icon: 'mr-sm mt-0.25 rounded-full size-4.5',
     wrapper: 'rounded-inherit flex grow',
@@ -13,7 +13,7 @@ export const useToastStyle = createVariants({
     actions: 'rounded-inherit flex gap-sm',
     action: 'rounded-inherit',
     close:
-      'p-0.5 b rounded-inherit bg-base flex shrink-0 size-5 cursor-pointer transition-transform duration-150 ease-in-out flex-center absolute z-high active:scale-95 -right-2.5 -top-2.5',
+      'p-0.5 b rounded-inherit bg-default flex shrink-0 size-5 cursor-pointer transition-transform duration-150 ease-in-out flex-center absolute z-raised active:scale-95 -right-2.5 -top-2.5',
   },
 
   variants: {
@@ -71,10 +71,10 @@ export const useToastStyle = createVariants({
     {
       variant: ['default', 'loading'],
       class: {
-        root: 'outline-background-muted/70 b-base',
+        root: 'outline-bg-muted/70 b-default',
         icon: 'text-highlighted',
         content: 'text-highlighted',
-        close: 'text-highlighted b-base',
+        close: 'text-highlighted b-default',
       },
     },
   ],
