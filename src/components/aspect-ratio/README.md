@@ -7,7 +7,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/aspect-ratio
+pnpm dlx @weme-ui/weme-ui add aspect-ratio
 ```
 
 ## Usage
