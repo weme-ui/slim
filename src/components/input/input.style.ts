@@ -63,7 +63,7 @@ export const useInputStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b-base bg-base' },
+      class: { root: 'b-default bg-default' },
     },
 
     {
@@ -71,7 +71,7 @@ export const useInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {
@@ -79,7 +79,7 @@ export const useInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 

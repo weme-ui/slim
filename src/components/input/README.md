@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/input
+pnpm dlx @weme-ui/weme-ui add input
 ```
 
 ## Usage
