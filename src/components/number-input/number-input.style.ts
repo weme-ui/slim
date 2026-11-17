@@ -68,7 +68,11 @@ export const useNumberInputStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b b-base bg-base', decrement: 'b-r b-base', increment: 'b-l b-base' },
+      class: {
+        root: 'b b-default bg-default',
+        decrement: 'b-r b-default',
+        increment: 'b-l b-default',
+      },
     },
 
     {
@@ -76,7 +80,7 @@ export const useNumberInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'bg-muted data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'bg-muted data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {
@@ -84,7 +88,7 @@ export const useNumberInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 
