@@ -12,7 +12,7 @@ export const useAutocompleteStyle = createVariants({
     suffixIcon: '',
     clearBtn: '',
     content:
-      'outline-none will-change-[height,transform,opacity] h-$reka-combobox-content-available-height w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',
+      'outline-none will-change-[height,transform,opacity] h-$reka-combobox-content-available-height w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-raised overflow-hidden',
     viewport: '',
     empty: '',
     emptyIcon: '',
@@ -38,7 +38,7 @@ export const useAutocompleteStyle = createVariants({
     unstyled: {
       false: {
         input: 'placeholder:text-subtle',
-        content: 'bg-base shadow-xs',
+        content: 'bg-default shadow-xs',
         label: 'text-subtle',
         item: 'data-[highlighted]:bg-muted',
         itemLabel: 'group-data-[highlighted]/item:font-medium',
@@ -46,7 +46,7 @@ export const useAutocompleteStyle = createVariants({
         itemIndicator: 'text-accent',
         clearBtn:
           'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
-        separator: 'my-1 b-b b-base',
+        separator: 'my-1 b-b b-default',
       },
     },
   },
@@ -84,7 +84,7 @@ export const useAutocompleteStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b b-base bg-base', content: 'b b-base' },
+      class: { root: 'b b-default bg-default', content: 'b b-default' },
     },
 
     {
@@ -92,7 +92,7 @@ export const useAutocompleteStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'bg-muted data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'bg-muted data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {
@@ -100,7 +100,7 @@ export const useAutocompleteStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 
