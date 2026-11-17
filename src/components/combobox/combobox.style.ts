@@ -15,9 +15,9 @@ export const useComboboxStyle = createVariants({
     suffix: 'ml-auto outline-none',
     suffixIcon: '',
     clearBtn: '',
-    filterInput: 'outline-none bg-base left-0 right-0 top-0 fixed z-high',
+    filterInput: 'outline-none bg-default left-0 right-0 top-0 fixed z-high',
     content:
-      'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-high overflow-hidden',
+      'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-combobox-trigger-width origin-$reka-combobox-content-transform-origin fixed z-raised overflow-hidden',
     viewport: 'flex flex-col relative',
     empty: '',
     emptyIcon: '',
@@ -57,8 +57,8 @@ export const useComboboxStyle = createVariants({
         valueCount:
           'bg-elevated group-data-[focused]:bg-muted group-not-[[data-focused]]:group-hover:bg-muted',
         placeholder: 'text-subtle',
-        filterInput: 'b-b b-base/60 placeholder:text-subtle',
-        content: 'bg-base shadow-xs',
+        filterInput: 'b-b b-default/60 placeholder:text-subtle',
+        content: 'bg-default shadow-xs',
         label: 'text-subtle',
         item: 'data-[highlighted]:bg-muted',
         itemLabel: 'group-data-[highlighted]/item:font-medium',
@@ -67,7 +67,7 @@ export const useComboboxStyle = createVariants({
         itemIndicator: 'text-accent',
         clearBtn:
           'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[focused]:op-100',
-        separator: 'my-1 b-b b-base',
+        separator: 'my-1 b-b b-default',
       },
     },
   },
@@ -105,7 +105,7 @@ export const useComboboxStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b-base bg-base', content: 'b b-base' },
+      class: { root: 'b-default bg-default', content: 'b b-default' },
     },
 
     {
@@ -113,7 +113,7 @@ export const useComboboxStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'bg-muted data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'bg-muted data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {
@@ -121,7 +121,7 @@ export const useComboboxStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 
