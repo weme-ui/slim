@@ -12,12 +12,13 @@
     "@typescript/typescript6",
     "@vueuse/core",
     "@weme-ui/unocss-preset",
+    "@weme-ui/utilities",
     "clsx",
     "defu",
     "reka-ui",
     "tailwind-merge",
     "tailwind-variants",
-    "unocss@66.10.5"
+    "unocss"
   ],
   "items": [
     {
@@ -27,6 +28,10 @@
       "description": "Shared Utilities for Weme UI Slim Components.",
       "when": "on-init",
       "files": [
+        {
+          "type": "component",
+          "path": "src/components/common/common.uno.ts"
+        },
         {
           "type": "util",
           "path": "src/utils/props.ts"
@@ -41,7 +46,7 @@
       "name": "theme",
       "type": "theme",
       "title": "Slim Theme",
-      "description": "The slim theme for Weme UI",
+      "description": "The default slim theme for Weme UI",
       "when": "on-init",
       "files": [
         {
@@ -257,6 +262,10 @@
         {
           "type": "component",
           "path": "src/components/button/button.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/button/button.uno.ts"
         },
         {
           "type": "component",
@@ -3067,6 +3076,10 @@
         },
         {
           "type": "component",
+          "path": "src/components/progress-bar/progress-bar.uno.ts"
+        },
+        {
+          "type": "component",
           "kind": "doc",
           "path": "src/components/progress-bar/README.md"
         },
@@ -3279,7 +3292,12 @@
           "kind": "test",
           "path": "src/components/toast/toast.test.ts"
         }
-      ]
+      ],
+      "cssVars": {
+        "toast": {
+          "width": "20rem"
+        }
+      }
     },
     {
       "name": "tooltip",
@@ -3342,7 +3360,7 @@
       "registryDependencies": ["icon"],
       "cssVars": {
         "tooltip": {
-          "background": "neutral.11",
+          "background": "neutral.12",
           "color": "neutral.1"
         }
       }

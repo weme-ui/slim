@@ -1,11 +1,10 @@
-import type { Theme } from '@weme-ui/unocss-preset/types'
+import type { Theme } from '@weme-ui/unocss-preset'
 import { presetWemeUI } from '@weme-ui/unocss-preset'
 import { defineConfig } from 'unocss'
-import { theme } from './src/themes/slim.theme'
+
+const steps = Array.from({ length: 12 }, (_, index) => index + 1)
 
 export default defineConfig<Theme>({
-  theme,
-
   presets: [
     presetWemeUI({
       cssVars: {
@@ -20,8 +19,11 @@ export default defineConfig<Theme>({
           'thumb-color': 'neutral.8',
           'thumb-hover-color': 'neutral.9',
         },
+        toast: {
+          width: '20rem',
+        },
         tooltip: {
-          bg: 'neutral.11',
+          bg: 'neutral.12',
           color: 'neutral.1',
         },
         'activity-bar': {
@@ -33,9 +35,15 @@ export default defineConfig<Theme>({
     }),
   ],
 
+  safelist: steps.map((step) =>
+    ['accent', 'neutral'].map((name) => `bg-${name}-${step}`).join(' '),
+  ),
+
   content: {
     pipeline: {
-      include: [/\.(vue|[jt]sx|style\.[jt]s|vine\.[jt]s|mdx?|astro|elm|php|phtml|html)($|\?)/],
+      include: [
+        /\.(vue|svelte|[jt]sx|vine.ts|style.[jt]s|mdx?|astro|elm|php|phtml|marko|html)($|\?)/,
+      ],
     },
   },
 })
