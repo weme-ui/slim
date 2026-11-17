@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/segmented-control
+pnpm dlx @weme-ui/weme-ui add segmented-control
 ```
 
 ## Usage
