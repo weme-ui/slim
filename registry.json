@@ -3279,6 +3279,10 @@
         },
         {
           "type": "component",
+          "path": "src/components/toast/toast.uno.ts"
+        },
+        {
+          "type": "component",
           "kind": "doc",
           "path": "src/components/toast/README.md"
         },
@@ -3320,6 +3324,10 @@
         {
           "type": "component",
           "path": "src/components/tooltip/tooltip.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/tooltip/tooltip.uno.ts"
         },
         {
           "type": "component",
@@ -3492,6 +3500,10 @@
         {
           "type": "component",
           "path": "src/components/link/link.style.ts"
+        },
+        {
+          "type": "component",
+          "path": "src/components/link/link.uno.ts"
         },
         {
           "type": "component",
