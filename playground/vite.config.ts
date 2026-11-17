@@ -126,6 +126,10 @@ export default defineConfig(({ mode }) => {
       __REPOSITORY__: JSON.stringify(pkg.repository.url),
     },
 
+    devtools: {
+      apply: 'serve',
+    },
+
     // https://github.com/vitest-dev/vitest
     test: {
       include: ['test/**/*.test.ts'],
