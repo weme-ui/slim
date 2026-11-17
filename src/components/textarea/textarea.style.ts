@@ -5,7 +5,7 @@ export const useTextareaStyle = createVariants({
   slots: {
     root: 'h-fit transition-colors duration-200 relative',
     textarea: 'leading-relaxed outline-none rounded-inherit size-full block',
-    innerWrapper: 'abs',
+    innerWrapper: 'absolute',
     counter: 'block pointer-events-none select-none',
     loader: '',
   },
@@ -34,7 +34,7 @@ export const useTextareaStyle = createVariants({
       false: {
         root: 'b rounded',
         textarea: 'placeholder:text-subtle',
-        counter: 'text-(xs nowrap) px-sm py-0.5 b b-base rounded-full bg-elevated/80',
+        counter: 'text-(xs nowrap) px-sm py-0.5 b b-default rounded-full bg-elevated/80',
       },
     },
     invalid: { true: {} },
@@ -49,7 +49,7 @@ export const useTextareaStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'b-base bg-base' },
+      class: { root: 'b-default bg-default' },
     },
 
     {
@@ -57,7 +57,7 @@ export const useTextareaStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:bg-elevated',
       },
     },
     {
@@ -65,7 +65,7 @@ export const useTextareaStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        root: 'data-[focused]:(bg-base b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
+        root: 'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
       },
     },
 
