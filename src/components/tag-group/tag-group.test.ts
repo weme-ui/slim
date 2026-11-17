@@ -69,7 +69,7 @@ describe('tag-group', () => {
     expect(ui.item()).toContain('text-sm')
     expect(ui.item()).toContain('rounded')
     expect(ui.item()).toContain('bg-muted')
-    expect(ui.item()).toContain('text-foreground')
+    expect(ui.item()).toContain('text-default')
     expect(ui.itemDelete()).toContain('-mr-1.5')
     expect(ui.itemIcon()).toContain('shrink-0')
     expect(ui.itemDeleteIcon()).toContain('shrink-0')
@@ -91,8 +91,8 @@ describe('tag-group', () => {
 
   it('applies appearance variants', () => {
     expect(useTagGroupStyle({ variant: 'soft' }).item()).toContain('bg-muted')
-    expect(useTagGroupStyle({ variant: 'outline' }).item()).toContain('bg-base')
-    expect(useTagGroupStyle({ variant: 'outline' }).item()).toContain('b-base')
+    expect(useTagGroupStyle({ variant: 'outline' }).item()).toContain('bg-default')
+    expect(useTagGroupStyle({ variant: 'outline' }).item()).toContain('b-default')
     expect(useTagGroupStyle({ variant: 'inverted' }).item()).toContain('bg-inverted')
     expect(useTagGroupStyle({ variant: 'inverted' }).item()).toContain('text-inverted')
   })
@@ -129,7 +129,7 @@ describe('tag-group', () => {
     expect(unstyled.item()).not.toContain('rounded')
     expect(unstyled.item()).not.toContain('h-6')
     expect(unstyled.item()).not.toContain('aria-[pressed=true]:scale-97')
-    expect(unstyled.itemDelete()).not.toContain('b-base')
+    expect(unstyled.itemDelete()).not.toContain('b-default')
   })
 
   describe('given a tag group inside a labeled form field', () => {

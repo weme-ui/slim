@@ -25,7 +25,7 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
 | `by`                     | 比较选中值的字段名或自定义比较函数                                                                                                                                   | `string \| ((a: TagGroupItemValue, b: TagGroupItemValue) => boolean)` | —                  |
 | `variant`                | 外观变体                                                                                                                                                             | `'soft' \| 'outline' \| 'inverted'`                                   | `'soft'`           |
 | `size`                   | 尺寸                                                                                                                                                                 | `'sm' \| 'md' \| 'lg'`                                                | `'md'`             |
-| `closable`               | 是否显示删除按钮（`TagGroupItemDelete`）                                                                                                                             | `boolean`                                                             | `false`            |
+| `closable`               | 是否显示删除按钮（`TagGroupItemDelete`）                                                                                                                             | `boolean`                                                             | —                  |
 | `deleteIcon`             | 删除图标（Iconify）；`closable` 为真时生效                                                                                                                           | `IconifyIconProps['icon']`                                            | `'ri:close-line'`  |
 | `loop`                   | 键盘导航是否在首尾循环                                                                                                                                               | `boolean`                                                             | `true`             |
 | `dir`                    | 阅读方向；未传时继承 `ConfigProvider`                                                                                                                                | `'ltr' \| 'rtl'`                                                      | —                  |
@@ -59,10 +59,14 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tag-group
 
 ### Keyboard Interactions
 
-| Key                        | Description                                        |
-| -------------------------- | -------------------------------------------------- |
-| `ArrowLeft` / `ArrowRight` | 在标签间移动焦点（Roving Tabindex）                |
-| `Home` / `End`             | 将焦点移到首个 / 末个可聚焦标签                    |
-| `Enter` / `Space`          | `selectionMode` 非 `none` 时切换选中               |
-| `Delete` / `Backspace`     | 已监听 `remove` 时移除当前（或整组选中）标签       |
-| `Escape`                   | `escapeKeyBehavior` 为 `clearSelection` 时清空选中 |
+| Key                        | Description                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------ |
+| `Tab`                      | 进入 / 离开组（组内仅一项在 Tab 序中）；`closable` 时再按一次移到当前标签的删除按钮  |
+| `ArrowLeft` / `ArrowRight` | 在标签间移动焦点；`dir` 为 `rtl` 时左右对调                                          |
+| `ArrowUp` / `ArrowDown`    | 在标签间移动焦点                                                                     |
+| `Home` / `PageUp`          | 将焦点移到首个可聚焦标签                                                             |
+| `End` / `PageDown`         | 将焦点移到末个可聚焦标签                                                             |
+| `Enter` / `Space`          | `selectionMode` 非 `none` 时切换选中                                                 |
+| `Delete` / `Backspace`     | 已监听 `remove` 时移除当前标签；若该项已选中则移除未禁用的选中项                     |
+| `Escape`                   | `escapeKeyBehavior` 为 `clearSelection` 且 `disallowEmptySelection` 不为真时清空选中 |
+| 字符键                     | 按标签文案快速定位并移动焦点                                                         |

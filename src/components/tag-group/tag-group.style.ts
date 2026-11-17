@@ -4,8 +4,8 @@ import { createVariants } from '~/utils/styles'
 export const useTagGroupStyle = createVariants({
   slots: {
     root: 'flex flex-wrap relative',
-    item: 'flex select-none flex-center data-[disabled]:is-disabled',
-    itemIcon: '',
+    item: 'flex select-none flex-center data-[disabled]:is-disabled focus-visible:outline-accent-4',
+    itemIcon: 'outline-none',
     itemText: 'leading-none align-middle text-nowrap',
     itemDelete: 'p-0.25 flex flex-center',
     itemDeleteIcon: '',
@@ -45,12 +45,12 @@ export const useTagGroupStyle = createVariants({
     {
       variant: 'soft',
       unstyled: false,
-      class: { item: 'bg-muted text-foreground' },
+      class: { item: 'bg-muted text-default' },
     },
     {
       variant: 'outline',
       unstyled: false,
-      class: { item: 'b b-base bg-base' },
+      class: { item: 'b b-default bg-default' },
     },
     {
       variant: 'inverted',
@@ -62,7 +62,7 @@ export const useTagGroupStyle = createVariants({
       variant: ['soft', 'outline'],
       unstyled: false,
       class: {
-        itemDelete: 'b b-base hover:(bg-elevated text-highlighted b-elevated)',
+        itemDelete: 'b b-default hover:(bg-elevated text-highlighted b-elevated)',
       },
     },
     {
