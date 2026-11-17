@@ -15,7 +15,7 @@ export const useSelectStyle = createVariants({
     suffix: 'ml-auto outline-none',
     suffixIcon: '',
     content:
-      'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-select-trigger-width origin-$reka-select-content-transform-origin fixed z-high overflow-hidden',
+      'outline-none will-change-[height,transform,opacity] max-h-60 w-$reka-select-trigger-width origin-$reka-select-content-transform-origin fixed z-raised overflow-hidden',
     viewport: 'flex flex-col relative',
     group: 'flex flex-col',
     groupLabel: '',
@@ -51,7 +51,7 @@ export const useSelectStyle = createVariants({
       false: {
         trigger: 'b',
         value: 'data-[placeholder]:text-subtle',
-        content: 'bg-base shadow-xs',
+        content: 'bg-default shadow-xs',
         groupLabel: 'text-subtle',
         item: 'outline-none data-[highlighted]:bg-muted',
         itemLabel: 'group-data-[highlighted]/item:font-medium',
@@ -60,7 +60,7 @@ export const useSelectStyle = createVariants({
         itemIndicator: 'text-accent',
         clearBtn:
           'p-0.5 rounded-full op-0 flex transition-[opacity,background-color] flex-center hover:bg-accent-3 group-data-[state=open]/trigger:op-100',
-        separator: 'my-1 b-b b-base',
+        separator: 'my-1 b-b b-default',
       },
     },
     invalid: { false: {} },
@@ -127,7 +127,7 @@ export const useSelectStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { trigger: 'b-base bg-base', content: 'b b-base' },
+      class: { trigger: 'b-default bg-default', content: 'b b-default' },
     },
 
     {
@@ -136,7 +136,7 @@ export const useSelectStyle = createVariants({
       unstyled: false,
       class: {
         trigger:
-          'bg-muted data-[state=open]:(bg-base b-accent outline-2 outline-accent-4) hover:bg-elevated',
+          'bg-muted data-[state=open]:(bg-default b-accent outline-2 outline-accent-4) hover:bg-elevated',
       },
     },
     {
@@ -144,7 +144,8 @@ export const useSelectStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        trigger: 'data-[state=open]:(bg-base b-accent outline-2 outline-accent-4) hover:b-elevated',
+        trigger:
+          'data-[state=open]:(bg-default b-accent outline-2 outline-accent-4) hover:b-elevated',
       },
     },
 

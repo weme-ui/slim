@@ -94,7 +94,7 @@ const computedValues = computed(() => props.modelValue)
 const computedValuesCount = computed(() =>
   Array.isArray(computedValues.value)
     ? computedValues.value.length
-    : computedValues.value !== ''
+    : !!computedValues.value
       ? 1
       : 0,
 )
