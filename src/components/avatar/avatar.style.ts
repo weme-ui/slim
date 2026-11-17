@@ -18,7 +18,7 @@ export const useAvatarStyle = createVariants({
       success: { fallback: 'text-success bg-success-3' },
       warning: { fallback: 'text-warning bg-warning-3' },
       error: { fallback: 'text-error bg-error-3' },
-      inverse: { fallback: 'text-foreground-inverted bg-foreground-highlighted' },
+      inverse: { fallback: 'text-inverted bg-inverted' },
     },
     size: {
       xs: { root: 'size-5', fallback: 'text-2.5' },

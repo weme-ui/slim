@@ -38,13 +38,15 @@ const ui = computed(() =>
       :class="cn(ui.image(), props.ui?.image)"
     />
     <AvatarFallback :delay-ms="delayMs" :class="cn(ui.fallback(), props.ui?.fallback)">
-      <slot v-if="$slots.fallback || fallback" name="fallback">
-        {{ fallback }}
-      </slot>
-      <slot v-else name="icon">
-        <Icon :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
+      <slot>
+        <slot v-if="$slots.fallback || fallback" name="fallback">
+          {{ fallback }}
+        </slot>
+        <slot v-else-if="!$slots.default" name="icon">
+          <Icon :name="icon" :class="cn(ui.icon(), props.ui?.icon)" />
+        </slot>
       </slot>
     </AvatarFallback>
-    <slot />
+    <slot name="extend" />
   </AvatarRoot>
 </template>
