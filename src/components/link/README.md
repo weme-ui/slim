@@ -10,7 +10,7 @@ Vue Router 的 `RouterLink`。能变色，能加前后图标。`custom` 我写�
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/link
+pnpm dlx @weme-ui/weme-ui add link
 ```
 
 ## Usage

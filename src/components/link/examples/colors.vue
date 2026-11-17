@@ -4,6 +4,7 @@ import Link from '../link.vue'
 
 <template>
   <div class="flex flex-wrap gap-4 items-center">
+    <Link to="/" label="Default" color="default" />
     <Link to="/" label="Accent" color="accent" />
     <Link to="/" label="Neutral" color="neutral" />
     <Link to="/" label="Info" color="info" />
