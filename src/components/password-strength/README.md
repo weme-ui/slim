@@ -7,9 +7,9 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/password-strength
+pnpm dlx @weme-ui/weme-ui add password-strength
 # 若与 PasswordInput 组合使用，需另行安装：
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/password-input
+pnpm dlx @weme-ui/weme-ui add password-input
 ```
 
 ## Usage
