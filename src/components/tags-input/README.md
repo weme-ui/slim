@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/tags-input
+pnpm dlx @weme-ui/weme-ui add tags-input
 ```
 
 ## Usage
