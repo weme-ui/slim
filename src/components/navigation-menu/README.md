@@ -7,7 +7,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/navigation-menu
+pnpm dlx @weme-ui/weme-ui add navigation-menu
 ```
 
 ## Usage
