@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/avatar-group
+pnpm dlx @weme-ui/weme-ui add avatar-group
 ```
 
 ## Usage

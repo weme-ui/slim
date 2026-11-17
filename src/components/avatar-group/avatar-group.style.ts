@@ -4,7 +4,7 @@ import { createVariants } from '~/utils/styles'
 export const useAvatarGroupStyle = createVariants({
   slots: {
     root: 'flex flex-row-reverse justify-end',
-    item: 'ring-2 ring-$background-base relative first:me-0',
+    item: 'ring-bg relative first:me-0',
   },
 
   variants: {
@@ -19,6 +19,12 @@ export const useAvatarGroupStyle = createVariants({
       '4xl': { item: '-me-11' },
     },
   },
+
+  compoundVariants: [
+    { size: ['xs', 'sm', 'md'], class: { item: 'ring-1' } },
+    { size: ['lg', 'xl'], class: { item: 'ring-1.5' } },
+    { size: ['2xl', '3xl', '4xl'], class: { item: 'ring-2' } },
+  ],
 
   defaultVariants: {
     size: 'md',

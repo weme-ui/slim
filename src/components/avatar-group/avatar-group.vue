@@ -26,7 +26,9 @@ const ui = computed(() => useAvatarGroupStyle({ size: props.size }))
   >
     <slot>
       <template v-if="remaining > 0">
-        <Avatar :size="size" :color="color"> +{{ remaining }} </Avatar>
+        <Avatar :size="size" :color="color" :class="cn(ui.item(), props.ui?.item)">
+          +{{ remaining }}
+        </Avatar>
       </template>
       <template v-for="(item, index) in availableItems" :key="index">
         <Avatar
