@@ -19,7 +19,7 @@ const placements = [
     <div v-for="placement in placements" :key="placement" class="relative">
       <div class="rounded bg-muted size-12" />
       <Float :placement="placement">
-        <span class="rounded-full bg-black-12 size-2.5 ring-2 ring-$docs-well" />
+        <span class="rounded-full bg-accent size-2.5 ring-2 ring-$docs-well" />
       </Float>
     </div>
   </div>

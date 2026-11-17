@@ -8,9 +8,11 @@ import Float from '../float.vue'
 <template>
   <div class="flex flex-wrap gap-8 items-center">
     <Avatar>
-      <Float placement="top-right" offset="2px">
-        <Icon name="ri:vip-crown-2-fill" class="text-yellow-10 rotate-40" aria-label="VIP" />
-      </Float>
+      <template #extend>
+        <Float placement="top-right" offset="2px">
+          <Icon name="ri:vip-crown-2-fill" class="text-yellow-10 rotate-40" aria-label="VIP" />
+        </Float>
+      </template>
     </Avatar>
 
     <Button label="Click me" color="accent">
