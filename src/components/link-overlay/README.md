@@ -7,7 +7,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/link-overlay
+pnpm dlx @weme-ui/weme-ui add link-overlay
 ```
 
 ## Usage
