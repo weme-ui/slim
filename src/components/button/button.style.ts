@@ -26,9 +26,9 @@ export const useButtonStyle = createVariants({
       warning: {},
     },
     size: {
-      sm: { root: 'text-xs px-sm gap-xs h-6', icon: 'size-3' },
-      md: { root: 'text-sm px-md gap-sm h-8', icon: 'size-3.5' },
-      lg: { root: 'text-base px-lg gap-md h-10', icon: 'size-4' },
+      sm: { root: 'text-xs px-md gap-xs h-6', icon: 'size-3' },
+      md: { root: 'text-sm px-lg gap-sm h-8', icon: 'size-3.5' },
+      lg: { root: 'text-base px-xl gap-md h-10', icon: 'size-4' },
     },
     disabled: {
       true: { root: 'is-disabled' },
@@ -49,7 +49,7 @@ export const useButtonStyle = createVariants({
       color: 'default',
       unstyled: false,
       class: {
-        root: 'bg-foreground-highlighted text-foreground-inverted hover:bg-foreground-highlighted/90 focus-visible:(outline-accent-7 z-high)',
+        root: 'bg-inverted text-inverted hover:bg-inverted/90 focus-visible:(outline-accent-7 z-raised)',
       },
     },
     {
@@ -57,7 +57,7 @@ export const useButtonStyle = createVariants({
       color: 'default',
       unstyled: false,
       class: {
-        root: 'bg-muted text-highlighted hover:bg-elevated focus-visible:(outline-accent-7 z-high)',
+        root: 'bg-muted text-highlighted hover:bg-elevated focus-visible:(outline-accent-7 z-raised)',
       },
     },
     {
@@ -65,21 +65,23 @@ export const useButtonStyle = createVariants({
       color: 'default',
       unstyled: false,
       class: {
-        root: 'b b-base text-highlighted hover:(bg-elevated b-elevated) focus-visible:(outline-accent-7 z-high)',
+        root: 'b b-default text-highlighted hover:(bg-elevated b-elevated) focus-visible:(outline-accent-7 z-raised)',
       },
     },
     {
       variant: 'ghost',
       color: 'default',
       unstyled: false,
-      class: { root: 'text-highlighted hover:bg-elevated focus-visible:(outline-accent-7 z-high)' },
+      class: {
+        root: 'text-highlighted hover:bg-elevated focus-visible:(outline-accent-7 z-raised)',
+      },
     },
     {
       variant: 'plain',
       color: 'default',
       unstyled: false,
       class: {
-        root: 'text-foreground hover:text-highlighted focus-visible:(outline-accent-7 z-high)',
+        root: 'text-default hover:text-highlighted focus-visible:(outline-accent-7 z-raised)',
       },
     },
     {
@@ -87,7 +89,7 @@ export const useButtonStyle = createVariants({
       color: 'default',
       unstyled: false,
       class: {
-        root: 'text-foreground bg-base hover:(text-highlighted bg-elevated) focus-visible:(outline-accent-7 z-high)',
+        root: 'text-bg-inverted bg-text-inverted hover:(text-highlighted bg-elevated) focus-visible:(outline-accent-7 z-raised)',
       },
     },
     // #endregion default
@@ -97,37 +99,37 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'accent',
       unstyled: false,
-      class: { root: 'fancy-accent' },
+      class: { root: 'btn-accent' },
     },
     {
       variant: 'soft',
       color: 'accent',
       unstyled: false,
-      class: { root: 'fancy-accent-soft' },
+      class: { root: 'btn-accent-soft' },
     },
     {
       variant: 'outline',
       color: 'accent',
       unstyled: false,
-      class: { root: 'fancy-accent-outline' },
+      class: { root: 'btn-accent-outline' },
     },
     {
       variant: 'ghost',
       color: 'accent',
       unstyled: false,
-      class: { root: 'fancy-accent-ghost' },
+      class: { root: 'btn-accent-ghost' },
     },
     {
       variant: 'plain',
       color: 'accent',
       unstyled: false,
-      class: { root: 'fancy-accent-plain' },
+      class: { root: 'btn-accent-plain' },
     },
     {
       variant: 'inverse',
       color: 'accent',
       unstyled: false,
-      class: { root: 'fancy-accent-inverse' },
+      class: { root: 'btn-accent-inverse' },
     },
     // #endregion accent
 
@@ -136,37 +138,37 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'neutral',
       unstyled: false,
-      class: { root: 'fancy-neutral' },
+      class: { root: 'btn-neutral' },
     },
     {
       variant: 'soft',
       color: 'neutral',
       unstyled: false,
-      class: { root: 'fancy-neutral-soft' },
+      class: { root: 'btn-neutral-soft' },
     },
     {
       variant: 'outline',
       color: 'neutral',
       unstyled: false,
-      class: { root: 'fancy-neutral-outline' },
+      class: { root: 'btn-neutral-outline' },
     },
     {
       variant: 'ghost',
       color: 'neutral',
       unstyled: false,
-      class: { root: 'fancy-neutral-ghost' },
+      class: { root: 'btn-neutral-ghost' },
     },
     {
       variant: 'plain',
       color: 'neutral',
       unstyled: false,
-      class: { root: 'fancy-neutral-plain' },
+      class: { root: 'btn-neutral-plain' },
     },
     {
       variant: 'inverse',
       color: 'neutral',
       unstyled: false,
-      class: { root: 'fancy-neutral-inverse' },
+      class: { root: 'btn-neutral-inverse' },
     },
     // #endregion neutral
 
@@ -175,37 +177,37 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'info',
       unstyled: false,
-      class: { root: 'fancy-info' },
+      class: { root: 'btn-info' },
     },
     {
       variant: 'soft',
       color: 'info',
       unstyled: false,
-      class: { root: 'fancy-info-soft' },
+      class: { root: 'btn-info-soft' },
     },
     {
       variant: 'outline',
       color: 'info',
       unstyled: false,
-      class: { root: 'fancy-info-outline' },
+      class: { root: 'btn-info-outline' },
     },
     {
       variant: 'ghost',
       color: 'info',
       unstyled: false,
-      class: { root: 'fancy-info-ghost' },
+      class: { root: 'btn-info-ghost' },
     },
     {
       variant: 'plain',
       color: 'info',
       unstyled: false,
-      class: { root: 'fancy-info-plain' },
+      class: { root: 'btn-info-plain' },
     },
     {
       variant: 'inverse',
       color: 'info',
       unstyled: false,
-      class: { root: 'fancy-info-inverse' },
+      class: { root: 'btn-info-inverse' },
     },
     // #endregion info
 
@@ -214,37 +216,37 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'error',
       unstyled: false,
-      class: { root: 'fancy-error' },
+      class: { root: 'btn-error' },
     },
     {
       variant: 'soft',
       color: 'error',
       unstyled: false,
-      class: { root: 'fancy-error-soft' },
+      class: { root: 'btn-error-soft' },
     },
     {
       variant: 'outline',
       color: 'error',
       unstyled: false,
-      class: { root: 'fancy-error-outline' },
+      class: { root: 'btn-error-outline' },
     },
     {
       variant: 'ghost',
       color: 'error',
       unstyled: false,
-      class: { root: 'fancy-error-ghost' },
+      class: { root: 'btn-error-ghost' },
     },
     {
       variant: 'plain',
       color: 'error',
       unstyled: false,
-      class: { root: 'fancy-error-plain' },
+      class: { root: 'btn-error-plain' },
     },
     {
       variant: 'inverse',
       color: 'error',
       unstyled: false,
-      class: { root: 'fancy-error-inverse' },
+      class: { root: 'btn-error-inverse' },
     },
     // #endregion error
 
@@ -253,37 +255,37 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'success',
       unstyled: false,
-      class: { root: 'fancy-success' },
+      class: { root: 'btn-success' },
     },
     {
       variant: 'soft',
       color: 'success',
       unstyled: false,
-      class: { root: 'fancy-success-soft' },
+      class: { root: 'btn-success-soft' },
     },
     {
       variant: 'outline',
       color: 'success',
       unstyled: false,
-      class: { root: 'fancy-success-outline' },
+      class: { root: 'btn-success-outline' },
     },
     {
       variant: 'ghost',
       color: 'success',
       unstyled: false,
-      class: { root: 'fancy-success-ghost' },
+      class: { root: 'btn-success-ghost' },
     },
     {
       variant: 'plain',
       color: 'success',
       unstyled: false,
-      class: { root: 'fancy-success-plain' },
+      class: { root: 'btn-success-plain' },
     },
     {
       variant: 'inverse',
       color: 'success',
       unstyled: false,
-      class: { root: 'fancy-success-inverse' },
+      class: { root: 'btn-success-inverse' },
     },
     // #endregion success
 
@@ -292,37 +294,37 @@ export const useButtonStyle = createVariants({
       variant: 'solid',
       color: 'warning',
       unstyled: false,
-      class: { root: 'fancy-warning' },
+      class: { root: 'btn-warning' },
     },
     {
       variant: 'soft',
       color: 'warning',
       unstyled: false,
-      class: { root: 'fancy-warning-soft' },
+      class: { root: 'btn-warning-soft' },
     },
     {
       variant: 'outline',
       color: 'warning',
       unstyled: false,
-      class: { root: 'fancy-warning-outline' },
+      class: { root: 'btn-warning-outline' },
     },
     {
       variant: 'ghost',
       color: 'warning',
       unstyled: false,
-      class: { root: 'fancy-warning-ghost' },
+      class: { root: 'btn-warning-ghost' },
     },
     {
       variant: 'plain',
       color: 'warning',
       unstyled: false,
-      class: { root: 'fancy-warning-plain' },
+      class: { root: 'btn-warning-plain' },
     },
     {
       variant: 'inverse',
       color: 'warning',
       unstyled: false,
-      class: { root: 'fancy-warning-inverse' },
+      class: { root: 'btn-warning-inverse' },
     },
     // #endregion warning
 
