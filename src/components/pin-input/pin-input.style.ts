@@ -19,7 +19,7 @@ export const usePinInputStyle = createVariants({
     },
     invalid: { true: {} },
     unstyled: {
-      false: { input: 'text-foreground rounded transition-colors duration-200' },
+      false: { input: 'text-default rounded transition-colors duration-200' },
     },
   },
 
@@ -32,7 +32,7 @@ export const usePinInputStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { input: 'b b-base bg-base' },
+      class: { input: 'b b-default bg-default' },
     },
 
     {
@@ -41,7 +41,7 @@ export const usePinInputStyle = createVariants({
       unstyled: false,
       class: {
         input:
-          'bg-muted focus:(bg-base b-accent outline-2 outline-accent-4) hover:not-focus:bg-elevated',
+          'bg-muted focus:(bg-default b-accent outline-2 outline-accent-4) hover:not-focus:bg-elevated',
       },
     },
     {
@@ -49,7 +49,7 @@ export const usePinInputStyle = createVariants({
       invalid: false,
       unstyled: false,
       class: {
-        input: 'focus:(bg-base b-accent outline-2 outline-accent-4) hover:not-focus:b-elevated',
+        input: 'focus:(bg-default b-accent outline-2 outline-accent-4) hover:not-focus:b-elevated',
       },
     },
 
