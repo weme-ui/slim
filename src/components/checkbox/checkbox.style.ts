@@ -47,8 +47,8 @@ export const useCheckboxStyle = createVariants({
     },
     unstyled: {
       false: {
-        indicator: 'rounded',
-        content: 'text-foreground data-[state=checked]:text-highlighted',
+        indicator: 'rounded data-[state=indeterminate]:text-default',
+        content: 'text-default data-[state=checked]:text-highlighted',
         description: 'text-subtle',
       },
     },
@@ -112,7 +112,7 @@ export const useCheckboxStyle = createVariants({
       unstyled: false,
       class: {
         indicator:
-          'b b-base bg-base data-[state=checked]:b-accent hover:data-[state=unchecked]:b-elevated',
+          'b b-default bg-default data-[state=checked]:b-accent hover:data-[state=unchecked]:b-elevated',
       },
     },
 
@@ -120,7 +120,7 @@ export const useCheckboxStyle = createVariants({
       variant: 'card',
       unstyled: false,
       class: {
-        root: 'b b-base bg-base data-[state=checked]:b-accent data-[state=checked]:outline-2 data-[state=checked]:outline-accent-4 hover:data-[state=unchecked]:b-elevated',
+        root: 'b b-default bg-default data-[state=checked]:b-accent data-[state=checked]:outline-2 data-[state=checked]:outline-accent-4 hover:data-[state=unchecked]:b-elevated',
         indicator: 'text-accent',
       },
     },
