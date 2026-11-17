@@ -5,7 +5,7 @@ export const useProgressCircleStyle = createVariants({
   slots: {
     root: 'group inline-flex flex-center relative',
     wrapper: 'group-data-[state=indeterminate]:animate-spin',
-    track: 'stroke-background-muted',
+    track: 'stroke-bg-muted',
     indicator: 'transition-stroke-dashoffset duration-300 ease-out',
     value: '',
   },
@@ -13,7 +13,7 @@ export const useProgressCircleStyle = createVariants({
   variants: {
     color: {
       default: {
-        indicator: 'stroke-foreground-highlighted',
+        indicator: 'stroke-bg-inverted',
       },
       accent: {
         indicator: 'stroke-accent',
