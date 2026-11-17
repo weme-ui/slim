@@ -10,7 +10,7 @@ dependencies:
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/animated-toggle-icon
+pnpm dlx @weme-ui/weme-ui add animated-toggle-icon
 ```
 
 ## Usage
