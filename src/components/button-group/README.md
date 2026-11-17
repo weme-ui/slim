@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button-group
+pnpm dlx @weme-ui/weme-ui add button-group
 ```
 
 ## Usage

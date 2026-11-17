@@ -5,7 +5,7 @@ export const useButtonGroupStyle = createVariants({
   slots: {
     root: 'flex h-fit w-fit',
     item: '',
-    separator: 'bg-border-base',
+    separator: 'bg-border',
   },
 
   variants: {
