@@ -16,7 +16,7 @@ export const useProgressBarStyle = createVariants({
   variants: {
     color: {
       default: {
-        indicator: 'bg-foreground-highlighted',
+        indicator: 'bg-inverted',
       },
       accent: {
         indicator: 'bg-accent',

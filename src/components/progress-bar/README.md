@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/progress-bar
+pnpm dlx @weme-ui/weme-ui add progress-bar
 ```
 
 ## Usage
