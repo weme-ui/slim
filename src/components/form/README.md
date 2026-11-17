@@ -5,7 +5,7 @@ Form 自己会建一份 TanStack Form，再把 context 交给下面的字段。�
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/form
+pnpm dlx @weme-ui/weme-ui add form
 ```
 
 ## Usage
