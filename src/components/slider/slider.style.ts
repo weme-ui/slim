@@ -7,7 +7,7 @@ export const useSliderStyle = createVariants({
     root: 'flex h-fit select-none relative touch-none',
     track: 'rounded-full flex grow flex-y-center relative overflow-hidden',
     range: 'absolute',
-    thumb: 'outline-none rounded-full cursor-grab z-high aria-[pressed=true]:cursor-grabbing',
+    thumb: 'outline-none rounded-full cursor-grab z-raised aria-[pressed=true]:cursor-grabbing',
     steps: 'flex size-full relative z-1',
     step: 'rounded-full absolute',
     marks: 'flex select-none relative',
