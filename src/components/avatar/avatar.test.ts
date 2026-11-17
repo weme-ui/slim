@@ -32,8 +32,8 @@ describe('avatar', () => {
     expect(useAvatarStyle({ color: 'warning' }).fallback()).toContain('bg-warning-3')
     expect(useAvatarStyle({ color: 'error' }).fallback()).toContain('text-error')
     expect(useAvatarStyle({ color: 'error' }).fallback()).toContain('bg-error-3')
-    expect(useAvatarStyle({ color: 'inverse' }).fallback()).toContain('text-foreground-inverted')
-    expect(useAvatarStyle({ color: 'inverse' }).fallback()).toContain('bg-foreground-highlighted')
+    expect(useAvatarStyle({ color: 'inverse' }).fallback()).toContain('text-inverted')
+    expect(useAvatarStyle({ color: 'inverse' }).fallback()).toContain('bg-inverted')
   })
 
   it('applies size variants', () => {
@@ -79,10 +79,19 @@ describe('avatar', () => {
       wrapper.unmount()
     })
 
-    it('renders the default slot after the fallback', () => {
+    it('renders the default slot instead of the fallback', () => {
       const wrapper = mount(Avatar, {
         props: { fallback: 'WX' },
         slots: { default: '文' },
+      })
+      expect(wrapper.text()).toBe('文')
+      wrapper.unmount()
+    })
+
+    it('renders the extend slot after the fallback', () => {
+      const wrapper = mount(Avatar, {
+        props: { fallback: 'WX' },
+        slots: { extend: '文' },
       })
       expect(wrapper.text()).toBe('WX文')
       wrapper.unmount()
