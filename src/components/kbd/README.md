@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/kbd
+pnpm dlx @weme-ui/weme-ui add kbd
 ```
 
 ## Usage
