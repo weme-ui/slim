@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/toggle-button
+pnpm dlx @weme-ui/weme-ui add toggle-button
 ```
 
 ## Usage

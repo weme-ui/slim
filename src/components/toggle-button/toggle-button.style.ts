@@ -40,7 +40,7 @@ export const useToggleButtonStyle = createVariants({
     {
       variant: 'outline',
       unstyled: false,
-      class: { root: 'bg-transparent b b-base data-[state=on]:b-elevated' },
+      class: { root: 'bg-transparent b b-default data-[state=on]:b-elevated' },
     },
     {
       variant: 'ghost',
@@ -51,7 +51,7 @@ export const useToggleButtonStyle = createVariants({
       variant: ['soft', 'outline', 'ghost'],
       unstyled: false,
       class: {
-        root: 'data-[state=on]:(bg-elevated text-highlighted) text-foreground hover:data-[state=off]:(bg-elevated text-highlighted) focus-visible:(outline-accent-7 z-high)',
+        root: 'data-[state=on]:(bg-elevated text-highlighted) text-foreground hover:data-[state=off]:(bg-elevated text-highlighted) focus-visible:(outline-accent-7 z-raised)',
       },
     },
 
