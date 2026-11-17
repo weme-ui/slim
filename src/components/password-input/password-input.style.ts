@@ -20,7 +20,7 @@ export const usePasswordInputStyle = createVariants({
   compoundVariants: [
     {
       unstyled: false,
-      class: { visibility: 'hover:text-foreground' },
+      class: { visibility: 'hover:text-default' },
     },
   ],
 })
