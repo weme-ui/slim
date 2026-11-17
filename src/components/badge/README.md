@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/badge
+pnpm dlx @weme-ui/weme-ui add badge
 ```
 
 ## Usage

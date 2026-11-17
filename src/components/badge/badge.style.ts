@@ -57,7 +57,7 @@ export const useBadgeStyle = createVariants({
       color: 'default',
       variant: 'outline',
       class: {
-        root: 'b b-base text-highlighted',
+        root: 'b b-default text-highlighted',
       },
     },
     {
@@ -71,7 +71,7 @@ export const useBadgeStyle = createVariants({
       color: 'default',
       variant: 'inverted',
       class: {
-        root: 'bg-base text-highlighted',
+        root: 'bg-default text-highlighted',
       },
     },
     {
@@ -97,21 +97,21 @@ export const useBadgeStyle = createVariants({
       color: 'accent',
       variant: 'solid',
       class: {
-        root: 'plain-accent',
+        root: 'box-accent',
       },
     },
     {
       color: 'accent',
       variant: 'soft',
       class: {
-        root: 'plain-accent-soft',
+        root: 'box-accent-soft',
       },
     },
     {
       color: 'accent',
       variant: 'outline',
       class: {
-        root: 'plain-accent-outline',
+        root: 'box-accent-outline',
       },
     },
     {
@@ -125,7 +125,7 @@ export const useBadgeStyle = createVariants({
       color: 'accent',
       variant: 'inverted',
       class: {
-        root: 'plain-accent-inverse',
+        root: 'box-accent-inverse',
       },
     },
     {
@@ -133,7 +133,7 @@ export const useBadgeStyle = createVariants({
       variant: 'solid',
       clickable: true,
       class: {
-        root: 'fancy-accent',
+        root: 'btn-accent',
       },
     },
     {
@@ -141,7 +141,7 @@ export const useBadgeStyle = createVariants({
       variant: 'soft',
       clickable: true,
       class: {
-        root: 'fancy-accent-soft',
+        root: 'btn-accent-soft',
       },
     },
     {
@@ -149,7 +149,7 @@ export const useBadgeStyle = createVariants({
       variant: 'outline',
       clickable: true,
       class: {
-        root: 'fancy-accent-outline',
+        root: 'btn-accent-outline',
       },
     },
     {
@@ -157,7 +157,7 @@ export const useBadgeStyle = createVariants({
       variant: 'plain',
       clickable: true,
       class: {
-        root: 'fancy-accent-plain',
+        root: 'btn-accent-box',
       },
     },
     {
@@ -165,7 +165,7 @@ export const useBadgeStyle = createVariants({
       variant: 'inverted',
       clickable: true,
       class: {
-        root: 'fancy-accent-inverse',
+        root: 'btn-accent-inverse',
       },
     },
     // #endregion
@@ -175,21 +175,21 @@ export const useBadgeStyle = createVariants({
       color: 'neutral',
       variant: 'solid',
       class: {
-        root: 'plain-neutral',
+        root: 'box-neutral',
       },
     },
     {
       color: 'neutral',
       variant: 'soft',
       class: {
-        root: 'plain-neutral-soft',
+        root: 'box-neutral-soft',
       },
     },
     {
       color: 'neutral',
       variant: 'outline',
       class: {
-        root: 'plain-neutral-outline',
+        root: 'box-neutral-outline',
       },
     },
     {
@@ -203,7 +203,7 @@ export const useBadgeStyle = createVariants({
       color: 'neutral',
       variant: 'inverted',
       class: {
-        root: 'plain-neutral-inverse',
+        root: 'box-neutral-inverse',
       },
     },
     {
@@ -235,7 +235,7 @@ export const useBadgeStyle = createVariants({
       variant: 'plain',
       clickable: true,
       class: {
-        root: 'fancy-neutral-plain',
+        root: 'fancy-neutral-box',
       },
     },
     {
@@ -253,21 +253,21 @@ export const useBadgeStyle = createVariants({
       color: 'info',
       variant: 'solid',
       class: {
-        root: 'plain-info',
+        root: 'box-info',
       },
     },
     {
       color: 'info',
       variant: 'soft',
       class: {
-        root: 'plain-info-soft',
+        root: 'box-info-soft',
       },
     },
     {
       color: 'info',
       variant: 'outline',
       class: {
-        root: 'plain-info-outline',
+        root: 'box-info-outline',
       },
     },
     {
@@ -281,7 +281,7 @@ export const useBadgeStyle = createVariants({
       color: 'info',
       variant: 'inverted',
       class: {
-        root: 'plain-info-inverse',
+        root: 'box-info-inverse',
       },
     },
     {
@@ -313,7 +313,7 @@ export const useBadgeStyle = createVariants({
       variant: 'plain',
       clickable: true,
       class: {
-        root: 'fancy-info-plain',
+        root: 'fancy-info-box',
       },
     },
     {
@@ -331,21 +331,21 @@ export const useBadgeStyle = createVariants({
       color: 'success',
       variant: 'solid',
       class: {
-        root: 'plain-success',
+        root: 'box-success',
       },
     },
     {
       color: 'success',
       variant: 'soft',
       class: {
-        root: 'plain-success-soft',
+        root: 'box-success-soft',
       },
     },
     {
       color: 'success',
       variant: 'outline',
       class: {
-        root: 'plain-success-outline',
+        root: 'box-success-outline',
       },
     },
     {
@@ -359,7 +359,7 @@ export const useBadgeStyle = createVariants({
       color: 'success',
       variant: 'inverted',
       class: {
-        root: 'plain-success-inverse',
+        root: 'box-success-inverse',
       },
     },
     {
@@ -391,7 +391,7 @@ export const useBadgeStyle = createVariants({
       variant: 'plain',
       clickable: true,
       class: {
-        root: 'fancy-success-plain',
+        root: 'fancy-success-box',
       },
     },
     {
@@ -409,21 +409,21 @@ export const useBadgeStyle = createVariants({
       color: 'warning',
       variant: 'solid',
       class: {
-        root: 'plain-warning',
+        root: 'box-warning',
       },
     },
     {
       color: 'warning',
       variant: 'soft',
       class: {
-        root: 'plain-warning-soft',
+        root: 'box-warning-soft',
       },
     },
     {
       color: 'warning',
       variant: 'outline',
       class: {
-        root: 'plain-warning-outline',
+        root: 'box-warning-outline',
       },
     },
     {
@@ -437,7 +437,7 @@ export const useBadgeStyle = createVariants({
       color: 'warning',
       variant: 'inverted',
       class: {
-        root: 'plain-warning-inverse',
+        root: 'box-warning-inverse',
       },
     },
     {
@@ -469,7 +469,7 @@ export const useBadgeStyle = createVariants({
       variant: 'plain',
       clickable: true,
       class: {
-        root: 'fancy-warning-plain',
+        root: 'fancy-warning-box',
       },
     },
     {
@@ -487,21 +487,21 @@ export const useBadgeStyle = createVariants({
       color: 'error',
       variant: 'solid',
       class: {
-        root: 'plain-error',
+        root: 'box-error',
       },
     },
     {
       color: 'error',
       variant: 'soft',
       class: {
-        root: 'plain-error-soft',
+        root: 'box-error-soft',
       },
     },
     {
       color: 'error',
       variant: 'outline',
       class: {
-        root: 'plain-error-outline',
+        root: 'box-error-outline',
       },
     },
     {
@@ -515,7 +515,7 @@ export const useBadgeStyle = createVariants({
       color: 'error',
       variant: 'inverted',
       class: {
-        root: 'plain-error-inverse',
+        root: 'box-error-inverse',
       },
     },
     {
@@ -547,7 +547,7 @@ export const useBadgeStyle = createVariants({
       variant: 'plain',
       clickable: true,
       class: {
-        root: 'fancy-error-plain',
+        root: 'fancy-error-box',
       },
     },
     {
