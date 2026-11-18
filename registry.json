@@ -2367,6 +2367,7 @@
         "docs.category": "utilities",
         "docs.categoryLabel": "Utilities"
       },
+      "registryDependencies": ["use-theme"],
       "files": [
         {
           "type": "component",
