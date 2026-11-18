@@ -2359,10 +2359,10 @@
       ]
     },
     {
-      "name": "theme",
+      "name": "theme-provider",
       "type": "component",
-      "title": "Theme",
-      "description": "Used to provide global theme configuration for nested primitives.",
+      "title": "Theme Provider",
+      "description": "Used to provide global theme configuration.",
       "meta": {
         "docs.category": "utilities",
         "docs.categoryLabel": "Utilities"
@@ -2371,11 +2371,11 @@
       "files": [
         {
           "type": "component",
-          "path": "src/components/theme/theme.vue"
+          "path": "src/components/theme-provider/theme-provider.vue"
         },
         {
           "type": "component",
-          "path": "src/components/theme/theme.props.ts"
+          "path": "src/components/theme-provider/theme-provider.props.ts"
         }
       ]
     },

@@ -5,7 +5,7 @@ import type {
   ThemeValue,
 } from '~/composables/use-theme'
 
-export interface ThemeProps {
+export interface ThemeProviderProps {
   name?: ThemeValue
   appearance?: ThemeAppearanceValue
   radius?: ThemeRadiusValue

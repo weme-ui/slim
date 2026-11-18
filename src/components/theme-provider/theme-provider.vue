@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ThemeProps } from './theme.props'
+import type { ThemeProviderProps } from './theme-provider.props'
 import { watch, watchEffect } from 'vue'
 import { useTheme } from '~/composables/use-theme'
 
@@ -7,7 +7,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<ThemeProps>()
+const props = defineProps<ThemeProviderProps>()
 
 const html = document.documentElement
 const { theme, appearance, radius, scaling } = useTheme()
