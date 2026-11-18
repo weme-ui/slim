@@ -52,7 +52,7 @@ describe('pin-input', () => {
     expect(ui.root()).toContain('flex')
     expect(ui.input()).toContain('size-8')
     expect(ui.input()).toContain('text-center')
-    expect(ui.input()).toContain('outline-none')
+    expect(ui.input()).toContain('outline-accent-4')
     expect(ui.input()).toContain('bg-muted')
     expect(ui.input()).toContain('text-default')
     expect(ui.input()).toContain('rounded')
