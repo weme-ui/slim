@@ -342,11 +342,9 @@ export function buildComponentPage(
 
   let installationMarkdown = sections.get('installation')?.trim() || ''
   if (!installationMarkdown) {
-    installationMarkdown = [
-      '```bash',
-      `pnpm dlx @weme-ui/weme-ui add ${config.name}/${item.name}`,
-      '```',
-    ].join('\n')
+    installationMarkdown = ['```bash', `pnpm dlx @weme-ui/weme-ui add ${item.name}`, '```'].join(
+      '\n',
+    )
   }
 
   const usageMarkdown = (sections.get('usage') || '').trim()
