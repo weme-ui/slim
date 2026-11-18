@@ -13,7 +13,7 @@ describe('button-group', () => {
     expect(ui.root()).toContain('gap-md')
     expect(ui.root()).not.toContain('flex-col')
     expect(ui.separator()).toContain('w-px')
-    expect(ui.separator()).toContain('bg-border-base')
+    expect(ui.separator()).toContain('bg-border')
   })
 
   it('applies vertical orientation', () => {
