@@ -22,25 +22,23 @@ describe('alert', () => {
   })
 
   it('applies variant surfaces', () => {
-    expect(useAlertStyle({ variant: 'solid' }).root()).toContain('bg-foreground-highlighted')
-    expect(useAlertStyle({ variant: 'solid' }).root()).toContain('text-foreground-inverted')
+    expect(useAlertStyle({ variant: 'solid' }).root()).toContain('bg-inverted')
+    expect(useAlertStyle({ variant: 'solid' }).root()).toContain('text-inverted')
     expect(useAlertStyle({ variant: 'soft' }).root()).toContain('bg-muted')
-    expect(useAlertStyle({ variant: 'outline' }).root()).toContain('b-base')
-    expect(useAlertStyle({ variant: 'inverse' }).root()).toContain('bg-foreground-inverted')
+    expect(useAlertStyle({ variant: 'outline' }).root()).toContain('b-default')
+    expect(useAlertStyle({ variant: 'inverse' }).root()).toContain('bg-default')
   })
 
   it('applies status surfaces', () => {
-    expect(useAlertStyle({ status: 'info', clickable: false }).root()).toContain('plain-info-soft')
+    expect(useAlertStyle({ status: 'info', clickable: false }).root()).toContain('box-info-soft')
     expect(useAlertStyle({ status: 'success', clickable: false }).root()).toContain(
-      'plain-success-soft',
+      'box-success-soft',
     )
     expect(useAlertStyle({ status: 'warning', clickable: false }).root()).toContain(
-      'plain-warning-soft',
+      'box-warning-soft',
     )
-    expect(useAlertStyle({ status: 'error', clickable: false }).root()).toContain(
-      'plain-error-soft',
-    )
-    expect(useAlertStyle({ status: 'info', clickable: true }).root()).toContain('fancy-info-soft')
+    expect(useAlertStyle({ status: 'error', clickable: false }).root()).toContain('box-error-soft')
+    expect(useAlertStyle({ status: 'info', clickable: true }).root()).toContain('box-info-soft')
   })
 
   it('applies clickable, icon, and inline states', () => {
