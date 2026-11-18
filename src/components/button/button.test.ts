@@ -9,7 +9,7 @@ describe('button', () => {
     const ui = useButtonStyle({})
     expect(ui.root()).toContain('h-8')
     expect(ui.root()).toContain('rounded')
-    expect(ui.root()).toContain('bg-foreground-highlighted')
+    expect(ui.root()).toContain('bg-inverted')
     expect(ui.root()).toContain('transition-all')
     expect(ui.root()).toContain('aria-[pressed=true]:scale-97')
   })
@@ -22,32 +22,32 @@ describe('button', () => {
   })
 
   it('applies appearance variants', () => {
-    expect(useButtonStyle({ variant: 'solid' }).root()).toContain('bg-foreground-highlighted')
+    expect(useButtonStyle({ variant: 'solid' }).root()).toContain('bg-inverted')
     expect(useButtonStyle({ variant: 'soft' }).root()).toContain('bg-muted')
     expect(useButtonStyle({ variant: 'outline' }).root()).toContain(
       'hover:(bg-elevated b-elevated)',
     )
     expect(useButtonStyle({ variant: 'ghost' }).root()).toContain('hover:bg-elevated')
-    expect(useButtonStyle({ variant: 'plain' }).root()).toContain('text-foreground')
+    expect(useButtonStyle({ variant: 'plain' }).root()).toContain('text-default')
     expect(useButtonStyle({ variant: 'inverse' }).root()).toContain(
       'hover:(text-highlighted bg-elevated)',
     )
   })
 
   it('applies color variants', () => {
-    expect(useButtonStyle({ color: 'default' }).root()).toContain('bg-foreground-highlighted')
-    expect(useButtonStyle({ color: 'accent' }).root()).toContain('fancy-accent')
-    expect(useButtonStyle({ color: 'neutral' }).root()).toContain('fancy-neutral')
-    expect(useButtonStyle({ color: 'info' }).root()).toContain('fancy-info')
-    expect(useButtonStyle({ color: 'error' }).root()).toContain('fancy-error')
-    expect(useButtonStyle({ color: 'success' }).root()).toContain('fancy-success')
-    expect(useButtonStyle({ color: 'warning' }).root()).toContain('fancy-warning')
+    expect(useButtonStyle({ color: 'default' }).root()).toContain('bg-inverted')
+    expect(useButtonStyle({ color: 'accent' }).root()).toContain('btn-accent')
+    expect(useButtonStyle({ color: 'neutral' }).root()).toContain('btn-neutral')
+    expect(useButtonStyle({ color: 'info' }).root()).toContain('btn-info')
+    expect(useButtonStyle({ color: 'error' }).root()).toContain('btn-error')
+    expect(useButtonStyle({ color: 'success' }).root()).toContain('btn-success')
+    expect(useButtonStyle({ color: 'warning' }).root()).toContain('btn-warning')
   })
 
   it('skips appearance and pressed scale when unstyled or scalable is false', () => {
     const unstyled = useButtonStyle({ unstyled: true })
-    expect(unstyled.root()).not.toContain('bg-foreground-highlighted')
-    expect(unstyled.root()).not.toContain('fancy-')
+    expect(unstyled.root()).not.toContain('bg-inverted')
+    expect(unstyled.root()).not.toContain('btn-')
     expect(unstyled.root()).not.toContain('rounded')
     expect(unstyled.root()).not.toContain('aria-[pressed=true]:scale-97')
 
