@@ -241,6 +241,22 @@
       "dependencies": ["escape-string-regexp"]
     },
     {
+      "name": "use-theme",
+      "type": "composable",
+      "title": "useTheme",
+      "description": "Theme context helpers.",
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      },
+      "files": [
+        {
+          "type": "composable",
+          "path": "src/composables/use-theme.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "component",
       "title": "Button",
@@ -2339,6 +2355,26 @@
           "type": "component",
           "kind": "test",
           "path": "src/components/config-provider/config-provider.test.ts"
+        }
+      ]
+    },
+    {
+      "name": "theme",
+      "type": "component",
+      "title": "Theme",
+      "description": "Used to provide global theme configuration for nested primitives.",
+      "meta": {
+        "docs.category": "utilities",
+        "docs.categoryLabel": "Utilities"
+      },
+      "files": [
+        {
+          "type": "component",
+          "path": "src/components/theme/theme.vue"
+        },
+        {
+          "type": "component",
+          "path": "src/components/theme/theme.props.ts"
         }
       ]
     },
