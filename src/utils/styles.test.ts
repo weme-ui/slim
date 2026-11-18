@@ -21,4 +21,12 @@ describe('styles', () => {
     const result = twMerge('anchor-default anchor-default-outline')
     expect(result).toMatchInlineSnapshot(`"anchor-default-outline"`)
   })
+
+  it('should be merge variant', () => {
+    const result = twMerge('focus-visible:outline-none focus-visible:outline-accent')
+
+    expect(result).toMatchInlineSnapshot(
+      `"focus-visible:outline-accent"`,
+    )
+  })
 })
