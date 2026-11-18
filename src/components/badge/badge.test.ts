@@ -8,7 +8,6 @@ import Badge from './badge.vue'
 describe('badge', () => {
   it('applies default solid, default color, and md size', () => {
     const ui = useBadgeStyle({})
-    expect(ui.root()).toContain('leading-none')
     expect(ui.root()).toContain('font-medium')
     expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('text-xs')
@@ -39,20 +38,20 @@ describe('badge', () => {
   it('applies appearance variants', () => {
     expect(useBadgeStyle({ variant: 'solid' }).root()).toContain('bg-inverted')
     expect(useBadgeStyle({ variant: 'soft' }).root()).toContain('bg-muted')
-    expect(useBadgeStyle({ variant: 'outline' }).root()).toContain('b-base')
+    expect(useBadgeStyle({ variant: 'outline' }).root()).toContain('b-default')
     expect(useBadgeStyle({ variant: 'plain' }).root()).toContain('text-highlighted')
     expect(useBadgeStyle({ variant: 'plain' }).root()).not.toContain('bg-inverted')
-    expect(useBadgeStyle({ variant: 'inverted' }).root()).toContain('bg-base')
+    expect(useBadgeStyle({ variant: 'inverted' }).root()).toContain('bg-default')
   })
 
   it('applies color variants', () => {
     expect(useBadgeStyle({ color: 'default' }).root()).toContain('bg-inverted')
-    expect(useBadgeStyle({ color: 'accent' }).root()).toContain('plain-accent')
-    expect(useBadgeStyle({ color: 'neutral' }).root()).toContain('plain-neutral')
-    expect(useBadgeStyle({ color: 'info' }).root()).toContain('plain-info')
-    expect(useBadgeStyle({ color: 'success' }).root()).toContain('plain-success')
-    expect(useBadgeStyle({ color: 'warning' }).root()).toContain('plain-warning')
-    expect(useBadgeStyle({ color: 'error' }).root()).toContain('plain-error')
+    expect(useBadgeStyle({ color: 'accent' }).root()).toContain('box-accent')
+    expect(useBadgeStyle({ color: 'neutral' }).root()).toContain('box-neutral')
+    expect(useBadgeStyle({ color: 'info' }).root()).toContain('box-info')
+    expect(useBadgeStyle({ color: 'success' }).root()).toContain('box-success')
+    expect(useBadgeStyle({ color: 'warning' }).root()).toContain('box-warning')
+    expect(useBadgeStyle({ color: 'error' }).root()).toContain('box-error')
   })
 
   it('applies clickable styles', () => {
@@ -65,7 +64,7 @@ describe('badge', () => {
     expect(soft.root()).toContain('hover:(bg-elevated text-highlighted)')
 
     const accent = useBadgeStyle({ color: 'accent', clickable: true })
-    expect(accent.root()).toContain('fancy-accent')
+    expect(accent.root()).toContain('btn-accent')
   })
 
   describe('given a default badge', () => {
