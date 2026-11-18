@@ -43,7 +43,7 @@
       ]
     },
     {
-      "name": "theme",
+      "name": "default-theme",
       "type": "theme",
       "title": "Slim Theme",
       "description": "The default slim theme for Weme UI",
