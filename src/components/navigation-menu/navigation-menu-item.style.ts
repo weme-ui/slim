@@ -6,7 +6,7 @@ export const useNavigationMenuItemStyle = createVariants({
     root: 'relative',
     base: 'group flex gap-2 items-center',
     icon: '',
-    label: 'cursor-default select-none',
+    label: 'select-none',
     append: 'ml-auto flex flex-center',
   },
 
