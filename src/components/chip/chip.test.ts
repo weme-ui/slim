@@ -39,7 +39,7 @@ describe('chip', () => {
   it('applies the ping wrapper when animate is true', () => {
     const ui = useChipStyle({ animate: true })
     expect(ui.indicatorWrapper()).toContain('animate-ping')
-    expect(ui.indicatorWrapper()).toContain('before:bg-inverted/50')
+    expect(ui.indicatorWrapper()).toContain('before:bg-inverted/60')
   })
 
   describe('given a labeled chip', () => {
