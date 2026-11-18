@@ -52,7 +52,7 @@ describe('switch', () => {
     expect(ui.root()).toContain('rounded-full')
     expect(ui.root()).toContain('bg-muted')
     expect(ui.root()).toContain('group/switch')
-    expect(ui.thumb()).toContain('bg-base')
+    expect(ui.thumb()).toContain('bg-default')
     expect(ui.thumb()).toContain('size-4')
   })
 
@@ -67,15 +67,15 @@ describe('switch', () => {
   it('applies outline variant border compounds', () => {
     const outline = useSwitchStyle({ variant: 'outline' }).root()
     expect(outline).toContain('data-[state=unchecked]:b')
-    expect(outline).toContain('data-[state=unchecked]:b-base')
+    expect(outline).toContain('data-[state=unchecked]:b-default')
 
     const soft = useSwitchStyle({ variant: 'soft' }).root()
-    expect(soft).not.toContain('data-[state=unchecked]:b-base')
+    expect(soft).not.toContain('data-[state=unchecked]:b-default')
   })
 
   it('applies inverted thumb colors', () => {
     expect(useSwitchStyle({ inverted: true }).thumb()).toContain('bg-inverted')
-    expect(useSwitchStyle({ inverted: false }).thumb()).toContain('bg-base')
+    expect(useSwitchStyle({ inverted: false }).thumb()).toContain('bg-default')
   })
 
   it('applies disabled and loading states', () => {
@@ -91,9 +91,9 @@ describe('switch', () => {
     expect(unstyled.root()).not.toContain('bg-muted')
     expect(unstyled.root()).not.toContain('rounded-full')
     expect(unstyled.root()).not.toContain('rounded')
-    expect(unstyled.root()).not.toContain('data-[state=unchecked]:b-base')
+    expect(unstyled.root()).not.toContain('data-[state=unchecked]:b-default')
     expect(unstyled.thumb()).not.toContain('bg-inverted')
-    expect(unstyled.thumb()).not.toContain('bg-base')
+    expect(unstyled.thumb()).not.toContain('bg-default')
   })
 
   describe('given a switch inside a labeled form field', () => {

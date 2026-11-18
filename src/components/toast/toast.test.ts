@@ -31,10 +31,10 @@ describe('toast', () => {
   it('applies the default surface', () => {
     const ui = useToastStyle({})
     expect(ui.root()).toContain('rounded-lg')
-    expect(ui.root()).toContain('bg-base')
+    expect(ui.root()).toContain('bg-default')
     expect(ui.root()).toContain('shadow-lg')
-    expect(ui.root()).toContain('outline-background-muted/70')
-    expect(ui.root()).toContain('b-base')
+    expect(ui.root()).toContain('outline-bg-muted/70')
+    expect(ui.root()).toContain('b-default')
     expect(ui.icon()).toContain('size-4.5')
     expect(ui.icon()).toContain('text-highlighted')
     expect(ui.title()).toContain('text-sm')
@@ -54,7 +54,7 @@ describe('toast', () => {
     expect(useToastStyle({ variant: 'warning' }).content()).toContain('text-warning')
     expect(useToastStyle({ variant: 'error' }).icon()).toContain('text-error')
     expect(useToastStyle({ variant: 'loading' }).icon()).toContain('animate-spin')
-    expect(useToastStyle({ variant: 'loading' }).root()).toContain('b-base')
+    expect(useToastStyle({ variant: 'loading' }).root()).toContain('b-default')
   })
 
   it('stacks the body when orientation is vertical', () => {

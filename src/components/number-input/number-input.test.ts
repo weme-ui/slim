@@ -71,13 +71,13 @@ describe('number-input', () => {
     expect(soft).toContain('b')
 
     const outline = useNumberInputStyle({ variant: 'outline' })
-    // twMerge collapses `b b-base` on root to `b`; side borders keep `b-base`.
-    expect(outline.root()).toContain('bg-base')
+    // twMerge collapses `b b-default` on root to `b`; side borders keep `b-default`.
+    expect(outline.root()).toContain('bg-default')
     expect(outline.root().split(/\s+/)).toContain('b')
     expect(outline.decrement()).toContain('b-r')
-    expect(outline.decrement()).toContain('b-base')
+    expect(outline.decrement()).toContain('b-default')
     expect(outline.increment()).toContain('b-l')
-    expect(outline.increment()).toContain('b-base')
+    expect(outline.increment()).toContain('b-default')
 
     const unstyledRoot = useNumberInputStyle({ unstyled: true }).root()
     expect(unstyledRoot).not.toContain('bg-muted')
@@ -87,11 +87,13 @@ describe('number-input', () => {
 
   it('applies soft and outline focus compounds when valid', () => {
     const soft = useNumberInputStyle({ variant: 'soft', invalid: false })
-    expect(soft.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.root()).toContain('data-[focused]:(bg-default b-accent outline-2 outline-accent-4)')
     expect(soft.root()).toContain('hover:not-[[data-focused]]:bg-elevated')
 
     const outline = useNumberInputStyle({ variant: 'outline', invalid: false })
-    expect(outline.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.root()).toContain(
+      'data-[focused]:(bg-default b-accent outline-2 outline-accent-4)',
+    )
     expect(outline.root()).toContain('hover:not-[[data-focused]]:b-elevated')
   })
 

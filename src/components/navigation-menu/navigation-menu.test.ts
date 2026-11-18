@@ -106,7 +106,7 @@ describe('navigation-menu', () => {
     const link = useNavigationMenuItemStyle({})
     expect(link.root()).toContain('flex-col')
     expect(link.base()).toContain('data-[active]:(text-highlighted font-medium')
-    expect(link.base()).toContain('not-[data-active]:text-foreground')
+    expect(link.base()).toContain('not-[data-active]:text-default')
     expect(link.base()).toContain('hover:not-[data-active]:(text-highlighted bg-muted/50)')
     expect(link.icon()).toContain('size-4')
     expect(link.label()).toContain('select-none')

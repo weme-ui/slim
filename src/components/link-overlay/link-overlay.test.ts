@@ -8,7 +8,7 @@ describe('link-overlay', () => {
   it('applies overlay base styles', () => {
     const ui = useLinkOverlayStyle()
     expect(ui.base()).toContain('static')
-    expect(ui.base()).toContain('before:(block cursor-inherit content-[""] inset-0 abs)')
+    expect(ui.base()).toContain('before:(block cursor-inherit content-[""] inset-0 absolute)')
   })
 
   describe('given a link overlay', () => {

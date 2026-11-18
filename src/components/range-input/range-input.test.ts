@@ -50,7 +50,7 @@ describe('range-input', () => {
     expect(ui.root()).toContain('h-8')
     expect(ui.root()).toContain('rounded')
     expect(ui.root()).toContain('bg-muted')
-    expect(ui.root()).toContain('text-foreground')
+    expect(ui.root()).toContain('text-default')
     expect(ui.root()).toContain('flex')
     expect(ui.root()).toContain('transition-colors')
     expect(ui.fromInput()).toContain('text-center')
@@ -76,23 +76,25 @@ describe('range-input', () => {
     expect(soft).toContain('b')
 
     const outline = useRangeInputStyle({ variant: 'outline' }).root().split(/\s+/)
-    expect(outline).toContain('bg-base')
+    expect(outline).toContain('bg-default')
     expect(outline).toContain('b')
 
     const unstyledRoot = useRangeInputStyle({ unstyled: true }).root()
     expect(unstyledRoot).not.toContain('bg-muted')
     expect(unstyledRoot).not.toContain('b-transparent')
-    expect(unstyledRoot).not.toContain('text-foreground')
+    expect(unstyledRoot).not.toContain('text-default')
     expect(unstyledRoot).not.toContain('rounded')
   })
 
   it('applies soft and outline focus compounds when valid', () => {
     const soft = useRangeInputStyle({ variant: 'soft', invalid: false })
-    expect(soft.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.root()).toContain('data-[focused]:(bg-default b-accent outline-2 outline-accent-4)')
     expect(soft.root()).toContain('hover:not-[[data-focused]]:bg-elevated')
 
     const outline = useRangeInputStyle({ variant: 'outline', invalid: false })
-    expect(outline.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.root()).toContain(
+      'data-[focused]:(bg-default b-accent outline-2 outline-accent-4)',
+    )
     expect(outline.root()).toContain('hover:not-[[data-focused]]:b-elevated')
   })
 
@@ -106,7 +108,7 @@ describe('range-input', () => {
 
   it('applies disabled state and separator focus color', () => {
     expect(useRangeInputStyle({ disabled: true }).root()).toContain('is-disabled')
-    expect(useRangeInputStyle({}).separator()).toContain('group-data-[focused]:text-foreground')
+    expect(useRangeInputStyle({}).separator()).toContain('group-data-[focused]:text-default')
   })
 
   describe('given a range input inside a labeled form field', () => {

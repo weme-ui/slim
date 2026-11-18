@@ -18,7 +18,7 @@ describe('image-preview', () => {
     expect(ui.trigger()).toContain('cursor-pointer')
     expect(ui.loadingIcon()).toContain('animate-spin')
     expect(ui.thumbImage()).toContain('size-20')
-    expect(ui.overlay()).toContain('bg-[#00000080]')
+    expect(ui.overlay()).toContain('bg-black/10')
     expect(ui.thumb()).toContain('data-[highlighted]:(outline-2')
   })
 

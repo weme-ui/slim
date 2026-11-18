@@ -8,7 +8,7 @@ import PasswordInput from '../password-input.vue'
       toggle-visibility
       unstyled
       placeholder="Fully custom…"
-      class="text-sm outline-none border-b b-base flex gap-1 w-full items-center focus-within:b-accent"
+      class="text-sm outline-none border-b b-default flex gap-1 w-full items-center focus-within:b-accent"
     />
   </div>
 </template>

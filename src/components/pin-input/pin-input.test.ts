@@ -54,7 +54,7 @@ describe('pin-input', () => {
     expect(ui.input()).toContain('text-center')
     expect(ui.input()).toContain('outline-none')
     expect(ui.input()).toContain('bg-muted')
-    expect(ui.input()).toContain('text-foreground')
+    expect(ui.input()).toContain('text-default')
     expect(ui.input()).toContain('rounded')
     expect(ui.input()).toContain('transition-colors')
     expect(ui.input()).toContain('duration-200')
@@ -74,24 +74,24 @@ describe('pin-input', () => {
     expect(soft).toContain('b')
 
     const outline = usePinInputStyle({ variant: 'outline' }).input().split(/\s+/)
-    expect(outline).toContain('bg-base')
+    expect(outline).toContain('bg-default')
     expect(outline).toContain('b')
 
     const unstyledInput = usePinInputStyle({ unstyled: true }).input()
     expect(unstyledInput).not.toContain('bg-muted')
     expect(unstyledInput).not.toContain('b-transparent')
-    expect(unstyledInput).not.toContain('text-foreground')
+    expect(unstyledInput).not.toContain('text-default')
     expect(unstyledInput).not.toContain('rounded')
     expect(unstyledInput).not.toContain('transition-colors')
   })
 
   it('applies soft and outline focus compounds when valid', () => {
     const soft = usePinInputStyle({ variant: 'soft', invalid: false })
-    expect(soft.input()).toContain('focus:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.input()).toContain('focus:(bg-default b-accent outline-2 outline-accent-4)')
     expect(soft.input()).toContain('hover:not-focus:bg-elevated')
 
     const outline = usePinInputStyle({ variant: 'outline', invalid: false })
-    expect(outline.input()).toContain('focus:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.input()).toContain('focus:(bg-default b-accent outline-2 outline-accent-4)')
     expect(outline.input()).toContain('hover:not-focus:b-elevated')
   })
 

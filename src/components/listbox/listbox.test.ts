@@ -109,9 +109,9 @@ describe('listbox', () => {
     expect(soft.content()).toContain('bg-muted')
 
     const outline = useListboxStyle({ variant: 'outline' })
-    expect(outline.filter()).toContain('bg-base')
-    expect(outline.content()).toContain('bg-base')
-    expect(outline.content()).toContain('b-base')
+    expect(outline.filter()).toContain('bg-default')
+    expect(outline.content()).toContain('bg-default')
+    expect(outline.content()).toContain('b-default')
   })
 
   it('applies orientation variants', () => {
@@ -124,14 +124,18 @@ describe('listbox', () => {
 
   it('applies focus compounds when valid', () => {
     const soft = useListboxStyle({ variant: 'soft', invalid: false })
-    expect(soft.filter()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.filter()).toContain(
+      'data-[focused]:(bg-default b-accent outline-2 outline-accent-4)',
+    )
     expect(soft.filter()).toContain('hover:not-[[data-focused]]:bg-elevated')
     expect(soft.item()).toContain('data-[state=checked]:bg-elevated')
 
     const outline = useListboxStyle({ variant: 'outline', invalid: false })
     expect(outline.filter()).toContain(
-      'data-[focused]:(bg-base b-accent outline-2 outline-accent-4)',
+      'data-[focused]:(bg-default b-accent outline-2 outline-accent-4)',
     )
+    expect(outline.item()).toContain('data-[state=checked]:b-default')
+    expect(outline.item()).toContain('data-[state=checked]:bg-muted')
   })
 
   it('applies invalid and disabled states', () => {

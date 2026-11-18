@@ -14,7 +14,7 @@ describe('progress-bar', () => {
     expect(ui.track()).toContain('h-2')
     expect(ui.track()).toContain('rounded-full')
     expect(ui.track()).toContain('bg-muted')
-    expect(ui.indicator()).toContain('bg-foreground-highlighted')
+    expect(ui.indicator()).toContain('bg-inverted')
     expect(ui.indicator()).toContain('h-full')
     expect(ui.caption()).toContain('justify-between')
     expect(ui.label()).toContain('text-sm')
@@ -24,9 +24,7 @@ describe('progress-bar', () => {
   })
 
   it('applies color variants', () => {
-    expect(useProgressBarStyle({ color: 'default' }).indicator()).toContain(
-      'bg-foreground-highlighted',
-    )
+    expect(useProgressBarStyle({ color: 'default' }).indicator()).toContain('bg-inverted')
     expect(useProgressBarStyle({ color: 'accent' }).indicator()).toContain('bg-accent')
     expect(useProgressBarStyle({ color: 'info' }).indicator()).toContain('bg-info')
     expect(useProgressBarStyle({ color: 'success' }).indicator()).toContain('bg-success')

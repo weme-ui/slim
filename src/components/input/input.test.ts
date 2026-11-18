@@ -65,7 +65,7 @@ describe('input', () => {
     expect(soft).toContain('b')
 
     const outline = useInputStyle({ variant: 'outline' }).root().split(/\s+/)
-    expect(outline).toContain('bg-base')
+    expect(outline).toContain('bg-default')
     expect(outline).toContain('b')
 
     // unstyled: true suppresses compound variant styles (border, background)
@@ -77,11 +77,13 @@ describe('input', () => {
 
   it('applies soft and outline focus compounds when valid', () => {
     const soft = useInputStyle({ variant: 'soft', invalid: false })
-    expect(soft.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.root()).toContain('data-[focused]:(bg-default b-accent outline-2 outline-accent-4)')
     expect(soft.root()).toContain('hover:not-[[data-focused]]:bg-elevated')
 
     const outline = useInputStyle({ variant: 'outline', invalid: false })
-    expect(outline.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.root()).toContain(
+      'data-[focused]:(bg-default b-accent outline-2 outline-accent-4)',
+    )
     expect(outline.root()).toContain('hover:not-[[data-focused]]:b-elevated')
   })
 

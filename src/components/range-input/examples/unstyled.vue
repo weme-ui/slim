@@ -8,7 +8,7 @@ import RangeInput from '../range-input.vue'
       unstyled
       from-placeholder="Min"
       to-placeholder="Max"
-      class="text-sm outline-none border-b b-base flex gap-2 w-full items-center focus-within:b-accent"
+      class="text-sm outline-none border-b b-default flex gap-2 w-full items-center focus-within:b-accent"
     />
   </div>
 </template>

@@ -61,7 +61,7 @@ describe('password-input', () => {
     expect(ui.visibility()).toContain('cursor-pointer')
     expect(ui.visibility()).toContain('transition-colors')
     expect(ui.visibility()).toContain('duration-200')
-    expect(ui.visibility()).toContain('hover:text-foreground')
+    expect(ui.visibility()).toContain('hover:text-default')
   })
 
   it('applies size variants to the visibility control', () => {
@@ -79,13 +79,13 @@ describe('password-input', () => {
     expect(soft).toContain('b')
 
     const outline = usePasswordInputStyle({ variant: 'outline' }).root().split(/\s+/)
-    expect(outline).toContain('bg-base')
+    expect(outline).toContain('bg-default')
     expect(outline).toContain('b')
   })
 
   it('skips visibility hover styles when unstyled', () => {
     const unstyled = usePasswordInputStyle({ unstyled: true })
-    expect(unstyled.visibility()).not.toContain('hover:text-foreground')
+    expect(unstyled.visibility()).not.toContain('hover:text-default')
     expect(unstyled.root()).not.toContain('bg-muted')
     expect(unstyled.root()).not.toContain('rounded')
   })

@@ -125,7 +125,7 @@ export const useListboxStyle = createVariants({
       class: {
         filter:
           'data-[focused]:(bg-default b-accent outline-2 outline-accent-4) hover:not-[[data-focused]]:b-elevated',
-        item: 'data-[state=checked]:b-base data-[state=checked]:bg-muted ',
+        item: 'data-[state=checked]:b-default data-[state=checked]:bg-muted',
       },
     },
 

@@ -51,7 +51,7 @@ export const useToggleButtonStyle = createVariants({
       variant: ['soft', 'outline', 'ghost'],
       unstyled: false,
       class: {
-        root: 'data-[state=on]:(bg-elevated text-highlighted) text-foreground hover:data-[state=off]:(bg-elevated text-highlighted) focus-visible:(outline-accent-7 z-raised)',
+        root: 'data-[state=on]:(bg-elevated text-highlighted) text-default hover:data-[state=off]:(bg-elevated text-highlighted) focus-visible:(outline-accent-7 z-raised)',
       },
     },
 

@@ -9,7 +9,7 @@ describe('icon-tile', () => {
     const ui = useIconTileStyle({})
     expect(ui.root()).toContain('size-10')
     expect(ui.root()).toContain('rounded')
-    expect(ui.root()).toContain('plain-neutral')
+    expect(ui.root()).toContain('box-neutral')
     expect(ui.icon()).toContain('size-4.5')
     expect(ui.icon()).toContain('pointer-events-none')
   })
@@ -24,25 +24,25 @@ describe('icon-tile', () => {
   })
 
   it('applies color and variant compound classes', () => {
-    expect(useIconTileStyle({ color: 'accent', variant: 'solid' }).root()).toContain('plain-accent')
-    expect(useIconTileStyle({ color: 'info', variant: 'soft' }).root()).toContain('plain-info-soft')
+    expect(useIconTileStyle({ color: 'accent', variant: 'solid' }).root()).toContain('box-accent')
+    expect(useIconTileStyle({ color: 'info', variant: 'soft' }).root()).toContain('box-info-soft')
     expect(useIconTileStyle({ color: 'success', variant: 'elevated' }).root()).toContain(
-      'plain-success-elevated',
+      'box-success-elevated',
     )
     expect(useIconTileStyle({ color: 'warning', variant: 'outline' }).root()).toContain(
-      'plain-warning-outline',
+      'box-warning-outline',
     )
     expect(useIconTileStyle({ color: 'error', variant: 'frame' }).root()).toContain(
-      'plain-error-frame',
+      'box-error-frame',
     )
     expect(useIconTileStyle({ color: 'neutral', variant: 'inverse' }).root()).toContain(
-      'plain-neutral-inverse',
+      'box-neutral-inverse',
     )
   })
 
   it('skips surface classes when unstyled is true', () => {
     const unstyled = useIconTileStyle({ unstyled: true })
-    expect(unstyled.root()).not.toContain('plain-')
+    expect(unstyled.root()).not.toContain('box-')
     expect(unstyled.root()).not.toContain('rounded')
   })
 

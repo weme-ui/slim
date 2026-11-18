@@ -55,7 +55,7 @@ describe('toggle-button', () => {
 
   it('applies appearance variants', () => {
     expect(useToggleButtonStyle({ variant: 'soft' }).root()).toContain('bg-muted')
-    expect(useToggleButtonStyle({ variant: 'outline' }).root()).toContain('b-base')
+    expect(useToggleButtonStyle({ variant: 'outline' }).root()).toContain('b-default')
     expect(useToggleButtonStyle({ variant: 'outline' }).root()).toContain(
       'data-[state=on]:b-elevated',
     )

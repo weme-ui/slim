@@ -27,7 +27,7 @@ pnpm dlx @weme-ui/weme-ui add switch
 | `loadingIcon`   | 加载中图标（Iconify）；`loading` 为真时显示                                         | `IconifyIconProps['icon']`  | `'ri:loader-line'` |
 | `checkedIcon`   | 选中态拇指图标（Iconify）                                                           | `IconifyIconProps['icon']`  | —                  |
 | `uncheckedIcon` | 未选中态拇指图标（Iconify）                                                         | `IconifyIconProps['icon']`  | —                  |
-| `inverted`      | 反色拇指（`true` 时拇指为 inverted 色，否则为 base 色）                             | `boolean`                   | `false`            |
+| `inverted`      | 反色拇指（`true` 时拇指为 inverted 色，否则为 default 色）                          | `boolean`                   | `false`            |
 | `unstyled`      | 移除样式变体类，仅保留结构                                                          | `boolean`                   | —                  |
 | `id`            | 控件 `id`；未传时回退到 FormField Context                                           | `string`                    | —                  |
 | `name`          | 控件 `name`；未传时回退到 FormField Context                                         | `string`                    | —                  |

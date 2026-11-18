@@ -31,6 +31,12 @@ pnpm dlx @weme-ui/weme-ui add alert
 | `class`        | 根节点额外 class                                                                                                                                                  | `any`                                         | —                         |
 | `ui`           | 覆盖 slots 样式（`root` / `icon` / `content` / `title` / `description` / `actions` / `close`）                                                                    | `Partial<AlertStyleSlots>`                    | —                         |
 
+## Events
+
+| 事件             | 说明                                                           | 参数             |
+| ---------------- | -------------------------------------------------------------- | ---------------- |
+| `update:visible` | 显示状态变更时触发（含 `v-model:visible`）。关闭时值为 `false` | `value: boolean` |
+
 ## Slots
 
 | 插槽           | 说明                                                                                     |

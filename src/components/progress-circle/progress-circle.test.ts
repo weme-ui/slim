@@ -15,16 +15,14 @@ describe('progress-circle', () => {
     expect(ui.root()).toContain('gap-sm')
     expect(ui.wrapper()).toContain('size-7')
     expect(ui.wrapper()).toContain('group-data-[state=indeterminate]:animate-spin')
-    expect(ui.track()).toContain('stroke-background-muted')
-    expect(ui.indicator()).toContain('stroke-foreground-highlighted')
+    expect(ui.track()).toContain('stroke-bg-muted')
+    expect(ui.indicator()).toContain('stroke-bg-inverted')
     expect(ui.indicator()).toContain('transition-stroke-dashoffset')
     expect(ui.value()).toContain('text-sm')
   })
 
   it('applies color variants', () => {
-    expect(useProgressCircleStyle({ color: 'default' }).indicator()).toContain(
-      'stroke-foreground-highlighted',
-    )
+    expect(useProgressCircleStyle({ color: 'default' }).indicator()).toContain('stroke-bg-inverted')
     expect(useProgressCircleStyle({ color: 'accent' }).indicator()).toContain('stroke-accent')
     expect(useProgressCircleStyle({ color: 'info' }).indicator()).toContain('stroke-info')
     expect(useProgressCircleStyle({ color: 'success' }).indicator()).toContain('stroke-success')

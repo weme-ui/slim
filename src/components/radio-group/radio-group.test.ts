@@ -79,14 +79,14 @@ describe('radio-group', () => {
 
   it('applies soft, outline, and card appearance compounds', () => {
     expect(useRadioGroupStyle({ variant: 'soft' }).indicator()).toContain('bg-muted')
-    expect(useRadioGroupStyle({ variant: 'outline' }).indicator()).toContain('b-base')
+    expect(useRadioGroupStyle({ variant: 'outline' }).indicator()).toContain('b-default')
     expect(useRadioGroupStyle({ variant: 'outline' }).indicator()).toContain(
       'data-[state=checked]:b-accent',
     )
 
     const card = useRadioGroupStyle({ variant: 'card' })
-    expect(card.item()).toContain('b-base')
-    expect(card.item()).toContain('bg-base')
+    expect(card.item()).toContain('b-default')
+    expect(card.item()).toContain('bg-default')
     expect(card.item()).toContain('data-[state=checked]:b-accent')
   })
 
@@ -117,7 +117,7 @@ describe('radio-group', () => {
     expect(unstyled.indicator()).not.toContain('bg-muted')
     expect(unstyled.indicator()).not.toContain('rounded-full')
     expect(unstyled.indicatorIcon()).not.toContain('scale-0')
-    expect(unstyled.content()).not.toContain('text-foreground')
+    expect(unstyled.content()).not.toContain('text-default')
     expect(unstyled.item()).not.toContain('data-[state=checked]:outline-accent-4')
     expect(unstyled.item()).not.toContain('rounded')
   })

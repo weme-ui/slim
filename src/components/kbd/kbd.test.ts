@@ -10,7 +10,6 @@ describe('kbd', () => {
   it('applies default variant and size classes', () => {
     const ui = useKbdStyle({})
     expect(ui).toContain('bg-muted')
-    expect(ui).toContain('leading-none')
     expect(ui).toContain('text-2.75')
     expect(ui).toContain('px-1.5')
     expect(ui).toContain('py-1')

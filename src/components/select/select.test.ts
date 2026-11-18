@@ -98,7 +98,7 @@ describe('select', () => {
     expect(ui.trigger()).toContain('px-2.5')
     expect(ui.trigger()).toContain('gap-sm')
     expect(ui.value()).toContain('data-[placeholder]:text-subtle')
-    expect(ui.content()).toContain('bg-base')
+    expect(ui.content()).toContain('bg-default')
     expect(ui.content()).toContain('shadow-xs')
     expect(ui.group()).toContain('flex')
     expect(ui.group()).toContain('flex-col')
@@ -138,21 +138,21 @@ describe('select', () => {
     expect(soft.trigger()).toContain('b')
 
     const outline = useSelectStyle({ variant: 'outline' })
-    expect(outline.trigger()).toContain('bg-base')
+    expect(outline.trigger()).toContain('bg-default')
     expect(outline.content()).toContain('b')
-    expect(outline.content()).toContain('b-base')
+    expect(outline.content()).toContain('b-default')
   })
 
   it('applies open-state compounds when valid', () => {
     const soft = useSelectStyle({ variant: 'soft', invalid: false })
     expect(soft.trigger()).toContain(
-      'data-[state=open]:(bg-base b-accent outline-2 outline-accent-4)',
+      'data-[state=open]:(bg-default b-accent outline-2 outline-accent-4)',
     )
     expect(soft.trigger()).toContain('hover:bg-elevated')
 
     const outline = useSelectStyle({ variant: 'outline', invalid: false })
     expect(outline.trigger()).toContain(
-      'data-[state=open]:(bg-base b-accent outline-2 outline-accent-4)',
+      'data-[state=open]:(bg-default b-accent outline-2 outline-accent-4)',
     )
     expect(outline.trigger()).toContain('hover:b-elevated')
   })
@@ -179,7 +179,7 @@ describe('select', () => {
     const unstyled = useSelectStyle({ unstyled: true, variant: 'soft' })
     expect(unstyled.trigger()).not.toContain('bg-muted')
     expect(unstyled.trigger()).not.toContain('rounded')
-    expect(unstyled.content()).not.toContain('bg-base')
+    expect(unstyled.content()).not.toContain('bg-default')
     expect(unstyled.content()).not.toContain('rounded')
     expect(unstyled.item()).not.toContain('data-[highlighted]:bg-muted')
     expect(unstyled.item()).not.toContain('rounded')

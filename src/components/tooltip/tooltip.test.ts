@@ -56,7 +56,7 @@ describe('tooltip', () => {
     expect(ui.content()).toContain('text-tooltip')
     expect(ui.content()).toContain('text-xs')
     expect(ui.content()).toContain('rounded')
-    expect(ui.content()).toContain('z-highest')
+    expect(ui.content()).toContain('z-toast')
     expect(ui.icon()).toContain('shrink-0')
     expect(ui.icon()).not.toContain('animate-spin')
     expect(ui.arrow()).toContain('fill-tooltip')

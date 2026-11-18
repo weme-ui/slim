@@ -8,7 +8,7 @@ import PinInput from '../pin-input.vue'
       unstyled
       class="flex gap-2"
       :ui="{
-        input: 'size-10 text-center border-b b-base outline-none focus:b-accent',
+        input: 'size-10 text-center border-b b-default outline-none focus:b-accent',
       }"
     />
   </div>

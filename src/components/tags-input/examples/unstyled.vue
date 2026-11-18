@@ -12,7 +12,7 @@ const tags = ref<TagsInputValue[]>(['custom'])
       v-model="tags"
       unstyled
       placeholder="Fully custom…"
-      class="text-sm py-1 outline-none border-b b-base flex flex-wrap gap-1 w-full focus-within:b-accent"
+      class="text-sm py-1 outline-none border-b b-default flex flex-wrap gap-1 w-full focus-within:b-accent"
     />
   </div>
 </template>

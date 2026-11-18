@@ -8,7 +8,7 @@ describe('separator', () => {
   it('applies default color, variant, and orientation', () => {
     const ui = useSeparatorStyle({})
     expect(ui.line()).toContain('b-solid')
-    expect(ui.line()).toContain('b-base')
+    expect(ui.line()).toContain('b-default')
     expect(ui.line()).toContain('b-t')
     expect(ui.line()).toContain('w-full')
     expect(ui.line()).toContain('h-px')
@@ -36,7 +36,7 @@ describe('separator', () => {
   })
 
   it('applies color compound classes for border variants', () => {
-    expect(useSeparatorStyle({ color: 'base', variant: 'solid' }).line()).toContain('b-base')
+    expect(useSeparatorStyle({ color: 'base', variant: 'solid' }).line()).toContain('b-default')
     expect(useSeparatorStyle({ color: 'elevated', variant: 'dashed' }).line()).toContain(
       'b-elevated',
     )
@@ -49,7 +49,7 @@ describe('separator', () => {
     const none = useSeparatorStyle({ variant: 'gradient', labelPosition: 'none' })
     expect(none.line()).toContain('from-transparent')
     expect(none.line()).toContain('to-transparent')
-    expect(none.line()).toContain('via-border-base')
+    expect(none.line()).toContain('via-border')
     expect(none.line()).toContain('bg-linear-to-r')
 
     expect(
@@ -66,7 +66,7 @@ describe('separator', () => {
         variant: 'gradient',
         labelPosition: 'start',
       }).line(),
-    ).toContain('from-border-base')
+    ).toContain('from-border')
 
     expect(
       useSeparatorStyle({

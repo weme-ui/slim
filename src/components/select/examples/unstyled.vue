@@ -14,7 +14,7 @@ const items: SelectItems = [
       unstyled
       :items="items"
       placeholder="Fully custom…"
-      class="text-sm py-1 outline-none border-b b-base w-full"
+      class="text-sm py-1 outline-none border-b b-default w-full"
     />
   </div>
 </template>
