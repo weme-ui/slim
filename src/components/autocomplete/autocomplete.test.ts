@@ -62,7 +62,7 @@ describe('autocomplete', () => {
     expect(ui.anchor()).toContain('px-2.5')
     expect(ui.anchor()).toContain('gap-sm')
     expect(ui.input()).toContain('placeholder:text-subtle')
-    expect(ui.content()).toContain('bg-base')
+    expect(ui.content()).toContain('bg-default')
     expect(ui.content()).toContain('shadow-xs')
     expect(ui.group()).toContain('flex')
     expect(ui.group()).toContain('flex-col')
@@ -104,18 +104,20 @@ describe('autocomplete', () => {
     expect(soft).toContain('b')
 
     const outline = useAutocompleteStyle({ variant: 'outline' })
-    expect(outline.root().split(/\s+/)).toContain('bg-base')
+    expect(outline.root().split(/\s+/)).toContain('bg-default')
     expect(outline.content()).toContain('b')
-    expect(outline.content()).toContain('b-base')
+    expect(outline.content()).toContain('b-default')
   })
 
   it('applies focus compounds when valid', () => {
     const soft = useAutocompleteStyle({ variant: 'soft', invalid: false })
-    expect(soft.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(soft.root()).toContain('data-[focused]:(bg-default b-accent outline-2 outline-accent-4)')
     expect(soft.root()).toContain('hover:not-[[data-focused]]:bg-elevated')
 
     const outline = useAutocompleteStyle({ variant: 'outline', invalid: false })
-    expect(outline.root()).toContain('data-[focused]:(bg-base b-accent outline-2 outline-accent-4)')
+    expect(outline.root()).toContain(
+      'data-[focused]:(bg-default b-accent outline-2 outline-accent-4)',
+    )
   })
 
   it('applies invalid, disabled, and loading states', () => {
@@ -131,7 +133,7 @@ describe('autocomplete', () => {
   it('skips appearance styles when unstyled', () => {
     const unstyled = useAutocompleteStyle({ unstyled: true, variant: 'soft' })
     expect(unstyled.root()).not.toContain('bg-muted')
-    expect(unstyled.content()).not.toContain('bg-base')
+    expect(unstyled.content()).not.toContain('bg-default')
     expect(unstyled.item()).not.toContain('data-[highlighted]:bg-muted')
     expect(unstyled.label() ?? '').not.toContain('text-subtle')
     expect(unstyled.input()).not.toContain('placeholder:text-subtle')
