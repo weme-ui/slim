@@ -70,12 +70,12 @@ describe('checkbox', () => {
 
   it('applies soft, outline, and card appearance compounds', () => {
     expect(useCheckboxStyle({ variant: 'soft' }).indicator()).toContain('bg-muted')
-    expect(useCheckboxStyle({ variant: 'outline' }).indicator()).toContain('b-base')
-    expect(useCheckboxStyle({ variant: 'outline' }).indicator()).toContain('bg-base')
+    expect(useCheckboxStyle({ variant: 'outline' }).indicator()).toContain('b-default')
+    expect(useCheckboxStyle({ variant: 'outline' }).indicator()).toContain('bg-default')
 
     const card = useCheckboxStyle({ variant: 'card' })
-    expect(card.root()).toContain('b-base')
-    expect(card.root()).toContain('bg-base')
+    expect(card.root()).toContain('b-default')
+    expect(card.root()).toContain('bg-default')
     expect(card.root()).toContain('rounded')
     expect(card.indicator()).toContain('text-accent')
   })
@@ -99,7 +99,7 @@ describe('checkbox', () => {
     expect(unstyled.indicator()).not.toContain('bg-muted')
     expect(unstyled.indicator()).not.toContain('text-accent-12')
     expect(unstyled.indicator()).not.toContain('rounded')
-    expect(unstyled.content()).not.toContain('text-foreground')
+    expect(unstyled.content()).not.toContain('text-default')
   })
 
   describe('given a checkbox inside a form field', () => {
