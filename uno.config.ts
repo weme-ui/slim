@@ -35,9 +35,11 @@ export default defineConfig<Theme>({
     }),
   ],
 
-  safelist: steps.map((step) =>
-    ['accent', 'neutral'].map((name) => `bg-${name}-${step}`).join(' '),
-  ),
+  safelist: ['accent', 'neutral'].flatMap((name) => steps.map((step) => `bg-${name}-${step}`)),
+
+  // safelist: steps.map((step) =>
+  //   ['accent', 'neutral'].map((name) => `bg-${name}-${step}`).join(' '),
+  // ),
 
   content: {
     pipeline: {
