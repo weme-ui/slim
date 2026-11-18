@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add toggle-button
 | 属性           | 说明                                                   | 类型                              | 默认值     |
 | -------------- | ------------------------------------------------------ | --------------------------------- | ---------- |
 | `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）        | `AsTag \| Component`              | `'button'` |
-| `asChild`      | 合并到子元素上渲染（Reka UI composition）              | `boolean`                         | —          |
+| `asChild`      | 合并到子元素上渲染（Reka UI composition）              | `boolean`                         | `false`    |
 | `modelValue`   | 受控开关状态；可用 `v-model`                           | `boolean \| null`                 | —          |
 | `defaultValue` | 非受控初始开关状态                                     | `boolean`                         | —          |
 | `variant`      | 外观变体                                               | `'soft' \| 'outline' \| 'ghost'`  | `'soft'`   |

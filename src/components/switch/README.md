@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add switch
 | 属性            | 说明                                                                                | 类型                        | 默认值             |
 | --------------- | ----------------------------------------------------------------------------------- | --------------------------- | ------------------ |
 | `as`            | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                     | `AsTag \| Component`        | `'button'`         |
-| `asChild`       | 合并到子元素上渲染（Reka UI composition）                                           | `boolean`                   | —                  |
+| `asChild`       | 合并到子元素上渲染（Reka UI composition）                                           | `boolean`                   | `false`            |
 | `modelValue`    | 受控值；可用 `v-model`                                                              | `T \| null`                 | —                  |
 | `defaultValue`  | 非受控初始值                                                                        | `T`                         | —                  |
 | `trueValue`     | 开启时写入 model 的值                                                               | `T`                         | `true`             |

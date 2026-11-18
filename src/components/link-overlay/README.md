@@ -14,11 +14,11 @@ pnpm dlx @weme-ui/weme-ui add link-overlay
 
 ## Props
 
-| 属性      | 说明                                      | 类型                 | 默认值 |
-| --------- | ----------------------------------------- | -------------------- | ------ |
-| `as`      | 渲染为的元素或组件（Reka UI `Primitive`） | `AsTag \| Component` | `'a'`  |
-| `asChild` | 合并到子元素上渲染（Reka UI composition） | `boolean`            | —      |
-| `class`   | 根节点额外 class                          | `any`                | —      |
+| 属性      | 说明                                      | 类型                 | 默认值  |
+| --------- | ----------------------------------------- | -------------------- | ------- |
+| `as`      | 渲染为的元素或组件（Reka UI `Primitive`） | `AsTag \| Component` | `'a'`   |
+| `asChild` | 合并到子元素上渲染（Reka UI composition） | `boolean`            | `false` |
+| `class`   | 根节点额外 class                          | `any`                | —       |
 
 ## Slots
 

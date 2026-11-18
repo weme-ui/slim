@@ -14,8 +14,8 @@ pnpm dlx @weme-ui/weme-ui add tags-input
 
 | 属性           | 说明                                                                                                                      | 类型                                | 默认值            |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ----------------- |
-| `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                           | `any`                               | —                 |
-| `asChild`      | 是否合并到子元素（Reka UI `Primitive`）                                                                                   | `boolean`                           | —                 |
+| `as`           | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                           | `any`                               | `'div'`           |
+| `asChild`      | 是否合并到子元素（Reka UI `Primitive`）                                                                                   | `boolean`                           | `false`           |
 | `modelValue`   | 受控标签列表；可用 `v-model`；`TagsInputValue` 为 `string`                                                                | `TagsInputValue[] \| null`          | —                 |
 | `defaultValue` | 非受控初始标签列表                                                                                                        | `TagsInputValue[]`                  | —                 |
 | `variant`      | 外观变体                                                                                                                  | `'soft' \| 'outline'`               | `'soft'`          |
@@ -46,14 +46,15 @@ pnpm dlx @weme-ui/weme-ui add tags-input
 
 ## Events
 
-| 事件                | 说明                                                          | 参数                       |
-| ------------------- | ------------------------------------------------------------- | -------------------------- |
-| `update:modelValue` | 标签列表变更时触发（含 `v-model`；透传自 Reka UI Root）       | `values: TagsInputValue[]` |
-| `addTag`            | 添加标签时触发（透传自 Reka UI Root）                         | `value: TagsInputValue`    |
-| `removeTag`         | 移除标签时触发（透传自 Reka UI Root）                         | `value: TagsInputValue`    |
-| `invalid`           | 添加无效（如超限、重复且未允许）时触发（透传自 Reka UI Root） | `value: TagsInputValue`    |
-| `focus`             | 输入框获得焦点                                                | `event: FocusEvent`        |
-| `blur`              | 输入框失去焦点                                                | `event: FocusEvent`        |
+| 事件                | 说明                                                               | 参数                               |
+| ------------------- | ------------------------------------------------------------------ | ---------------------------------- |
+| `update:modelValue` | 标签列表变更时触发（含 `v-model`；透传自 Reka UI Root）            | `values: TagsInputValue[]`         |
+| `addTag`            | 添加标签时触发（透传自 Reka UI Root）                              | `value: TagsInputValue`            |
+| `removeTag`         | 移除标签时触发（透传自 Reka UI Root）                              | `value: TagsInputValue`            |
+| `invalid`           | 添加无效（如超限、重复且未允许）时触发（透传自 Reka UI Root）      | `value: TagsInputValue`            |
+| `focus`             | 输入框获得焦点                                                     | `event: FocusEvent`                |
+| `blur`              | 输入框失去焦点                                                     | `event: FocusEvent`                |
+| `change`            | 类型里声明了。脚本没有调用 `emits('change')`，界面不会发出这个事件 | `values: TagsInputValue[] \| null` |
 
 ## Slots
 

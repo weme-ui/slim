@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add checkbox
 | 属性                     | 说明                                                                                                                | 类型                            | 默认值               |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------- |
 | `as`                     | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                     | `AsTag \| Component`            | `'button'`           |
-| `asChild`                | 合并到子元素上渲染（Reka UI composition）                                                                           | `boolean`                       | —                    |
+| `asChild`                | 合并到子元素上渲染（Reka UI composition）                                                                           | `boolean`                       | `false`              |
 | `modelValue`             | 受控值；可用 `v-model`；可为半选                                                                                    | `T \| 'indeterminate' \| null`  | —                    |
 | `defaultValue`           | 非受控初始值                                                                                                        | `T \| 'indeterminate'`          | —                    |
 | `trueValue`              | 选中时写入 model 的值                                                                                               | `T`                             | `true`               |

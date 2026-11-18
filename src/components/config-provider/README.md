@@ -12,15 +12,15 @@ pnpm dlx @weme-ui/weme-ui add config-provider
 
 ## Props
 
-| 属性         | 说明                                                                                                                                                                                             | 类型                          | 默认值          |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- | --------------- |
-| `dir`        | 全局阅读方向，供子级原语继承                                                                                                                                                                     | `'ltr' \| 'rtl'`              | `'ltr'`         |
-| `locale`     | 全局 locale，供子级原语继承                                                                                                                                                                      | `string`                      | `'en'`          |
-| `scrollBody` | 打开层时的 `body` 滚动锁定；`ScrollBodyOption` 含可选 `padding` / `margin`（`boolean \| number \| string`）                                                                                      | `boolean \| ScrollBodyOption` | `true`          |
-| `nonce`      | 全局 `nonce`，供相关原语使用                                                                                                                                                                     | `string`                      | —               |
-| `teleportTo` | 带 Portal 的原语（如 Dialog / Popover / Tooltip）默认挂载目标；单个 `*Portal` 仍可覆盖 `to`                                                                                                      | `string \| HTMLElement`       | `'body'`        |
-| `useId`      | 自定义 ID 生成函数，用于缓解 SSR / hydration 不一致；本封装默认使用 Vue 的 `useId()`                                                                                                             | `() => string`                | `() => useId()` |
-| `tooltip`    | 传给内层 `TooltipProvider`。`delayDuration` 默认 `700`，`skipDelayDuration` 默认 `300`；另有 `disableHoverableContent`、`disableClosingTrigger`、`disabled`、`ignoreNonKeyboardFocus`、`content` | `TooltipProviderProps`        | —               |
+| 属性         | 说明                                                                                                                                                                                                            | 类型                          | 默认值          |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | --------------- |
+| `dir`        | 全局阅读方向，供子级原语继承                                                                                                                                                                                    | `'ltr' \| 'rtl'`              | `'ltr'`         |
+| `locale`     | 全局 locale，供子级原语继承                                                                                                                                                                                     | `string`                      | `'en'`          |
+| `scrollBody` | 打开层时的 `body` 滚动锁定；`ScrollBodyOption` 含可选 `padding` / `margin`（`boolean \| number \| string`）                                                                                                     | `boolean \| ScrollBodyOption` | `true`          |
+| `nonce`      | 全局 `nonce`，供相关原语使用                                                                                                                                                                                    | `string`                      | —               |
+| `teleportTo` | 带 Portal 的原语（如 Dialog / Popover / Tooltip）默认挂载目标；单个 `*Portal` 仍可覆盖 `to`                                                                                                                     | `string \| HTMLElement`       | `'body'`        |
+| `useId`      | 自定义 ID 生成函数，用于缓解 SSR / hydration 不一致；本封装默认使用 Vue 的 `useId()`                                                                                                                            | `() => string`                | `() => useId()` |
+| `tooltip`    | 传给内层 `TooltipProvider`。`delayDuration` 默认 `700`，`skipDelayDuration` 默认 `300`，`disableHoverableContent` 与 `ignoreNonKeyboardFocus` 默认 `false`。另有 `disableClosingTrigger`、`disabled`、`content` | `TooltipProviderProps`        | —               |
 
 ## Slots
 

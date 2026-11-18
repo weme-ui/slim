@@ -14,7 +14,7 @@ pnpm dlx @weme-ui/weme-ui add textarea
 
 | 属性             | 说明                                                                           | 类型                          | 默认值             |
 | ---------------- | ------------------------------------------------------------------------------ | ----------------------------- | ------------------ |
-| `as`             | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                | `any`                         | —                  |
+| `as`             | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                | `any`                         | `'div'`            |
 | `modelValue`     | 受控值；可用 `v-model`                                                         | `string \| null \| undefined` | —                  |
 | `defaultValue`   | 非受控初始值                                                                   | `string \| null \| undefined` | —                  |
 | `variant`        | 外观变体                                                                       | `'soft' \| 'outline'`         | `'soft'`           |

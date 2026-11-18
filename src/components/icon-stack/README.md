@@ -12,17 +12,17 @@ pnpm dlx @weme-ui/weme-ui add icon-stack
 
 ## Props
 
-| 属性       | 说明                                                                               | 类型                                                                   | 默认值  |
-| ---------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------- |
-| `as`       | 渲染为的元素或组件（Reka UI `Primitive`）                                          | `AsTag \| Component`                                                   | `'div'` |
-| `asChild`  | 合并到子元素上渲染（Reka UI composition）                                          | `boolean`                                                              | —       |
-| `icon`     | 前景图标名称或 Iconify 图标数据                                                    | `IconifyIconProps['icon']`                                             | —       |
-| `color`    | 层叠背景与图标色彩                                                                 | `'accent' \| 'neutral' \| 'info' \| 'success' \| 'warning' \| 'error'` | —       |
-| `size`     | 尺寸                                                                               | `'xs' \| 'sm' \| 'md' \| 'lg'`                                         | `'sm'`  |
-| `contentX` | 前景内容水平位置（CSS 长度，写入 CSS 变量）                                        | `string`                                                               | `'71%'` |
-| `contentY` | 前景内容垂直位置（CSS 长度，写入 CSS 变量）                                        | `string`                                                               | `'58%'` |
-| `class`    | 根节点额外 class                                                                   | `any`                                                                  | —       |
-| `ui`       | 覆盖 slots 样式（`root` / `layerWrapper` / `ellipse` / `iconWrapper` / `icon` 等） | `Partial<IconStackStyleSlots>`                                         | —       |
+| 属性       | 说明                                                                                                            | 类型                                                                   | 默认值  |
+| ---------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------- |
+| `as`       | 渲染为的元素或组件（Reka UI `Primitive`）                                                                       | `AsTag \| Component`                                                   | `'div'` |
+| `asChild`  | 合并到子元素上渲染（Reka UI composition）                                                                       | `boolean`                                                              | `false` |
+| `icon`     | 前景图标名称或 Iconify 图标数据                                                                                 | `IconifyIconProps['icon']`                                             | —       |
+| `color`    | 层叠背景与图标色彩                                                                                              | `'accent' \| 'neutral' \| 'info' \| 'success' \| 'warning' \| 'error'` | —       |
+| `size`     | 尺寸                                                                                                            | `'xs' \| 'sm' \| 'md' \| 'lg'`                                         | `'sm'`  |
+| `contentX` | 前景内容水平位置（CSS 长度，写入 CSS 变量）                                                                     | `string`                                                               | `'71%'` |
+| `contentY` | 前景内容垂直位置（CSS 长度，写入 CSS 变量）                                                                     | `string`                                                               | `'58%'` |
+| `class`    | 根节点额外 class                                                                                                | `any`                                                                  | —       |
+| `ui`       | 覆盖 slots 样式（`root` / `layerWrapper` / `ellipse` / `iconWrapper` / `icon`）。`layer` 在类型里，模板没有用上 | `Partial<IconStackStyleSlots>`                                         | —       |
 
 ## Slots
 

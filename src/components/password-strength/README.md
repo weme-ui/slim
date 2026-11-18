@@ -19,7 +19,7 @@ pnpm dlx @weme-ui/weme-ui add password-input
 | 属性          | 说明                                                                                                                                  | 类型                                     | 默认值  |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------- |
 | `as`          | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                                       | `any`                                    | `'div'` |
-| `asChild`     | 是否合并到子元素（Reka UI `Primitive`）                                                                                               | `boolean`                                | —       |
+| `asChild`     | 是否合并到子元素（Reka UI `Primitive`）                                                                                               | `boolean`                                | `false` |
 | `password`    | 待评估的密码字符串                                                                                                                    | `string`                                 | —       |
 | `options`     | 覆盖 `weak` / `medium` / `strong` 阈值（不可覆盖 `tooWeak`）；默认 `weak` 长度 ≥ 8 且多样性 ≥ 2，`medium` ≥ 10 / 3，`strong` ≥ 12 / 4 | `UsePasswordStrengthOptions['options']`  | —       |
 | `messages`    | 覆盖各档位文案；默认 `Too weak` / `Weak` / `Medium` / `Strong`                                                                        | `UsePasswordStrengthOptions['messages']` | —       |

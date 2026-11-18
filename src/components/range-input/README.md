@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add range-input
 | 属性              | 说明                                                                                                                                             | 类型                               | 默认值   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------- | -------- |
 | `as`              | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                                                                  | `AsTag \| Component`               | `'div'`  |
-| `asChild`         | 将根节点行为合并到子元素                                                                                                                         | `boolean`                          | —        |
+| `asChild`         | 将根节点行为合并到子元素                                                                                                                         | `boolean`                          | `false`  |
 | `modelValue`      | 受控值，形如 `[from, to]`；空侧为 `null`                                                                                                         | `[number \| null, number \| null]` | —        |
 | `defaultValue`    | 非受控初始值                                                                                                                                     | `[number \| null, number \| null]` | —        |
 | `min`             | 允许的最小值；写入时对两侧数值钳制                                                                                                               | `number`                           | —        |

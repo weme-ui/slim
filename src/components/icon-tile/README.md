@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add icon-tile
 | 属性       | 说明                                      | 类型                                                                   | 默认值      |
 | ---------- | ----------------------------------------- | ---------------------------------------------------------------------- | ----------- |
 | `as`       | 渲染为的元素或组件（Reka UI `Primitive`） | `AsTag \| Component`                                                   | `'span'`    |
-| `asChild`  | 合并到子元素上渲染（Reka UI composition） | `boolean`                                                              | —           |
+| `asChild`  | 合并到子元素上渲染（Reka UI composition） | `boolean`                                                              | `false`     |
 | `icon`     | 图标名称或 Iconify 图标数据               | `IconifyIconProps['icon']`                                             | —           |
 | `color`    | 色彩                                      | `'accent' \| 'neutral' \| 'info' \| 'success' \| 'warning' \| 'error'` | `'neutral'` |
 | `variant`  | 外观变体                                  | `'solid' \| 'soft' \| 'elevated' \| 'outline' \| 'frame' \| 'inverse'` | `'solid'`   |

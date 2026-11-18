@@ -15,7 +15,7 @@ pnpm dlx @weme-ui/weme-ui add slider
 | 属性                    | 说明                                                                                                      | 类型                         | 默认值         |
 | ----------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------- | -------------- |
 | `as`                    | 根节点渲染为的元素或组件（Reka UI `Primitive`）                                                           | `AsTag \| Component`         | `'span'`       |
-| `asChild`               | 合并到子元素上渲染（Reka UI composition）                                                                 | `boolean`                    | —              |
+| `asChild`               | 合并到子元素上渲染（Reka UI composition）                                                                 | `boolean`                    | `false`        |
 | `modelValue`            | 受控值（拇指个数等于数组长度）；可用 `v-model`                                                            | `number[] \| null`           | —              |
 | `defaultValue`          | 非受控初始值                                                                                              | `number[]`                   | `[0]`          |
 | `min`                   | 最小值                                                                                                    | `number`                     | `0`            |
