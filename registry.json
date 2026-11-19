@@ -23,1363 +23,314 @@
   "items": [
     {
       "name": "utils",
-      "type": "util",
       "title": "Utils",
       "description": "Shared Utilities for Weme UI Slim Components.",
+      "type": "util",
       "when": "on-init",
       "files": [
         {
-          "type": "component",
-          "path": "src/components/common/common.uno.ts"
-        },
-        {
           "type": "util",
+          "kind": "file",
           "path": "src/utils/props.ts"
         },
         {
           "type": "util",
+          "kind": "file",
           "path": "src/utils/styles.ts"
+        },
+        {
+          "type": "util",
+          "kind": "test",
+          "path": "src/utils/styles.test.ts"
         }
       ]
     },
     {
-      "name": "default-theme",
-      "type": "theme",
+      "name": "common",
+      "title": "Common",
+      "description": "The common components for Weme UI",
+      "type": "component",
+      "when": "on-init",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/common/common.uno.ts"
+        }
+      ],
+      "meta": {
+        "docs.category": "utilities",
+        "docs.categoryLabel": "Utilities"
+      }
+    },
+    {
+      "name": "theme-slim",
       "title": "Slim Theme",
       "description": "The default slim theme for Weme UI",
+      "type": "theme",
       "when": "on-init",
       "files": [
         {
           "type": "theme",
+          "kind": "file",
           "path": "src/themes/slim.theme.ts"
         }
       ]
     },
     {
-      "name": "use-form-context",
-      "type": "composable",
-      "title": "useFormContext",
-      "description": "Form context helpers based on Reka UI createContext.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "dependencies": ["@tanstack/vue-form"],
+      "name": "activity-bar",
+      "title": "Activity Bar",
+      "description": "A vertical bar of icon buttons for switching activities.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
-          "type": "composable",
-          "path": "src/composables/use-form-context.ts"
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/activity-bar/activity-bar.vue"
         },
         {
-          "type": "composable",
-          "kind": "doc",
-          "path": "src/composables/use-form-context.md"
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/activity-bar/activity-bar.props.ts"
         },
         {
-          "type": "composable",
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/activity-bar/activity-bar.style.ts"
+        },
+        {
+          "type": "component",
           "kind": "test",
-          "path": "src/composables/use-form-context.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-form-field-context",
-      "type": "composable",
-      "title": "useFormFieldContext",
-      "description": "Form field context helpers based on Reka UI createContext.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-form-field-context.ts"
+          "path": "src/components/activity-bar/activity-bar.test.ts"
         },
         {
-          "type": "composable",
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/activity-bar/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/activity-bar/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/activity-bar/examples/chipped.vue"
+        },
+        {
+          "type": "component",
           "kind": "doc",
-          "path": "src/composables/use-form-field-context.md"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-form-field-context.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-group-items",
-      "type": "composable",
-      "title": "useGroupItems",
-      "description": "Normalize grouped items and derive the selected item.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-group-items.ts"
-        },
-        {
-          "type": "composable",
-          "kind": "doc",
-          "path": "src/composables/use-group-items.md"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-group-items.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-kbd",
-      "type": "composable",
-      "title": "useKbd",
-      "description": "Map key names to keyboard symbols.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-kbd.ts"
-        },
-        {
-          "type": "composable",
-          "kind": "doc",
-          "path": "src/composables/use-kbd.md"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-kbd.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-number-formatter",
-      "type": "composable",
-      "title": "useNumberFormatter",
-      "description": "Format numbers using the current locale.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "dependencies": ["@internationalized/number"],
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-number-formatter.ts"
-        },
-        {
-          "type": "composable",
-          "kind": "doc",
-          "path": "src/composables/use-number-formatter.md"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-number-formatter.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-popover-content",
-      "type": "composable",
-      "title": "usePopoverContent",
-      "description": "Motion options for popover open and close.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-popover-content.ts"
-        },
-        {
-          "type": "composable",
-          "kind": "doc",
-          "path": "src/composables/use-popover-content.md"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-popover-content.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-password-strength",
-      "type": "composable",
-      "title": "usePasswordStrength",
-      "description": "Evaluate password strength from length and diversity.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-password-strength.ts"
-        },
-        {
-          "type": "composable",
-          "kind": "doc",
-          "path": "src/composables/use-password-strength.md"
-        },
-        {
-          "type": "composable",
-          "kind": "test",
-          "path": "src/composables/use-password-strength.test.ts"
+          "path": "src/components/activity-bar/README.md"
         }
       ],
-      "dependencies": ["escape-string-regexp"]
-    },
-    {
-      "name": "use-theme",
-      "type": "composable",
-      "title": "useTheme",
-      "description": "Theme context helpers.",
-      "meta": {
-        "docs.category": "composables",
-        "docs.categoryLabel": "Composables"
-      },
-      "files": [
-        {
-          "type": "composable",
-          "path": "src/composables/use-theme.ts"
-        }
-      ]
-    },
-    {
-      "name": "button",
-      "type": "component",
-      "title": "Button",
-      "description": "Used to trigger an action or event.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["icon"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/button/button.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/button/button.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/button/button.style.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/button/button.uno.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/button/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/loading.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/button/button.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "button-group",
-      "type": "component",
-      "title": "Button Group",
-      "description": "Used to group multiple buttons.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["button"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/button-group/button-group.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/button-group/button-group.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/button-group/button-group.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/button-group/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/orientation.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/gap.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/separator.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/button-group/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/button-group/button-group.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "toggle-button",
-      "type": "component",
-      "title": "Toggle Button",
-      "description": "A button that switches between on and off.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["animated-toggle-icon"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/toggle-button/toggle-button.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/toggle-button/toggle-button.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/toggle-button/toggle-button.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/toggle-button/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/toggle-button/toggle-button.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "toggle-button-group",
-      "type": "component",
-      "title": "Toggle Button Group",
-      "description": "A group of toggle buttons for single or multiple selection.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["toggle-button"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/toggle-button-group/toggle-button-group.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/toggle-button-group/toggle-button-group.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/toggle-button-group/toggle-button-group.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/toggle-button-group/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/orientation.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/type.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/toggle-button-group/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/toggle-button-group/toggle-button-group.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "form",
-      "type": "component",
-      "title": "Form",
-      "description": "Form that owns useForm, accepts a Standard Schema, and provides TanStack Form context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/form/form.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/form/form.props.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/form/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form/examples/validation-mode.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/form/form.test.ts"
-        }
-      ],
-      "registryDependencies": ["use-form-context"]
-    },
-    {
-      "name": "form-field",
-      "type": "component",
-      "title": "Form Field",
-      "description": "Form field layout and state that provides field context to controls.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "registryDependencies": ["use-form-context", "use-form-field-context"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/form-field/form-field.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/form-field/form-field.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/form-field/form-field.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/form-field/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/orientation.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/required.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/with-description.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/with-hint.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/with-help.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/loading.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/form-field/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/form-field/form-field.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "input",
-      "type": "component",
-      "title": "Input",
-      "description": "A single-line text input that binds to FormField context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "registryDependencies": ["icon", "use-form-field-context"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/input/input.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/input/input.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/input/input.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/input/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/with-affix.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/clearable.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/countable.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/loading.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/input/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/input/input.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "textarea",
-      "type": "component",
-      "title": "Textarea",
-      "description": "A multi-line text input that binds to FormField context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/textarea/textarea.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/textarea/textarea.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/textarea/textarea.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/textarea/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/auto-size.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/loading.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/textarea/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/textarea/textarea.test.ts"
-        }
-      ],
-      "registryDependencies": ["icon", "use-form-field-context"]
-    },
-    {
-      "name": "number-input",
-      "type": "component",
-      "title": "Number Input",
-      "description": "A numeric input with increment and decrement controls.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/number-input/number-input.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/number-input/number-input.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/number-input/number-input.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/number-input/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/with-icons.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/constraints.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/number-input/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/number-input/number-input.test.ts"
-        }
-      ],
-      "registryDependencies": ["icon", "use-form-field-context"]
-    },
-    {
-      "name": "password-input",
-      "type": "component",
-      "title": "Password Input",
-      "description": "A password input with optional visibility toggle.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/password-input/password-input.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/password-input/password-input.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/password-input/password-input.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/password-input/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/with-prefix.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/toggle-visibility.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/visible.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-input/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/password-input/password-input.test.ts"
-        }
-      ],
-      "registryDependencies": ["icon", "input"]
-    },
-    {
-      "name": "password-strength",
-      "type": "component",
-      "title": "Password Strength",
-      "description": "Password strength meter driven by usePasswordStrength.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/password-strength/password-strength.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/password-strength/password-strength.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/password-strength/password-strength.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/password-strength/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-strength/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-strength/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-strength/examples/messages.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-strength/examples/show-message.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-strength/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/password-strength/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/password-strength/password-strength.test.ts"
-        }
-      ],
-      "registryDependencies": ["use-password-strength"],
       "cssVars": {
-        "password-strength": {
-          "too-weak-color": "error.9",
-          "weak-color": "error.7",
-          "medium-color": "success.7",
-          "strong-color": "success.9"
+        "activity-bar": {
+          "width": "3.5rem",
+          "active-bg": "neutral.3",
+          "active-color": "neutral.12"
         }
+      },
+      "registryDependencies": ["animated-toggle-icon", "float", "tooltip"],
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
       }
     },
     {
-      "name": "pin-input",
+      "name": "alert",
+      "title": "Alert",
+      "description": "Used to display a status message.",
       "type": "component",
-      "title": "Pin Input",
-      "description": "One-time code and PIN digit inputs.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/pin-input/pin-input.vue"
+          "kind": "file",
+          "path": "src/components/alert/alert.vue"
         },
         {
           "type": "component",
-          "path": "src/components/pin-input/pin-input.props.ts"
+          "kind": "file",
+          "path": "src/components/alert/alert.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/pin-input/pin-input.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/pin-input/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/length.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/mask.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/pin-input/examples/unstyled.vue"
+          "kind": "file",
+          "path": "src/components/alert/alert.style.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/pin-input/pin-input.test.ts"
+          "path": "src/components/alert/alert.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/statuses.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/closable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/with-link.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/alert/examples/with-actions.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/alert/README.md"
         }
       ],
-      "registryDependencies": ["use-form-field-context"]
+      "registryDependencies": ["icon", "link-overlay"],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
     },
     {
-      "name": "range-input",
+      "name": "animated-toggle-icon",
+      "title": "Animated Toggle Icon",
+      "description": "Used to toggle between inactive and active icons with a scale animation.",
       "type": "component",
-      "title": "Range Input",
-      "description": "A pair of inputs for a from/to numeric range.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/range-input/range-input.vue"
+          "kind": "file",
+          "path": "src/components/animated-toggle-icon/animated-toggle-icon.vue"
         },
         {
           "type": "component",
-          "path": "src/components/range-input/range-input.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/range-input/range-input.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/range-input/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/with-icons.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/separator.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/range-input/examples/unstyled.vue"
+          "kind": "file",
+          "path": "src/components/animated-toggle-icon/animated-toggle-icon.props.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/range-input/range-input.test.ts"
+          "path": "src/components/animated-toggle-icon/animated-toggle-icon.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-toggle-icon/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-toggle-icon/examples/states.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/animated-toggle-icon/examples/fallback-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/animated-toggle-icon/README.md"
         }
       ],
-      "registryDependencies": ["icon", "use-form-field-context"]
+      "dependencies": ["motion-v"],
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
     },
     {
-      "name": "slider",
+      "name": "aspect-ratio",
+      "title": "Aspect Ratio",
+      "description": "Displays content within a desired ratio.",
       "type": "component",
-      "title": "Slider",
-      "description": "A slider for selecting one or more numeric values.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/slider/slider.vue"
+          "kind": "file",
+          "path": "src/components/aspect-ratio/aspect-ratio.vue"
         },
         {
           "type": "component",
-          "path": "src/components/slider/slider.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/slider/slider.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/slider/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/orientation.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/range.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/steps.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/marks.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/slider/examples/unstyled.vue"
+          "kind": "file",
+          "path": "src/components/aspect-ratio/aspect-ratio.props.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/slider/slider.test.ts"
-        }
-      ],
-      "registryDependencies": ["tooltip", "use-form-field-context"]
-    },
-    {
-      "name": "tags-input",
-      "type": "component",
-      "title": "Tags Input",
-      "description": "An input that collects a list of tags.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/tags-input/tags-input.vue"
+          "path": "src/components/aspect-ratio/aspect-ratio.test.ts"
         },
         {
           "type": "component",
-          "path": "src/components/tags-input/tags-input.props.ts"
+          "kind": "example",
+          "path": "src/components/aspect-ratio/examples/usage.vue"
         },
         {
           "type": "component",
-          "path": "src/components/tags-input/tags-input.style.ts"
+          "kind": "example",
+          "path": "src/components/aspect-ratio/examples/ratios.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/tags-input/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/with-prefix.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/clearable.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/tags-input/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/tags-input/tags-input.test.ts"
+          "path": "src/components/aspect-ratio/README.md"
         }
       ],
-      "registryDependencies": ["icon", "use-form-field-context"]
+      "meta": {
+        "docs.category": "layout",
+        "docs.categoryLabel": "Layout"
+      }
     },
     {
       "name": "autocomplete",
-      "type": "component",
       "title": "Autocomplete",
       "description": "A searchable autocomplete that binds to FormField context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/autocomplete/autocomplete.vue"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/autocomplete/autocomplete.props.ts"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/autocomplete/autocomplete.style.ts"
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/autocomplete/README.md"
+          "kind": "test",
+          "path": "src/components/autocomplete/autocomplete.test.ts"
         },
         {
           "type": "component",
@@ -1428,307 +379,422 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/autocomplete/autocomplete.test.ts"
+          "kind": "doc",
+          "path": "src/components/autocomplete/README.md"
         }
       ],
+      "dependencies": ["motion-v"],
       "registryDependencies": [
         "icon",
         "use-form-field-context",
         "use-group-items",
         "use-popover-content"
       ],
-      "dependencies": ["motion-v"]
-    },
-    {
-      "name": "combobox",
-      "type": "component",
-      "title": "Combobox",
-      "description": "A searchable combobox that binds to FormField context.",
       "meta": {
         "docs.category": "form",
         "docs.categoryLabel": "Form"
-      },
+      }
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "Used to display a user image with a fallback.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/combobox/combobox.vue"
+          "kind": "file",
+          "path": "src/components/avatar/avatar.vue"
         },
         {
           "type": "component",
-          "path": "src/components/combobox/combobox.props.ts"
+          "kind": "file",
+          "path": "src/components/avatar/avatar.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/combobox/combobox.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/combobox/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/with-affix.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/with-groups.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/multiple.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/loading.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/combobox/examples/unstyled.vue"
+          "kind": "file",
+          "path": "src/components/avatar/avatar.style.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/combobox/combobox.test.ts"
-        }
-      ],
-      "registryDependencies": [
-        "icon",
-        "use-form-field-context",
-        "use-group-items",
-        "use-popover-content"
-      ],
-      "dependencies": ["motion-v"]
-    },
-    {
-      "name": "select",
-      "type": "component",
-      "title": "Select",
-      "description": "A select menu that binds to FormField context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/select/select.vue"
+          "path": "src/components/avatar/avatar.test.ts"
         },
         {
           "type": "component",
-          "path": "src/components/select/select.props.ts"
+          "kind": "example",
+          "path": "src/components/avatar/examples/usage.vue"
         },
         {
           "type": "component",
-          "path": "src/components/select/select.style.ts"
+          "kind": "example",
+          "path": "src/components/avatar/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/fallback.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar/examples/with-icon.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/select/README.md"
+          "path": "src/components/avatar/README.md"
+        }
+      ],
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "avatar-group",
+      "title": "Avatar Group",
+      "description": "Used to display a row of overlapping avatars.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/avatar-group/avatar-group.vue"
         },
         {
           "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/usage.vue"
+          "kind": "file",
+          "path": "src/components/avatar-group/avatar-group.props.ts"
         },
         {
           "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/with-affix.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/with-groups.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/multiple.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/loading.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/select/examples/unstyled.vue"
+          "kind": "file",
+          "path": "src/components/avatar-group/avatar-group.style.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/select/select.test.ts"
-        }
-      ],
-      "registryDependencies": [
-        "empty",
-        "icon",
-        "use-form-field-context",
-        "use-group-items",
-        "use-popover-content"
-      ],
-      "dependencies": ["motion-v"]
-    },
-    {
-      "name": "listbox",
-      "type": "component",
-      "title": "Listbox",
-      "description": "A listbox that binds to FormField context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/listbox/listbox.vue"
+          "path": "src/components/avatar-group/avatar-group.test.ts"
         },
         {
           "type": "component",
-          "path": "src/components/listbox/listbox.props.ts"
+          "kind": "example",
+          "path": "src/components/avatar-group/examples/usage.vue"
         },
         {
           "type": "component",
-          "path": "src/components/listbox/listbox.style.ts"
+          "kind": "example",
+          "path": "src/components/avatar-group/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/avatar-group/examples/sizes.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/listbox/README.md"
+          "path": "src/components/avatar-group/README.md"
+        }
+      ],
+      "registryDependencies": ["avatar"],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "description": "A compact label for status or category.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/badge/badge.vue"
         },
         {
           "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/usage.vue"
+          "kind": "file",
+          "path": "src/components/badge/badge.props.ts"
         },
         {
           "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/with-groups.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/multiple.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/horizontal.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/invalid.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/listbox/examples/unstyled.vue"
+          "kind": "file",
+          "path": "src/components/badge/badge.style.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/listbox/listbox.test.ts"
+          "path": "src/components/badge/badge.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/badge/examples/clickable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/badge/README.md"
         }
       ],
-      "registryDependencies": ["empty", "icon", "use-form-field-context", "use-group-items"]
+      "registryDependencies": ["icon", "link-overlay"],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": "Used to navigate through a tree of items.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/breadcrumb/breadcrumb.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/breadcrumb/breadcrumb.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/breadcrumb/breadcrumb.props.ts"
+        }
+      ],
+      "registryDependencies": ["icon", "link"],
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
+      }
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Used to trigger an action or event.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button/button.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button/button.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button/button.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button/button.uno.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/button/button.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/button/README.md"
+        }
+      ],
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "button-group",
+      "title": "Button Group",
+      "description": "Used to group multiple buttons.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button-group/button-group.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button-group/button-group.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/button-group/button-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/button-group/button-group.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/gap.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/separator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/button-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/button-group/README.md"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
     },
     {
       "name": "checkbox",
-      "type": "component",
       "title": "Checkbox",
       "description": "A checkbox that binds to FormField context.",
-      "meta": {
-        "docs.category": "form",
-        "docs.categoryLabel": "Form"
-      },
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/checkbox/checkbox.vue"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/checkbox/checkbox.props.ts"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/checkbox/checkbox.style.ts"
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/checkbox/README.md"
+          "kind": "test",
+          "path": "src/components/checkbox/checkbox.test.ts"
         },
         {
           "type": "component",
@@ -1782,38 +848,42 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/checkbox/checkbox.test.ts"
+          "kind": "doc",
+          "path": "src/components/checkbox/README.md"
         }
       ],
-      "registryDependencies": ["icon", "use-form-field-context"]
-    },
-    {
-      "name": "checkbox-group",
-      "type": "component",
-      "title": "Checkbox Group",
-      "description": "A group of checkboxes that binds to FormField context.",
+      "registryDependencies": ["icon", "use-form-field-context"],
       "meta": {
         "docs.category": "form",
         "docs.categoryLabel": "Form"
-      },
+      }
+    },
+    {
+      "name": "checkbox-group",
+      "title": "Checkbox Group",
+      "description": "A group of checkboxes that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/checkbox-group/checkbox-group.vue"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/checkbox-group/checkbox-group.props.ts"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/checkbox-group/checkbox-group.style.ts"
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/checkbox-group/README.md"
+          "kind": "test",
+          "path": "src/components/checkbox-group/checkbox-group.test.ts"
         },
         {
           "type": "component",
@@ -1862,38 +932,1639 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/checkbox-group/checkbox-group.test.ts"
+          "kind": "doc",
+          "path": "src/components/checkbox-group/README.md"
         }
       ],
-      "registryDependencies": ["checkbox", "use-form-field-context", "use-group-items"]
-    },
-    {
-      "name": "radio-group",
-      "type": "component",
-      "title": "Radio Group",
-      "description": "A group of radio buttons that binds to FormField context.",
+      "registryDependencies": ["checkbox", "use-form-field-context", "use-group-items"],
       "meta": {
         "docs.category": "form",
         "docs.categoryLabel": "Form"
-      },
+      }
+    },
+    {
+      "name": "chip",
+      "title": "Chip",
+      "description": "A status dot with an optional label.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/radio-group/radio-group.vue"
+          "kind": "file",
+          "path": "src/components/chip/chip.vue"
         },
         {
           "type": "component",
-          "path": "src/components/radio-group/radio-group.props.ts"
+          "kind": "file",
+          "path": "src/components/chip/chip.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/radio-group/radio-group.style.ts"
+          "kind": "file",
+          "path": "src/components/chip/chip.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/chip/chip.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/chip/examples/animate.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/radio-group/README.md"
+          "path": "src/components/chip/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "description": "A searchable combobox that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/combobox/combobox.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/combobox/combobox.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/combobox/combobox.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/combobox/combobox.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/multiple.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/combobox/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/combobox/README.md"
+        }
+      ],
+      "dependencies": ["motion-v"],
+      "registryDependencies": [
+        "icon",
+        "use-form-field-context",
+        "use-group-items",
+        "use-popover-content"
+      ],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "config-provider",
+      "title": "Config Provider",
+      "description": "Used to provide global configuration for nested primitives.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/config-provider/config-provider.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/config-provider/config-provider.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/config-provider/config-provider.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/config-provider/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/config-provider/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "utilities",
+        "docs.categoryLabel": "Utilities"
+      }
+    },
+    {
+      "name": "empty",
+      "title": "Empty",
+      "description": "Used to display empty state information.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/empty/empty.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/empty/empty.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/empty/empty.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/empty/empty.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/with-content.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/empty/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/empty/README.md"
+        }
+      ],
+      "registryDependencies": ["icon-tile"],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
+    },
+    {
+      "name": "float",
+      "title": "Float",
+      "description": "Anchors content to an edge or corner of its parent.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/float/float.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/float/float.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/float/float.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/float/float.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/float/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/float/examples/placements.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/float/examples/offset.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/float/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "form",
+      "title": "Form",
+      "description": "Form that owns useForm, accepts a Standard Schema, and provides TanStack Form context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/form/form.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/form/form.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/form/form.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form/examples/validation-mode.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/form/README.md"
+        }
+      ],
+      "registryDependencies": ["use-form-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "form-field",
+      "title": "Form Field",
+      "description": "Form field layout and state that provides field context to controls.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/form-field/form-field.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/form-field/form-field.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/form-field/form-field.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/form-field/form-field.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/required.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/with-hint.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/with-help.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/form-field/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/form-field/README.md"
+        }
+      ],
+      "registryDependencies": ["use-form-context", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "icon",
+      "title": "Icon",
+      "description": "Used to display an icon.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon/icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon/icon.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon/icon.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon/README.md"
+        }
+      ],
+      "dependencies": ["@iconify/vue"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "icon-stack",
+      "title": "Icon Stack",
+      "description": "Used to display a decorative stacked icon.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-stack/icon-stack.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-stack/icon-stack.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-stack/icon-stack.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon-stack/icon-stack.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-stack/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon-stack/README.md"
+        }
+      ],
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "icon-tile",
+      "title": "Icon Tile",
+      "description": "Used to display an icon in a rounded tile.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-tile/icon-tile.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-tile/icon-tile.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-tile/icon-tile.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/icon-tile/icon-tile.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/icon-tile/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/icon-tile/README.md"
+        }
+      ],
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "image",
+      "title": "Image",
+      "description": "An image with an optional fallback while it loads.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/image/image.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/image/image.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/image/image.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/image/image.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image/examples/fit.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image/examples/fallback.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/image/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "image-preview",
+      "title": "Image Preview",
+      "description": "Opens an image in a preview with optional thumbnails.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/image-preview/image-preview.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/image-preview/image-preview.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/image-preview/image-preview.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/image-preview/image-preview.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image-preview/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/image-preview/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/image-preview/README.md"
+        }
+      ],
+      "dependencies": ["motion-v"],
+      "registryDependencies": ["icon", "image"],
+      "meta": {
+        "docs.category": "data",
+        "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "A single-line text input that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/input/input.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/input/input.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/input/input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/input/input.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/clearable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/countable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/input/README.md"
+        }
+      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "kbd",
+      "title": "Kbd",
+      "description": "A keycap for a keyboard shortcut.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/kbd/kbd.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/kbd/kbd.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/kbd/kbd.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/kbd/kbd.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/kbd/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/kbd/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/kbd/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/kbd/README.md"
+        }
+      ],
+      "registryDependencies": ["use-kbd"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "link",
+      "title": "Link",
+      "description": "Used to navigate to a route or URL.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link/link.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link/link.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link/link.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link/link.uno.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/link/link.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/colors.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/external.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/link/README.md"
+        }
+      ],
+      "dependencies": ["vue-router"],
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "link-overlay",
+      "title": "Link Overlay",
+      "description": "Used to stretch a link click area over a positioned ancestor.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link-overlay/link-overlay.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link-overlay/link-overlay.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/link-overlay/link-overlay.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/link-overlay/link-overlay.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link-overlay/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/link-overlay/examples/as-child.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/link-overlay/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "listbox",
+      "title": "Listbox",
+      "description": "A listbox that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/listbox/listbox.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/listbox/listbox.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/listbox/listbox.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/listbox/listbox.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/multiple.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/horizontal.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/listbox/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/listbox/README.md"
+        }
+      ],
+      "registryDependencies": ["empty", "icon", "use-form-field-context", "use-group-items"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "navigation-menu",
+      "title": "Navigation Menu",
+      "description": "A vertical menu of labels, links, and nested groups.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu-list.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu-item.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu-list.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu-item.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/navigation-menu/navigation-menu-item.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/navigation-menu/navigation-menu.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/navigation-menu/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/navigation-menu/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/navigation-menu/examples/nested.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/navigation-menu/README.md"
+        }
+      ],
+      "registryDependencies": ["animated-toggle-icon", "badge", "chip", "icon", "link"],
+      "meta": {
+        "docs.category": "navigation",
+        "docs.categoryLabel": "Navigation"
+      }
+    },
+    {
+      "name": "number-input",
+      "title": "Number Input",
+      "description": "A numeric input with increment and decrement controls.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/number-input/number-input.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/number-input/number-input.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/number-input/number-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/number-input/number-input.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/with-icons.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/constraints.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/number-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/number-input/README.md"
+        }
+      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "password-input",
+      "title": "Password Input",
+      "description": "A password input with optional visibility toggle.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/password-input/password-input.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/password-input/password-input.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/password-input/password-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/password-input/password-input.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/with-prefix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/toggle-visibility.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/visible.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/password-input/README.md"
+        }
+      ],
+      "registryDependencies": ["icon", "input"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "password-strength",
+      "title": "Password Strength",
+      "description": "Password strength meter driven by usePasswordStrength.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/password-strength/password-strength.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/password-strength/password-strength.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/password-strength/password-strength.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/password-strength/password-strength.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/messages.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/show-message.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/password-strength/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/password-strength/README.md"
+        }
+      ],
+      "cssVars": {
+        "password-strength": {
+          "too-weak-color": "error.9",
+          "weak-color": "error.7",
+          "medium-color": "success.7",
+          "strong-color": "success.9"
+        }
+      },
+      "registryDependencies": ["use-password-strength"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "pin-input",
+      "title": "Pin Input",
+      "description": "One-time code and PIN digit inputs.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/pin-input/pin-input.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/pin-input/pin-input.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/pin-input/pin-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/pin-input/pin-input.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/length.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/mask.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/pin-input/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/pin-input/README.md"
+        }
+      ],
+      "registryDependencies": ["use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "progress-bar",
+      "title": "Progress Bar",
+      "description": "Displays the completion progress of a task.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-bar/progress-bar.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-bar/progress-bar.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-bar/progress-bar.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-bar/progress-bar.uno.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/progress-bar/progress-bar.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/with-description.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/without-label.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/format-options.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-bar/examples/indeterminate.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/progress-bar/README.md"
+        }
+      ],
+      "registryDependencies": ["use-number-formatter"],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
+    },
+    {
+      "name": "progress-circle",
+      "title": "Progress Circle",
+      "description": "Displays completion as a circular indicator.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-circle/progress-circle.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-circle/progress-circle.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/progress-circle/progress-circle.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/progress-circle/progress-circle.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/format-options.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/hide-value.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/progress-circle/examples/indeterminate.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/progress-circle/README.md"
+        }
+      ],
+      "registryDependencies": ["use-number-formatter"],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
+    },
+    {
+      "name": "radio-group",
+      "title": "Radio Group",
+      "description": "A group of radio buttons that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/radio-group/radio-group.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/radio-group/radio-group.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/radio-group/radio-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/radio-group/radio-group.test.ts"
         },
         {
           "type": "component",
@@ -1947,38 +2618,181 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/radio-group/radio-group.test.ts"
+          "kind": "doc",
+          "path": "src/components/radio-group/README.md"
         }
       ],
-      "registryDependencies": ["use-form-field-context", "use-group-items"]
-    },
-    {
-      "name": "segmented-control",
-      "type": "component",
-      "title": "Segmented Control",
-      "description": "A segmented control that selects one option at a time.",
+      "registryDependencies": ["use-form-field-context", "use-group-items"],
       "meta": {
         "docs.category": "form",
         "docs.categoryLabel": "Form"
-      },
+      }
+    },
+    {
+      "name": "range-input",
+      "title": "Range Input",
+      "description": "A pair of inputs for a from/to numeric range.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/segmented-control/segmented-control.vue"
+          "kind": "file",
+          "path": "src/components/range-input/range-input.vue"
         },
         {
           "type": "component",
-          "path": "src/components/segmented-control/segmented-control.props.ts"
+          "kind": "file",
+          "path": "src/components/range-input/range-input.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/segmented-control/segmented-control.style.ts"
+          "kind": "file",
+          "path": "src/components/range-input/range-input.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/range-input/range-input.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/with-icons.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/separator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/range-input/examples/unstyled.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/segmented-control/README.md"
+          "path": "src/components/range-input/README.md"
+        }
+      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll Area",
+      "description": "Custom-styled scrollbars that keep native scrolling.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/scroll-area/scroll-area.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/scroll-area/scroll-area.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/scroll-area/scroll-area.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/scroll-area/scroll-area.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/scroll-area/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/scroll-area/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/scroll-area/examples/type.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/scroll-area/README.md"
+        }
+      ],
+      "cssVars": {
+        "scrollbar": {
+          "color": "neutral.3",
+          "thumb-color": "neutral.8",
+          "thumb-hover-color": "neutral.9"
+        }
+      },
+      "meta": {
+        "docs.category": "layout",
+        "docs.categoryLabel": "Layout"
+      }
+    },
+    {
+      "name": "segmented-control",
+      "title": "Segmented Control",
+      "description": "A segmented control that selects one option at a time.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/segmented-control/segmented-control.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/segmented-control/segmented-control.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/segmented-control/segmented-control.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/segmented-control/segmented-control.test.ts"
         },
         {
           "type": "component",
@@ -2007,38 +2821,328 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/segmented-control/segmented-control.test.ts"
+          "kind": "doc",
+          "path": "src/components/segmented-control/README.md"
         }
       ],
-      "registryDependencies": ["animated-toggle-icon", "use-form-field-context", "use-group-items"]
-    },
-    {
-      "name": "switch",
-      "type": "component",
-      "title": "Switch",
-      "description": "A switch that binds to FormField context.",
+      "registryDependencies": ["animated-toggle-icon", "use-form-field-context", "use-group-items"],
       "meta": {
         "docs.category": "form",
         "docs.categoryLabel": "Form"
-      },
+      }
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "description": "A select menu that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/switch/switch.vue"
+          "kind": "file",
+          "path": "src/components/select/select.vue"
         },
         {
           "type": "component",
-          "path": "src/components/switch/switch.props.ts"
+          "kind": "file",
+          "path": "src/components/select/select.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/switch/switch.style.ts"
+          "kind": "file",
+          "path": "src/components/select/select.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/select/select.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/with-affix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/with-groups.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/multiple.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/select/examples/unstyled.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/switch/README.md"
+          "path": "src/components/select/README.md"
+        }
+      ],
+      "dependencies": ["motion-v"],
+      "registryDependencies": [
+        "empty",
+        "icon",
+        "use-form-field-context",
+        "use-group-items",
+        "use-popover-content"
+      ],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "separator",
+      "title": "Separator",
+      "description": "Used to separate content visually and semantically.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/separator/separator.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/separator/separator.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/separator/separator.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/separator/separator.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/color.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/separator/examples/with-label.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/separator/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "A placeholder while content is loading.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/skeleton/skeleton.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/skeleton/skeleton.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/skeleton/skeleton.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/skeleton/skeleton.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/skeleton/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/skeleton/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/skeleton/README.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "description": "A slider for selecting one or more numeric values.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/slider/slider.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/slider/slider.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/slider/slider.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/slider/slider.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/range.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/steps.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/marks.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/slider/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/slider/README.md"
+        }
+      ],
+      "registryDependencies": ["tooltip", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "A switch that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/switch/switch.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/switch/switch.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/switch/switch.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/switch/switch.test.ts"
         },
         {
           "type": "component",
@@ -2087,38 +3191,42 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/switch/switch.test.ts"
+          "kind": "doc",
+          "path": "src/components/switch/README.md"
         }
       ],
-      "registryDependencies": ["icon", "use-form-field-context"]
-    },
-    {
-      "name": "tag-group",
-      "type": "component",
-      "title": "Tag Group",
-      "description": "A group of tags with optional selection.",
+      "registryDependencies": ["icon", "use-form-field-context"],
       "meta": {
         "docs.category": "form",
         "docs.categoryLabel": "Form"
-      },
+      }
+    },
+    {
+      "name": "tag-group",
+      "title": "Tag Group",
+      "description": "A group of tags with optional selection.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/tag-group/tag-group.vue"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/tag-group/tag-group.props.ts"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/tag-group/tag-group.style.ts"
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/tag-group/README.md"
+          "kind": "test",
+          "path": "src/components/tag-group/tag-group.test.ts"
         },
         {
           "type": "component",
@@ -2157,8 +3265,8 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/tag-group/tag-group.test.ts"
+          "kind": "doc",
+          "path": "src/components/tag-group/README.md"
         }
       ],
       "registryDependencies": [
@@ -2166,1162 +3274,250 @@
         "icon",
         "use-form-field-context",
         "use-group-items"
-      ]
+      ],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
     },
     {
-      "name": "separator",
+      "name": "tags-input",
+      "title": "Tags Input",
+      "description": "An input that collects a list of tags.",
       "type": "component",
-      "title": "Separator",
-      "description": "Used to separate content visually and semantically.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/separator/separator.vue"
+          "kind": "file",
+          "path": "src/components/tags-input/tags-input.vue"
         },
         {
           "type": "component",
-          "path": "src/components/separator/separator.props.ts"
+          "kind": "file",
+          "path": "src/components/tags-input/tags-input.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/separator/separator.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/separator/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/separator/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/separator/examples/orientation.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/separator/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/separator/examples/color.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/separator/examples/with-label.vue"
+          "kind": "file",
+          "path": "src/components/tags-input/tags-input.style.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/separator/separator.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "aspect-ratio",
-      "type": "component",
-      "title": "Aspect Ratio",
-      "description": "Displays content within a desired ratio.",
-      "meta": {
-        "docs.category": "layout",
-        "docs.categoryLabel": "Layout"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/aspect-ratio/aspect-ratio.vue"
+          "path": "src/components/tags-input/tags-input.test.ts"
         },
         {
           "type": "component",
-          "path": "src/components/aspect-ratio/aspect-ratio.props.ts"
+          "kind": "example",
+          "path": "src/components/tags-input/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/with-prefix.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/clearable.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/tags-input/examples/unstyled.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/aspect-ratio/README.md"
+          "path": "src/components/tags-input/README.md"
+        }
+      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "A multi-line text input that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/textarea/textarea.vue"
         },
         {
           "type": "component",
-          "kind": "example",
-          "path": "src/components/aspect-ratio/examples/usage.vue"
+          "kind": "file",
+          "path": "src/components/textarea/textarea.props.ts"
         },
         {
           "type": "component",
-          "kind": "example",
-          "path": "src/components/aspect-ratio/examples/ratios.vue"
+          "kind": "file",
+          "path": "src/components/textarea/textarea.style.ts"
         },
         {
           "type": "component",
           "kind": "test",
-          "path": "src/components/aspect-ratio/aspect-ratio.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "scroll-area",
-      "type": "component",
-      "title": "Scroll Area",
-      "description": "Custom-styled scrollbars that keep native scrolling.",
-      "meta": {
-        "docs.category": "layout",
-        "docs.categoryLabel": "Layout"
-      },
-      "cssVars": {
-        "scrollbar": {
-          "color": "neutral.3",
-          "thumb-color": "neutral.8",
-          "thumb-hover-color": "neutral.9"
-        }
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/scroll-area/scroll-area.vue"
+          "path": "src/components/textarea/textarea.test.ts"
         },
         {
           "type": "component",
-          "path": "src/components/scroll-area/scroll-area.props.ts"
+          "kind": "example",
+          "path": "src/components/textarea/examples/usage.vue"
         },
         {
           "type": "component",
-          "path": "src/components/scroll-area/scroll-area.style.ts"
+          "kind": "example",
+          "path": "src/components/textarea/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/auto-size.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/loading.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/invalid.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/textarea/examples/unstyled.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/scroll-area/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/scroll-area/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/scroll-area/examples/orientation.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/scroll-area/examples/type.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/scroll-area/scroll-area.test.ts"
+          "path": "src/components/textarea/README.md"
         }
-      ]
-    },
-    {
-      "name": "config-provider",
-      "type": "component",
-      "title": "Config Provider",
-      "description": "Used to provide global configuration for nested primitives.",
+      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
       "meta": {
-        "docs.category": "utilities",
-        "docs.categoryLabel": "Utilities"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/config-provider/config-provider.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/config-provider/config-provider.props.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/config-provider/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/config-provider/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/config-provider/config-provider.test.ts"
-        }
-      ]
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
     },
     {
       "name": "theme-provider",
-      "type": "component",
       "title": "Theme Provider",
       "description": "Used to provide global theme configuration.",
-      "meta": {
-        "docs.category": "utilities",
-        "docs.categoryLabel": "Utilities"
-      },
-      "registryDependencies": ["use-theme"],
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/theme-provider/theme-provider.vue"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/theme-provider/theme-provider.props.ts"
         }
-      ]
-    },
-    {
-      "name": "avatar",
-      "type": "component",
-      "title": "Avatar",
-      "description": "Used to display a user image with a fallback.",
+      ],
+      "registryDependencies": ["use-theme"],
       "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "registryDependencies": ["icon"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/avatar/avatar.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/avatar/avatar.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/avatar/avatar.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/avatar/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar/examples/fallback.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/avatar/avatar.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "avatar-group",
-      "type": "component",
-      "title": "Avatar Group",
-      "description": "Used to display a row of overlapping avatars.",
-      "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "registryDependencies": ["avatar"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/avatar-group/avatar-group.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/avatar-group/avatar-group.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/avatar-group/avatar-group.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/avatar-group/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar-group/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar-group/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/avatar-group/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/avatar-group/avatar-group.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "image",
-      "type": "component",
-      "title": "Image",
-      "description": "An image with an optional fallback while it loads.",
-      "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/image/image.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/image/image.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/image/image.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/image/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/image/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/image/examples/fit.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/image/examples/fallback.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/image/image.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "image-preview",
-      "type": "component",
-      "title": "Image Preview",
-      "description": "Opens an image in a preview with optional thumbnails.",
-      "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "registryDependencies": ["icon", "image"],
-      "dependencies": ["motion-v"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/image-preview/image-preview.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/image-preview/image-preview.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/image-preview/image-preview.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/image-preview/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/image-preview/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/image-preview/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/image-preview/image-preview.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "icon",
-      "type": "component",
-      "title": "Icon",
-      "description": "Used to display an icon.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "dependencies": ["@iconify/vue"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/icon/icon.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/icon/icon.props.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/icon/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon/examples/color.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/icon/icon.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "icon-stack",
-      "type": "component",
-      "title": "Icon Stack",
-      "description": "Used to display a decorative stacked icon.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["icon"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/icon-stack/icon-stack.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/icon-stack/icon-stack.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/icon-stack/icon-stack.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/icon-stack/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-stack/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-stack/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-stack/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/icon-stack/icon-stack.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "icon-tile",
-      "type": "component",
-      "title": "Icon Tile",
-      "description": "Used to display an icon in a rounded tile.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["icon"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/icon-tile/icon-tile.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/icon-tile/icon-tile.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/icon-tile/icon-tile.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/icon-tile/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-tile/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-tile/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-tile/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-tile/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/icon-tile/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/icon-tile/icon-tile.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "badge",
-      "type": "component",
-      "title": "Badge",
-      "description": "A compact label for status or category.",
-      "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "registryDependencies": ["icon", "link-overlay"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/badge/badge.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/badge/badge.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/badge/badge.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/badge/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/badge/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/badge/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/badge/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/badge/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/badge/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/badge/examples/clickable.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/badge/badge.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "chip",
-      "type": "component",
-      "title": "Chip",
-      "description": "A status dot with an optional label.",
-      "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/chip/chip.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/chip/chip.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/chip/chip.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/chip/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/chip/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/chip/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/chip/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/chip/examples/animate.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/chip/chip.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "float",
-      "type": "component",
-      "title": "Float",
-      "description": "Anchors content to an edge or corner of its parent.",
-      "meta": {
-        "docs.category": "data",
-        "docs.categoryLabel": "Data Display"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/float/float.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/float/float.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/float/float.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/float/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/float/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/float/examples/placements.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/float/examples/offset.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/float/float.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "kbd",
-      "type": "component",
-      "title": "Kbd",
-      "description": "A keycap for a keyboard shortcut.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "registryDependencies": ["use-kbd"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/kbd/kbd.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/kbd/kbd.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/kbd/kbd.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/kbd/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/kbd/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/kbd/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/kbd/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/kbd/kbd.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "alert",
-      "type": "component",
-      "title": "Alert",
-      "description": "Used to display a status message.",
-      "meta": {
-        "docs.category": "feedback",
-        "docs.categoryLabel": "Feedback"
-      },
-      "registryDependencies": ["icon", "link-overlay"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/alert/alert.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/alert/alert.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/alert/alert.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/alert/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/statuses.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/closable.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/with-link.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/alert/examples/with-actions.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/alert/alert.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "empty",
-      "type": "component",
-      "title": "Empty",
-      "description": "Used to display empty state information.",
-      "meta": {
-        "docs.category": "feedback",
-        "docs.categoryLabel": "Feedback"
-      },
-      "registryDependencies": ["icon-tile"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/empty/empty.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/empty/empty.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/empty/empty.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/empty/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/empty/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/empty/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/empty/examples/with-content.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/empty/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/empty/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/empty/empty.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "progress-bar",
-      "type": "component",
-      "title": "Progress Bar",
-      "description": "Displays the completion progress of a task.",
-      "meta": {
-        "docs.category": "feedback",
-        "docs.categoryLabel": "Feedback"
-      },
-      "registryDependencies": ["use-number-formatter"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/progress-bar/progress-bar.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/progress-bar/progress-bar.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/progress-bar/progress-bar.style.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/progress-bar/progress-bar.uno.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/progress-bar/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/color.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/with-description.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/without-label.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/format-options.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-bar/examples/indeterminate.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/progress-bar/progress-bar.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "progress-circle",
-      "type": "component",
-      "title": "Progress Circle",
-      "description": "Displays completion as a circular indicator.",
-      "meta": {
-        "docs.category": "feedback",
-        "docs.categoryLabel": "Feedback"
-      },
-      "registryDependencies": ["use-number-formatter"],
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/progress-circle/progress-circle.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/progress-circle/progress-circle.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/progress-circle/progress-circle.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/progress-circle/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-circle/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-circle/examples/sizes.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-circle/examples/color.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-circle/examples/format-options.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-circle/examples/hide-value.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/progress-circle/examples/indeterminate.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/progress-circle/progress-circle.test.ts"
-        }
-      ]
-    },
-    {
-      "name": "skeleton",
-      "type": "component",
-      "title": "Skeleton",
-      "description": "A placeholder while content is loading.",
-      "meta": {
-        "docs.category": "feedback",
-        "docs.categoryLabel": "Feedback"
-      },
-      "files": [
-        {
-          "type": "component",
-          "path": "src/components/skeleton/skeleton.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/skeleton/skeleton.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/skeleton/skeleton.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/skeleton/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/skeleton/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/skeleton/examples/variants.vue"
-        },
-        {
-          "type": "component",
-          "kind": "test",
-          "path": "src/components/skeleton/skeleton.test.ts"
-        }
-      ]
+        "docs.category": "utilities",
+        "docs.categoryLabel": "Utilities"
+      }
     },
     {
       "name": "toast",
-      "type": "component",
       "title": "Toast",
       "description": "A temporary message shown in a stack.",
-      "meta": {
-        "docs.category": "feedback",
-        "docs.categoryLabel": "Feedback"
-      },
-      "registryDependencies": ["button", "icon"],
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/toast/toast.vue"
         },
         {
           "type": "component",
-          "path": "src/components/toast/toast.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/toast/toast.style.ts"
-        },
-        {
-          "type": "component",
+          "kind": "file",
           "path": "src/components/toast/toast-provider.vue"
         },
         {
           "type": "component",
-          "path": "src/components/toast/toast-provider.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/toast/toast-provider.style.ts"
-        },
-        {
-          "type": "component",
+          "kind": "file",
           "path": "src/components/toast/toaster.vue"
         },
         {
           "type": "component",
+          "kind": "file",
+          "path": "src/components/toast/toast.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/toast/toast.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/toast/toast-provider.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/toast/toast-provider.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
           "path": "src/components/toast/toaster.props.ts"
         },
         {
           "type": "component",
+          "kind": "file",
           "path": "src/components/toast/toast.uno.ts"
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/toast/README.md"
+          "kind": "test",
+          "path": "src/components/toast/toast.test.ts"
         },
         {
           "type": "component",
@@ -3330,46 +3526,200 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/toast/toast.test.ts"
+          "kind": "doc",
+          "path": "src/components/toast/README.md"
         }
       ],
       "cssVars": {
         "toast": {
           "width": "20rem"
         }
-      }
-    },
-    {
-      "name": "tooltip",
-      "type": "component",
-      "title": "Tooltip",
-      "description": "A short description that appears on hover or focus.",
+      },
+      "registryDependencies": ["button", "icon"],
       "meta": {
         "docs.category": "feedback",
         "docs.categoryLabel": "Feedback"
-      },
+      }
+    },
+    {
+      "name": "toggle-button",
+      "title": "Toggle Button",
+      "description": "A button that switches between on and off.",
+      "type": "component",
+      "when": "on-depended",
       "files": [
         {
           "type": "component",
-          "path": "src/components/tooltip/tooltip.vue"
+          "kind": "file",
+          "path": "src/components/toggle-button/toggle-button.vue"
         },
         {
           "type": "component",
-          "path": "src/components/tooltip/tooltip.props.ts"
+          "kind": "file",
+          "path": "src/components/toggle-button/toggle-button.props.ts"
         },
         {
           "type": "component",
-          "path": "src/components/tooltip/tooltip.style.ts"
+          "kind": "file",
+          "path": "src/components/toggle-button/toggle-button.style.ts"
         },
         {
           "type": "component",
-          "path": "src/components/tooltip/tooltip.uno.ts"
+          "kind": "test",
+          "path": "src/components/toggle-button/toggle-button.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button/examples/unstyled.vue"
         },
         {
           "type": "component",
           "kind": "doc",
-          "path": "src/components/tooltip/README.md"
+          "path": "src/components/toggle-button/README.md"
+        }
+      ],
+      "registryDependencies": ["animated-toggle-icon"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "toggle-button-group",
+      "title": "Toggle Button Group",
+      "description": "A group of toggle buttons for single or multiple selection.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/toggle-button-group/toggle-button-group.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/toggle-button-group/toggle-button-group.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/toggle-button-group/toggle-button-group.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/toggle-button-group/toggle-button-group.test.ts"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/usage.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/variants.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/sizes.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/orientation.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/with-icon.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/type.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/disabled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "example",
+          "path": "src/components/toggle-button-group/examples/unstyled.vue"
+        },
+        {
+          "type": "component",
+          "kind": "doc",
+          "path": "src/components/toggle-button-group/README.md"
+        }
+      ],
+      "registryDependencies": ["toggle-button"],
+      "meta": {
+        "docs.category": "general",
+        "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "A short description that appears on hover or focus.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/tooltip/tooltip.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/tooltip/tooltip.props.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/tooltip/tooltip.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/tooltip/tooltip.uno.ts"
+        },
+        {
+          "type": "component",
+          "kind": "test",
+          "path": "src/components/tooltip/tooltip.test.ts"
         },
         {
           "type": "component",
@@ -3398,298 +3748,251 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/tooltip/tooltip.test.ts"
+          "kind": "doc",
+          "path": "src/components/tooltip/README.md"
         }
       ],
-      "registryDependencies": ["icon"],
       "cssVars": {
         "tooltip": {
           "background": "neutral.12",
           "color": "neutral.1"
         }
+      },
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
       }
     },
     {
-      "name": "animated-toggle-icon",
-      "type": "component",
-      "title": "Animated Toggle Icon",
-      "description": "Used to toggle between inactive and active icons with a scale animation.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "dependencies": ["motion-v"],
-      "registryDependencies": ["icon"],
+      "name": "use-form-context",
+      "title": "useFormContext",
+      "description": "Form context helpers based on Reka UI createContext.",
+      "type": "composable",
+      "when": "on-depended",
       "files": [
         {
-          "type": "component",
-          "path": "src/components/animated-toggle-icon/animated-toggle-icon.vue"
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-form-context.ts"
         },
         {
-          "type": "component",
-          "path": "src/components/animated-toggle-icon/animated-toggle-icon.props.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/animated-toggle-icon/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/animated-toggle-icon/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/animated-toggle-icon/examples/states.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/animated-toggle-icon/examples/fallback-icon.vue"
-        },
-        {
-          "type": "component",
+          "type": "composable",
           "kind": "test",
-          "path": "src/components/animated-toggle-icon/animated-toggle-icon.test.ts"
+          "path": "src/composables/use-form-context.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-form-context.md"
         }
-      ]
+      ],
+      "dependencies": ["@tanstack/vue-form"],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
     },
     {
-      "name": "activity-bar",
-      "type": "component",
-      "title": "Activity Bar",
-      "description": "A vertical bar of icon buttons for switching activities.",
-      "meta": {
-        "docs.category": "navigation",
-        "docs.categoryLabel": "Navigation"
-      },
-      "registryDependencies": ["animated-toggle-icon", "float", "tooltip"],
-      "cssVars": {
-        "activity-bar": {
-          "width": "3.5rem",
-          "active-bg": "neutral.3",
-          "active-color": "neutral.12"
-        }
-      },
+      "name": "use-form-field-context",
+      "title": "useFormFieldContext",
+      "description": "Form field context helpers based on Reka UI createContext.",
+      "type": "composable",
+      "when": "on-depended",
       "files": [
         {
-          "type": "component",
-          "path": "src/components/activity-bar/activity-bar.vue"
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-form-field-context.ts"
         },
         {
-          "type": "component",
-          "path": "src/components/activity-bar/activity-bar.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/activity-bar/activity-bar.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/activity-bar/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/activity-bar/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/activity-bar/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/activity-bar/examples/chipped.vue"
-        },
-        {
-          "type": "component",
+          "type": "composable",
           "kind": "test",
-          "path": "src/components/activity-bar/activity-bar.test.ts"
+          "path": "src/composables/use-form-field-context.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-form-field-context.md"
         }
-      ]
+      ],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
     },
     {
-      "name": "link",
-      "type": "component",
-      "title": "Link",
-      "description": "Used to navigate to a route or URL.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
-      "dependencies": ["vue-router"],
-      "registryDependencies": ["icon"],
+      "name": "use-group-items",
+      "title": "useGroupItems",
+      "description": "Normalize grouped items and derive the selected item.",
+      "type": "composable",
+      "when": "on-depended",
       "files": [
         {
-          "type": "component",
-          "path": "src/components/link/link.vue"
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-group-items.ts"
         },
         {
-          "type": "component",
-          "path": "src/components/link/link.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/link/link.style.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/link/link.uno.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/link/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link/examples/colors.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link/examples/with-icon.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link/examples/external.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link/examples/unstyled.vue"
-        },
-        {
-          "type": "component",
+          "type": "composable",
           "kind": "test",
-          "path": "src/components/link/link.test.ts"
+          "path": "src/composables/use-group-items.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-group-items.md"
         }
-      ]
+      ],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
     },
     {
-      "name": "link-overlay",
-      "type": "component",
-      "title": "Link Overlay",
-      "description": "Used to stretch a link click area over a positioned ancestor.",
-      "meta": {
-        "docs.category": "general",
-        "docs.categoryLabel": "General"
-      },
+      "name": "use-kbd",
+      "title": "useKbd",
+      "description": "Map key names to keyboard symbols.",
+      "type": "composable",
+      "when": "on-depended",
       "files": [
         {
-          "type": "component",
-          "path": "src/components/link-overlay/link-overlay.vue"
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-kbd.ts"
         },
         {
-          "type": "component",
-          "path": "src/components/link-overlay/link-overlay.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/link-overlay/link-overlay.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/link-overlay/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link-overlay/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/link-overlay/examples/as-child.vue"
-        },
-        {
-          "type": "component",
+          "type": "composable",
           "kind": "test",
-          "path": "src/components/link-overlay/link-overlay.test.ts"
+          "path": "src/composables/use-kbd.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-kbd.md"
         }
-      ]
+      ],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
     },
     {
-      "name": "navigation-menu",
-      "type": "component",
-      "title": "Navigation Menu",
-      "description": "A vertical menu of labels, links, and nested groups.",
-      "meta": {
-        "docs.category": "navigation",
-        "docs.categoryLabel": "Navigation"
-      },
-      "registryDependencies": ["animated-toggle-icon", "badge", "chip", "icon", "link"],
+      "name": "use-number-formatter",
+      "title": "useNumberFormatter",
+      "description": "Format numbers using the current locale.",
+      "type": "composable",
+      "when": "on-depended",
       "files": [
         {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu.vue"
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-number-formatter.ts"
         },
         {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu.style.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu-list.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu-list.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu-item.vue"
-        },
-        {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu-item.props.ts"
-        },
-        {
-          "type": "component",
-          "path": "src/components/navigation-menu/navigation-menu-item.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "doc",
-          "path": "src/components/navigation-menu/README.md"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/navigation-menu/examples/usage.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/navigation-menu/examples/disabled.vue"
-        },
-        {
-          "type": "component",
-          "kind": "example",
-          "path": "src/components/navigation-menu/examples/nested.vue"
-        },
-        {
-          "type": "component",
+          "type": "composable",
           "kind": "test",
-          "path": "src/components/navigation-menu/navigation-menu.test.ts"
+          "path": "src/composables/use-number-formatter.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-number-formatter.md"
+        }
+      ],
+      "dependencies": ["@internationalized/number"],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
+    },
+    {
+      "name": "use-password-strength",
+      "title": "usePasswordStrength",
+      "description": "Evaluate password strength from length and diversity.",
+      "type": "composable",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-password-strength.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-password-strength.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-password-strength.md"
+        }
+      ],
+      "dependencies": ["escape-string-regexp"],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
+    },
+    {
+      "name": "use-popover-content",
+      "title": "usePopoverContent",
+      "description": "Motion options for popover open and close.",
+      "type": "composable",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-popover-content.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "test",
+          "path": "src/composables/use-popover-content.test.ts"
+        },
+        {
+          "type": "composable",
+          "kind": "doc",
+          "path": "src/composables/use-popover-content.md"
+        }
+      ],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
+    },
+    {
+      "name": "use-theme",
+      "title": "useTheme",
+      "description": "Theme context helpers.",
+      "type": "composable",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "composable",
+          "kind": "file",
+          "path": "src/composables/use-theme.ts"
+        }
+      ],
+      "devDependencies": ["@weme-ui/colors"],
+      "meta": {
+        "docs.category": "composables",
+        "docs.categoryLabel": "Composables"
+      }
+    },
+    {
+      "name": "layout-blank",
+      "title": "Blank Layout",
+      "description": "Used to create a blank layout.",
+      "type": "layout",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "layout",
+          "kind": "file",
+          "path": "src/layouts/blank.vue"
         }
       ]
     }
