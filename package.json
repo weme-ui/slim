@@ -41,7 +41,7 @@
     "@vueuse/core": "^15.0.0",
     "clsx": "^2.1.1",
     "defu": "^6.1.7",
-    "motion-v": "^2.12.0",
+    "motion-v": "^2.13.0",
     "reka-ui": "^2.11.0",
     "tailwind-merge": "^3.7.0",
     "tailwind-variants": "^4.0.2"
@@ -66,7 +66,7 @@
     "oxlint": "^1.94.0",
     "shiki": "^4.6.0",
     "simple-git-hooks": "^2.14.0",
-    "tsrs": "^0.25.0-ts7.1.0-beta",
+    "tsrs": "^7.1.0-beta.tsrs3",
     "unocss": "^66.13.0",
     "unplugin-auto-import": "^21.1.0",
     "unplugin-vue-components": "^32.1.0",
