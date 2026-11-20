@@ -43,7 +43,7 @@ function onFormSubmit(values: { tags: string }) {
         :model-value="field.state.value"
         :items="items"
         selection-mode="single"
-        closable
+        dismissible
         @change="field.api.handleChange"
         @remove="onRemove"
       />

@@ -32,7 +32,7 @@ const delegated = reactiveOmit(
   'variant',
   'size',
   'deleteIcon',
-  'closable',
+  'dismissible',
   'unstyled',
   'class',
   'ui',
@@ -116,7 +116,7 @@ function handleUpdate(value: TagGroupItemValue | TagGroupItemValue[] | undefined
         </TagGroupItemText>
 
         <TagGroupItemDelete
-          v-if="closable && !item.disabled"
+          v-if="dismissible && !item.disabled"
           :class="cn(ui.itemDelete(), props.ui?.itemDelete)"
         >
           <slot name="tag-delete" :item="item" :selected="selected">
