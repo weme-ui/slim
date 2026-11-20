@@ -188,7 +188,7 @@
         {
           "type": "component",
           "kind": "example",
-          "path": "src/components/alert/examples/closable.vue"
+          "path": "src/components/alert/examples/dismissible.vue"
         },
         {
           "type": "component",

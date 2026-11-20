@@ -101,7 +101,7 @@ pnpm dlx @weme-ui/weme-ui add button
   - [ ] `dropdown`
   - [ ] `modal`
   - [ ] `pop-confirm`
-  - [ ] `popover`
+  - [x] `popover`
   - [x] `tooltip`
 
 - **Form**
