@@ -27,7 +27,7 @@ pnpm dlx @weme-ui/weme-ui init
 ### 添加组件
 
 ```bash
-pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
+pnpm dlx @weme-ui/weme-ui add button
 ```
 
 ## 组件列表
@@ -48,12 +48,12 @@ pnpm dlx @weme-ui/weme-ui add weme-ui/slim/button
   - [x] `toggle-button`
 
 - **Navigation**
-  - [ ] `breadcrumb`
   - [ ] `command-palette`
   - [ ] `pagination`
   - [ ] `steps`
   - [ ] `tabs`
   - [x] `activity-bar`
+  - [x] `breadcrumb`
   - [x] `navigation-menu`
 
 - **Data Display**

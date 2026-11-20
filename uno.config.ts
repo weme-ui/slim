@@ -26,6 +26,9 @@ export default defineConfig<Theme>({
           bg: 'neutral.12',
           color: 'neutral.1',
         },
+        popover: {
+          bg: 'neutral.1',
+        },
         'activity-bar': {
           width: '3.5rem',
           'active-bg': 'neutral.3',

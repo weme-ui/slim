@@ -2392,6 +2392,39 @@
       }
     },
     {
+      "name": "popover",
+      "title": "Popover",
+      "description": "A popup that displays content in a floating layer.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/popover/popover.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/popover/popover.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/popover/popover.props.ts"
+        }
+      ],
+      "cssVars": {
+        "popover": {
+          "bg": "neutral.1"
+        }
+      },
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
+    },
+    {
       "name": "progress-bar",
       "title": "Progress Bar",
       "description": "Displays the completion progress of a task.",
@@ -3710,11 +3743,6 @@
           "type": "component",
           "kind": "file",
           "path": "src/components/tooltip/tooltip.style.ts"
-        },
-        {
-          "type": "component",
-          "kind": "file",
-          "path": "src/components/tooltip/tooltip.uno.ts"
         },
         {
           "type": "component",
