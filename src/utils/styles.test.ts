@@ -25,8 +25,6 @@ describe('styles', () => {
   it('should be merge variant', () => {
     const result = twMerge('focus-visible:outline-none focus-visible:outline-accent')
 
-    expect(result).toMatchInlineSnapshot(
-      `"focus-visible:outline-accent"`,
-    )
+    expect(result).toMatchInlineSnapshot(`"focus-visible:outline-accent"`)
   })
 })
