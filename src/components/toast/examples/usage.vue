@@ -16,7 +16,7 @@ const ToastButtons = defineComponent({
         description: 'This is a toast',
         status,
         data: {
-          closable: false,
+          dismissible: false,
           actions: [
             {
               label: 'Action',
@@ -102,7 +102,7 @@ const ToastButtons = defineComponent({
 </script>
 
 <template>
-  <ToastProvider closable>
+  <ToastProvider dismissible>
     <ToastButtons />
   </ToastProvider>
 </template>

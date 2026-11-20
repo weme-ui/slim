@@ -149,7 +149,7 @@ defineExpose({
       </div>
     </div>
 
-    <ToastClose v-if="closable" :class="cn(ui.close(), props.ui?.close)">
+    <ToastClose v-if="dismissible" :class="cn(ui.close(), props.ui?.close)">
       <slot name="close">
         <Icon :name="closeIcon" />
       </slot>

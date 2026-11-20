@@ -44,7 +44,7 @@ defineExpose({
       :orientation="orientation"
       :close-icon="closeIcon"
       :loading-icon="toast.data?.loadingIcon ?? loadingIcon"
-      :closable="toast.data?.closable ?? closable"
+      :dismissible="toast.data?.dismissible ?? dismissible"
       :expanded="expanded"
       :style="{
         '--scale': expanded ? '1' : 'calc(1 - var(--before) * var(--scale-factor))',

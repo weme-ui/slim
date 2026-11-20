@@ -19,7 +19,7 @@ pnpm dlx @weme-ui/weme-ui add toast
 | `orientation`    | `ToastProvider` 传给 `Toaster` 里的 `Toast`；写在 `Toast` 上则管这一条。`vertical` 时操作区落到文案下面                                                                                                                                               | `'horizontal' \| 'vertical'`                                                                     | `'horizontal'`     |
 | `closeIcon`      | 关闭图标（Iconify）。`ToastProvider` 未设时由 `Toast` 补默认值                                                                                                                                                                                        | `IconifyIconProps['icon']`                                                                       | `'ri:close-line'`  |
 | `loadingIcon`    | `status` 为 `loading` 时的图标（Iconify），并带旋转                                                                                                                                                                                                   | `IconifyIconProps['icon']`                                                                       | `'ri:loader-line'` |
-| `closable`       | 是否显示关闭按钮。`Toaster` 优先用 `data.closable`                                                                                                                                                                                                    | `boolean`                                                                                        | —                  |
+| `dismissible`    | 是否显示关闭按钮。`Toaster` 优先用 `data.dismissible`                                                                                                                                                                                                 | `boolean`                                                                                        | —                  |
 | `label`          | `ToastProvider`。读屏用来称呼每条提示的文案（Reka UI）                                                                                                                                                                                                | `string`                                                                                         | `'Notification'`   |
 | `duration`       | 自动关闭的毫秒数。`Toast` 上的值覆盖 `ToastProvider`。`0` 或 `Infinity` 不自动关；记录的 `status` 为 `loading` 时 Reka UI 也不自动关                                                                                                                  | `number`                                                                                         | `5000`             |
 | `disableSwipe`   | `ToastProvider`。是否禁止划动关闭                                                                                                                                                                                                                     | `boolean`                                                                                        | `false`            |
@@ -64,7 +64,7 @@ pnpm dlx @weme-ui/weme-ui add toast
 | `icon`        | `Toast` 图标。作用域参数 `{ status }`。仅 `loading` 或有状态图标时渲染；未传时用对应图标 |
 | `title`       | 标题内容。仅 `title` 有值时渲染；未传时回退到 `title`                                    |
 | `description` | 描述内容。仅 `description` 有值时渲染；未传时回退到 `description`                        |
-| `close`       | 关闭按钮内容。仅 `closable` 时渲染；未传时为 `closeIcon`                                 |
+| `close`       | 关闭按钮内容。仅 `dismissible` 时渲染；未传时为 `closeIcon`                              |
 
 ## Accessibility
 

@@ -5,7 +5,7 @@ export interface ToasterProps {
   gap: number
   orientation?: ToastStyleProps['orientation']
   closeIcon?: IconifyIconProps['icon']
-  closable?: boolean
+  dismissible?: boolean
   loadingIcon?: IconifyIconProps['icon']
   class?: any
 }

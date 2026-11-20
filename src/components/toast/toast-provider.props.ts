@@ -7,6 +7,6 @@ export interface ToastProviderProps extends PrimitiveToastProviderProps {
   orientation?: ToastProps['orientation']
   closeIcon?: ToastProps['closeIcon']
   loadingIcon?: ToastProps['loadingIcon']
-  closable?: ToastProps['closable']
+  dismissible?: ToastProps['dismissible']
   gap?: number
 }

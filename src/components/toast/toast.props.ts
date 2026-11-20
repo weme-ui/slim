@@ -15,7 +15,7 @@ export interface ToastData {
   icon?: IconifyIconProps['icon']
   loadingIcon?: IconifyIconProps['icon']
   actions?: ToastActionProps[]
-  closable?: boolean
+  dismissible?: boolean
   class?: any
   ui?: Partial<ToastStyleSlots>
 }
@@ -28,7 +28,7 @@ export interface ToastProps extends ToastRootProps {
   variant?: ToastStyleProps['variant']
   orientation?: ToastStyleProps['orientation']
   closeIcon?: IconifyIconProps['icon']
-  closable?: boolean
+  dismissible?: boolean
   loadingIcon?: IconifyIconProps['icon']
   actions?: ToastActionProps[]
   expanded?: boolean

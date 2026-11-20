@@ -58,7 +58,7 @@ const ui = computed(() =>
       :loading-icon="loadingIcon"
       :close-icon="closeIcon"
       :orientation="orientation"
-      :closable="closable"
+      :dismissible="dismissible"
       :class="ui.toast()"
     />
 

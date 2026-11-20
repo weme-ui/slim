@@ -126,11 +126,11 @@ describe('toast', () => {
       wrapper.unmount()
     })
 
-    it('spins the loading icon and shows a close button when closable', async () => {
+    it('spins the loading icon and shows a close button when dismissible', async () => {
       const wrapper = mountToast({
         title: 'Working',
         status: 'loading',
-        closable: true,
+        dismissible: true,
       })
       await flush()
       const icon = wrapper.getComponent(Icon)
