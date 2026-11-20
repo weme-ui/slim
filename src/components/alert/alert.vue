@@ -105,7 +105,7 @@ function handleClose() {
       </div>
 
       <button
-        v-if="closable"
+        v-if="dismissible"
         type="button"
         :class="cn(ui.close(), props.ui?.close)"
         @click="handleClose"

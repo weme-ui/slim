@@ -11,7 +11,7 @@ export interface AlertProps extends PrimitiveProps {
   href?: string
   target?: '_blank' | '_self' | '_parent' | '_top'
   rel?: string
-  closable?: boolean
+  dismissible?: boolean
   closeIcon?: IconifyIconProps['icon']
   externalIcon?: IconifyIconProps['icon']
   class?: any

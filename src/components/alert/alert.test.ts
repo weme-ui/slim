@@ -117,11 +117,11 @@ describe('alert', () => {
     })
   })
 
-  describe('given a closable alert', () => {
+  describe('given a dismissible alert', () => {
     it('hides after the close button is pressed', async () => {
       const wrapper = mount(Alert, {
         attachTo: document.body,
-        props: { closable: true, title: 'Notice' },
+        props: { dismissible: true, title: 'Notice' },
       })
       expect(wrapper.get('button').attributes('type')).toBe('button')
       await wrapper.get('button').trigger('click')

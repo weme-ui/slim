@@ -22,7 +22,7 @@ pnpm dlx @weme-ui/weme-ui add alert
 | `title`        | 标题文案。无 `title` 插槽时作为默认内容                                                                                                                           | `string`                                      | —                         |
 | `description`  | 描述文案。无 `description` 插槽时作为默认内容                                                                                                                     | `string`                                      | —                         |
 | `visible`      | 是否显示；可用 `v-model:visible`。为 `false` 时不渲染                                                                                                             | `boolean`                                     | `true`                    |
-| `closable`     | 是否显示关闭按钮。点击后 `visible` 变为 `false`                                                                                                                   | `boolean`                                     | —                         |
+| `dismissible`  | 是否显示关闭按钮。点击后 `visible` 变为 `false`                                                                                                                   | `boolean`                                     | —                         |
 | `closeIcon`    | 关闭图标（Iconify）                                                                                                                                               | `IconifyIconProps['icon']`                    | `'ri:close-line'`         |
 | `href`         | 有值时整条可点，并渲染 `LinkOverlay`                                                                                                                              | `string`                                      | —                         |
 | `target`       | 链接 `target`，传给 `LinkOverlay`                                                                                                                                 | `'_blank' \| '_self' \| '_parent' \| '_top'`  | —                         |
@@ -45,7 +45,7 @@ pnpm dlx @weme-ui/weme-ui add alert
 | `title`        | 标题内容。未传时回退到 `title`。无插槽且无 prop 时不渲染                                 |
 | `description`  | 描述内容。未传时回退到 `description`。无插槽且无 prop 时不渲染                           |
 | `actions`      | 操作区。未传且满足外链条件时渲染 `externalIcon`。无插槽且不是该外链时不渲染              |
-| `close`        | 关闭按钮内容。仅 `closable` 时渲染；未传时为 `closeIcon`                                 |
+| `close`        | 关闭按钮内容。仅 `dismissible` 时渲染；未传时为 `closeIcon`                              |
 | `link-overlay` | 传给 `LinkOverlay` 的内容。仅有 `href` 时渲染；提供该插槽时 `LinkOverlay` 使用 `asChild` |
 
 ## Accessibility
@@ -54,7 +54,7 @@ pnpm dlx @weme-ui/weme-ui add alert
 
 ### Keyboard Interactions
 
-| Key               | Description                    |
-| ----------------- | ------------------------------ |
-| `Enter` / `Space` | 激活关闭按钮（`closable` 时）  |
-| `Enter`           | 激活链接并导航（有 `href` 时） |
+| Key               | Description                      |
+| ----------------- | -------------------------------- |
+| `Enter` / `Space` | 激活关闭按钮（`dismissible` 时） |
+| `Enter`           | 激活链接并导航（有 `href` 时）   |

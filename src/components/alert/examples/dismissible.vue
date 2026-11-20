@@ -9,7 +9,7 @@ import Alert from '../alert.vue'
       title="Notice"
       description="You can dismiss this."
       class="min-w-sm"
-      closable
+      dismissible
     />
   </div>
 </template>
