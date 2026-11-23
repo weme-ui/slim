@@ -11,7 +11,7 @@ import ActivityBar from './activity-bar.vue'
 
 const groups = [
   {
-    slot: 'content' as const,
+    slot: 'start' as const,
     items: [
       {
         id: 'home',
@@ -30,7 +30,7 @@ const groups = [
     ],
   },
   {
-    slot: 'footer' as const,
+    slot: 'end' as const,
     items: [
       {
         id: 'settings',

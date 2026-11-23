@@ -8,7 +8,7 @@ const active = ref('inbox')
 
 const groups = [
   {
-    slot: 'content',
+    slot: 'start',
     items: [
       {
         id: 'home',

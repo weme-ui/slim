@@ -8,7 +8,7 @@ const active = ref('home')
 
 const groups = [
   {
-    slot: 'content',
+    slot: 'start',
     items: [
       {
         id: 'home',
@@ -25,7 +25,7 @@ const groups = [
     ],
   },
   {
-    slot: 'footer',
+    slot: 'end',
     items: [
       {
         id: 'settings',
