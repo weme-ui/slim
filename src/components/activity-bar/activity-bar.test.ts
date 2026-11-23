@@ -76,13 +76,13 @@ describe('activity-bar', () => {
   })
 
   describe('given an activity bar', () => {
-    it('renders a nav with grouped buttons', () => {
+    it('renders an aside with grouped buttons', () => {
       const wrapper = mountBar({ active: 'home' })
       const bar = wrapper.getComponent(ActivityBar)
-      const nav = bar.get('nav')
+      const root = bar.get('aside')
 
-      expect(nav.element.tagName).toBe('NAV')
-      expect(nav.attributes('data-slot')).toBe('activity-bar')
+      expect(root.element.tagName).toBe('ASIDE')
+      expect(root.attributes('data-slot')).toBe('activity-bar')
       expect(bar.find('header').exists()).toBe(false)
       expect(bar.find('footer').exists()).toBe(true)
       expect(bar.find('ul').exists()).toBe(false)
@@ -114,7 +114,7 @@ describe('activity-bar', () => {
         active: 'home',
         groups: [
           {
-            slot: 'content',
+            slot: 'start',
             items: [
               { id: 'home', label: 'Home', icon: 'ri:home-4-line' },
               {
@@ -149,7 +149,7 @@ describe('activity-bar', () => {
         active: 'home',
         groups: [
           {
-            slot: 'content',
+            slot: 'start',
             items: [
               { id: 'home', label: 'Home', icon: 'ri:home-4-line' },
               {
@@ -194,7 +194,7 @@ describe('activity-bar', () => {
         active: 'home',
         groups: [
           {
-            slot: 'content',
+            slot: 'start',
             items: [
               { id: 'home', label: 'Home', icon: 'ri:home-4-line' },
               {
@@ -222,7 +222,7 @@ describe('activity-bar', () => {
         active: 'home',
         groups: [
           {
-            slot: 'content',
+            slot: 'start',
             items: [
               {
                 id: 'home',
@@ -233,7 +233,7 @@ describe('activity-bar', () => {
             ],
           },
           {
-            slot: 'footer',
+            slot: 'end',
             items: [
               {
                 id: 'settings',
@@ -269,10 +269,12 @@ describe('activity-bar', () => {
           'content-bottom': () => h('span', 'Bottom'),
         },
       )
-      const content = wrapper.getComponent(ActivityBar).get('nav').element.children[0]
+      const children = [...wrapper.getComponent(ActivityBar).get('aside').element.children]
 
-      expect(content.firstElementChild?.textContent).toBe('Top')
-      expect(content.lastElementChild?.textContent).toBe('Bottom')
+      expect(children[0]?.textContent).toBe('Top')
+      expect(children[1]?.tagName).toBe('DIV')
+      expect(children[2]?.textContent).toBe('Bottom')
+      expect(children[3]?.tagName).toBe('FOOTER')
       wrapper.unmount()
     })
 
@@ -291,7 +293,7 @@ describe('activity-bar', () => {
 
     it('has no accessibility violations', async () => {
       const wrapper = mountBar({ active: 'home' })
-      expect(await axe(wrapper.getComponent(ActivityBar).get('nav').element)).toHaveNoViolations()
+      expect(await axe(wrapper.getComponent(ActivityBar).get('aside').element)).toHaveNoViolations()
       wrapper.unmount()
     })
   })

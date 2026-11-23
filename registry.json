@@ -101,8 +101,8 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/activity-bar/activity-bar.test.ts"
+          "kind": "doc",
+          "path": "src/components/activity-bar/README.md"
         },
         {
           "type": "component",
@@ -121,8 +121,8 @@
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/activity-bar/README.md"
+          "kind": "test",
+          "path": "src/components/activity-bar/activity-bar.test.ts"
         }
       ],
       "cssVars": {
@@ -132,6 +132,7 @@
           "active-color": "neutral.12"
         }
       },
+      "dependencies": ["motion-v"],
       "registryDependencies": ["animated-toggle-icon", "float", "tooltip"],
       "meta": {
         "docs.category": "navigation",
