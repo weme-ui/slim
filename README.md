@@ -105,7 +105,6 @@ pnpm dlx @weme-ui/weme-ui add button
 
 - **Form**
   - [ ] `cascader`
-  - [ ] `color-picker`
   - [ ] `date-picker`
   - [ ] `file-upload`
   - [ ] `filters`
@@ -113,6 +112,7 @@ pnpm dlx @weme-ui/weme-ui add button
   - [x] `autocomplete`
   - [x] `checkbox-group`
   - [x] `checkbox`
+  - [x] `color-picker`
   - [x] `color-swatch-picker`
   - [x] `combobox`
   - [x] `form-field`
