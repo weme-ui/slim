@@ -101,8 +101,8 @@
         },
         {
           "type": "component",
-          "kind": "doc",
-          "path": "src/components/activity-bar/README.md"
+          "kind": "test",
+          "path": "src/components/activity-bar/activity-bar.test.ts"
         },
         {
           "type": "component",
@@ -121,8 +121,8 @@
         },
         {
           "type": "component",
-          "kind": "test",
-          "path": "src/components/activity-bar/activity-bar.test.ts"
+          "kind": "doc",
+          "path": "src/components/activity-bar/README.md"
         }
       ],
       "cssVars": {
@@ -999,6 +999,35 @@
       "meta": {
         "docs.category": "data",
         "docs.categoryLabel": "Data Display"
+      }
+    },
+    {
+      "name": "color-swatch-picker",
+      "title": "Color Swatch Picker",
+      "description": "A color swatch picker that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/color-swatch-picker/color-swatch-picker.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/color-swatch-picker/color-swatch-picker.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/color-swatch-picker/color-swatch-picker.props.ts"
+        }
+      ],
+      "registryDependencies": ["icon", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
       }
     },
     {
