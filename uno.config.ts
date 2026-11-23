@@ -19,6 +19,11 @@ export default defineConfig<Theme>({
           'thumb-color': 'neutral.8',
           'thumb-hover-color': 'neutral.9',
         },
+        modal: {
+          width: '30rem',
+          bg: 'neutral.1',
+          'footer-bg': 'neutral.2',
+        },
         toast: {
           width: '20rem',
         },

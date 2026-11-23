@@ -97,10 +97,9 @@ pnpm dlx @weme-ui/weme-ui add button
 - **Overlay**
   - [ ] `action-sheet`
   - [ ] `context-menu`
-  - [ ] `drawer`
   - [ ] `dropdown`
-  - [ ] `modal`
   - [ ] `pop-confirm`
+  - [x] `modal`
   - [x] `popover`
   - [x] `tooltip`
 

@@ -1994,6 +1994,42 @@
       }
     },
     {
+      "name": "modal",
+      "title": "Modal",
+      "description": "A modal that can be used to display content in a overlay.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/modal/modal.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/modal/modal.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/modal/modal.props.ts"
+        }
+      ],
+      "cssVars": {
+        "modal": {
+          "width": "30rem",
+          "bg": "neutral.1",
+          "footer-bg": "neutral.2"
+        }
+      },
+      "registryDependencies": ["icon"],
+      "meta": {
+        "docs.category": "feedback",
+        "docs.categoryLabel": "Feedback"
+      }
+    },
+    {
       "name": "navigation-menu",
       "title": "Navigation Menu",
       "description": "A vertical menu of labels, links, and nested groups.",
