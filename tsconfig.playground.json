@@ -5,7 +5,7 @@
       "~/*": ["./src/*"],
       "~~/*": ["./playground/src/*"]
     },
-    "types": ["node", "vite/client", "vite-plugin-vue-layouts/client"]
+    "types": ["node", "vite/client", "@weme-ui/config/client", "vite-plugin-vue-layouts/client"]
   },
   "include": ["playground"],
   "exclude": ["playground/dist", "node_modules"],
