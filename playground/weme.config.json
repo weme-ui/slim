@@ -9,5 +9,20 @@
     "page": "~/pages",
     "util": "~/utils",
     "theme": "~/themes"
+  },
+  "theme": {
+    "accentColors": ["clay", "moroccan", "puerto"],
+    "neutralColors": ["gray", "iron", "covert"],
+    "colorPalettes": [
+      "neutral",
+      "brown",
+      "amber",
+      "orange",
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "red"
+    ]
   }
 }

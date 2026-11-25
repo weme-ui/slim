@@ -1,6 +1,7 @@
 import type { PluginOption } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
+import WemeUIConfig from '@weme-ui/config'
 import MagicString from 'magic-string'
 import path from 'node:path'
 import UnoCSS from 'unocss/vite'
@@ -68,6 +69,9 @@ const plugins: PluginOption[] = [
       },
     ],
   }),
+
+  // https://github.com/weme-ui/weme-ui/tree/main/packages/config
+  WemeUIConfig(),
 
   // https://github.com/unocss/unocss
   UnoCSS(),

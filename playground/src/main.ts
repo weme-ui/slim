@@ -1,4 +1,5 @@
 import 'uno.css'
+import { accentColors, neutralColors, colorPalettes } from 'virtual:weme-ui-config'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
@@ -10,6 +11,8 @@ const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0, behavior: 'smooth' }),
   routes,
 })
+
+console.log('Weme UI Config:', accentColors, neutralColors, colorPalettes)
 
 if (import.meta.hot) {
   handleHotUpdate(router)
