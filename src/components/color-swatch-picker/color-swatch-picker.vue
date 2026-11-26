@@ -46,7 +46,7 @@ const modelValue = useVModel<ColorSwatchPickerProps, 'modelValue', 'update:model
 
 const { id, name, bindings, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
-const { getThemeColor } = useTheme()
+const { getThemeColorValue } = useTheme()
 const slots = useSlots()
 
 let unregister: (() => void) | undefined
@@ -72,7 +72,9 @@ const ui = computed(() =>
 )
 
 function getColor(value: string) {
-  return getThemeColor(value) || 'var(--text)'
+  return (
+    getThemeColorValue(value) || (props.type === 'neutral' ? 'var(--neutral-9)' : 'var(--text)')
+  )
 }
 
 function getState(val: string) {
