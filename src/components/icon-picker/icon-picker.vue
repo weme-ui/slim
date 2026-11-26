@@ -44,7 +44,7 @@ const modelValue = useVModel<IconPickerProps, 'modelValue', 'update:modelValue'>
 const { id, name, bindings, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 const { contains } = useFilter({ sensitivity: 'base' })
-const { getThemeColor } = useTheme()
+const { getThemeColorValue } = useTheme()
 
 const el = useTemplateRef('el')
 
@@ -110,7 +110,7 @@ watch(defaultColor, (value) => {
 const ui = useIconPickerStyle()
 
 function getColor(color: string) {
-  return getThemeColor(color) || 'var(--text)'
+  return getThemeColorValue(color) || 'var(--text)'
 }
 
 function getOpenColorPicker(icon: string) {

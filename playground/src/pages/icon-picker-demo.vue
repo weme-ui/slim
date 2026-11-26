@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { IconPickerValue } from '~/components/icon-picker/icon-picker.props'
-import { accentColors } from 'virtual:weme-ui-config'
+const { getThemeColors } = useTheme()
 
-const colors = computed(() => ['default', ...accentColors])
+const colors = getThemeColors()
 const icons = [
   'lucide-extended:ad-filled',
   'lucide-extended:air-vent-filled',
