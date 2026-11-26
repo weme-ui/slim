@@ -1,44 +1,40 @@
 <script lang="ts" setup>
 import type { ColorSwatchPickerEmits, ColorSwatchPickerProps } from './color-swatch-picker.props'
 import { reactivePick, useVModel } from '@vueuse/core'
+import { isRawColor } from '@weme-ui/utilities'
 import {
-  ColorSwatchPickerRoot,
-  ColorSwatchPickerItem,
-  ColorSwatchPickerItemIndicator,
-  ColorSwatchPickerItemSwatch,
-  useForwardPropsEmits,
+  VisuallyHidden,
+  RovingFocusGroup,
+  RovingFocusItem,
   useForwardExpose,
+  useForwardPropsEmits,
 } from 'reka-ui'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
+import { useTheme } from '~/composables/use-theme'
+import { toBoolAriaValue } from '~/utils/props'
 import { cn } from '~/utils/styles'
-import Icon from '../icon/icon.vue'
 import { useColorSwatchPickerStyle } from './color-swatch-picker.style'
 
 const props = withDefaults(defineProps<ColorSwatchPickerProps>(), {
+  type: 'accent',
   size: 'md',
   radius: 'md',
   orientation: 'horizontal',
-  indicatorIcon: 'ri:check-line',
+  colors: () => [],
 })
 
 const emits = defineEmits<ColorSwatchPickerEmits>()
-
 const delegated = reactivePick(
   props,
   'as',
   'asChild',
-  'defaultValue',
   'dir',
-  'disabled',
-  'highlightOnHover',
   'loop',
-  'modelValue',
-  'multiple',
-  'name',
   'orientation',
-  'required',
-  'selectionBehavior',
+  'currentTabStopId',
+  'defaultCurrentTabStopId',
+  'preventScrollOnEntryFocus',
 )
 const forwarded = useForwardPropsEmits(delegated, emits)
 
@@ -49,9 +45,9 @@ const modelValue = useVModel<ColorSwatchPickerProps, 'modelValue', 'update:model
   { defaultValue: props.defaultValue },
 )
 
-const { id, name, disabled, registerControl } = useFormFieldControl(props)
-
+const { id, name, bindings, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
+const { getThemeColor } = useTheme()
 
 let unregister: (() => void) | undefined
 
@@ -69,42 +65,69 @@ onUnmounted(() => {
 
 const ui = computed(() =>
   useColorSwatchPickerStyle({
-    size: props.size,
-    radius: props.radius,
     orientation: props.orientation,
+    size: props.size,
   }),
 )
 
-function handleSelect(value: string | string[]) {
+function getColor(value: string) {
+  return getThemeColor(value, props.type)
+}
+
+function getState(val: string) {
+  return val === modelValue.value ? 'checked' : 'unchecked'
+}
+
+function handleSelect(value: string) {
   if (disabled.value || modelValue.value === value) return
 
   modelValue.value = value
+  emits('update:modelValue', value)
   emits('change', value)
 }
 </script>
 
 <template>
-  <ColorSwatchPickerRoot
-    v-bind="forwarded"
+  <RovingFocusGroup
+    v-bind="{ ...forwarded, ...dataAttributes }"
+    role="radiogroup"
     :ref="forwardRef"
-    :id="id"
-    :name="name"
-    :disabled="disabled"
-    :model-value="modelValue"
     :data-slot="$attrs['data-slot'] || 'color-swatch-picker'"
     :class="cn(ui.root(), props.ui?.root, props.class)"
-    @change="handleSelect"
   >
-    <ColorSwatchPickerItem
+    <RovingFocusItem
       v-for="color in colors"
       :key="color"
-      :value="color"
+      role="radio"
+      :active="modelValue === color"
+      :aria-label="color"
+      :aria-checked="getState(color) === 'checked'"
+      :data-state="getState(color)"
       :class="cn(ui.item(), props.ui?.item)"
+      :style="{ '--swatch-color': getColor(color) }"
+      @focus="handleSelect(color)"
+      @click="handleSelect(color)"
+      @mousedown.left="
+        (event: MouseEvent) => {
+          if (!disabled && event.ctrlKey === false) {
+            handleSelect(color)
+          } else {
+            event.preventDefault()
+          }
+        }
+      "
+      @keydown.enter.space="handleSelect(color)"
     >
-      <ColorSwatchPickerItemSwatch :class="cn(ui.swatch(), props.ui?.swatch)" />
-      <ColorSwatchPickerItemIndicator :class="cn(ui.indicator(), props.ui?.indicator)">
-        <Icon :name="indicatorIcon" />
-      </ColorSwatchPickerItemIndicator>
-    </ColorSwatchPickerItem>
-  </ColorSwatchPickerRoot>
+      <div :class="cn(ui.swatch(), props.ui?.swatch)" />
+    </RovingFocusItem>
+
+    <VisuallyHidden
+      as="input"
+      v-bind="bindings"
+      :id="id"
+      :name="name"
+      :disabled="disabled"
+      :aria-disabled="toBoolAriaValue(disabled)"
+    />
+  </RovingFocusGroup>
 </template>

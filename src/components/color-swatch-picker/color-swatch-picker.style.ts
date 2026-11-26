@@ -3,11 +3,10 @@ import { createVariants } from '~/utils/styles'
 
 export const useColorSwatchPickerStyle = createVariants({
   slots: {
-    root: 'flex gap-2',
-    item: 'relative outline-transparent transition-outline-color data-[highlighted]:outline-$reka-color-swatch-picker-item-color/40 data-[state=checked]:outline-$reka-color-swatch-picker-item-color/40',
-    swatch: 'peer ring-1 ring-inset ring-black-auto-4 rounded-inherit bg-$reka-color-swatch-color',
-    indicator:
-      'absolute absolute-center text-white-12 peer-data-[color-contrast=dark]:text-black-12',
+    root: 'flex',
+    item: 'relative rounded-full outline-transparent transition-outline-color data-[state=checked]:outline-$swatch-color/90 data-[state=unchecked]:hover:outline-$swatch-color/50',
+    swatch:
+      'ring-1 ring-inset ring-black-auto-3 rounded-inherit bg-$swatch-color pointer-events-none',
   },
 
   variants: {
@@ -17,34 +16,26 @@ export const useColorSwatchPickerStyle = createVariants({
     },
     size: {
       sm: {
-        item: 'data-[highlighted]:outline-2 data-[state=checked]:outline-2',
-        swatch: 'size-6',
-        indicator: '[&_svg]:size-3',
+        root: 'gap-2',
+        item: 'outline-offset-1 data-[state=checked]:outline-2 data-[state=unchecked]:hover:outline-2',
+        swatch: 'size-4',
       },
       md: {
-        item: 'data-[highlighted]:outline-2.5 data-[state=checked]:outline-2.5',
-        swatch: 'size-8',
-        indicator: '[&_svg]:size-4',
+        root: 'gap-3',
+        item: 'outline-offset-2 data-[state=checked]:outline-2.5 data-[state=unchecked]:hover:outline-2.5',
+        swatch: 'size-6',
       },
       lg: {
-        item: 'data-[highlighted]:outline-3 data-[state=checked]:outline-3',
-        swatch: 'size-10',
-        indicator: '[&_svg]:size-5',
+        root: 'gap-4',
+        item: 'outline-offset-2.5 data-[state=checked]:outline-3 data-[state=unchecked]:hover:outline-3',
+        swatch: 'size-8',
       },
-    },
-    radius: {
-      xs: { item: 'rounded-xs' },
-      sm: { item: 'rounded-sm' },
-      md: { item: 'rounded-md' },
-      lg: { item: 'rounded-lg' },
-      xl: { item: 'rounded-xl' },
-      full: { item: 'rounded-full' },
     },
   },
 
   defaultVariants: {
+    orientation: 'horizontal',
     size: 'md',
-    radius: 'md',
   },
 })
 
