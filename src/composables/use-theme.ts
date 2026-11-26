@@ -1,5 +1,7 @@
+import type { ThemeRadius, ThemeScaling } from '@weme-ui/utilities'
 import { useLocalStorage } from '@vueuse/core'
-import { isRawColor, type ThemeRadius, type ThemeScaling } from '@weme-ui/utilities'
+import { isRawColor } from '@weme-ui/utilities'
+import { accentColors, neutralColors } from 'virtual:weme-ui-config'
 
 export type ThemeValue = 'default' | string
 export type ThemeAppearanceValue = 'auto' | 'light' | 'dark'
@@ -27,7 +29,11 @@ export function useTheme() {
     neutral: 'default',
   })
 
-  const getThemeColor = (color: string) => {
+  const getThemeColors = (type: 'accent' | 'neutral' = 'accent') => {
+    return ['default', ...(type === 'accent' ? accentColors : neutralColors)]
+  }
+
+  const getThemeColorValue = (color: string) => {
     if (color === 'default') {
       return undefined
     }
@@ -37,6 +43,7 @@ export function useTheme() {
 
   return {
     preferences,
-    getThemeColor,
+    getThemeColors,
+    getThemeColorValue,
   }
 }
