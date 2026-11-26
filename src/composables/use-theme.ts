@@ -27,9 +27,9 @@ export function useTheme() {
     neutral: 'default',
   })
 
-  const getThemeColor = (color: string, type: 'accent' | 'neutral' = 'accent') => {
+  const getThemeColor = (color: string) => {
     if (color === 'default') {
-      return `var(--${type}-9)`
+      return undefined
     }
 
     return isRawColor(color) ? color : `var(--${color}-9)`
