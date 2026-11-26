@@ -1,29 +1,42 @@
-import type { ThemeRadius, ThemeScaling } from '@weme-ui/utilities'
-import type { Ref } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
+import { isRawColor, type ThemeRadius, type ThemeScaling } from '@weme-ui/utilities'
 
 export type ThemeValue = 'default' | string
 export type ThemeAppearanceValue = 'auto' | 'light' | 'dark'
 export type ThemeRadiusValue = 'default' | ThemeRadius
 export type ThemeScalingValue = 'default' | ThemeScaling
+export type ThemeAccentValue = 'default' | (string & {})
+export type ThemeNeutralValue = 'default' | (string & {})
 
 export interface ThemePreferences {
-  theme: Ref<ThemeValue>
-  appearance: Ref<ThemeAppearanceValue>
-  radius: Ref<ThemeRadiusValue>
-  scaling: Ref<ThemeScalingValue>
+  theme: ThemeValue
+  appearance: ThemeAppearanceValue
+  radius: ThemeRadiusValue
+  scaling: ThemeScalingValue
+  accent: ThemeAccentValue
+  neutral: ThemeNeutralValue
 }
 
-const localTheme = useLocalStorage<ThemeValue>('weme-theme', 'default')
-const localAppearance = useLocalStorage<ThemeAppearanceValue>('weme-theme-appearance', 'auto')
-const localRadius = useLocalStorage<ThemeRadiusValue>('weme-theme-radius', 'default')
-const localScaling = useLocalStorage<ThemeScalingValue>('weme-theme-scaling', 'default')
+export function useTheme() {
+  const preferences = useLocalStorage<ThemePreferences>('weme-theme-preferences', {
+    theme: 'default',
+    appearance: 'auto',
+    radius: 'default',
+    scaling: 'default',
+    accent: 'default',
+    neutral: 'default',
+  })
 
-export function useTheme(): ThemePreferences {
+  const getThemeColor = (color: string, type: 'accent' | 'neutral' = 'accent') => {
+    if (color === 'default') {
+      return `var(--${type}-9)`
+    }
+
+    return isRawColor(color) ? color : `var(--${color}-9)`
+  }
+
   return {
-    theme: localTheme,
-    appearance: localAppearance,
-    radius: localRadius,
-    scaling: localScaling,
+    preferences,
+    getThemeColor,
   }
 }
