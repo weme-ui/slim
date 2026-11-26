@@ -16,6 +16,6 @@ const resolvedIcon = computed(() => props.icon ?? props.name)
     v-bind="delegated"
     data-slot="icon"
     :icon="resolvedIcon"
-    :class="cn('outline-none shrink-0', props.class)"
+    :class="cn('outline-none shrink-0 pointer-events-none', props.class)"
   />
 </template>
