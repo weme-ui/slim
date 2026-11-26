@@ -10,7 +10,7 @@
       "~/*": ["./src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vitest"],
+    "types": ["vitest", "@weme-ui/config/client"],
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,

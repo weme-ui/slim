@@ -11,8 +11,18 @@
     "theme": "~/themes"
   },
   "theme": {
-    "accentColors": ["clay", "moroccan", "puerto"],
-    "neutralColors": ["gray", "iron", "covert"],
+    "accentColors": [
+      "neutral",
+      "brown",
+      "amber",
+      "orange",
+      "green",
+      "indigo",
+      "violet",
+      "crimson",
+      "tomato"
+    ],
+    "neutralColors": ["covert", "gray", "mauve", "slate", "sage", "olive", "sand"],
     "colorPalettes": [
       "neutral",
       "brown",
