@@ -8,7 +8,7 @@ import {
   useForwardExpose,
   useForwardPropsEmits,
 } from 'reka-ui'
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, useSlots } from 'vue'
 import { useFormFieldControl } from '~/composables/use-form-field-context'
 import { useTheme } from '~/composables/use-theme'
 import { toBoolAriaValue } from '~/utils/props'
@@ -47,6 +47,7 @@ const modelValue = useVModel<ColorSwatchPickerProps, 'modelValue', 'update:model
 const { id, name, bindings, disabled, dataAttributes, registerControl } = useFormFieldControl(props)
 const { forwardRef, currentElement } = useForwardExpose()
 const { getThemeColor } = useTheme()
+const slots = useSlots()
 
 let unregister: (() => void) | undefined
 
@@ -66,11 +67,12 @@ const ui = computed(() =>
   useColorSwatchPickerStyle({
     orientation: props.orientation,
     size: props.size,
+    custom: !!slots.default,
   }),
 )
 
 function getColor(value: string) {
-  return getThemeColor(value, props.type)
+  return getThemeColor(value) || 'var(--text)'
 }
 
 function getState(val: string) {
@@ -117,7 +119,9 @@ function handleSelect(value: string) {
       "
       @keydown.enter.space="handleSelect(color)"
     >
-      <div :class="cn(ui.swatch(), props.ui?.swatch)" />
+      <slot>
+        <div :class="cn(ui.swatch(), props.ui?.swatch)" />
+      </slot>
     </RovingFocusItem>
 
     <VisuallyHidden
