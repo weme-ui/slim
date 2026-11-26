@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { ColorSwatchPickerEmits, ColorSwatchPickerProps } from './color-swatch-picker.props'
 import { reactivePick, useVModel } from '@vueuse/core'
-import { isRawColor } from '@weme-ui/utilities'
 import {
   VisuallyHidden,
   RovingFocusGroup,
