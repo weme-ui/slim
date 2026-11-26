@@ -15,24 +15,13 @@
       "neutral",
       "brown",
       "amber",
-      "orange",
+      "clay",
       "green",
       "indigo",
       "violet",
       "crimson",
       "tomato"
     ],
-    "neutralColors": ["covert", "gray", "mauve", "slate", "sage", "olive", "sand"],
-    "colorPalettes": [
-      "neutral",
-      "brown",
-      "amber",
-      "orange",
-      "green",
-      "blue",
-      "purple",
-      "pink",
-      "red"
-    ]
+    "neutralColors": ["covert", "gray", "mauve", "slate", "sage", "olive", "sand"]
   }
 }

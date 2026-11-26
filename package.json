@@ -47,6 +47,7 @@
     "tailwind-variants": "^4.0.2"
   },
   "devDependencies": {
+    "@iconify-json/mingcute": "^1.2.10",
     "@iconify-json/ri": "^1.2.10",
     "@testing-library/vue": "^8.1.0",
     "@types/node": "^26.6.10",

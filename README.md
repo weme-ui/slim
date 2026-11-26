@@ -106,6 +106,7 @@ pnpm dlx @weme-ui/weme-ui add button
 - **Form**
   - [ ] `cascader`
   - [ ] `date-picker`
+  - [x] `icon-picker`
   - [ ] `file-upload`
   - [ ] `filters`
   - [ ] `rich-text`
