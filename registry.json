@@ -1002,6 +1002,35 @@
       }
     },
     {
+      "name": "color-picker",
+      "title": "Color Picker",
+      "description": "A color picker that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/color-picker/color-picker.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/color-picker/color-picker.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/color-picker/color-picker.props.ts"
+        }
+      ],
+      "registryDependencies": ["popover", "use-form-field-context"],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
+      }
+    },
+    {
       "name": "color-swatch-picker",
       "title": "Color Swatch Picker",
       "description": "A color swatch picker that binds to FormField context.",
@@ -1455,6 +1484,45 @@
       "meta": {
         "docs.category": "general",
         "docs.categoryLabel": "General"
+      }
+    },
+    {
+      "name": "icon-picker",
+      "title": "Icon Picker",
+      "description": "A icon picker that binds to FormField context.",
+      "type": "component",
+      "when": "on-depended",
+      "files": [
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-picker/icon-picker.vue"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-picker/icon-picker.style.ts"
+        },
+        {
+          "type": "component",
+          "kind": "file",
+          "path": "src/components/icon-picker/icon-picker.props.ts"
+        }
+      ],
+      "registryDependencies": [
+        "color-swatch-picker",
+        "empty",
+        "icon-stack",
+        "icon",
+        "popover",
+        "switch",
+        "tooltip",
+        "use-form-field-context",
+        "use-theme"
+      ],
+      "meta": {
+        "docs.category": "form",
+        "docs.categoryLabel": "Form"
       }
     },
     {
