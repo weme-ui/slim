@@ -1,5 +1,5 @@
 import 'uno.css'
-import { accentColors, neutralColors, colorPalettes } from 'virtual:weme-ui-config'
+import { accentColors, neutralColors } from 'virtual:weme-ui-config'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
@@ -12,7 +12,7 @@ const router = createRouter({
   routes,
 })
 
-console.log('Weme UI Config:', accentColors, neutralColors, colorPalettes)
+console.log('Weme UI Config:', accentColors, neutralColors)
 
 if (import.meta.hot) {
   handleHotUpdate(router)
